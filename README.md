@@ -40,6 +40,18 @@ src/
                                # EstimateLineItem, MasterEstimateState, BidSummary)
 ```
 
+## Phase 2 — Navigation, directory & search (2026-10-05)
+
+- **Central registry** — `src/data/toolsRegistry.ts`: 7 `CategoryMetadata` hubs + 31
+  `ToolMetadata` tools (sub-trades, tags, badges, outputs, ETAs). Sole source of truth.
+- **Command menu** — `src/components/layout/CommandMenu.tsx`: ⌘K fuzzy search with
+  category chips, recent tools, empty-state suggestions; routes to `/tools/[slug]`.
+- **Routes** — `/` dashboard (hero search, metrics, category grid, recent rail),
+  `/tools`, `/tools/[slug]` (breadcrumb + action bar + related sidebar + skeletons),
+  `/categories`, `/categories/[category]` (sub-trade tabs + search).
+- **Tool action bar** — `useToolPageStore` + `useToolActions()`: Reset Inputs and
+  Save/Restore JSON drafts per tool; old `/tools/:category/:slug` URLs 308-redirect.
+
 ## Key contracts
 
 - **Estimate persistence** — `useEstimateStore` persists the full `MasterEstimateState`

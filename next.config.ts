@@ -6,6 +6,17 @@ const nextConfig: NextConfig = {
   // for Phase 2 calculator pages.)
   poweredByHeader: false,
   reactStrictMode: true,
+  // Phase 2 moved tools from /tools/[category]/[slug] to /tools/[slug].
+  // Keep old links working permanently.
+  async redirects() {
+    return [
+      {
+        source: "/tools/:category/:slug",
+        destination: "/tools/:slug",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     // No remote images needed in Phase 1; local assets only.
     remotePatterns: [],

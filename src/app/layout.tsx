@@ -4,7 +4,7 @@ import { Toaster } from "sonner";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { CommandPalette } from "@/components/layout/CommandPalette";
+import { CommandMenu } from "@/components/layout/CommandMenu";
 import { EstimateDrawer } from "@/components/estimate/EstimateDrawer";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
@@ -66,7 +66,7 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
-          <CommandPalette />
+          <CommandMenu />
           <EstimateDrawer />
           <Toaster
             theme="dark"

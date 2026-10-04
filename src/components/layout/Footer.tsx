@@ -3,8 +3,7 @@
  */
 import Link from "next/link";
 import { HardHat, ShieldCheck, DatabaseZap } from "lucide-react";
-import { TOOL_CATEGORIES } from "@/lib/tools-registry";
-import { CATEGORY_META } from "@/types/estimator";
+import { TOOL_CATEGORIES, getCategory, categoryHref } from "@/data/toolsRegistry";
 
 export function Footer() {
   return (
@@ -45,10 +44,10 @@ export function Footer() {
             {TOOL_CATEGORIES.map((c) => (
               <li key={c}>
                 <Link
-                  href={`/tools#${c}`}
+                  href={categoryHref(c)}
                   className="text-sm text-zinc-400 transition-colors hover:text-primary"
                 >
-                  {CATEGORY_META[c].label}
+                  {getCategory(c).label}
                 </Link>
               </li>
             ))}

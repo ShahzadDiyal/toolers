@@ -10,11 +10,12 @@
 "use client";
 
 import * as React from "react";
+import { toast } from "sonner";
 import type { ToolMetadata } from "@/types/estimator";
-import { getTool } from "@/lib/tools-registry";
+import { getToolBySlug } from "@/data/toolsRegistry";
 
 function requireTool(): ToolMetadata {
-  const tool = getTool("concrete", "concrete-slab");
+  const tool = getToolBySlug("concrete-slab");
   if (!tool) throw new Error("Tool registry missing concrete-slab");
   return tool;
 }
@@ -34,8 +35,22 @@ import {
   type ResultRow,
 } from "@/components/calculators/CalculationCard";
 import { NumericInput } from "@/components/calculators/NumericInput";
+import {
+  useToolActions,
+  saveToolDraft,
+  loadToolDraft,
+  clearToolDraft,
+} from "@/components/tools/useToolActions";
 
 const TOOL = requireTool();
+
+const DEFAULTS = {
+  lengthFt: 20,
+  widthFt: 12,
+  thicknessIn: 4,
+  wastePercent: 10,
+  unitCost: 165,
+};
 
 const THICKNESS_PRESETS = [
   { label: '3½"', value: 3.5 },
@@ -45,11 +60,51 @@ const THICKNESS_PRESETS = [
 ];
 
 export function ConcreteSlab() {
-  const [lengthFt, setLengthFt] = React.useState(20);
-  const [widthFt, setWidthFt] = React.useState(12);
-  const [thicknessIn, setThicknessIn] = React.useState(4);
-  const [wastePercent, setWastePercent] = React.useState(10);
-  const [unitCost, setUnitCost] = React.useState(165);
+  const [lengthFt, setLengthFt] = React.useState(DEFAULTS.lengthFt);
+  const [widthFt, setWidthFt] = React.useState(DEFAULTS.widthFt);
+  const [thicknessIn, setThicknessIn] = React.useState(DEFAULTS.thicknessIn);
+  const [wastePercent, setWastePercent] = React.useState(DEFAULTS.wastePercent);
+  const [unitCost, setUnitCost] = React.useState(DEFAULTS.unitCost);
+  const restoredRef = React.useRef(false);
+
+  // Restore a saved JSON draft once on mount.
+  React.useEffect(() => {
+    if (restoredRef.current) return;
+    restoredRef.current = true;
+    const draft = loadToolDraft(TOOL.slug);
+    if (draft) {
+      const i = draft.inputs;
+      if (typeof i.lengthFt === "number") setLengthFt(i.lengthFt);
+      if (typeof i.widthFt === "number") setWidthFt(i.widthFt);
+      if (typeof i.thicknessIn === "number") setThicknessIn(i.thicknessIn);
+      if (typeof i.wastePercent === "number") setWastePercent(i.wastePercent);
+      if (typeof i.unitCost === "number") setUnitCost(i.unitCost);
+      toast.info("Draft restored", {
+        description: "Your saved inputs were reloaded. Reset to start fresh.",
+      });
+    }
+  }, []);
+
+  // Register with the tool-page quick-action bar.
+  useToolActions({
+    toolTitle: TOOL.title,
+    resetInputs: () => {
+      setLengthFt(DEFAULTS.lengthFt);
+      setWidthFt(DEFAULTS.widthFt);
+      setThicknessIn(DEFAULTS.thicknessIn);
+      setWastePercent(DEFAULTS.wastePercent);
+      setUnitCost(DEFAULTS.unitCost);
+      clearToolDraft(TOOL.slug);
+    },
+    saveDraft: () =>
+      saveToolDraft(TOOL.slug, {
+        lengthFt,
+        widthFt,
+        thicknessIn,
+        wastePercent,
+        unitCost,
+      }),
+  });
 
   const valid = lengthFt > 0 && widthFt > 0 && thicknessIn > 0;
 

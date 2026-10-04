@@ -31,8 +31,7 @@ import {
 import { useEstimateCount } from "@/store/useEstimateStore";
 import { useUiStore } from "@/store/useUiStore";
 import { useOnline } from "@/hooks/useOnline";
-import { TOOL_CATEGORIES } from "@/lib/tools-registry";
-import { CATEGORY_META } from "@/types/estimator";
+import { TOOL_CATEGORIES, getCategory, categoryHref } from "@/data/toolsRegistry";
 
 function OfflineIndicator() {
   const online = useOnline();
@@ -90,7 +89,7 @@ function CartTrigger() {
 
 export function Navbar() {
   const pathname = usePathname();
-  const setPaletteOpen = useUiStore((s) => s.setPaletteOpen);
+  const setCommandOpen = useUiStore((s) => s.setCommandOpen);
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-md">
@@ -127,14 +126,17 @@ export function Navbar() {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-64">
-              {TOOL_CATEGORIES.map((c) => (
-                <DropdownMenuItem key={c} asChild>
-                  <Link href={`/tools#${c}`} className="flex flex-col items-start gap-0.5">
-                    <span className="font-semibold">{CATEGORY_META[c].label}</span>
-                    <span className="text-xs text-zinc-500">{CATEGORY_META[c].tagline}</span>
-                  </Link>
-                </DropdownMenuItem>
-              ))}
+              {TOOL_CATEGORIES.map((c) => {
+                const meta = getCategory(c);
+                return (
+                  <DropdownMenuItem key={c} asChild>
+                    <Link href={categoryHref(c)} className="flex flex-col items-start gap-0.5">
+                      <span className="font-semibold">{meta.label}</span>
+                      <span className="text-xs text-zinc-500">{meta.tagline}</span>
+                    </Link>
+                  </DropdownMenuItem>
+                );
+              })}
             </DropdownMenuContent>
           </DropdownMenu>
         </nav>
@@ -145,7 +147,7 @@ export function Navbar() {
 
         <button
           type="button"
-          onClick={() => setPaletteOpen(true)}
+          onClick={() => setCommandOpen(true)}
           className="hidden h-9 items-center gap-2 rounded-lg border border-input bg-zinc-950 px-3 text-sm text-zinc-400 transition-colors hover:border-primary hover:text-zinc-200 md:flex"
           aria-label="Search calculators (Command K)"
         >
@@ -159,7 +161,7 @@ export function Navbar() {
           variant="outline"
           size="iconSm"
           className="md:hidden"
-          onClick={() => setPaletteOpen(true)}
+          onClick={() => setCommandOpen(true)}
           aria-label="Search calculators"
         >
           <Search className="h-4 w-4" />
@@ -177,10 +179,10 @@ export function Navbar() {
           {TOOL_CATEGORIES.map((c) => (
             <Link
               key={c}
-              href={`/tools#${c}`}
+              href={categoryHref(c)}
               className="whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold text-zinc-400 transition-colors hover:bg-panel hover:text-primary"
             >
-              {CATEGORY_META[c].label}
+              {getCategory(c).label}
             </Link>
           ))}
         </div>
