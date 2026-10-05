@@ -15,6 +15,7 @@ import Link from "next/link";
 import { Pin, Search } from "lucide-react";
 import type { Category, ToolMetadata } from "@/types/estimator";
 import { getCategory, toolsByCategory, toolHref } from "@/data/toolsRegistry";
+import { useTranslation } from "@/i18n/I18nProvider";
 import { toolIcon } from "@/lib/tool-icons";
 import { useCategoryStore } from "@/store/useCategoryStore";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
@@ -32,6 +33,7 @@ function normalizeTrade(value: string | null, subtrades: string[]): string {
 }
 
 export function CategoryHubView({ category }: { category: Category }) {
+  const { locale } = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -148,7 +150,7 @@ export function CategoryHubView({ category }: { category: Category }) {
               return (
                 <Link
                   key={t.id}
-                  href={`${toolHref(t)}${tradeQuery}`}
+                  href={`${toolHref(t, locale)}${tradeQuery}`}
                   className="flex min-h-[44px] shrink-0 items-center gap-2 rounded-full border border-primary/40 bg-primary/10 py-2 pl-2 pr-4 text-sm font-semibold text-zinc-100 transition-colors hover:border-primary"
                 >
                   <span className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-900">

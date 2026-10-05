@@ -65,7 +65,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
               itemProp="itemListElement"
               itemType="https://schema.org/ListItem"
             >
-              {i > 0 && <ChevronRight className="h-3.5 w-3.5 shrink-0" aria-hidden />}
+              {i > 0 && <ChevronRight className="h-3.5 w-3.5 shrink-0 rtl:rotate-180" aria-hidden />}
               {item.href && !isLast ? (
                 <Link
                   href={item.href}
@@ -96,7 +96,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
             href={parent.href}
             className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-border bg-card px-3 text-sm font-semibold text-zinc-300 transition-colors hover:border-primary hover:text-primary"
           >
-            <ArrowLeft className="h-4 w-4" aria-hidden />
+            <ArrowLeft className="h-4 w-4 rtl:rotate-180" aria-hidden />
             Back to {parent.label}
           </Link>
         ) : (

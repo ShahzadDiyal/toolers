@@ -25,6 +25,11 @@ import {
   categoryHref,
 } from "@/data/toolsRegistry";
 import { BLOG_POSTS } from "@/data/blog";
+import {
+  defaultLocale,
+  isValidLocale,
+  localePath,
+} from "@/i18n/config";
 
 interface Suggestion {
   href: string;
@@ -110,7 +115,13 @@ function scoreCandidate(query: string, candidates: string[]): number {
   return best;
 }
 
-function findSuggestions(pathname: string): Suggestion[] {
+/** Locale comes from the leading /[locale] segment of the attempted path. */
+function localeFromPath(pathname: string | null): string {
+  const seg = (pathname ?? "").split("/").filter(Boolean)[0] ?? "";
+  return isValidLocale(seg) ? seg : defaultLocale;
+}
+
+function findSuggestions(pathname: string, locale: string): Suggestion[] {
   const segment = pathname.split("/").filter(Boolean).pop() ?? "";
   const q = normalize(segment);
   if (q.length < 2) return [];
@@ -123,13 +134,13 @@ function findSuggestions(pathname: string): Suggestion[] {
       scoreCandidate(q, t.tags ?? []) * 0.9,
     );
     if (s > 0)
-      out.push({ href: toolHref(t), label: t.title, kind: "Calculator", score: s });
+      out.push({ href: toolHref(t, locale), label: t.title, kind: "Calculator", score: s });
   }
   for (const c of CATEGORIES) {
     const s = scoreCandidate(q, [c.id, c.label]);
     if (s > 0)
       out.push({
-        href: categoryHref(c.id),
+        href: categoryHref(c.id, locale),
         label: `${c.label}`,
         kind: "Category",
         score: s * 0.95,
@@ -139,7 +150,7 @@ function findSuggestions(pathname: string): Suggestion[] {
     const s = scoreCandidate(q, [p.slug, p.title]);
     if (s > 0)
       out.push({
-        href: `/blog/${p.slug}`,
+        href: localePath(`/blog/${p.slug}`, locale),
         label: p.title,
         kind: "Guide",
         score: s * 0.85,
@@ -148,21 +159,24 @@ function findSuggestions(pathname: string): Suggestion[] {
   return out.sort((a, b) => b.score - a.score).slice(0, 4);
 }
 
-const FALLBACK_POPULAR: Suggestion[] = [
-  { href: "/tools/concrete-slab", label: "Concrete Slab Calculator", kind: "Calculator", score: 0 },
-  { href: "/tools/roof-pitch-shingles", label: "Roof Pitch & Shingle Calculator", kind: "Calculator", score: 0 },
-  { href: "/tools/stair-stringer-layout", label: "Stair Stringer Layout", kind: "Calculator", score: 0 },
-  { href: "/tools/estimate-builder", label: "Master Estimate Builder", kind: "Calculator", score: 0 },
-];
+function fallbackPopular(locale: string): Suggestion[] {
+  return [
+    { href: toolHref({ slug: "concrete-slab" }, locale), label: "Concrete Slab Calculator", kind: "Calculator", score: 0 },
+    { href: toolHref({ slug: "roof-pitch-shingles" }, locale), label: "Roof Pitch & Shingle Calculator", kind: "Calculator", score: 0 },
+    { href: toolHref({ slug: "stair-stringer-layout" }, locale), label: "Stair Stringer Layout", kind: "Calculator", score: 0 },
+    { href: toolHref({ slug: "master-proposal-builder" }, locale), label: "Master Estimate Builder", kind: "Calculator", score: 0 },
+  ];
+}
 
 export function NotFoundRedirect() {
   const pathname = usePathname();
   const router = useRouter();
   const [redirectingTo, setRedirectingTo] = useState<Suggestion | null>(null);
+  const locale = localeFromPath(pathname);
 
   const suggestions = useMemo(
-    () => findSuggestions(pathname ?? ""),
-    [pathname],
+    () => findSuggestions(pathname ?? "", locale),
+    [pathname, locale],
   );
 
   useEffect(() => {
@@ -210,7 +224,7 @@ export function NotFoundRedirect() {
         </Link>
         <p className="mt-4 text-sm text-[#5A6C85]">
           Not right?{" "}
-          <Link href="/tools" className="font-bold text-[#2563EB] hover:underline">
+          <Link href={localePath("/tools", locale)} className="font-bold text-[#2563EB] hover:underline">
             Browse all calculators
           </Link>
         </p>
@@ -243,14 +257,14 @@ export function NotFoundRedirect() {
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <Link
-          href="/"
+          href={localePath("/", locale)}
           className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#14284A] px-6 text-sm font-bold text-white transition hover:bg-[#0e1e38]"
         >
           <Home className="h-4 w-4" aria-hidden />
           Back to Home
         </Link>
         <Link
-          href="/tools"
+          href={localePath("/tools", locale)}
           className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-[#14284A]/20 bg-white px-6 text-sm font-bold text-[#14284A] transition hover:border-[#14284A]/40"
         >
           <LayoutGrid className="h-4 w-4" aria-hidden />
@@ -264,7 +278,7 @@ export function NotFoundRedirect() {
           {list ? "Did you mean" : "Popular calculators"}
         </p>
         <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-          {(list ?? FALLBACK_POPULAR).map((t) => (
+          {(list ?? fallbackPopular(locale)).map((t) => (
             <li key={t.href}>
               <Link
                 href={t.href}
@@ -277,7 +291,7 @@ export function NotFoundRedirect() {
                   {t.label}
                 </span>
                 <ArrowRight
-                  className="h-4 w-4 shrink-0 text-[#ED7D22] transition group-hover:translate-x-0.5"
+                  className="h-4 w-4 shrink-0 text-[#ED7D22] transition group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5"
                   aria-hidden
                 />
               </Link>

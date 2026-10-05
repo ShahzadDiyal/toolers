@@ -274,3 +274,27 @@
     font-weight: 700;
   }
 }
+
+/* ------------------------------------------------------------------ */
+/*  RTL support                                                        */
+/*                                                                     */
+/*  The document direction is set per locale (<html dir>) by the       */
+/*  [locale] layout. These rules keep math and numeric entry stable    */
+/*  when the surrounding UI flips to right-to-left.                    */
+/* ------------------------------------------------------------------ */
+
+/* Numeric calculator inputs stay left-to-right in RTL locales so digits
+   and decimal separators never invert. (DimensionInput / CostInput /
+   PresetStepper all use inputmode="decimal|numeric".) */
+input[inputmode="decimal"],
+input[inputmode="numeric"] {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Mathematical formulas and unit readouts stay LTR everywhere. */
+.math-ltr,
+[dir="ltr"] .keep-ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}

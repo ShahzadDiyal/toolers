@@ -1,16 +1,18 @@
 /**
  * BuildCalc Pro Shared tool card.
  *
- * Used by the category hubs, the /tools directory, and the categories index
- * search results. Shows: icon + title, trade tag badge, inputs → outputs
- * summary, pin toggle (localStorage), and a "Launch Calculator →" action.
+ * Localized shell: action labels and category badges come from the locale
+ * dictionary. Used by the category hubs, the /tools directory, and the
+ * categories index search results. Shows: icon + title, trade tag badge,
+ * inputs → outputs summary, pin toggle (localStorage), and a localized
+ * "Launch calculator" action.
  */
 "use client";
 
 import Link from "next/link";
 import { ArrowRight, Bookmark, BookmarkCheck, Clock3, Lock } from "lucide-react";
 import type { ToolMetadata } from "@/types/estimator";
-import { getCategory, toolHref } from "@/data/toolsRegistry";
+import { toolHref } from "@/data/toolsRegistry";
 import { toolIcon } from "@/lib/tool-icons";
 import { useCategoryStore } from "@/store/useCategoryStore";
 import { Badge } from "@/components/ui/badge";
@@ -22,6 +24,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/i18n/I18nProvider";
 
 function PinToggle({ slug, title }: { slug: string; title: string }) {
   const togglePinTool = useCategoryStore((s) => s.togglePinTool);
@@ -60,8 +63,9 @@ export function ToolCard({
   /** Appended to tool links, e.g. "?trade=Flatwork" (breadcrumb continuity). */
   querySuffix?: string;
 }) {
+  const { locale, t } = useTranslation();
   const Icon = toolIcon(tool.iconName);
-  const href = toolHref(tool) + (querySuffix ?? "");
+  const href = toolHref(tool, locale) + (querySuffix ?? "");
 
   return (
     <Card className="flex h-full flex-col transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-[0_8px_30px_-8px_rgb(245_158_11/0.25)]">
@@ -93,12 +97,12 @@ export function ToolCard({
           </Badge>
           {showCategory && (
             <Badge variant="outline" className="text-[10px]">
-              {getCategory(tool.category).label.split(",")[0]}
+              {t.categories[tool.category].title}
             </Badge>
           )}
           {tool.available ? (
             <Badge variant="success" className="text-[10px]">
-              Live
+              {t.common.free}
             </Badge>
           ) : (
             <Badge variant="outline" className="text-[10px]">
@@ -119,7 +123,7 @@ export function ToolCard({
       </CardHeader>
 
       <CardContent className="flex flex-1 flex-col pt-0">
-        <div className="rounded-lg border border-border bg-zinc-950 px-3 py-2.5 text-[13px] leading-relaxed">
+        <div className="rounded-lg border border-border bg-zinc-950 px-3 py-2.5 text-[13px] leading-relaxed" dir="ltr">
           {tool.inputsSummary && (
             <p className="text-zinc-400">
               <span className="font-bold uppercase tracking-wide text-zinc-500 text-[10px]">
@@ -143,7 +147,7 @@ export function ToolCard({
           className="mt-3 inline-flex min-h-[44px] items-center gap-1.5 self-start rounded-lg px-1 text-sm font-bold text-primary transition-colors hover:gap-2.5 hover:underline"
           aria-label={`Launch ${tool.title}`}
         >
-          Launch calculator <ArrowRight className="h-4 w-4" />
+          {t.common.launchCalculator} <ArrowRight className="h-4 w-4 rtl:rotate-180" />
         </Link>
       </CardContent>
     </Card>

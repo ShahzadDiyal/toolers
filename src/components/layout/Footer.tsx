@@ -1,64 +1,71 @@
 /**
  * BuildCalc Pro Site footer.
  *
- * Full platform navigation: brand block, Platform / Resources / Company /
- * Legal columns, tool-category strip, and an honest disclaimer line.
- * Every link points at a real route.
+ * Localized UI shell: headings, labels, and legal lines come from the
+ * locale dictionary. Full platform navigation: brand block, Platform /
+ * Resources / Company / Legal columns, tool-category strip, disclaimer.
  */
+"use client";
+
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { CATEGORIES, categoryHref } from "@/data/toolsRegistry";
-
-const COLUMNS: {
-  heading: string;
-  links: { label: string; href: string }[];
-}[] = [
-  {
-    heading: "Platform",
-    links: [
-      { label: "All tools", href: "/tools" },
-      { label: "Categories", href: "/categories" },
-      { label: "Services", href: "/services" },
-      { label: "Blog", href: "/blog" },
-      { label: "Request a custom tool", href: "/request-tool" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
-  {
-    heading: "Resources",
-    links: [
-      { label: "How it works", href: "/about" },
-      { label: "Estimating guides", href: "/blog" },
-      { label: "Master Proposal Builder", href: "/tools/master-proposal-builder" },
-      { label: "Bid cart", href: "/estimate-builder" },
-    ],
-  },
-  {
-    heading: "Company",
-    links: [
-      { label: "About", href: "/about" },
-      { label: "Services", href: "/services" },
-      { label: "Contact", href: "/contact" },
-    ],
-  },
-  {
-    heading: "Legal",
-    links: [
-      { label: "Privacy", href: "/privacy" },
-      { label: "Terms of use", href: "/terms" },
-      { label: "Disclaimer", href: "/disclaimer" },
-    ],
-  },
-];
+import { CATEGORIES, categoryHref, toolHref, getToolBySlug } from "@/data/toolsRegistry";
+import { useTranslation } from "@/i18n/I18nProvider";
+import { localePath } from "@/i18n/config";
 
 export function Footer() {
+  const { locale, t } = useTranslation();
+  const proposalTool = getToolBySlug("master-proposal-builder");
+
+  const COLUMNS: {
+    heading: string;
+    links: { label: string; href: string }[];
+  }[] = [
+    {
+      heading: t.footer.platform,
+      links: [
+        { label: t.footer.allTools, href: localePath("/tools", locale) },
+        { label: t.footer.categories, href: localePath("/categories", locale) },
+        { label: t.nav.services, href: localePath("/services", locale) },
+        { label: t.nav.blog, href: localePath("/blog", locale) },
+        { label: t.nav.requestCustomTool, href: localePath("/request-tool", locale) },
+        { label: t.nav.contact, href: localePath("/contact", locale) },
+      ],
+    },
+    {
+      heading: t.footer.resources,
+      links: [
+        { label: t.footer.howItWorks, href: localePath("/about", locale) },
+        { label: t.footer.estimatingGuides, href: localePath("/blog", locale) },
+        { label: proposalTool?.title ?? "Master Proposal Builder", href: toolHref({ slug: "master-proposal-builder" }, locale) },
+        { label: t.nav.bidCart, href: localePath("/estimate-builder", locale) },
+      ],
+    },
+    {
+      heading: t.footer.company,
+      links: [
+        { label: t.nav.about, href: localePath("/about", locale) },
+        { label: t.nav.services, href: localePath("/services", locale) },
+        { label: t.nav.contact, href: localePath("/contact", locale) },
+      ],
+    },
+    {
+      heading: t.footer.legal,
+      links: [
+        { label: t.footer.privacy, href: localePath("/privacy", locale) },
+        { label: t.footer.termsOfUse, href: localePath("/terms", locale) },
+        { label: t.footer.disclaimer, href: localePath("/disclaimer", locale) },
+      ],
+    },
+  ];
+
   return (
     <footer className="border-t border-[#0B1B33]/10 bg-[#14284A] text-white">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
         <div className="grid gap-10 lg:grid-cols-[1.3fr_2fr]">
           {/* Brand block */}
           <div>
-            <Link href="/" aria-label="BuildCalc Pro home" className="inline-block rounded-lg">
+            <Link href={localePath("/", locale)} aria-label="BuildCalc Pro home" className="inline-block rounded-lg">
               <span className="inline-flex items-center gap-2.5">
                 <svg width="38" height="38" viewBox="0 0 64 64" role="img" aria-label="BuildCalc Pro">
                   <rect x="2" y="2" width="60" height="60" rx="15" fill="#FFFFFF" opacity="0.12" />
@@ -72,20 +79,18 @@ export function Footer() {
                 </svg>
                 <span className="font-display text-xl font-extrabold uppercase tracking-wide text-white">
                   BuildCalc
-                  <span className="ml-1.5 rounded bg-[#ED7D22] px-1.5 py-0.5 align-middle text-[11px] font-extrabold tracking-widest text-white">
+                  <span className="ms-1.5 rounded bg-[#ED7D22] px-1.5 py-0.5 align-middle text-[11px] font-extrabold tracking-widest text-white">
                     PRO
                   </span>
                 </span>
               </span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
-              Free construction calculators for contractors, builders,
-              estimators, and homeowners. Every tool runs in your browser —
-              no account, no subscription, your numbers never leave your device.
+              {t.footer.tagline}
             </p>
             <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold text-white">
               <span className="h-2 w-2 rounded-full bg-[#ED7D22]" aria-hidden />
-              31 tools · Free forever
+              {t.footer.toolsCount.replace("{count}", "39")}
             </p>
           </div>
 
@@ -119,11 +124,11 @@ export function Footer() {
             {CATEGORIES.map((c) => (
               <li key={c.id}>
                 <Link
-                  href={categoryHref(c.id)}
+                  href={categoryHref(c.id, locale)}
                   className="inline-flex items-center gap-1 text-[13px] font-semibold text-white/60 transition-colors hover:text-white"
                 >
-                  {c.label}
-                  <ArrowUpRight className="h-3 w-3" aria-hidden />
+                  {t.categories[c.id].title}
+                  <ArrowUpRight className="h-3 w-3 rtl:-scale-x-100" aria-hidden />
                 </Link>
               </li>
             ))}
@@ -131,10 +136,9 @@ export function Footer() {
         </nav>
 
         <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-[13px] text-white/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} BuildCalc Pro. Free construction tools for everyone.</p>
-          <p className="max-w-md sm:text-right">
-            Estimates are planning aids verify quantities against your local
-            codes and supplier quotes.
+          <p>{t.footer.rights.replace("{year}", String(new Date().getFullYear()))}</p>
+          <p className="max-w-md sm:text-end">
+            {t.footer.disclaimerLine}
           </p>
         </div>
       </div>

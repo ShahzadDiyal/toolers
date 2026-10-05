@@ -16,6 +16,7 @@ import type {
   CategoryMetadata,
   ToolMetadata,
 } from "@/types/estimator";
+import { defaultLocale } from "@/i18n/config";
 
 /* ------------------------------------------------------------------ */
 /*  Categories                                                         */
@@ -1391,14 +1392,20 @@ export function relatedTools(tool: ToolMetadata, limit = 4): ToolMetadata[] {
   );
 }
 
-/** Route for a tool: /tools/[slug] */
-export function toolHref(tool: Pick<ToolMetadata, "slug">): string {
-  return `/tools/${tool.slug}`;
+/** Route for a tool: /[locale]/tools/[slug] */
+export function toolHref(
+  tool: Pick<ToolMetadata, "slug">,
+  locale: string = defaultLocale,
+): string {
+  return `/${locale}/tools/${tool.slug}`;
 }
 
-/** Route for a category hub: /categories/[category] */
-export function categoryHref(category: Category): string {
-  return `/categories/${category}`;
+/** Route for a category hub: /[locale]/categories/[category] */
+export function categoryHref(
+  category: Category,
+  locale: string = defaultLocale,
+): string {
+  return `/${locale}/categories/${category}`;
 }
 
 /** Simple includes-based search (the command menu layers fuzzy scoring on top). */

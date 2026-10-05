@@ -1,16 +1,17 @@
 /**
  * BuildCalc Pro Global fuzzy search command menu (⌘K / Ctrl+K).
  *
- * Spotlight modal over the tool registry: keyboard-driven navigation,
- * category chips, recent tools, match highlighting, and clean empty states
- * with fallback suggestions. Selecting a tool pushes it to the recent list
- * and routes to /tools/[slug].
+ * Localized shell: headings, placeholder, and empty states come from the
+ * locale dictionary. Spotlight modal over the tool registry: keyboard-driven
+ * navigation, category chips, recent tools, match highlighting, and clean
+ * empty states with fallback suggestions. Selecting a tool pushes it to the
+ * recent list and routes to /[locale]/tools/[slug].
  */
 "use client";
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { CornerDownLeft, History, SearchX, Sparkles } from "lucide-react";
+import { CornerDownLeft, SearchX, Sparkles } from "lucide-react";
 import {
   CommandDialog,
   CommandEmpty,
@@ -27,10 +28,12 @@ import {
   TOOL_CATEGORIES,
   getCategory,
   toolHref,
+  categoryHref,
 } from "@/data/toolsRegistry";
 import type { Category, ToolMetadata } from "@/types/estimator";
 import { toolIcon } from "@/lib/tool-icons";
 import { getRecentTools, pushRecentTool } from "@/lib/recent-tools";
+import { useTranslation } from "@/i18n/I18nProvider";
 
 /* ------------------------------------------------------------------ */
 /*  Fuzzy scoring                                                      */
@@ -95,6 +98,7 @@ function fuzzySearch(query: string): ToolMetadata[] {
 const SUGGESTED_QUERIES = ["concrete", "roof", "stair", "paint", "fence", "markup"];
 
 function ToolRow({ tool, onSelect }: { tool: ToolMetadata; onSelect: () => void }) {
+  const { t } = useTranslation();
   const Icon = toolIcon(tool.iconName);
   const cat = getCategory(tool.category);
   return (
@@ -120,19 +124,15 @@ function ToolRow({ tool, onSelect }: { tool: ToolMetadata; onSelect: () => void 
         </span>
       </span>
       <Badge variant="secondary" className="hidden shrink-0 sm:inline-flex">
-        {cat.label.split(",")[0]}
+        {t.categories[tool.category].title.split(",")[0]}
       </Badge>
-      {!tool.available && (
-        <Badge variant="outline" className="shrink-0 text-[10px]">
-          Soon
-        </Badge>
-      )}
-      <CornerDownLeft className="h-3.5 w-3.5 shrink-0 text-zinc-600" />
+      <CornerDownLeft className="h-3.5 w-3.5 shrink-0 text-zinc-600 rtl:-scale-x-100" />
     </CommandItem>
   );
 }
 
 export function CommandMenu() {
+  const { locale, t } = useTranslation();
   const router = useRouter();
   const open = useUiStore((s) => s.commandOpen);
   const setOpen = useUiStore((s) => s.setCommandOpen);
@@ -165,7 +165,7 @@ export function CommandMenu() {
   const go = (tool: ToolMetadata) => {
     pushRecentTool(tool.slug);
     setOpen(false);
-    router.push(toolHref(tool));
+    router.push(toolHref(tool, locale));
   };
 
   const grouped = React.useMemo(() => {
@@ -184,44 +184,47 @@ export function CommandMenu() {
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
       <CommandInput
-        placeholder="Search 31 calculators try “shingles”, “rebar”, “markup”…"
+        placeholder={t.nav.searchInputPlaceholder.replace(
+          "{count}",
+          String(TOOLS.filter((tool) => tool.available).length),
+        )}
         value={query}
         onValueChange={setQuery}
         autoFocus
       />
       <CommandList>
         {!searching && recent.length > 0 && (
-          <CommandGroup heading="Recent">
-            {recent.map((t) => (
-              <ToolRow key={t.id} tool={t} onSelect={() => go(t)} />
+          <CommandGroup heading={t.nav.searchRecent}>
+            {recent.map((tool) => (
+              <ToolRow key={tool.id} tool={tool} onSelect={() => go(tool)} />
             ))}
           </CommandGroup>
         )}
 
         {!searching && (
-          <CommandGroup heading="Browse all">
+          <CommandGroup heading={t.nav.searchBrowseAll}>
             {TOOL_CATEGORIES.map((c) => {
               const meta = getCategory(c);
               const Icon = toolIcon(meta.iconName);
-              const count = TOOLS.filter((t) => t.category === c).length;
+              const count = TOOLS.filter((tool) => tool.category === c).length;
               return (
                 <CommandItem
                   key={c}
                   value={`category ${meta.label}`}
                   onSelect={() => {
                     setOpen(false);
-                    router.push(`/categories/${c}`);
+                    router.push(categoryHref(c, locale));
                   }}
                   className="min-h-[48px]"
                 >
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-zinc-900">
                     <Icon className="h-4 w-4 text-primary" />
                   </span>
-                  <span className="flex-1 truncate font-semibold">{meta.label}</span>
+                  <span className="flex-1 truncate font-semibold">{t.categories[c].title}</span>
                   <Badge variant="outline" className="font-mono text-[10px]">
-                    {count} tools
+                    {t.nav.freeTools.replace("{count}", String(count))}
                   </Badge>
-                  <CornerDownLeft className="h-3.5 w-3.5 text-zinc-600" />
+                  <CornerDownLeft className="h-3.5 w-3.5 text-zinc-600 rtl:-scale-x-100" />
                 </CommandItem>
               );
             })}
@@ -232,9 +235,9 @@ export function CommandMenu() {
           grouped.map(({ category, tools }, gi) => (
             <React.Fragment key={category}>
               {gi > 0 && <CommandSeparator />}
-              <CommandGroup heading={getCategory(category).label}>
-                {tools.map((t) => (
-                  <ToolRow key={t.id} tool={t} onSelect={() => go(t)} />
+              <CommandGroup heading={t.categories[category].title}>
+                {tools.map((tool) => (
+                  <ToolRow key={tool.id} tool={tool} onSelect={() => go(tool)} />
                 ))}
               </CommandGroup>
             </React.Fragment>
@@ -244,11 +247,12 @@ export function CommandMenu() {
           <div className="flex flex-col items-center gap-3 px-4 py-6">
             <SearchX className="h-8 w-8 text-zinc-600" />
             <p className="text-sm">
-              No calculators match <span className="font-semibold text-zinc-300">“{query}”</span>.
+              {t.nav.searchNoResults}{" "}
+              <span className="font-semibold text-zinc-300">“{query}”</span>
             </p>
             <div className="flex flex-wrap items-center justify-center gap-1.5">
               <span className="inline-flex items-center gap-1 text-xs text-zinc-500">
-                <Sparkles className="h-3.5 w-3.5" /> Try:
+                <Sparkles className="h-3.5 w-3.5" />
               </span>
               {SUGGESTED_QUERIES.map((s) => (
                 <button
@@ -261,11 +265,6 @@ export function CommandMenu() {
                 </button>
               ))}
             </div>
-            <p className="inline-flex items-center gap-1.5 text-xs text-zinc-600">
-              <History className="h-3.5 w-3.5" />
-              Tip: press <kbd className="rounded border border-border bg-zinc-900 px-1 font-mono">Esc</kbd> to close,
-              <kbd className="rounded border border-border bg-zinc-900 px-1 font-mono">Enter</kbd> to open
-            </p>
           </div>
         </CommandEmpty>
       </CommandList>

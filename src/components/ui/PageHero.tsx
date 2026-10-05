@@ -97,7 +97,7 @@ export function CrumbNav({
         {items.map((c, i) => (
           <li key={c.label} className="flex items-center gap-1">
             {i > 0 && (
-              <ChevronRight className="h-3.5 w-3.5 text-zinc-400" aria-hidden />
+              <ChevronRight className="h-3.5 w-3.5 text-zinc-400 rtl:rotate-180" aria-hidden />
             )}
             {c.href ? (
               <Link

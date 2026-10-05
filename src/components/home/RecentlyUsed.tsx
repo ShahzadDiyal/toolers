@@ -8,10 +8,12 @@ import Link from "next/link";
 import { History, ArrowRight } from "lucide-react";
 import { useRecentTools } from "@/lib/recent-tools";
 import { getCategory, toolHref } from "@/data/toolsRegistry";
+import { useTranslation } from "@/i18n/I18nProvider";
 import { toolIcon } from "@/lib/tool-icons";
 import { Badge } from "@/components/ui/badge";
 
 export function RecentlyUsed() {
+  const { locale } = useTranslation();
   const recent = useRecentTools().slice(0, 4);
   if (recent.length === 0) return null;
 
@@ -33,7 +35,7 @@ export function RecentlyUsed() {
             return (
               <Link
                 key={t.id}
-                href={toolHref(t)}
+                href={toolHref(t, locale)}
                 className="group flex min-h-[76px] items-center gap-3 rounded-xl border border-border bg-card p-3 transition-colors hover:border-primary/50"
               >
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border bg-zinc-900">

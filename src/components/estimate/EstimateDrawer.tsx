@@ -1,6 +1,10 @@
 /**
  * BuildCalc Pro Master Bid Cart (slide-over drawer).
  *
+ * Localized UI shell: every label comes from the locale dictionary.
+ * The drawer slides from the inline-end side (right in LTR, left in RTL)
+ * so the animation respects document flow.
+ *
  * Aggregates estimate lines from every calculator on the site with live
  * pricing: Direct Cost → Markup → Contingency → Tax → Total Bid.
  * Includes bid settings, client/company capture, and JSON export/import.
@@ -29,8 +33,7 @@ import {
 } from "@/store/useEstimateStore";
 import { useUiStore } from "@/store/useUiStore";
 import { downloadJsonFile, readJsonFile, estimateFilename } from "@/lib/export";
-import type { Category, EstimateLineItem } from "@/types/estimator";
-import { CATEGORY_META } from "@/types/estimator";
+import type { EstimateLineItem } from "@/types/estimator";
 import { toolIcon } from "@/lib/tool-icons";
 import {
   Sheet,
@@ -51,8 +54,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useTranslation } from "@/i18n/I18nProvider";
+import { isRtlLocale, localePath } from "@/i18n/config";
 
-const CATEGORY_ICON: Record<Category, string> = {
+const CATEGORY_ICON = {
   concrete: "Layers",
   "framing-roofing": "House",
   finishes: "Paintbrush",
@@ -60,7 +65,7 @@ const CATEGORY_ICON: Record<Category, string> = {
   mep: "Zap",
   "financial-business": "Percent",
   utilities: "Sigma",
-};
+} as const;
 
 /* ------------------------------------------------------------------ */
 /*  Small building blocks                                              */
@@ -75,17 +80,18 @@ function PercentStepper({
   value: number;
   onChange: (v: number) => void;
 }) {
+  const { t } = useTranslation();
   const step = (dir: 1 | -1) =>
     onChange(Math.min(100, Math.max(0, Math.round((value + dir) * 10) / 10)));
   return (
     <div className="flex items-center justify-between gap-2 rounded-lg border border-border bg-zinc-950 px-3 py-2">
       <span className="text-xs font-semibold text-zinc-400">{label}</span>
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-1" dir="ltr">
         <button
           type="button"
           onClick={() => step(-1)}
           className="flex h-7 w-7 items-center justify-center rounded-md bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
-          aria-label={`Decrease ${label}`}
+          aria-label={`${t.common.decreaseQty}: ${label}`}
         >
           <Minus className="h-3.5 w-3.5" />
         </button>
@@ -96,7 +102,7 @@ function PercentStepper({
           type="button"
           onClick={() => step(1)}
           className="flex h-7 w-7 items-center justify-center rounded-md bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
-          aria-label={`Increase ${label}`}
+          aria-label={`${t.common.increaseQty}: ${label}`}
         >
           <Plus className="h-3.5 w-3.5" />
         </button>
@@ -106,6 +112,7 @@ function PercentStepper({
 }
 
 function LineItemRow({ item }: { item: EstimateLineItem }) {
+  const { t } = useTranslation();
   const updateItem = useEstimateStore((s) => s.updateItem);
   const removeItem = useEstimateStore((s) => s.removeItem);
   const Icon = toolIcon(CATEGORY_ICON[item.category]);
@@ -124,10 +131,10 @@ function LineItemRow({ item }: { item: EstimateLineItem }) {
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-semibold">{item.title}</p>
           <p className="text-xs text-zinc-500">
-            {CATEGORY_META[item.category].label}
+            {t.categories[item.category].title}
             {item.wastePercent > 0 && (
-              <span className="ml-1.5 rounded bg-accent/15 px-1.5 py-0.5 font-mono text-[10px] font-bold text-accent">
-                +{item.wastePercent}% waste
+              <span className="ms-1.5 rounded bg-accent/15 px-1.5 py-0.5 font-mono text-[10px] font-bold text-accent">
+                +{item.wastePercent}%
               </span>
             )}
           </p>
@@ -139,7 +146,7 @@ function LineItemRow({ item }: { item: EstimateLineItem }) {
           type="button"
           onClick={() => {
             removeItem(item.id);
-            toast.info("Line removed", { description: item.title });
+            toast.info(t.common.lineRemoved, { description: item.title });
           }}
           className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-zinc-500 hover:bg-red-950 hover:text-red-400"
           aria-label={`Remove ${item.title}`}
@@ -149,18 +156,18 @@ function LineItemRow({ item }: { item: EstimateLineItem }) {
       </div>
 
       <div className="mt-2.5 flex items-center justify-between gap-2">
-        <div className="flex items-center gap-1 rounded-md border border-border bg-zinc-900 px-1 py-1">
+        <div className="flex items-center gap-1 rounded-md border border-border bg-zinc-900 px-1 py-1" dir="ltr">
           <button
             type="button"
             onClick={() => nudgeQty(-1)}
             className="flex h-7 w-7 items-center justify-center rounded text-zinc-400 hover:bg-zinc-700 hover:text-zinc-100"
-            aria-label="Decrease quantity"
+            aria-label={t.common.decreaseQty}
           >
             <Minus className="h-3.5 w-3.5" />
           </button>
           <span className="min-w-16 text-center font-mono text-sm font-bold tabular-nums">
             {formatNumber(item.quantity)}
-            <span className="ml-1 text-[10px] font-semibold text-zinc-500">
+            <span className="ms-1 text-[10px] font-semibold text-zinc-500">
               {item.unit}
             </span>
           </span>
@@ -168,16 +175,16 @@ function LineItemRow({ item }: { item: EstimateLineItem }) {
             type="button"
             onClick={() => nudgeQty(1)}
             className="flex h-7 w-7 items-center justify-center rounded text-zinc-400 hover:bg-zinc-700 hover:text-zinc-100"
-            aria-label="Increase quantity"
+            aria-label={t.common.increaseQty}
           >
             <Plus className="h-3.5 w-3.5" />
           </button>
         </div>
-        <div className="text-right">
-          <p className="font-mono text-sm font-bold tabular-nums">
+        <div className="text-end">
+          <p className="font-mono text-sm font-bold tabular-nums" dir="ltr">
             {formatMoney(item.totalCost)}
           </p>
-          <p className="font-mono text-[11px] text-zinc-500 tabular-nums">
+          <p className="font-mono text-[11px] text-zinc-500 tabular-nums" dir="ltr">
             {formatMoney(item.unitCost)}/{item.unit}
           </p>
         </div>
@@ -191,6 +198,8 @@ function LineItemRow({ item }: { item: EstimateLineItem }) {
 /* ------------------------------------------------------------------ */
 
 export function EstimateDrawer() {
+  const { locale, t } = useTranslation();
+  const rtl = isRtlLocale(locale);
   const open = useUiStore((s) => s.estimateDrawerOpen);
   const setOpen = useUiStore((s) => s.setEstimateDrawerOpen);
 
@@ -215,19 +224,19 @@ export function EstimateDrawer() {
 
   React.useEffect(() => {
     if (!confirmClear) return;
-    const t = setTimeout(() => setConfirmClear(false), 3000);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setConfirmClear(false), 3000);
+    return () => clearTimeout(timer);
   }, [confirmClear]);
 
   const handleExport = () => {
     try {
       downloadJsonFile(estimateFilename(), exportEstimate());
-      toast.success("Estimate exported", {
-        description: "JSON file downloaded. Import it on any device to restore.",
+      toast.success(t.proposal.exported, {
+        description: t.proposal.exportedDesc,
       });
     } catch {
-      toast.error("Export failed", {
-        description: "Your browser blocked the download.",
+      toast.error(t.proposal.exportFailed, {
+        description: t.proposal.exportFailedDesc,
       });
     }
   };
@@ -238,14 +247,12 @@ export function EstimateDrawer() {
       const text = await readJsonFile(file);
       const result = importEstimate(text);
       if (result.ok) {
-        toast.success("Estimate imported", {
-          description: "Your bid cart was restored from the file.",
-        });
+        toast.success(t.proposal.restored);
       } else {
-        toast.error("Import rejected", { description: result.error });
+        toast.error(t.proposal.importRejected, { description: result.error });
       }
     } catch (err) {
-      toast.error("Import failed", {
+      toast.error(t.proposal.importFailed, {
         description: err instanceof Error ? err.message : "Unreadable file.",
       });
     } finally {
@@ -255,19 +262,19 @@ export function EstimateDrawer() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetContent side="right" className="flex w-full flex-col p-0 sm:max-w-md">
+      <SheetContent side={rtl ? "left" : "right"} className="flex w-full flex-col p-0 sm:max-w-md">
         <SheetHeader className="border-b border-border p-5 pb-4">
           <SheetTitle className="flex items-center gap-2">
             <ShoppingCart className="h-5 w-5 text-primary" />
-            Master Bid Cart
+            {t.proposal.drawerTitle}
             {items.length > 0 && (
-              <Badge variant="accent" className="ml-1 font-mono">
+              <Badge variant="accent" className="ms-1 font-mono">
                 {items.length}
               </Badge>
             )}
           </SheetTitle>
           <SheetDescription>
-            Lines from every calculator, priced live. Stored only on this device.
+            {t.proposal.drawerDescription}
           </SheetDescription>
         </SheetHeader>
 
@@ -278,14 +285,14 @@ export function EstimateDrawer() {
             </span>
             <div>
               <p className="font-display text-lg font-bold uppercase tracking-wide">
-                Cart is empty
+                {t.proposal.empty}
               </p>
               <p className="mt-1 text-sm text-zinc-500">
-                Run any calculator and hit “Add to Master Estimate”.
+                {t.proposal.emptyHint}
               </p>
             </div>
             <Button variant="default" onClick={() => setOpen(false)} asChild>
-              <Link href="/tools">Browse calculators</Link>
+              <Link href={localePath("/tools", locale)}>{t.common.browseCalculators}</Link>
             </Button>
           </div>
         ) : (
@@ -299,48 +306,48 @@ export function EstimateDrawer() {
                 <Accordion type="single" collapsible className="rounded-lg border border-border bg-zinc-950/60 px-4">
                   <AccordionItem value="bid-settings" className="border-0">
                     <AccordionTrigger className="py-3 text-xs font-bold uppercase tracking-widest text-zinc-400">
-                      Bid settings
+                      {t.proposal.bidSettings}
                     </AccordionTrigger>
                     <AccordionContent>
                       <div className="space-y-2 pb-2">
-                        <PercentStepper label="Markup" value={markupPercent} onChange={setMarkup} />
-                        <PercentStepper label="Contingency" value={contingencyPercent} onChange={setContingency} />
-                        <PercentStepper label="Sales tax" value={taxPercent} onChange={setTax} />
+                        <PercentStepper label={t.proposal.markup} value={markupPercent} onChange={setMarkup} />
+                        <PercentStepper label={t.proposal.contingency} value={contingencyPercent} onChange={setContingency} />
+                        <PercentStepper label={t.proposal.salesTax} value={taxPercent} onChange={setTax} />
                       </div>
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="client" className="border-t border-border">
                     <AccordionTrigger className="py-3 text-xs font-bold uppercase tracking-widest text-zinc-400">
-                      Client &amp; company
+                      {t.proposal.clientCompany}
                     </AccordionTrigger>
                     <AccordionContent>
                       <div className="grid gap-3 pb-2">
                         <div>
-                          <Label htmlFor="drawer-client-name">Client name</Label>
+                          <Label htmlFor="drawer-client-name">{t.proposal.clientName}</Label>
                           <Input
                             id="drawer-client-name"
                             className="mt-1.5 h-10"
-                            placeholder="Jane Smith"
+                            placeholder={t.proposal.clientNamePlaceholder}
                             value={client.name}
                             onChange={(e) => updateClientInfo({ name: e.target.value })}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="drawer-project">Project</Label>
+                          <Label htmlFor="drawer-project">{t.proposal.project}</Label>
                           <Input
                             id="drawer-project"
                             className="mt-1.5 h-10"
-                            placeholder="Kitchen remodel 123 Main St"
+                            placeholder={t.proposal.projectPlaceholder}
                             value={client.projectName ?? ""}
                             onChange={(e) => updateClientInfo({ projectName: e.target.value })}
                           />
                         </div>
                         <div>
-                          <Label htmlFor="drawer-company">Your company</Label>
+                          <Label htmlFor="drawer-company">{t.proposal.yourCompany}</Label>
                           <Input
                             id="drawer-company"
                             className="mt-1.5 h-10"
-                            placeholder="Acme Construction LLC"
+                            placeholder={t.proposal.companyPlaceholder}
                             value={company.name}
                             onChange={(e) => updateCompanyInfo({ name: e.target.value })}
                           />
@@ -356,29 +363,29 @@ export function EstimateDrawer() {
             <div className="border-t border-border bg-zinc-950 p-5">
               <div className="space-y-1.5 text-sm">
                 <div className="flex justify-between text-zinc-400">
-                  <span>Direct cost ({summary.lineCount} lines)</span>
-                  <span className="font-mono tabular-nums">{formatMoney(summary.directCost)}</span>
+                  <span>{t.proposal.directCost} ({t.proposal.lines.replace("{count}", String(summary.lineCount))})</span>
+                  <span className="font-mono tabular-nums" dir="ltr">{formatMoney(summary.directCost)}</span>
                 </div>
                 <div className="flex justify-between text-zinc-400">
-                  <span>Markup ({formatNumber(markupPercent, 1)}%)</span>
-                  <span className="font-mono tabular-nums">{formatMoney(summary.markupAmount)}</span>
+                  <span>{t.proposal.markup} ({formatNumber(markupPercent, 1)}%)</span>
+                  <span className="font-mono tabular-nums" dir="ltr">{formatMoney(summary.markupAmount)}</span>
                 </div>
                 <div className="flex justify-between text-zinc-400">
-                  <span>Contingency ({formatNumber(contingencyPercent, 1)}%)</span>
-                  <span className="font-mono tabular-nums">{formatMoney(summary.contingencyAmount)}</span>
+                  <span>{t.proposal.contingency} ({formatNumber(contingencyPercent, 1)}%)</span>
+                  <span className="font-mono tabular-nums" dir="ltr">{formatMoney(summary.contingencyAmount)}</span>
                 </div>
                 <div className="flex justify-between text-zinc-400">
-                  <span>Tax ({formatNumber(taxPercent, 1)}%)</span>
-                  <span className="font-mono tabular-nums">{formatMoney(summary.taxAmount)}</span>
+                  <span>{t.proposal.tax} ({formatNumber(taxPercent, 1)}%)</span>
+                  <span className="font-mono tabular-nums" dir="ltr">{formatMoney(summary.taxAmount)}</span>
                 </div>
               </div>
               <Separator className="my-3" />
               <div className="flex items-baseline justify-between">
                 <span className="flex items-center gap-1.5 font-display text-sm font-bold uppercase tracking-widest text-zinc-300">
                   <ReceiptText className="h-4 w-4 text-accent" />
-                  Total bid
+                  {t.proposal.totalBid}
                 </span>
-                <span className="font-mono text-3xl font-extrabold text-accent tabular-nums">
+                <span className="font-mono text-3xl font-extrabold text-accent tabular-nums" dir="ltr">
                   {formatMoney(summary.totalBid)}
                 </span>
               </div>
@@ -386,11 +393,11 @@ export function EstimateDrawer() {
               <div className="mt-4 grid grid-cols-3 gap-2">
                 <Button variant="outline" size="sm" onClick={handleExport}>
                   <Download className="h-4 w-4" />
-                  Export
+                  {t.proposal.export}
                 </Button>
                 <Button variant="outline" size="sm" onClick={() => fileRef.current?.click()}>
                   <Upload className="h-4 w-4" />
-                  Import
+                  {t.proposal.import}
                 </Button>
                 <Button
                   variant={confirmClear ? "destructive" : "ghost"}
@@ -399,7 +406,7 @@ export function EstimateDrawer() {
                     if (confirmClear) {
                       clearEstimate();
                       setConfirmClear(false);
-                      toast.info("Estimate cleared");
+                      toast.info(t.proposal.cleared);
                     } else {
                       setConfirmClear(true);
                     }
@@ -407,7 +414,7 @@ export function EstimateDrawer() {
                   className={cn(!confirmClear && "text-zinc-500 hover:text-red-400")}
                 >
                   <Eraser className="h-4 w-4" />
-                  {confirmClear ? "Confirm?" : "Clear"}
+                  {confirmClear ? t.proposal.confirmClearHint : t.proposal.clear}
                 </Button>
               </div>
               <input

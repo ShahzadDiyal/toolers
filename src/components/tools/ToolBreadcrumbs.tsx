@@ -11,8 +11,11 @@ import { useSearchParams } from "next/navigation";
 import type { ToolMetadata } from "@/types/estimator";
 import { getCategory, categoryHref } from "@/data/toolsRegistry";
 import { Breadcrumbs } from "@/components/navigation/Breadcrumbs";
+import { useTranslation } from "@/i18n/I18nProvider";
+import { localePath } from "@/i18n/config";
 
 export function ToolBreadcrumbs({ tool }: { tool: ToolMetadata }) {
+  const { locale, t } = useTranslation();
   const searchParams = useSearchParams();
   const category = getCategory(tool.category);
 
@@ -28,13 +31,13 @@ export function ToolBreadcrumbs({ tool }: { tool: ToolMetadata }) {
   return (
     <Breadcrumbs
       items={[
-        { label: "Home", href: "/" },
-        { label: category.label, href: categoryHref(tool.category) },
+        { label: t.nav.home, href: localePath("/", locale) },
+        { label: t.categories[tool.category].title, href: categoryHref(tool.category, locale) },
         ...(trade
           ? [
               {
                 label: trade,
-                href: `${categoryHref(tool.category)}?trade=${encodeURIComponent(trade)}`,
+                href: `${categoryHref(tool.category, locale)}?trade=${encodeURIComponent(trade)}`,
               },
             ]
           : []),

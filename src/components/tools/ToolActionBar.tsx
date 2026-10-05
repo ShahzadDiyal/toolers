@@ -1,8 +1,9 @@
 /**
  * BuildCalc Pro Tool quick-action bar.
  *
- * Rendered by the /tools/[slug] layout above every calculator:
- * Reset Inputs · Save JSON Draft · Open Master Cart.
+ * Localized UI shell: button labels and toast copy come from the locale
+ * dictionary. Rendered by the /[locale]/tools/[slug] layout above every
+ * calculator: Reset Inputs · Save JSON Draft · Open Master Cart.
  * The first two enable only when the active tool registers handlers.
  */
 "use client";
@@ -12,26 +13,30 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useToolPageStore } from "@/store/useToolPageStore";
 import { useUiStore } from "@/store/useUiStore";
+import { useTranslation } from "@/i18n/I18nProvider";
 
 export function ToolActionBar() {
+  const { t } = useTranslation();
   const actions = useToolPageStore((s) => s.actions);
   const setDrawerOpen = useUiStore((s) => s.setEstimateDrawerOpen);
 
   const handleReset = () => {
     actions?.resetInputs();
-    toast.info("Inputs reset", {
-      description: actions ? `${actions.toolTitle} restored to defaults.` : undefined,
+    toast.info(t.common.inputsReset, {
+      description: actions
+        ? t.common.restoredDefaults.replace("{title}", actions.toolTitle)
+        : undefined,
     });
   };
 
   const handleSaveDraft = () => {
     try {
       actions?.saveDraft();
-      toast.success("Draft saved", {
-        description: "Your inputs are stored on this device as a JSON draft.",
+      toast.success(t.common.draftSaved, {
+        description: t.common.draftSavedDesc,
       });
     } catch (err) {
-      toast.error("Couldn't save draft", {
+      toast.error(t.common.draftSaveFailed, {
         description: err instanceof Error ? err.message : "Storage unavailable.",
       });
     }
@@ -41,7 +46,7 @@ export function ToolActionBar() {
     <div
       className="no-print mb-5 flex flex-wrap items-center gap-2 rounded-xl border border-border bg-card p-2.5"
       role="toolbar"
-      aria-label="Calculator quick actions"
+      aria-label={t.common.toolbarAria}
     >
       <Button
         variant="outline"
@@ -51,7 +56,7 @@ export function ToolActionBar() {
         className="min-h-[44px]"
       >
         <RotateCcw className="h-4 w-4" />
-        Reset inputs
+        {t.common.resetInputs}
       </Button>
       <Button
         variant="outline"
@@ -61,7 +66,7 @@ export function ToolActionBar() {
         className="min-h-[44px]"
       >
         <Save className="h-4 w-4" />
-        Save JSON draft
+        {t.common.saveDraft}
       </Button>
       <div className="flex-1" />
       <Button
@@ -71,7 +76,7 @@ export function ToolActionBar() {
         className="min-h-[44px]"
       >
         <ShoppingCart className="h-4 w-4" />
-        Open Master Cart
+        {t.common.openMasterCart}
       </Button>
     </div>
   );
