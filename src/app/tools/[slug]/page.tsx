@@ -27,6 +27,14 @@ import {
 } from "@/components/seo/JsonLd";
 import { toolIcon } from "@/lib/tool-icons";
 import { ConcreteSlabTool } from "@/components/calculator/tools/ConcreteSlabTool";
+import { ConcreteFootingTool } from "@/components/calculator/tools/ConcreteFootingTool";
+import { ConcreteColumnTool } from "@/components/calculator/tools/ConcreteColumnTool";
+import { StudWallTool } from "@/components/calculator/tools/StudWallTool";
+import { BoardFeetTool } from "@/components/calculator/tools/BoardFeetTool";
+import { RecessedLightsTool } from "@/components/calculator/tools/RecessedLightsTool";
+import { BreakEvenTool } from "@/components/calculator/tools/BreakEvenTool";
+import { ChangeOrderTool } from "@/components/calculator/tools/ChangeOrderTool";
+import { RightTriangleTool } from "@/components/calculator/tools/RightTriangleTool";
 import { RoofPitchShinglesTool } from "@/components/calculator/tools/RoofPitchShinglesTool";
 import { FramingDrywallPackTool } from "@/components/calculator/tools/FramingDrywallPackTool";
 import { StairStringerLayoutTool } from "@/components/calculator/tools/StairStringerLayoutTool";
@@ -97,6 +105,14 @@ export async function generateMetadata({
 /** Registry of implemented calculator components (Phase 4+ adds entries). */
 const TOOL_COMPONENTS: Record<string, React.ComponentType> = {
   "concrete-slab": ConcreteSlabTool,
+  "concrete-footing": ConcreteFootingTool,
+  "concrete-column": ConcreteColumnTool,
+  "stud-wall": StudWallTool,
+  "board-feet": BoardFeetTool,
+  "recessed-lights": RecessedLightsTool,
+  "break-even": BreakEvenTool,
+  "change-order": ChangeOrderTool,
+  "right-triangle": RightTriangleTool,
   "roof-pitch-shingles": RoofPitchShinglesTool,
   "framing-drywall-pack": FramingDrywallPackTool,
   "stair-stringer-layout": StairStringerLayoutTool,

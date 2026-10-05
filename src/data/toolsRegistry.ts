@@ -145,7 +145,20 @@ export const TOOLS: ToolMetadata[] = [
     outputs: ["Cubic yards", "Truckloads", "Bags"],
     badge: "Quick Takeoff",
     estimatedTime: "< 1 min",
-    available: false,
+    available: true,
+    readTimeMinutes: 2,
+    details: [
+      "Strip footing volume is length × width × depth ÷ 27 — a 40 ft × 16 in × 8 in footing is 40 × 1.33 × 0.67 ÷ 27 ≈ 1.32 cubic yards before waste.",
+      "Order 5–10% extra for over-excavation and form spread; trench bottoms are rarely perfect.",
+      "Most ready-mix suppliers charge a short-load fee under 4 yards — combine small footings into one pour when you can.",
+      "A cubic yard of concrete needs about 45 eighty-pound bags or 60 sixty-pound bags of premix."
+    ],
+    howTo: "Enter one footing run's length, width, and depth plus how many identical runs — yards, truckloads, and bag counts solve live.",
+    faqs: [
+      { q: "How many yards for a 40 ft footing 16 in wide and 8 in deep?", a: "40 × 1.333 × 0.667 = 35.6 cu ft ÷ 27 = 1.32 cu yd net; with 10% waste, order about 1.45 yards." },
+      { q: "How deep should a concrete footing be?", a: "Below the local frost line — commonly 12–36 in depending on climate — and always bearing on undisturbed soil. Check local code." },
+      { q: "Should I use ready-mix or bags for footings?", a: "Ready-mix wins above roughly a yard; below that, bags avoid the short-load fee. This tool prices both so you can compare." }
+    ],
   },
   {
     id: "rebar-mesh-estimator",
@@ -189,7 +202,20 @@ export const TOOLS: ToolMetadata[] = [
     inputsSummary: "Diameter × depth × count",
     outputs: ["Cubic yards", "Bags per pier"],
     estimatedTime: "< 1 min",
-    available: false,
+    available: true,
+    readTimeMinutes: 2,
+    details: [
+      "Pier volume is π × r² × depth ÷ 27 — a 12 in diameter, 4 ft deep pier is π × 0.25 × 4 ÷ 27 ≈ 0.12 cubic yards.",
+      "Sonotubes come in even-inch diameters (8, 10, 12, 18); size the tube to the post base plus bearing requirements.",
+      "Set piers below the frost line and bell the bottom in soft soils for extra bearing area.",
+      "One 80-lb bag yields about 0.6 cu ft — a 12 in × 4 ft pier needs roughly 5–6 bags."
+    ],
+    howTo: "Pick the tube diameter, enter pier depth and count — yards and per-pier bag counts solve live.",
+    faqs: [
+      { q: "How many bags for a 12-inch sonotube 4 feet deep?", a: "Volume is π × 0.5² × 4 = 3.14 cu ft ≈ 0.12 cu yd; at 45 bags per yard that's about 5–6 eighty-pound bags." },
+      { q: "How deep should deck piers go?", a: "Below the local frost line — typically 36–48 in in cold climates — plus about 6 in above grade." },
+      { q: "Do I need rebar in concrete piers?", a: "Yes for structural posts — one or two vertical bars tied to the post base keeps the pier from splitting under load." }
+    ],
   },
   {
     id: "cmu-block-mortar",
@@ -293,7 +319,20 @@ export const TOOLS: ToolMetadata[] = [
     outputs: ["Stud count", "Plates", "Headers"],
     badge: "Quick Takeoff",
     estimatedTime: "< 1 min",
-    available: false,
+    available: true,
+    readTimeMinutes: 2,
+    details: [
+      "Field studs = wall length ÷ spacing + 1 — a 12 ft wall at 16 in O.C. needs 144 ÷ 16 + 1 = 10 studs.",
+      "Plates run three times the wall length: one bottom plate plus a doubled top plate.",
+      "Each opening adds a header, two king studs, and two cripples — one under the sill, one over the header.",
+      "Two extra studs per wall cover corners and T-intersections where walls meet."
+    ],
+    howTo: "Enter wall length, pick 16 or 24 in spacing, and count the door and window openings — stud, plate, and header counts solve live.",
+    faqs: [
+      { q: "How many studs for a 12-foot wall at 16 inches on center?", a: "144 ÷ 16 + 1 = 10 field studs, plus kings, cripples, and corner studs per the opening layout." },
+      { q: "When can I frame at 24 inches on center?", a: "For non-load-bearing walls, or load-bearing walls where the design allows — 24 in O.C. saves about a third of the studs but needs aligned framing." },
+      { q: "Why a double top plate?", a: "It ties intersecting walls together and spreads point loads. Splices must land over a stud, offset at least 48 in from the joint in the plate below." }
+    ],
   },
   {
     id: "rafter-truss-cuts",
@@ -338,7 +377,20 @@ export const TOOLS: ToolMetadata[] = [
     inputsSummary: "T × W × L + count",
     outputs: ["Board feet", "Piece count"],
     estimatedTime: "< 1 min",
-    available: false,
+    available: true,
+    readTimeMinutes: 2,
+    details: [
+      "Board feet = thickness × width × length ÷ 12, using nominal inches and feet — a 2×6×8 is 2 × 6 × 8 ÷ 12 = 8 BF.",
+      "Board-foot pricing is the standard for hardwoods and rough lumber; dimensional softwood is usually priced per piece.",
+      "One board foot equals 144 cubic inches — the volume of a 1 in × 12 in × 12 in board.",
+      "Always round up piece counts; mills sell whole boards, not fractions."
+    ],
+    howTo: "Enter nominal thickness, width, length, and piece count — board feet per piece and total solve live.",
+    faqs: [
+      { q: "How many board feet in a 2x6x8?", a: "2 × 6 × 8 ÷ 12 = 8 board feet per piece." },
+      { q: "What is a board foot?", a: "144 cubic inches of lumber — the volume of a 1-inch-thick, 12-inch-wide, 12-inch-long board." },
+      { q: "Do I use nominal or actual dimensions?", a: "Nominal — board-foot pricing is based on the named size (2×6), not the actual 1.5 × 5.5 in." }
+    ],
   },
 
   /* ---------------- Drywall, Tile & Finishes ---------------- */
@@ -752,7 +804,20 @@ export const TOOLS: ToolMetadata[] = [
     inputsSummary: "Room L × W",
     outputs: ["Fixture count", "Spacing grid"],
     estimatedTime: "< 1 min",
-    available: false,
+    available: true,
+    readTimeMinutes: 2,
+    details: [
+      "Even grid: columns = round(length ÷ target spacing), rows = round(width ÷ target spacing) — a 16×12 ft room at 5 ft target gets 3 × 2 = 6 fixtures.",
+      "Rule of thumb: space cans about half the ceiling height apart — 4–5 ft for 8–9 ft ceilings, 6 ft for 10 ft ceilings.",
+      "Keep the first row half a spacing from the wall so corners don't go dark.",
+      "Actual spacing is recomputed from the even grid, so fixtures land on a clean layout."
+    ],
+    howTo: "Enter room length and width plus your target spacing — fixture count and the actual even grid solve live.",
+    faqs: [
+      { q: "How far apart should recessed lights be?", a: "About half the ceiling height — 4 ft apart for 8 ft ceilings, 5–6 ft for 9–10 ft ceilings." },
+      { q: "How many can lights for a 12x16 room?", a: "At 5 ft target spacing: 3 columns × 2 rows = 6 fixtures on a 5.3 × 6 ft actual grid." },
+      { q: "How far from the wall for the first light?", a: "Half the fixture spacing — about 2–3 ft — so walls get even wash without dark corners." }
+    ],
   },
   {
     id: "pex-pipe-plumbing",
@@ -1033,7 +1098,20 @@ export const TOOLS: ToolMetadata[] = [
     inputsSummary: "Fixed costs + margin",
     outputs: ["Break-even revenue", "Jobs needed"],
     estimatedTime: "< 2 min",
-    available: false,
+    available: true,
+    readTimeMinutes: 2,
+    details: [
+      "Break-even revenue = monthly fixed costs ÷ gross margin — $12,000 ÷ 35% = $34,286 per month.",
+      "Fixed costs are everything that doesn't move with job volume: rent, insurance, salaries, trucks, office.",
+      "Gross margin is gross profit ÷ revenue — use your historical average, not your best month.",
+      "This is revenue planning; pair it with the Jobsite Breakeven tool for daily bid-floor rates."
+    ],
+    howTo: "Enter monthly fixed costs, gross margin percent, and average job value — break-even revenue and jobs needed solve live.",
+    faqs: [
+      { q: "How do I calculate my break-even revenue?", a: "Divide monthly fixed costs by gross margin as a decimal — $12,000 ÷ 0.35 = $34,286 per month." },
+      { q: "What's the difference between markup and margin here?", a: "Use margin (profit ÷ revenue), not markup (profit ÷ cost) — break-even is revenue-based, so margin is the right input." },
+      { q: "How many jobs do I need per month?", a: "Break-even revenue ÷ average job value — $34,286 ÷ $8,500 ≈ 4 jobs per month." }
+    ],
   },
   {
     id: "change-order",
@@ -1049,7 +1127,20 @@ export const TOOLS: ToolMetadata[] = [
     inputsSummary: "CO cost + markup",
     outputs: ["CO price", "Margin check"],
     estimatedTime: "< 1 min",
-    available: false,
+    available: true,
+    readTimeMinutes: 2,
+    details: [
+      "Change order price = direct cost × (1 + markup) — $2,500 × 1.30 = $3,250.",
+      "Achieved margin = profit ÷ price — a 30% markup yields a 23.1% margin, not 30%.",
+      "Change orders usually carry higher markup than base bids: mobilization, disruption, and paperwork cost real money.",
+      "Check the achieved margin against your target before sending — never price extras at cost."
+    ],
+    howTo: "Enter the extra work's direct cost and your markup — price, profit, and achieved margin solve live.",
+    faqs: [
+      { q: "How should I price a change order?", a: "Direct cost × (1 + markup) — and use a higher markup than the base bid, typically 25–50%, to cover disruption." },
+      { q: "What's the difference between 30% markup and 30% margin?", a: "30% markup on $2,500 = $3,250 price, but margin is $750 ÷ $3,250 = 23.1%. Markup is on cost; margin is on price." },
+      { q: "Should change orders have higher markup?", a: "Yes — extras disrupt the schedule, need remobilization, and carry more admin. 30–50% markup is standard." }
+    ],
   },
 
   /* ---------------- Field Converters & Master Proposal ---------------- */
@@ -1149,7 +1240,20 @@ export const TOOLS: ToolMetadata[] = [
     inputsSummary: "Two sides",
     outputs: ["Hypotenuse", "Angles"],
     estimatedTime: "< 1 min",
-    available: false,
+    available: true,
+    readTimeMinutes: 2,
+    details: [
+      "Two legs: hypotenuse = √(a² + b²) — 3 and 4 give exactly 5.",
+      "Leg + hypotenuse: missing leg = √(c² − a²); the hypotenuse must be the longest side.",
+      "Acute angles come from atan2 — a 3-4-5 triangle gives 36.87° and 53.13°.",
+      "The 3-4-5 check confirms square corners: if sides match the ratio within 1%, your layout is square."
+    ],
+    howTo: "Pick two-legs or leg-plus-hypotenuse mode and enter the sides — the missing side, both angles, and the 3-4-5 check solve live.",
+    faqs: [
+      { q: "How do I check if a corner is square?", a: "Measure 3 ft along one wall and 4 ft along the other — the diagonal must be exactly 5 ft. This tool runs the check for any size." },
+      { q: "What are the angles of a 3-4-5 triangle?", a: "36.87° opposite the 3 side and 53.13° opposite the 4 side; the acute angles always sum to 90°." },
+      { q: "Can I use any units?", a: "Yes — feet, inches, meters. All outputs use whatever unit you enter." }
+    ],
   },
   {
     id: "master-proposal-builder",
