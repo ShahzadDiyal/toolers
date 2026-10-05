@@ -9,8 +9,10 @@
 "use client";
 
 import * as React from "react";
-import { Check, Plus, Printer, RotateCcw } from "lucide-react";
+import { Check, Plus, Printer, RotateCcw, Link2 } from "lucide-react";
+import { toast } from "sonner";
 import { formatMoney } from "@/lib/utils";
+import { buildShareUrl } from "@/lib/share";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
@@ -50,6 +52,8 @@ interface ResultsCardProps {
   onAddToEstimate: () => void;
   onReset: () => void;
   addLabel?: string;
+  /** When provided, a "Copy share link" button encodes these values into the URL. */
+  shareValues?: Record<string, unknown>;
 }
 
 export function ResultsCard({
@@ -62,6 +66,7 @@ export function ResultsCard({
   onAddToEstimate,
   onReset,
   addLabel = "Add to Master Estimate",
+  shareValues,
 }: ResultsCardProps) {
   const [added, setAdded] = React.useState(false);
   const timer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -72,6 +77,20 @@ export function ResultsCard({
     },
     [],
   );
+
+  const handleShare = async () => {
+    if (!shareValues) return;
+    const url = buildShareUrl(shareValues);
+    try {
+      await navigator.clipboard.writeText(url);
+      toast.success("Share link copied", {
+        description: "Anyone opening it sees this exact calculation.",
+      });
+    } catch {
+      // Clipboard API unavailable (permissions) — show the URL to copy manually.
+      toast.info("Copy this link manually", { description: url });
+    }
+  };
 
   const handleAdd = () => {
     onAddToEstimate();
@@ -208,11 +227,24 @@ export function ResultsCard({
             <Printer className="h-4 w-4" />
             Print / Export slip
           </Button>
-          <Button variant="ghost" onClick={onReset} className="min-h-[44px]">
+          {shareValues ? (
+            <Button variant="outline" onClick={handleShare} className="min-h-[44px]">
+              <Link2 className="h-4 w-4" />
+              Copy share link
+            </Button>
+          ) : (
+            <Button variant="ghost" onClick={onReset} className="min-h-[44px]">
+              <RotateCcw className="h-4 w-4" />
+              Reset form
+            </Button>
+          )}
+        </div>
+        {shareValues && (
+          <Button variant="ghost" onClick={onReset} className="min-h-[44px] w-full">
             <RotateCcw className="h-4 w-4" />
             Reset form
           </Button>
-        </div>
+        )}
         <p className="text-center text-[11px] text-zinc-600">
           Saved on this device · No account · No cloud
         </p>

@@ -15,7 +15,15 @@ import {
   getToolBySlug,
   getCategory,
   categoryHref,
+  toolHref,
 } from "@/data/toolsRegistry";
+import { SITE_URL } from "@/lib/site";
+import {
+  JsonLd,
+  toolSchema,
+  faqSchema,
+  breadcrumbSchema,
+} from "@/components/seo/JsonLd";
 import { toolIcon } from "@/lib/tool-icons";
 import { ConcreteSlabTool } from "@/components/calculator/tools/ConcreteSlabTool";
 import { RoofPitchShinglesTool } from "@/components/calculator/tools/RoofPitchShinglesTool";
@@ -50,9 +58,24 @@ export async function generateMetadata({
   const { slug } = await params;
   const tool = getToolBySlug(slug);
   if (!tool) return {};
+  const url = `${SITE_URL}${toolHref(tool)}`;
+  const title = `${tool.title} — Free Calculator`;
   return {
-    title: `${tool.title} — Free Calculator`,
+    title,
     description: tool.shortDescription,
+    keywords: [...tool.tags, tool.subtrade, "calculator", "estimator"],
+    alternates: { canonical: url },
+    openGraph: {
+      type: "website",
+      title: `${title} · BuildCalc Pro`,
+      description: tool.howTo ?? tool.shortDescription,
+      url,
+    },
+    twitter: {
+      card: "summary",
+      title: `${title} · BuildCalc Pro`,
+      description: tool.howTo ?? tool.shortDescription,
+    },
   };
 }
 
@@ -181,9 +204,26 @@ export default async function ToolPage({
   if (!tool) notFound();
 
   const ToolComponent = TOOL_COMPONENTS[slug];
+  const category = getCategory(tool.category);
+  const crumbs = [
+    { label: "Home", href: "/" },
+    { label: category.label, href: categoryHref(tool.category) },
+    { label: tool.title },
+  ];
+  const schemas = [
+    toolSchema({
+      slug: tool.slug,
+      title: tool.title,
+      description: tool.shortDescription,
+      categoryLabel: category.label,
+    }),
+    breadcrumbSchema(crumbs),
+    ...(tool.faqs && tool.faqs.length > 0 ? [faqSchema(tool.faqs)] : []),
+  ];
 
   return (
     <>
+      <JsonLd data={schemas} />
       <TrackRecentTool slug={slug} />
       {ToolComponent ? (
         <>
@@ -200,6 +240,31 @@ export default async function ToolPage({
                 ))}
               </CardContent>
             </Card>
+          )}
+          {tool.faqs && tool.faqs.length > 0 && (
+            <section aria-label="Frequently asked questions" className="mt-8">
+              <h2 className="font-display text-xl font-extrabold uppercase tracking-wide">
+                Common questions
+              </h2>
+              <div className="mt-3 space-y-2">
+                {tool.faqs.map((f) => (
+                  <details
+                    key={f.q}
+                    className="group rounded-xl border border-border bg-card px-4 py-3"
+                  >
+                    <summary className="cursor-pointer list-none text-sm font-bold text-zinc-100 marker:hidden [&::-webkit-details-marker]:hidden">
+                      <span className="mr-2 inline-block text-primary transition-transform group-open:rotate-90">
+                        ▸
+                      </span>
+                      {f.q}
+                    </summary>
+                    <p className="mt-2 pl-6 text-sm leading-relaxed text-zinc-400">
+                      {f.a}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </section>
           )}
         </>
       ) : (

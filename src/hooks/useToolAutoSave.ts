@@ -13,6 +13,7 @@
 "use client";
 
 import * as React from "react";
+import { decodeToolState } from "@/lib/share";
 
 export function toolStateKey(slug: string): string {
   return `tool_state_${slug}`;
@@ -43,12 +44,33 @@ function sanitize<T extends Record<string, unknown>>(
   return out as T;
 }
 
+/** Immediate write (used by reset + shared-link consume). */
+function persistNow(slug: string, values: Record<string, unknown>): void {
+  try {
+    window.localStorage.setItem(
+      toolStateKey(slug),
+      JSON.stringify({
+        app: "buildcalc-pro",
+        kind: "tool-state",
+        slug,
+        savedAt: new Date().toISOString(),
+        values,
+      }),
+    );
+  } catch {
+    /* private mode / quota — the tool still works in-memory */
+  }
+}
+
 function readInitial<T extends Record<string, unknown>>(
   slug: string,
   defaults: T,
 ): T {
   if (typeof window === "undefined") return { ...defaults };
   try {
+    // NOTE: shared-link (#s=...) state is intentionally NOT consumed here.
+    // readInitial runs during hydration, and applying hash state then would
+    // mismatch the SSR HTML. The hash is consumed in a mount effect below.
     // 1. Current autosave key.
     const raw = window.localStorage.getItem(toolStateKey(slug));
     if (raw) {
@@ -142,6 +164,26 @@ export function useToolAutoSave<T extends Record<string, unknown>>(
     write();
   }, [write]);
 
+  // Consume a shared-link (#s=...) payload once, after hydration.
+  // Runs in an effect (not in the useState initializer) so the first
+  // client render matches the SSR HTML and hydration stays clean.
+  React.useEffect(() => {
+    const shared = decodeToolState<T>(
+      window.location.hash,
+      defaultsRef.current,
+    );
+    if (shared) {
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search,
+      );
+      setValuesState(shared);
+      persistNow(slugRef.current, shared);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [toolSlug]);
+
   // Debounced persist on every change.
   React.useEffect(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
@@ -178,22 +220,10 @@ export function useToolAutoSave<T extends Record<string, unknown>>(
 
   const resetToDefaults = React.useCallback(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
-    setValuesState({ ...defaultsRef.current });
+    const fresh = { ...defaultsRef.current };
+    setValuesState(fresh);
     // Write defaults immediately so a stale draft can't resurrect.
-    try {
-      window.localStorage.setItem(
-        toolStateKey(slugRef.current),
-        JSON.stringify({
-          app: "buildcalc-pro",
-          kind: "tool-state",
-          slug: slugRef.current,
-          savedAt: new Date().toISOString(),
-          values: { ...defaultsRef.current },
-        }),
-      );
-    } catch {
-      /* noop */
-    }
+    persistNow(slugRef.current, fresh);
   }, []);
 
   const isDirty = React.useMemo(

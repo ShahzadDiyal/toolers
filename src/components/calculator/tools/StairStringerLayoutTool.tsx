@@ -26,6 +26,7 @@ import { CostInput } from "@/components/calculator/inputs/CostInput";
 import { PresetStepper } from "@/components/calculator/inputs/PresetStepper";
 import { ResultsCard, type MaterialRow } from "@/components/calculator/results/ResultsCard";
 import { ToolShell } from "@/components/calculator/ToolShell";
+import { StairDiagram } from "@/components/calculator/diagrams/StairDiagram";
 import { useToolActions } from "@/components/tools/useToolActions";
 import { cn } from "@/lib/utils";
 
@@ -191,6 +192,18 @@ export function StairStringerLayoutTool() {
         hint="Over 36″ gets a 4th stringer."
       />
 
+      {/* Live stringer diagram */}
+      <div className="sm:col-span-2">
+        <StairDiagram
+          totalRiseIn={v.totalRiseIn}
+          totalRunIn={s.totalRunIn}
+          riserCount={s.riserCount}
+          unitRiseIn={s.unitRiseIn}
+          unitRunIn={s.unitRunIn}
+          stringerLengthIn={s.stringerLengthIn}
+        />
+      </div>
+
       {/* Live IRC code validator */}
       <div className="sm:col-span-2 rounded-xl border border-border bg-zinc-950/60 p-4">
         <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
@@ -285,6 +298,7 @@ export function StairStringerLayoutTool() {
       total={Math.round(total * 100) / 100}
       onAddToEstimate={handleAdd}
       onReset={resetToDefaults}
+      shareValues={v}
     />
   );
 

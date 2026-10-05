@@ -444,6 +444,7 @@ export function TileGroutCalculatorTool() {
       total={Math.round(total * 100) / 100}
       onAddToEstimate={handleAdd}
       onReset={resetToDefaults}
+      shareValues={v}
       addLabel="Add 3 lines to Master Estimate"
     />
   );

@@ -324,6 +324,7 @@ export function RoofPitchShinglesTool() {
       total={total}
       onAddToEstimate={handleAdd}
       onReset={resetToDefaults}
+      shareValues={v}
       addLabel="Add both to Master Estimate"
     />
   );

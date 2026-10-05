@@ -8,9 +8,15 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { CATEGORIES, getCategory } from "@/data/toolsRegistry";
+import { CATEGORIES, getCategory, categoryHref } from "@/data/toolsRegistry";
 import { CategoryHubView } from "@/components/category/CategoryHubView";
 import { Skeleton } from "@/components/ui/skeleton";
+import { SITE_URL } from "@/lib/site";
+import {
+  JsonLd,
+  collectionSchema,
+  breadcrumbSchema,
+} from "@/components/seo/JsonLd";
 import type { Category } from "@/types/estimator";
 
 const VALID = new Set<string>(CATEGORIES.map((c) => c.id));
@@ -27,9 +33,19 @@ export async function generateMetadata({
   const { category } = await params;
   if (!VALID.has(category)) return {};
   const meta = getCategory(category as Category);
+  const url = `${SITE_URL}${categoryHref(meta.id)}`;
+  const title = `${meta.label} Calculators`;
   return {
-    title: `${meta.label} Calculators`,
+    title,
     description: meta.blurb,
+    keywords: [meta.label, ...meta.subtrades, "construction calculator"],
+    alternates: { canonical: url },
+    openGraph: { type: "website", title: `${title} · BuildCalc Pro`, description: meta.blurb, url },
+    twitter: {
+      card: "summary",
+      title: `${title} · BuildCalc Pro`,
+      description: meta.blurb,
+    },
   };
 }
 
@@ -61,9 +77,24 @@ export default async function CategoryPage({
 }) {
   const { category } = await params;
   if (!VALID.has(category)) notFound();
+  const meta = getCategory(category as Category);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+      <JsonLd
+        data={[
+          collectionSchema({
+            path: categoryHref(meta.id),
+            name: `${meta.label} Calculators`,
+            description: meta.blurb,
+          }),
+          breadcrumbSchema([
+            { label: "Home", href: "/" },
+            { label: "Categories", href: "/categories" },
+            { label: meta.label },
+          ]),
+        ]}
+      />
       <Suspense fallback={<HubFallback />}>
         <CategoryHubView category={category as Category} />
       </Suspense>

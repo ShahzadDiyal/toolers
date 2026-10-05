@@ -129,6 +129,8 @@ export interface ToolMetadata {
   details?: string[];
   /** One-sentence instruction guide shown above the calculator. */
   howTo?: string;
+  /** Q&A pairs for the FAQ section + FAQPage schema (AEO/GEO). */
+  faqs?: { q: string; a: string }[];
 }
 
 /** Units selectable in the master estimate. Keep display + plural forms. */

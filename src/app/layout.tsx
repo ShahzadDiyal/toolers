@@ -7,6 +7,8 @@ import { Footer } from "@/components/layout/Footer";
 import { CommandMenu } from "@/components/layout/CommandMenu";
 import { EstimateDrawer } from "@/components/estimate/EstimateDrawer";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SITE_URL, SITE_NAME, SITE_TAGLINE } from "@/lib/site";
+import { JsonLd, websiteSchema, appSchema } from "@/components/seo/JsonLd";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,20 +31,42 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "BuildCalc Pro — Free Contractor Estimating Calculators",
-    template: "%s · BuildCalc Pro",
+    default: `${SITE_NAME} — Free Contractor Estimating Calculators`,
+    template: `%s · ${SITE_NAME}`,
   },
-  description:
-    "Instant, free, client-side construction calculators and bid proposals. No logins, no monthly fees, no cloud — your numbers never leave your device.",
+  description: SITE_TAGLINE + " No logins, no monthly fees, no cloud — your numbers never leave your device.",
   keywords: [
     "construction calculator",
     "contractor estimate",
     "concrete calculator",
     "roofing calculator",
+    "stair calculator",
     "bid proposal",
+    "material takeoff",
+    "rebar calculator",
+    "tile calculator",
+    "paint calculator",
   ],
+  authors: [{ name: SITE_NAME }],
   robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} — Free Contractor Estimating Calculators`,
+    description: SITE_TAGLINE,
+    url: SITE_URL,
+    images: [{ url: "/icon.svg", alt: SITE_NAME }],
+  },
+  twitter: {
+    card: "summary",
+    title: `${SITE_NAME} — Free Contractor Estimating Calculators`,
+    description: SITE_TAGLINE,
+    images: ["/icon.svg"],
+  },
+  alternates: { canonical: SITE_URL },
+  category: "business",
 };
 
 export const viewport: Viewport = {
@@ -62,6 +86,7 @@ export default function RootLayout({
       className={`${inter.variable} ${barlowCondensed.variable} ${jetbrainsMono.variable}`}
     >
       <body className="flex min-h-screen flex-col">
+        <JsonLd data={[websiteSchema(), appSchema()]} />
         <TooltipProvider delayDuration={300}>
           <Navbar />
           <main className="flex-1">{children}</main>

@@ -123,6 +123,11 @@ export const TOOLS: ToolMetadata[] = [
       "Order quantity = net yards × (1 + waste%). The 10–15% default covers spillage, over-excavation, and uneven subgrade.",
       "An 80-lb bag yields ≈ 0.6 cu ft, so one cubic yard needs about 45 bags (60 for 60-lb bags). Counts round up — suppliers don't split bags.",
     ],
+    faqs: [
+      { q: "How many cubic yards of concrete do I need for a 20x12 slab at 4 inches?", a: "A 20x12 ft slab at 4 in thick needs 2.96 cubic yards net (20 x 12 x (4/12) / 27). Order about 3.26 yards with 10% waste. Loads under 4 yards usually trigger a short-load fee." },
+      { q: "How many 80-lb bags of concrete are in a cubic yard?", a: "One cubic yard takes about 45 80-lb bags (or 60 60-lb bags). A 20x12x4-inch slab needs roughly 147 80-lb bags including 10% waste." },
+      { q: "How many cubic yards fit in a concrete truck?", a: "A standard ready-mix truck carries about 10 cubic yards. Anything under 4 yards typically incurs a short-load fee, so small pours are often cheaper in bags." },
+    ],
     howTo: "Pick a shape, enter dimensions, set waste and your supplier rate — the order quantity, bags, truckloads, and cost update live.",
   },
   {
@@ -163,6 +168,11 @@ export const TOOLS: ToolMetadata[] = [
       "Bar runs = floor((span − 2 × cover) ÷ spacing) + 1 per direction; total footage includes the lap-splice allowance for bar joints.",
       "Weight uses standard bar weights (#3 = 0.376, #4 = 0.668, #5 = 1.043 lb/ft) so you can price by the ton.",
       "Tie count = one tie per grid intersection — budget a 1,000-count bag per ~1,000 intersections.",
+    ],
+    faqs: [
+      { q: "What spacing should rebar be in a concrete slab?", a: "12 inches on center each way is the common residential default; 18 to 24 inches suits light-duty work. Keep 3 inches of clear cover from form edges." },
+      { q: "How much does #4 rebar weigh per foot?", a: "#4 (1/2-inch) bar weighs 0.668 lb per foot, so 500 linear feet is about 334 lbs." },
+      { q: "How many 20-foot sticks of rebar do I need?", a: "Divide total linear feet including your lap-splice allowance (typically 15%) by 20 and round up." },
     ],
   },
   {
@@ -221,6 +231,11 @@ export const TOOLS: ToolMetadata[] = [
       "Waste follows complexity: 10% simple gable, 15% hip/valley, 20% cut-up. Valleys and hips eat shingles.",
       "Bundles = squares × 3 (rounded up); underlayment rolls = waste-adjusted area ÷ 1,000 (10-square synthetic rolls).",
     ],
+    faqs: [
+      { q: "How do you calculate roofing squares from footprint area?", a: "Multiply the footprint (plan) area by the pitch multiplier M = sqrt(rise^2 + 12^2) / 12, add waste, then divide by 100. A 2,000 sq ft footprint at 6/12 with 10% waste is about 24.6 squares." },
+      { q: "How many bundles of shingles per square?", a: "Three bundles per square for both architectural and 3-tab shingles, rounded up. 24.6 squares needs 74 bundles." },
+      { q: "How much waste should I add for a hip roof?", a: "10% for a simple gable, 15% for hips and valleys, 20% for a complex cut-up roof with dormers and crickets." },
+    ],
   },
   {
     id: "stair-stringer-layout",
@@ -243,6 +258,11 @@ export const TOOLS: ToolMetadata[] = [
       "Riser count = round(total rise ÷ 7.5); unit rise = total rise ÷ count. Treads = risers − 1 (the top tread is the landing).",
       "IRC R311.7: risers ≤ 7¾″, treads ≥ 10″. The comfort rule 2R + T should land between 24″ and 25″.",
       "Stringer boards round up to stock 10/12/14/16-ft 2×12s; widths over 36″ get a fourth stringer.",
+    ],
+    faqs: [
+      { q: "What is the maximum riser height allowed by code?", a: "IRC R311.7.5.1 limits residential risers to 7-3/4 inches maximum, with treads at least 10 inches deep (R311.7.5.2)." },
+      { q: "How many steps do I need for a 9-foot ceiling?", a: "Divide total rise by about 7.5 and round: 108 / 7.5 = 14.4, so 14 risers at 7.71 in each, with 13 treads (the top tread is the landing)." },
+      { q: "What is the 2R+T stair rule?", a: "Twice the riser height plus the tread run should fall between 24 and 25 inches for a comfortable stair. It is a comfort guideline, not a code requirement." },
     ],
   },
   {
@@ -318,6 +338,11 @@ export const TOOLS: ToolMetadata[] = [
       "Net drywall = wall area × sides − door/window deductions (21 / 15 sq ft), plus 10% cutting waste.",
       "One 4.5-gal mud bucket and one 250-ft tape roll cover ~500 sq ft of board each.",
     ],
+    faqs: [
+      { q: "How many studs do I need for a 40-foot wall at 16 inches on center?", a: "31 studs for the run (40x12/16 rounded up, plus one), plus 2 per corner and 2 per door for kings and jacks - 43 total for a 40-ft wall with 4 corners and 2 doors." },
+      { q: "How many drywall sheets for a 12x16 room with 8-ft ceilings?", a: "Wall area is 2 x (12+16) x 8 = 448 sq ft. After deducting a door (21 sq ft) and two windows (30 sq ft) and adding 10% waste, you need about 13 4x8 sheets per side." },
+      { q: "How much joint compound do I need per sheet of drywall?", a: "Budget one 4.5-gallon bucket of mud and one 250-ft roll of tape per 500 sq ft of installed board." },
+    ],
   },
   {
     id: "paint-primer-coverage",
@@ -339,6 +364,11 @@ export const TOOLS: ToolMetadata[] = [
       "Net wall area = 2 × (L + W) × H minus 21 sq ft per door and 15 per window. Ceiling = L × W.",
       "Gallons always round up — paint is sold by the gallon, and a short gallon stops the job.",
       "Primer covers ~350 sq ft/gal on bare drywall; two finish coats is the standard for fresh work.",
+    ],
+    faqs: [
+      { q: "How much paint do I need for a 12x16 room?", a: "Wall area is 2 x (12+16) x 8 = 448 sq ft; minus a door (21) and two windows (30) = 397 sq ft net. Two coats at 350 sq ft per gallon = 3 gallons." },
+      { q: "How many square feet does a gallon of paint cover?", a: "About 350 sq ft per gallon on smooth drywall - 300 on rough or textured surfaces, up to 400 on smooth previously-painted walls." },
+      { q: "Do I need primer on new drywall?", a: "Yes. One coat of primer at roughly 350 sq ft per gallon seals bare drywall so finish coats cover evenly." },
     ],
   },
   {
@@ -362,6 +392,11 @@ export const TOOLS: ToolMetadata[] = [
       "Underlayment rolls are 100 sq ft; baseboard comes in 16-ft sticks with 10% for corners and cuts.",
       "Enter L × W (not just sq ft) to unlock the perimeter trim calculation.",
     ],
+    faqs: [
+      { q: "How much flooring waste should I add?", a: "5% for straight plank layouts, 10% for angled or irregular rooms, 15% for diagonal patterns." },
+      { q: "How many boxes of LVP do I need for 300 sq ft?", a: "315 sq ft with 5% waste divided by 20 sq ft per box = 16 boxes, rounded up." },
+      { q: "How do you calculate baseboard trim?", a: "Perimeter is 2 x (length + width); add 10% for corners and cuts, divide by 16-ft stick length, and round up." },
+    ],
   },
   {
     id: "tile-grout-calculator",
@@ -383,6 +418,11 @@ export const TOOLS: ToolMetadata[] = [
       "Tile boxes = ceil(waste-adjusted area ÷ sq ft per box). Thinset ≈ 1 bag (50 lb) per 50 sq ft with a ¼×⅜″ notch trowel.",
       "Grout weight uses the Mapei joint-volume formula Area × (L+W)/(L×W) × joint × thickness, with the density constant corrected to 7.9 lb/(ft²·in) for imperial units (the published 1.4 is kg/L, metric-only) — then rounded up to 25-lb bags.",
       "Joints ≥ ⅛″ want sanded grout; under ⅛″ go unsanded to avoid scratching tile faces.",
+    ],
+    faqs: [
+      { q: "How many boxes of tile do I need for 150 sq ft?", a: "Add waste first (10% straight lay gives 165 sq ft), then divide by box coverage: 165 / 15 = 11 boxes." },
+      { q: "How much thinset do I need per square foot?", a: "About one 50-lb bag per 50 sq ft with a 1/4 x 3/8-inch notch trowel." },
+      { q: "Sanded or unsanded grout?", a: "Sanded grout for joints 1/8 inch and wider; unsanded under 1/8 inch to avoid scratching the tile face." },
     ],
   },
 
@@ -492,6 +532,11 @@ export const TOOLS: ToolMetadata[] = [
       "Voltage drop = 2 × K × I × L ÷ circular mils (√3 factor for 3-phase). NEC recommends ≤ 3% on branch circuits.",
       "Recommendations pick the smallest stock conduit / wire gauge that clears the limit.",
     ],
+    faqs: [
+      { q: "What is the maximum conduit fill per NEC?", a: "NEC Chapter 9 Table 1 allows 53% fill for a single wire, 31% for two wires, and 40% for three or more wires." },
+      { q: "What is the maximum voltage drop allowed?", a: "The NEC recommends a maximum 3% drop on branch circuits (5% total for feeder plus branch) as a fine print note." },
+      { q: "How do you calculate voltage drop?", a: "Single-phase: Vd = 2 x K x I x L / circular mils, where K is 12.9 for copper or 21.2 for aluminum. Use the square root of 3 instead of 2 for three-phase." },
+    ],
   },
   {
     id: "btu-sizing",
@@ -565,6 +610,11 @@ export const TOOLS: ToolMetadata[] = [
       "Margin is profit ÷ price; markup is profit ÷ cost. A 30% markup is only a 23% margin — the #1 pricing mistake in contracting.",
       "Bid from margin: price = cost ÷ (1 − margin). Bid from markup: price = cost × (1 + markup).",
       "Net true profit = gross profit − overhead recovery. One click applies the markup to your Master Bid.",
+    ],
+    faqs: [
+      { q: "What is the difference between markup and margin?", a: "Markup is profit divided by cost; margin is profit divided by price. A 30% markup equals only a 23.1% margin - confusing the two is the most common pricing mistake in contracting." },
+      { q: "How do you price a job from a target margin?", a: "Bid price = direct cost / (1 - margin). For $18,600 in costs at 25% margin: $18,600 / 0.75 = $24,800." },
+      { q: "What overhead percentage should a contractor use?", a: "10 to 15% is typical for small residential contractors. The calculator defaults to 10% and subtracts it from gross profit to show true net profit." },
     ],
   },
   {

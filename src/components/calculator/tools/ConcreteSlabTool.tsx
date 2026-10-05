@@ -434,6 +434,7 @@ export function ConcreteSlabTool() {
       total={total}
       onAddToEstimate={handleAdd}
       onReset={resetToDefaults}
+      shareValues={v}
     />
   );
 

@@ -298,6 +298,7 @@ export function ContractorMarkupMarginTool() {
         total={b.netProfit}
         onAddToEstimate={handleApply}
         onReset={resetToDefaults}
+      shareValues={v}
         addLabel="Apply markup to Master Bid"
       />
       <p className="-mt-1 px-1 text-[11px] text-zinc-600">

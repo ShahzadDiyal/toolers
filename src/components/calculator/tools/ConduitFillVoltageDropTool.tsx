@@ -493,6 +493,7 @@ export function ConduitFillVoltageDropTool() {
         total={Math.round(materialCost * 100) / 100}
         onAddToEstimate={handleAdd}
         onReset={resetToDefaults}
+      shareValues={v}
       />
       <p className="-mt-1 px-1 text-[11px] text-zinc-600">
         Sizing aid only — verify against the adopted NEC edition and your AHJ.

@@ -373,6 +373,7 @@ export function RebarMeshEstimatorTool() {
       total={Math.round(total * 100) / 100}
       onAddToEstimate={handleAdd}
       onReset={resetToDefaults}
+      shareValues={v}
       addLabel={isRebar ? "Add 2 lines to Master Estimate" : "Add to Master Estimate"}
     />
   );

@@ -344,6 +344,7 @@ export function FlooringTrimEstimatorTool() {
       total={Math.round(total * 100) / 100}
       onAddToEstimate={handleAdd}
       onReset={resetToDefaults}
+      shareValues={v}
     />
   );
 

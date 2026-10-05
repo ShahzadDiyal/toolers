@@ -8,6 +8,7 @@
  */
 "use client";
 
+import * as React from "react";
 import { create } from "zustand";
 import { persist, createJSONStorage, type StateStorage } from "zustand/middleware";
 import {
@@ -309,13 +310,21 @@ export const useEstimateStore = create<EstimateStore>()(
 
 /** Pricing summary for the drawer / bid views. */
 export function useBidSummary(): BidSummary {
-  return useEstimateStore((s) =>
-    computeBidSummary({
-      items: s.items,
-      markupPercent: s.markupPercent,
-      contingencyPercent: s.contingencyPercent,
-      taxPercent: s.taxPercent,
-    }),
+  const items = useEstimateStore((s) => s.items);
+  const markupPercent = useEstimateStore((s) => s.markupPercent);
+  const contingencyPercent = useEstimateStore((s) => s.contingencyPercent);
+  const taxPercent = useEstimateStore((s) => s.taxPercent);
+  // NOTE: never compute inside the selector — a fresh object on every
+  // snapshot trips React's useSyncExternalStore into an infinite loop.
+  return React.useMemo(
+    () =>
+      computeBidSummary({
+        items,
+        markupPercent,
+        contingencyPercent,
+        taxPercent,
+      }),
+    [items, markupPercent, contingencyPercent, taxPercent],
   );
 }
 
@@ -326,13 +335,15 @@ export function useEstimateCount(): number {
 
 /** Items grouped by category (drawer + future export views). */
 export function useItemsByCategory(): Map<Category, EstimateLineItem[]> {
-  return useEstimateStore((s) => {
+  const items = useEstimateStore((s) => s.items);
+  // NOTE: never build the Map inside the selector (see useBidSummary).
+  return React.useMemo(() => {
     const map = new Map<Category, EstimateLineItem[]>();
-    for (const item of s.items) {
+    for (const item of items) {
       const list = map.get(item.category) ?? [];
       list.push(item);
       map.set(item.category, list);
     }
     return map;
-  });
+  }, [items]);
 }

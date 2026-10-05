@@ -35,6 +35,7 @@ import {
 import { toolIcon } from "@/lib/tool-icons";
 import { HeroSearch } from "@/components/home/HeroSearch";
 import { RecentlyUsed } from "@/components/home/RecentlyUsed";
+import { JsonLd, faqSchema } from "@/components/seo/JsonLd";
 
 /* ------------------------------------------------------------------ */
 
@@ -217,6 +218,64 @@ function HowItWorks() {
   );
 }
 
+const HOME_FAQS = [
+  {
+    q: "Is BuildCalc Pro really free?",
+    a: "Yes — every calculator is free with no account, no trial, and no feature gates. Your estimates are stored in your own browser, not on our servers.",
+  },
+  {
+    q: "Do I need an internet connection on the job site?",
+    a: "Only for the first visit. After that the app is installable and works offline — all math runs 100% in your browser.",
+  },
+  {
+    q: "How is this different from a phone calculator app?",
+    a: "BuildCalc Pro speaks construction: feet-inches-fractions, waste factors, 16-inch on-center spacing, NEC and IRC code checks, and one-tap bill-of-materials lines that flow straight into a bid proposal.",
+  },
+  {
+    q: "Will my estimate data be sold or uploaded?",
+    a: "No. There is no database, no login, and no analytics beacon. Your numbers never leave your device unless you explicitly export them.",
+  },
+  {
+    q: "Can I print a material list for the supplier?",
+    a: "Yes — every calculator has a Print / Export slip button that produces a clean, ink-friendly material list with net quantities, waste, and order totals.",
+  },
+  {
+    q: "Which calculators are available?",
+    a: "Concrete (slabs, footings, rebar), framing and drywall, roof pitch and shingles, stairs with IRC code checks, tile and grout, paint, flooring, electrical conduit and voltage drop, plus markup-vs-margin bid math — with more on the way.",
+  },
+];
+
+function HomeFaq() {
+  return (
+    <section
+      aria-label="Frequently asked questions"
+      className="mx-auto max-w-4xl px-4 py-14 sm:px-6"
+    >
+      <h2 className="font-display text-3xl font-extrabold uppercase tracking-wide sm:text-4xl">
+        Questions contractors ask
+      </h2>
+      <div className="mt-6 space-y-2">
+        {HOME_FAQS.map((f) => (
+          <details
+            key={f.q}
+            className="group rounded-xl border border-border bg-card px-4 py-3"
+          >
+            <summary className="cursor-pointer list-none text-sm font-bold text-zinc-100 marker:hidden [&::-webkit-details-marker]:hidden">
+              <span className="mr-2 inline-block text-primary transition-transform group-open:rotate-90">
+                ▸
+              </span>
+              {f.q}
+            </summary>
+            <p className="mt-2 pl-6 text-sm leading-relaxed text-zinc-400">
+              {f.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function FinalCta() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
@@ -253,10 +312,12 @@ function FinalCta() {
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={faqSchema(HOME_FAQS)} />
       <Hero />
       <RecentlyUsed />
       <CategoryGrid />
       <HowItWorks />
+      <HomeFaq />
       <FinalCta />
     </>
   );
