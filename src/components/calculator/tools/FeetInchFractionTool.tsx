@@ -204,7 +204,7 @@ export function FeetInchFractionTool() {
 
   /* ---------------- layout ---------------- */
   const keypad = (
-    <div className="rounded-2xl border border-border bg-zinc-950/60 p-4 sm:col-span-2">
+    <div className="rounded-2xl border border-border bg-[#F8FAFC] p-4 sm:col-span-2">
       {/* display */}
       <div className="mb-4 rounded-xl bg-[#0b1b33] p-4 shadow-[var(--shadow-readout)]">
         <p className="min-h-[1.5rem] break-words font-mono text-sm text-white/60">
@@ -312,7 +312,7 @@ export function FeetInchFractionTool() {
   );
 
   const history = (
-    <div className="rounded-2xl border border-border bg-zinc-950/60 p-4">
+    <div className="rounded-2xl border border-border bg-[#F8FAFC] p-4">
       <p className="mb-2 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
         Recent calculations
       </p>

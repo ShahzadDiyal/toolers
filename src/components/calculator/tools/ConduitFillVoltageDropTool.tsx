@@ -85,7 +85,7 @@ const DEFAULTS: ElectricalInputs = {
 function FillMeter({ pct, limit }: { pct: number; limit: number }) {
   const over = pct > limit;
   return (
-    <div className="rounded-xl border border-border bg-zinc-950 p-4">
+    <div className="rounded-xl border border-border bg-white p-4">
       <div className="flex items-baseline justify-between">
         <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-zinc-500">
           NEC fill meter
@@ -326,8 +326,8 @@ export function ConduitFillVoltageDropTool() {
                   className={cn(
                     "min-h-[44px] rounded-lg border px-4 font-mono text-sm font-bold transition-colors",
                     v.tradeSize === s
-                      ? "border-primary bg-primary/15 text-primary"
-                      : "border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-primary hover:text-primary",
+                      ? "border-[#ED7D22] bg-[#ED7D22]/10 text-[#ED7D22]"
+                      : "border-zinc-300 bg-white text-[#5A6C85] hover:border-[#ED7D22] hover:text-[#ED7D22]",
                   )}
                 >
                   {s}
@@ -417,8 +417,8 @@ export function ConduitFillVoltageDropTool() {
                   className={cn(
                     "min-h-[44px] min-w-[52px] rounded-lg border px-3 font-mono text-sm font-bold transition-colors",
                     v.gauge === g
-                      ? "border-primary bg-primary/15 text-primary"
-                      : "border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-primary hover:text-primary",
+                      ? "border-[#ED7D22] bg-[#ED7D22]/10 text-[#ED7D22]"
+                      : "border-zinc-300 bg-white text-[#5A6C85] hover:border-[#ED7D22] hover:text-[#ED7D22]",
                   )}
                 >
                   {g}
@@ -429,7 +429,7 @@ export function ConduitFillVoltageDropTool() {
         </>
       )}
 
-      <div className="sm:col-span-2 rounded-xl border border-border bg-zinc-950/60 p-4">
+      <div className="sm:col-span-2 rounded-xl border border-border bg-[#F8FAFC] p-4">
         <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
           Raceway package for the estimate
         </p>

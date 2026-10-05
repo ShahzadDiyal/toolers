@@ -2,7 +2,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * Job-site input: dark inset panel, large mono numerals, amber focus ring.
+ * Job-site input: clean light field, large mono numerals, orange focus ring.
  * Pair with <Label> and an optional unit badge.
  */
 const Input = React.forwardRef<
@@ -13,10 +13,11 @@ const Input = React.forwardRef<
     type={type}
     ref={ref}
     className={cn(
-      "flex h-11 w-full rounded-md border border-input bg-zinc-950 px-4 py-2 text-base tnum shadow-[inset_0_2px_8px_rgb(0_0_0/0.55)]",
-      "placeholder:text-zinc-600 text-zinc-50 transition-colors",
-      "focus-visible:outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/40",
-      "disabled:cursor-not-allowed disabled:opacity-50",
+      "flex h-11 w-full rounded-xl border border-zinc-300 bg-white px-4 py-2 text-base tnum shadow-[inset_0_1px_3px_rgb(11_27_51/0.06)]",
+      "placeholder:text-zinc-400 text-[#0B1B33] transition-colors",
+      "hover:border-zinc-400",
+      "focus-visible:outline-none focus-visible:border-[#ED7D22] focus-visible:ring-2 focus-visible:ring-[#ED7D22]/30",
+      "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-zinc-100",
       "file:border-0 file:bg-transparent file:text-sm file:font-medium",
       className,
     )}

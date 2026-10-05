@@ -102,30 +102,30 @@ export function ResultsCard({
   const laborTotal = labor ? labor.hours * labor.rate : 0;
 
   return (
-    <div className="print-slip overflow-hidden rounded-xl border border-border bg-zinc-950">
+    <div className="print-slip overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
       {/* Primary metric callout */}
-      <div className="border-b border-border bg-gradient-to-b from-accent/10 to-transparent px-5 pb-4 pt-5 text-center">
-        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-400">
+      <div className="border-b border-zinc-100 bg-gradient-to-b from-[#ED7D22]/8 to-transparent px-5 pb-4 pt-5 text-center">
+        <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5A6C85]">
           {primaryMetric.label}
         </p>
-        <p className="mt-1 font-mono text-5xl font-extrabold tabular-nums text-accent">
+        <p className="mt-1 font-mono text-5xl font-extrabold tabular-nums text-[#ED7D22]">
           {primaryMetric.value}
         </p>
-        <p className="mt-1 font-display text-sm font-bold uppercase tracking-[0.2em] text-accent/80">
+        <p className="mt-1 font-display text-sm font-bold uppercase tracking-[0.2em] text-[#ED7D22]/80">
           {primaryMetric.unit}
         </p>
       </div>
 
       {/* Materials schedule */}
       <div className="px-5 py-4">
-        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-zinc-500">
+        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#5A6C85]">
           Bill of materials
-          <span className="ml-2 rounded bg-accent/15 px-1.5 py-0.5 font-mono text-[10px] text-accent">
+          <span className="ml-2 rounded bg-[#ED7D22]/10 px-1.5 py-0.5 font-mono text-[10px] font-bold text-[#ED7D22]">
             +{wastePercent}% waste
           </span>
         </p>
-        <div className="mt-2 overflow-hidden rounded-lg border border-zinc-800">
-          <div className="grid grid-cols-[1fr_auto] gap-x-3 border-b border-zinc-800 bg-zinc-900/60 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-zinc-500 sm:grid-cols-[1.2fr_1fr_1fr_1fr]">
+        <div className="mt-2 overflow-hidden rounded-xl border border-zinc-200">
+          <div className="grid grid-cols-[1fr_auto] gap-x-3 border-b border-zinc-200 bg-[#F8FAFC] px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-[#5A6C85] sm:grid-cols-[1.2fr_1fr_1fr_1fr]">
             <span>Material</span>
             <span className="hidden text-right sm:block">Net</span>
             <span className="hidden text-right sm:block">Waste</span>
@@ -136,28 +136,28 @@ export function ResultsCard({
               key={m.label}
               className={cn(
                 "grid grid-cols-[1fr_auto] items-center gap-x-3 px-3 py-2.5",
-                i % 2 === 1 && "bg-zinc-900/40",
+                i % 2 === 1 && "bg-[#F8FAFC]",
               )}
             >
               <div className="min-w-0">
-                <p className="truncate text-sm font-semibold text-zinc-200">{m.label}</p>
+                <p className="truncate text-sm font-semibold text-[#0B1B33]">{m.label}</p>
                 {m.note && (
-                  <p className="text-[11px] font-semibold text-accent/90">{m.note}</p>
+                  <p className="text-[11px] font-semibold text-[#ED7D22]">{m.note}</p>
                 )}
-                <p className="mt-0.5 text-[11px] text-zinc-500 sm:hidden">
+                <p className="mt-0.5 text-[11px] text-[#5A6C85] sm:hidden">
                   Net {m.net} · Waste {m.waste}
                 </p>
               </div>
-              <span className="hidden text-right font-mono text-xs tabular-nums text-zinc-400 sm:block">
+              <span className="hidden text-right font-mono text-xs tabular-nums text-[#5A6C85] sm:block">
                 {m.net}
               </span>
-              <span className="hidden text-right font-mono text-xs tabular-nums text-zinc-500 sm:block">
+              <span className="hidden text-right font-mono text-xs tabular-nums text-[#5A6C85] sm:block">
                 {m.waste}
               </span>
               <span
                 className={cn(
                   "text-right font-mono text-sm font-bold tabular-nums",
-                  m.highlight ? "text-accent" : "text-zinc-100",
+                  m.highlight ? "text-[#ED7D22]" : "text-[#0B1B33]",
                 )}
               >
                 {m.order}
@@ -171,41 +171,41 @@ export function ResultsCard({
 
       {/* Cost projection */}
       <div className="px-5 py-4">
-        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-zinc-500">
+        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#5A6C85]">
           Cost projection
         </p>
         <div className="mt-2 space-y-1.5 text-sm">
           {materialCosts.map((c) => (
             <div key={c.label} className="flex justify-between gap-3">
-              <span className="text-zinc-400">{c.label}</span>
-              <span className="font-mono tabular-nums text-zinc-100">
+              <span className="text-[#5A6C85]">{c.label}</span>
+              <span className="font-mono tabular-nums text-[#0B1B33]">
                 {formatMoney(c.amount)}
               </span>
             </div>
           ))}
           {labor && labor.hours > 0 && (
             <div className="flex justify-between gap-3">
-              <span className="text-zinc-400">
+              <span className="text-[#5A6C85]">
                 Labor {labor.hours}h × {formatMoney(labor.rate)}/h
               </span>
-              <span className="font-mono tabular-nums text-zinc-100">
+              <span className="font-mono tabular-nums text-[#0B1B33]">
                 {formatMoney(laborTotal)}
               </span>
             </div>
           )}
         </div>
-        <div className="mt-3 flex items-baseline justify-between rounded-lg border border-accent/30 bg-accent/10 px-4 py-3">
-          <span className="font-display text-sm font-bold uppercase tracking-widest text-accent">
+        <div className="mt-3 flex items-baseline justify-between rounded-xl border border-[#ED7D22]/30 bg-[#ED7D22]/8 px-4 py-3">
+          <span className="font-display text-sm font-bold uppercase tracking-widest text-[#ED7D22]">
             Total
           </span>
-          <span className="font-mono text-3xl font-extrabold tabular-nums text-accent">
+          <span className="font-mono text-3xl font-extrabold tabular-nums text-[#0B1B33]">
             {formatMoney(total)}
           </span>
         </div>
       </div>
 
       {/* Action bar */}
-      <div className="no-print space-y-2 border-t border-border bg-card px-5 py-4">
+      <div className="no-print space-y-2 border-t border-zinc-100 bg-[#F8FAFC] px-5 py-4">
         <Button
           variant="accent"
           size="lg"
@@ -245,7 +245,7 @@ export function ResultsCard({
             Reset form
           </Button>
         )}
-        <p className="text-center text-[11px] text-zinc-600">
+        <p className="text-center text-[11px] text-[#5A6C85]">
           Saved on this device · No account · No cloud
         </p>
       </div>

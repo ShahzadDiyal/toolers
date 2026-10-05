@@ -62,7 +62,7 @@ export function CostInput({
     <div className="flex flex-col gap-2">
       <Label htmlFor={id}>{label}</Label>
       <div className="relative">
-        <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 font-mono text-lg font-bold text-zinc-500">
+        <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 font-mono text-lg font-bold text-[#5A6C85]">
           $
         </span>
         <Input
@@ -94,7 +94,7 @@ export function CostInput({
         )}
       </div>
       {hint && (
-        <p id={`${id}-hint`} className="text-xs text-zinc-500">
+        <p id={`${id}-hint`} className="text-xs text-[#5A6C85]">
           {hint}
         </p>
       )}

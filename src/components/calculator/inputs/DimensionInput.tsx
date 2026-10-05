@@ -121,7 +121,7 @@ export function DimensionInput({
       <div className="flex items-center justify-between gap-2">
         <Label htmlFor={id}>{label}</Label>
         <div
-          className="flex rounded-lg border border-border bg-zinc-950 p-0.5"
+          className="flex rounded-xl border border-zinc-200 bg-[#F1F5F9] p-0.5"
           role="group"
           aria-label={`${label} entry mode`}
         >
@@ -133,10 +133,10 @@ export function DimensionInput({
               aria-pressed={mode === m.id}
               disabled={disabled}
               className={cn(
-                "min-h-[32px] rounded-md px-2.5 text-[11px] font-bold transition-colors",
+                "min-h-[32px] rounded-lg px-2.5 text-[11px] font-bold transition-colors",
                 mode === m.id
-                  ? "bg-primary text-primary-foreground"
-                  : "text-zinc-400 hover:text-zinc-100",
+                  ? "bg-[#14284A] text-white shadow-sm"
+                  : "text-[#5A6C85] hover:text-[#14284A]",
               )}
             >
               {m.label}
@@ -165,7 +165,7 @@ export function DimensionInput({
               className="h-11 pr-8 text-center font-mono text-lg font-semibold"
               aria-label={`${label} feet`}
             />
-            <span className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 font-mono text-sm text-zinc-500">
+            <span className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 font-mono text-sm font-bold text-[#5A6C85]">
               ′
             </span>
           </div>
@@ -189,7 +189,7 @@ export function DimensionInput({
               className="h-11 pr-8 text-center font-mono text-lg font-semibold"
               aria-label={`${label} inches and fraction`}
             />
-            <span className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 font-mono text-sm text-zinc-500">
+            <span className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 font-mono text-sm font-bold text-[#5A6C85]">
               ″
             </span>
           </div>
@@ -216,7 +216,7 @@ export function DimensionInput({
             className="h-11 pr-12 font-mono text-lg font-semibold"
             aria-describedby={hint ? `${id}-hint` : undefined}
           />
-          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded border border-border bg-zinc-900 px-1.5 py-0.5 font-mono text-xs text-zinc-400">
+          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded-md border border-zinc-200 bg-[#F1F5F9] px-1.5 py-0.5 font-mono text-xs font-bold text-[#5A6C85]">
             {mode === "decimal" ? "ft" : "in"}
           </span>
         </div>
@@ -232,9 +232,9 @@ export function DimensionInput({
               onClick={() => applyPreset(p.valueFeet)}
               className={cn(
                 "min-h-[36px] rounded-full border px-3 py-1.5 font-mono text-xs font-bold transition-colors",
-                "border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-primary hover:text-primary",
+                "border-zinc-300 bg-white text-[#5A6C85] hover:border-[#ED7D22] hover:text-[#ED7D22]",
                 Math.abs(valueFeet - p.valueFeet) < 1e-9 &&
-                  "border-primary bg-primary/15 text-primary",
+                  "border-[#ED7D22] bg-[#ED7D22]/10 text-[#ED7D22]",
               )}
             >
               {p.label}
@@ -244,7 +244,7 @@ export function DimensionInput({
       )}
 
       {hint && (
-        <p id={`${id}-hint`} className="text-xs text-zinc-500">
+        <p id={`${id}-hint`} className="text-xs text-[#5A6C85]">
           {hint}
         </p>
       )}

@@ -187,7 +187,7 @@ export function PexPipePlumbingTool() {
         />
       </div>
 
-      <div className="sm:col-span-2 rounded-xl border border-border bg-zinc-950/60 p-4">
+      <div className="sm:col-span-2 rounded-xl border border-border bg-[#F8FAFC] p-4">
         <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
           Fixture takeoff
         </p>

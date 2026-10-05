@@ -81,10 +81,10 @@ function ScopeToggle({
           "flex min-h-[48px] w-full items-center justify-between rounded-xl border px-4 transition-colors",
           on
             ? "border-primary bg-primary/10"
-            : "border-zinc-700 bg-zinc-900",
+            : "border-zinc-300 bg-white",
         )}
       >
-        <span className="text-sm font-bold text-zinc-100">{label}</span>
+        <span className="text-sm font-bold text-[#0B1B33]">{label}</span>
         <span
           className={cn(
             "flex h-6 w-11 items-center rounded-full p-0.5 transition-colors",
@@ -343,7 +343,7 @@ export function PaintPrimerCoverageTool() {
         perUnit="$/gal"
       />
 
-      <div className="sm:col-span-2 rounded-xl border border-border bg-zinc-950/60 p-4">
+      <div className="sm:col-span-2 rounded-xl border border-border bg-[#F8FAFC] p-4">
         <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
           Labor (optional)
         </p>

@@ -57,7 +57,7 @@ function TargetPercent({
   mode: "margin" | "markup";
 }) {
   return (
-    <div className="sm:col-span-2 rounded-xl border border-border bg-zinc-950/60 p-4">
+    <div className="sm:col-span-2 rounded-xl border border-border bg-[#F8FAFC] p-4">
       <div className="flex items-baseline justify-between">
         <p className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-400">
           Target {mode === "margin" ? "profit margin" : "markup"}
@@ -116,7 +116,7 @@ function MarkupMarginMeter({
   const max = Math.max(markup, margin, 1);
   const gap = Math.abs(markup - margin);
   return (
-    <div className="rounded-xl border border-border bg-zinc-950 p-5">
+    <div className="rounded-xl border border-border bg-white p-5">
       <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-zinc-500">
         Markup vs. margin the gap
       </p>

@@ -229,7 +229,7 @@ export function LaborBurdenHourlyTool() {
         />
       )}
 
-      <div className="sm:col-span-2 rounded-xl border border-border bg-zinc-950/60 p-4">
+      <div className="sm:col-span-2 rounded-xl border border-border bg-[#F8FAFC] p-4">
         <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
           Paid time off & benefits
         </p>
@@ -276,7 +276,7 @@ export function LaborBurdenHourlyTool() {
         presets={[{ label: "80%", value: 80 }]}
       />
 
-      <div className="sm:col-span-2 rounded-xl border border-border bg-zinc-950/60 p-4">
+      <div className="sm:col-span-2 rounded-xl border border-border bg-[#F8FAFC] p-4">
         <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
           Bid allocation (for the estimate line)
         </p>

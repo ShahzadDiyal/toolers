@@ -172,8 +172,8 @@ export function PresetStepper({
               }}
               className={cn(
                 "min-h-[36px] rounded-full border px-3 py-1.5 font-mono text-xs font-bold transition-colors",
-                "border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-primary hover:text-primary",
-                value === p.value && "border-primary bg-primary/15 text-primary",
+                "border-zinc-300 bg-white text-[#5A6C85] hover:border-[#ED7D22] hover:text-[#ED7D22]",
+                value === p.value && "border-[#ED7D22] bg-[#ED7D22]/10 text-[#ED7D22]",
               )}
             >
               {p.label}
@@ -183,7 +183,7 @@ export function PresetStepper({
       )}
 
       {hint && (
-        <p id={`${id}-hint`} className="text-xs text-zinc-500">
+        <p id={`${id}-hint`} className="text-xs text-[#5A6C85]">
           {hint}
         </p>
       )}

@@ -90,7 +90,7 @@ function Field({
 }
 
 const inputCls =
-  "min-h-[48px] w-full rounded-xl border border-border bg-zinc-900 px-3 text-sm font-semibold text-zinc-100 placeholder:text-zinc-600 focus:border-primary focus:outline-none";
+  "min-h-[48px] w-full rounded-xl border border-zinc-300 bg-white px-3 text-sm font-semibold text-[#0B1B33] placeholder:text-zinc-400 focus:border-[#ED7D22] focus:outline-none";
 
 function Section({
   icon,
@@ -102,7 +102,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-2xl border border-border bg-zinc-950/60 p-4 sm:p-5">
+    <section className="rounded-2xl border border-border bg-[#F8FAFC] p-4 sm:p-5">
       <h2 className="mb-4 flex items-center gap-2 text-sm font-black uppercase tracking-widest text-zinc-300">
         <span className="text-primary">{icon}</span> {title}
       </h2>
@@ -322,7 +322,7 @@ export function MasterProposalBuilderTool() {
         ].map((k) => (
           <div
             key={k.label}
-            className="rounded-2xl border border-border bg-zinc-950/60 p-4 text-center"
+            className="rounded-2xl border border-border bg-[#F8FAFC] p-4 text-center"
           >
             <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
               {k.label}
@@ -611,7 +611,7 @@ export function MasterProposalBuilderTool() {
               min={0}
               max={100 - ps.depositPct}
             />
-            <div className="rounded-xl border border-border bg-zinc-900 p-3">
+            <div className="rounded-xl border border-zinc-200 bg-[#F8FAFC] p-3">
               <p className="text-[11px] font-bold uppercase tracking-widest text-zinc-500">
                 Completion ({formatNumber(completionPct)}%)
               </p>
@@ -651,7 +651,7 @@ export function MasterProposalBuilderTool() {
         <button
           type="button"
           onClick={() => window.print()}
-          className="flex min-h-[56px] items-center justify-center gap-2 rounded-2xl border border-border bg-zinc-900 text-base font-bold text-zinc-100"
+          className="flex min-h-[56px] items-center justify-center gap-2 rounded-2xl border border-zinc-300 bg-white text-base font-bold text-[#0B1B33]"
         >
           <Printer className="h-5 w-5" /> Print view
         </button>
@@ -663,14 +663,14 @@ export function MasterProposalBuilderTool() {
               useEstimateStore.getState().exportEstimate(),
             )
           }
-          className="flex min-h-[52px] items-center justify-center gap-2 rounded-2xl border border-border bg-zinc-900 text-sm font-bold text-zinc-100"
+          className="flex min-h-[52px] items-center justify-center gap-2 rounded-2xl border border-zinc-300 bg-white text-sm font-bold text-[#0B1B33]"
         >
           <Save className="h-4 w-4" /> Download JSON backup
         </button>
         <button
           type="button"
           onClick={() => fileRef.current?.click()}
-          className="flex min-h-[52px] items-center justify-center gap-2 rounded-2xl border border-border bg-zinc-900 text-sm font-bold text-zinc-100"
+          className="flex min-h-[52px] items-center justify-center gap-2 rounded-2xl border border-zinc-300 bg-white text-sm font-bold text-[#0B1B33]"
         >
           <Upload className="h-4 w-4" /> Restore from backup
         </button>
@@ -696,7 +696,7 @@ export function MasterProposalBuilderTool() {
       {/* Clear confirmation modal */}
       {confirmClear && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
-          <div className="w-full max-w-sm rounded-2xl border border-border bg-zinc-950 p-6">
+          <div className="w-full max-w-sm rounded-2xl border border-border bg-white p-6">
             <h3 className="text-lg font-black text-zinc-100">Start a new estimate?</h3>
             <p className="mt-2 text-sm text-zinc-400">
               This clears all {items.length} line items{items.length === 1 ? "" : "s"}. Your
@@ -737,10 +737,10 @@ function LineRow({ item }: { item: EstimateLineItem }) {
   const updateItem = useEstimateStore((s) => s.updateItem);
   const removeItem = useEstimateStore((s) => s.removeItem);
   return (
-    <div className="grid grid-cols-[1fr_auto] items-center gap-2 rounded-xl border border-border bg-zinc-900/60 p-2.5 sm:grid-cols-[1fr_90px_70px_110px_90px_36px]">
+    <div className="grid grid-cols-[1fr_auto] items-center gap-2 rounded-xl border border-border bg-[#F8FAFC] p-2.5 sm:grid-cols-[1fr_90px_70px_110px_90px_36px]">
       <input
         aria-label="Line item description"
-        className="min-h-[44px] rounded-lg bg-transparent px-2 text-sm font-semibold text-zinc-100 focus:bg-zinc-900 focus:outline-none"
+        className="min-h-[44px] rounded-lg bg-transparent px-2 text-sm font-semibold text-[#0B1B33] focus:bg-white focus:outline-none"
         value={item.title}
         onChange={(e) => updateItem(item.id, { title: e.target.value })}
       />
@@ -750,7 +750,7 @@ function LineRow({ item }: { item: EstimateLineItem }) {
           type="number"
           min={0}
           step="any"
-          className="min-h-[44px] w-full rounded-lg border border-border bg-zinc-900 px-2 font-mono text-sm text-zinc-100"
+          className="min-h-[44px] w-full rounded-lg border border-zinc-300 bg-white px-2 font-mono text-sm text-[#0B1B33]"
           value={item.quantity}
           onChange={(e) => updateItem(item.id, { quantity: Math.max(0, Number(e.target.value) || 0) })}
         />
@@ -764,7 +764,7 @@ function LineRow({ item }: { item: EstimateLineItem }) {
         type="number"
         min={0}
         step="any"
-        className="hidden min-h-[44px] w-full rounded-lg border border-border bg-zinc-900 px-2 font-mono text-sm text-zinc-100 sm:block"
+        className="hidden min-h-[44px] w-full rounded-lg border border-zinc-300 bg-white px-2 font-mono text-sm text-[#0B1B33] sm:block"
         value={item.unitCost}
         onChange={(e) => updateItem(item.id, { unitCost: Math.max(0, Number(e.target.value) || 0) })}
       />
@@ -786,7 +786,7 @@ function LineRow({ item }: { item: EstimateLineItem }) {
           type="number"
           min={0}
           step="any"
-          className="min-h-[44px] w-20 rounded-lg border border-border bg-zinc-900 px-2 font-mono text-sm text-zinc-100"
+          className="min-h-[44px] w-20 rounded-lg border border-zinc-300 bg-white px-2 font-mono text-sm text-[#0B1B33]"
           value={item.quantity}
           onChange={(e) => updateItem(item.id, { quantity: Math.max(0, Number(e.target.value) || 0) })}
         />
@@ -795,7 +795,7 @@ function LineRow({ item }: { item: EstimateLineItem }) {
           type="number"
           min={0}
           step="any"
-          className="min-h-[44px] w-24 rounded-lg border border-border bg-zinc-900 px-2 font-mono text-sm text-zinc-100"
+          className="min-h-[44px] w-24 rounded-lg border border-zinc-300 bg-white px-2 font-mono text-sm text-[#0B1B33]"
           value={item.unitCost}
           onChange={(e) => updateItem(item.id, { unitCost: Math.max(0, Number(e.target.value) || 0) })}
         />

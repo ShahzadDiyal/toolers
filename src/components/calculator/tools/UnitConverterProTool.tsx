@@ -139,7 +139,7 @@ export function UnitConverterProTool() {
           <select
             value={from.id}
             onChange={(e) => set("fromId", e.target.value)}
-            className="min-h-[52px] w-full rounded-xl border border-border bg-zinc-900 px-3 text-sm font-bold text-zinc-100"
+            className="min-h-[52px] w-full rounded-xl border border-zinc-300 bg-white px-3 text-sm font-bold text-[#0B1B33]"
           >
             {units.map((u) => (
               <option key={u.id} value={u.id}>
@@ -163,7 +163,7 @@ export function UnitConverterProTool() {
           <select
             value={to.id}
             onChange={(e) => set("toId", e.target.value)}
-            className="min-h-[52px] w-full rounded-xl border border-border bg-zinc-900 px-3 text-sm font-bold text-zinc-100"
+            className="min-h-[52px] w-full rounded-xl border border-zinc-300 bg-white px-3 text-sm font-bold text-[#0B1B33]"
           >
             {units.map((u) => (
               <option key={u.id} value={u.id}>
@@ -185,7 +185,7 @@ export function UnitConverterProTool() {
               key={r.rule}
               type="button"
               onClick={() => copy(r.rule)}
-              className="rounded-xl border border-border bg-zinc-950/60 p-3 text-left transition hover:border-zinc-600"
+              className="rounded-xl border border-border bg-[#F8FAFC] p-3 text-left transition hover:border-zinc-600"
             >
               <p className="font-mono text-sm font-bold text-primary">{r.rule}</p>
               <p className="mt-0.5 text-xs text-zinc-500">{r.detail}</p>
@@ -198,7 +198,7 @@ export function UnitConverterProTool() {
 
   /* ---------------- Results ---------------- */
   const results = (
-    <div className="rounded-2xl border border-border bg-zinc-950/60 p-4">
+    <div className="rounded-2xl border border-border bg-[#F8FAFC] p-4">
       <p className="mb-1 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
         Result
       </p>
@@ -233,7 +233,7 @@ export function UnitConverterProTool() {
         <button
           type="button"
           onClick={() => copy(`${formatNumber(converted)} ${to.short}`)}
-          className="flex min-h-[44px] items-center justify-center gap-1 rounded-xl border border-border bg-zinc-900 text-xs font-bold text-zinc-200"
+          className="flex min-h-[44px] items-center justify-center gap-1 rounded-xl border border-zinc-300 bg-white text-xs font-bold text-[#0B1B33]"
         >
           <Copy className="h-3.5 w-3.5" /> Copy value
         </button>

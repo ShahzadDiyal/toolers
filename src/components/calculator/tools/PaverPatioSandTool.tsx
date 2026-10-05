@@ -230,8 +230,8 @@ export function PaverPatioSandTool() {
               className={
                 "min-h-[44px] rounded-lg border px-4 text-sm font-bold transition-colors " +
                 (v.paverSize === key
-                  ? "border-primary bg-primary/15 text-primary"
-                  : "border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-primary hover:text-primary")
+                  ? "border-[#ED7D22] bg-[#ED7D22]/10 text-[#ED7D22]"
+                  : "border-zinc-300 bg-white text-[#5A6C85] hover:border-[#ED7D22] hover:text-[#ED7D22]")
               }
             >
               {s.label}

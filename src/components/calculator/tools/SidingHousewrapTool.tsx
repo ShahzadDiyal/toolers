@@ -211,7 +211,7 @@ export function SidingHousewrapTool() {
         minFeet={0}
       />
 
-      <div className="sm:col-span-2 rounded-xl border border-border bg-zinc-950/60 p-4">
+      <div className="sm:col-span-2 rounded-xl border border-border bg-[#F8FAFC] p-4">
         <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
           Gable ends
         </p>
@@ -243,7 +243,7 @@ export function SidingHousewrapTool() {
         </div>
       </div>
 
-      <div className="sm:col-span-2 rounded-xl border border-border bg-zinc-950/60 p-4">
+      <div className="sm:col-span-2 rounded-xl border border-border bg-[#F8FAFC] p-4">
         <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
           Opening deductions
         </p>
@@ -292,8 +292,8 @@ export function SidingHousewrapTool() {
               className={
                 "min-h-[44px] rounded-lg border px-4 text-sm font-bold transition-colors " +
                 (v.sidingMaterial === key
-                  ? "border-primary bg-primary/15 text-primary"
-                  : "border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-primary hover:text-primary")
+                  ? "border-[#ED7D22] bg-[#ED7D22]/10 text-[#ED7D22]"
+                  : "border-zinc-300 bg-white text-[#5A6C85] hover:border-[#ED7D22] hover:text-[#ED7D22]")
               }
             >
               {m.label}
