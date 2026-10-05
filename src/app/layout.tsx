@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CommandMenu } from "@/components/layout/CommandMenu";
 import { EstimateDrawer } from "@/components/estimate/EstimateDrawer";
+import { GlobalReveal } from "@/components/ui/Reveal";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SITE_URL, SITE_NAME, SITE_TAGLINE } from "@/lib/site";
 import { JsonLd, websiteSchema, appSchema } from "@/components/seo/JsonLd";
@@ -87,10 +88,15 @@ export default function RootLayout({
       className={`${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body className="flex min-h-screen flex-col">
+        <noscript>
+          <style>{`.reveal{opacity:1 !important;transform:none !important;}`}</style>
+        </noscript>
         <JsonLd data={[websiteSchema(), appSchema()]} />
         <TooltipProvider delayDuration={300}>
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <GlobalReveal>
+            <main className="flex-1">{children}</main>
+          </GlobalReveal>
           <Footer />
           <CommandMenu />
           <EstimateDrawer />

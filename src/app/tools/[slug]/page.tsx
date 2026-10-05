@@ -283,7 +283,7 @@ export default async function ToolPage({
     <>
       <JsonLd data={schemas} />
       <TrackRecentTool slug={slug} />
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+      <div className="min-w-0">
         <CrumbNav items={crumbs} />
         <div className="mt-6">
           <ToolHeader slug={slug} />
@@ -292,7 +292,7 @@ export default async function ToolPage({
         {ToolComponent ? (
           <>
             {/* The calculator — untouched */}
-            <div className="reveal mt-8">
+            <div className="reveal mt-8 overflow-x-clip">
               <ToolComponent />
             </div>
 

@@ -79,7 +79,7 @@ export function PostThumb({ category, className }: { category: string; className
 function PostCard({ post, index }: { post: BlogPost; index: number }) {
   return (
     <article
-      className="reveal group flex flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+      className="reveal group flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
       style={{ ["--reveal-delay" as string]: `${Math.min(index, 5) * 60}ms` }}
     >
       <Link

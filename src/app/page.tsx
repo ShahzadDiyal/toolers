@@ -167,7 +167,7 @@ function CategoryDirectory() {
             return (
               <li
                 key={c.id}
-                className="reveal"
+                className="reveal min-w-0"
                 style={{ "--reveal-delay": `${(i % 6) * 60}ms` } as React.CSSProperties}
               >
                 <Link

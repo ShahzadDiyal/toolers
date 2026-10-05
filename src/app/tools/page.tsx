@@ -117,7 +117,7 @@ export default function ToolsPage() {
                 {shown.map((t, i) => (
                   <div
                     key={t.id}
-                    className="reveal"
+                    className="reveal min-w-0"
                     style={{ "--reveal-delay": `${(i % 6) * 60}ms` } as React.CSSProperties}
                   >
                     <ToolCard tool={t} />
@@ -172,7 +172,7 @@ export default function ToolsPage() {
                       {tools.map((t, i) => (
                         <div
                           key={t.id}
-                          className="reveal"
+                          className="reveal min-w-0"
                           style={{ "--reveal-delay": `${(i % 6) * 60}ms` } as React.CSSProperties}
                         >
                           <ToolCard tool={t} />

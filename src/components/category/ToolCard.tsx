@@ -69,13 +69,13 @@ export function ToolCard({
         <div className="flex items-start justify-between gap-3">
           <Link
             href={href}
-            className="flex min-h-[44px] items-center gap-3 rounded-lg"
+            className="flex min-h-[44px] min-w-0 flex-1 items-center gap-3 rounded-lg"
             aria-label={`${tool.title} — open calculator`}
           >
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-primary/30 bg-primary/15">
               <Icon className="h-5 w-5 text-primary" />
             </span>
-            <CardTitle className="text-lg leading-snug hover:text-primary">
+            <CardTitle className="min-w-0 text-lg leading-snug hover:text-primary">
               {tool.title}
             </CardTitle>
           </Link>

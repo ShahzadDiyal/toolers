@@ -323,7 +323,7 @@ export function Navbar() {
     <header className="sticky top-0 z-40 border-b border-border bg-white/95 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-2 px-4 sm:gap-3 sm:px-6">
         <Link href="/" aria-label="BuildCalc Pro — home" className="shrink-0 rounded-lg">
-          <Logo size={34} />
+          <Logo size={34} wordmarkClassName="hidden min-[400px]:inline" />
         </Link>
 
         <nav className="ml-3 hidden items-center gap-0.5 lg:flex" aria-label="Primary">
@@ -353,8 +353,8 @@ export function Navbar() {
           aria-label="Search calculators (Command K)"
         >
           <Search className="h-4 w-4" aria-hidden />
-          <span>Search tools…</span>
-          <kbd className="rounded border border-border bg-[#F1F5F9] px-1.5 py-0.5 font-mono text-[10px] text-[#5A6C85]">
+          <span className="hidden xl:inline">Search tools…</span>
+          <kbd className="hidden rounded border border-border bg-[#F1F5F9] px-1.5 py-0.5 font-mono text-[10px] text-[#5A6C85] xl:block">
             ⌘K
           </kbd>
         </button>

@@ -127,7 +127,7 @@ export default async function CategoryPage({
                 <Link
                   key={t.id}
                   href={toolHref(t)}
-                  className="reveal lift group flex min-h-[44px] flex-col rounded-2xl border border-zinc-200 bg-white p-5"
+                  className="reveal lift group flex min-h-[44px] min-w-0 flex-col rounded-2xl border border-zinc-200 bg-white p-5"
                   style={{ "--reveal-delay": `${(i % 6) * 60}ms` } as React.CSSProperties}
                 >
                   <div className="flex items-start justify-between gap-3">

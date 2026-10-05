@@ -18,7 +18,7 @@ export function HeroSearch() {
       aria-label="Search calculators"
     >
       <Search className="h-5 w-5 shrink-0 text-[#ED7D22]" />
-      <span className="flex-1 truncate text-base text-[#5A6C85]">
+      <span className="min-w-0 flex-1 truncate text-base text-[#5A6C85]">
         Search calculators — “shingles”, “rebar”, “markup”…
       </span>
       <kbd className="hidden shrink-0 rounded-md border border-border bg-[#F1F5F9] px-2 py-1 font-mono text-xs text-[#5A6C85] sm:block">
