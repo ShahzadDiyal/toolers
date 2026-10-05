@@ -1,0 +1,79 @@
+# BuildCalc Pro
+
+> Free contractor estimating calculators: concrete, framing, roofing, drywall, tile, paint, MEP, bidding and job-cost math. No account, no cloud — all calculations run in the browser and data never leaves the device.
+
+## Calculators
+
+### Concrete, Masonry & Earthwork
+
+- [Concrete Slab Calculator](https://buildcalc.pro/tools/concrete-slab): Cubic yards, 80/60-lb bags, and order quantities for slabs, pads, and flatwork.
+- [Footing Concrete Estimator](https://buildcalc.pro/tools/concrete-footing): Yards and truckloads for strip footings, stem walls, and foundations.
+- [Rebar & Mesh Estimator](https://buildcalc.pro/tools/rebar-mesh-estimator): Bar counts, spacing grids, and lap lengths for slabs and footings.
+- [Sonotube & Pier Calculator](https://buildcalc.pro/tools/concrete-column): Yards and bags for round piers, columns, and deck footings.
+- [CMU Block, Mortar & Core-Fill Grout](https://buildcalc.pro/tools/cmu-block-mortar): Block count, Type S mortar bags, core-fill grout yards, and bond-beam rebar for masonry walls.
+
+### Framing, Carpentry & Roofing
+
+- [Roof Pitch & Shingle Calculator](https://buildcalc.pro/tools/roof-pitch-shingles): Pitch-adjusted roofing squares, bundles, and underlayment from plan dimensions.
+- [Stair Stringer Layout](https://buildcalc.pro/tools/stair-stringer-layout): Riser counts, tread depths, and stringer cuts that meet IRC stair code.
+- [Stud Wall Framing](https://buildcalc.pro/tools/stud-wall): Studs at 16" or 24" O.C. plus plates, headers, and cripples.
+- [Rafter & Truss Cut Length Calculator](https://buildcalc.pro/tools/rafter-truss-cuts): Common rafter lengths, bird's-mouth seat cuts, and plumb cut angles from span and pitch.
+- [Board Feet Calculator](https://buildcalc.pro/tools/board-feet): Board-foot totals for lumber and hardwood pricing.
+
+### Drywall, Tile & Finishes
+
+- [Wall Framing & Drywall Pack](https://buildcalc.pro/tools/framing-drywall-pack): Studs, plates, sheets, mud, and tape the full wall package in one pass.
+- [Paint, Primer & Ceiling Coverage](https://buildcalc.pro/tools/paint-primer-coverage): Wall, ceiling, and primer gallons with doors and windows deducted.
+- [Flooring & Baseboard Trim Estimator](https://buildcalc.pro/tools/flooring-trim-estimator): Plank boxes, underlayment, and baseboard sticks with layout waste.
+- [Tile, Thinset & Grout Calculator](https://buildcalc.pro/tools/tile-grout-calculator): Tile boxes, grout, and thinset for floors, showers, and backsplashes.
+- [Insulation Batt, Cellulose & R-Value Sizer](https://buildcalc.pro/tools/insulation-batt-roll): Batt bundles or blown cellulose bags from target R-value, with framing deductions and installed thickness.
+- [Crown Molding, Baseboard & Miter Cut Estimator](https://buildcalc.pro/tools/baseboard-crown-molding): Trim boards, miter and scarf cut counts, and caulk tubes from room perimeter and corners.
+- [Ceiling Texture, Popcorn & Drywall Mud Sizer](https://buildcalc.pro/tools/ceiling-texture-drywall): Texture bags or mud buckets, PVA primer gallons, and mixing water for every drywall finish level.
+
+### Site Work, Decks & Fencing
+
+- [Trench, Excavation & Dirt Haul](https://buildcalc.pro/tools/excavation-dirt-haul): Bank vs. loose cubic yards with soil swell, plus heaped dump-truck loads for trenches and digs.
+- [Retaining Wall Block & Geogrid Estimator](https://buildcalc.pro/tools/retaining-wall-block): SRW block courses, caps, drainage stone, base rock, and geogrid for segmental retaining walls.
+- [Asphalt Paving & Driveway Estimator](https://buildcalc.pro/tools/asphalt-paving): Hot-mix asphalt tonnage and crushed aggregate base for driveways, lots, and pads.
+- [Aggregate & Stone Tonnage Calculator](https://buildcalc.pro/tools/aggregate-stone-tonnage): Compacted tons of crushed stone, road base, sand, and decomposed granite from area and depth.
+- [Decking, Joist & Post Estimator](https://buildcalc.pro/tools/deck-joist-post): Field joists, rim and ledger boards, decking planks, posts, concrete, and fasteners for residential decks.
+- [Wood & Chain-Link Fence Estimator](https://buildcalc.pro/tools/fence-gate-estimator): Posts, rails, pickets or fabric rolls, gate kits, and fast-set concrete for wood and chain-link fences.
+- [Interlocking Paver, Bedding & Polymeric Sand](https://buildcalc.pro/tools/paver-patio-sand): Paver units, crushed base tons, 1-in screed sand, and polymeric joint sand for patios and walkways.
+- [Exterior Siding & Housewrap Estimator](https://buildcalc.pro/tools/siding-housewrap): Siding squares, housewrap rolls, starter strips, and corner posts from perimeter, gables, and openings.
+
+### MEP Quick-Check Estimators
+
+- [Conduit Fill & Voltage Drop Sizer](https://buildcalc.pro/tools/conduit-fill-voltage-drop): NEC raceway fill checks and voltage-drop sizing for branch circuits.
+- [HVAC BTU Load & AC Tonnage Sizer](https://buildcalc.pro/tools/hvac-btu-tonnage): Heating/cooling BTU loads, condenser tonnage, and CFM from area, climate zone, and insulation quality.
+- [Recessed Light Layout](https://buildcalc.pro/tools/recessed-lights): Fixture counts and spacing grids for even can-light layouts.
+- [PEX Pipe Runs & WSFU Sizer](https://buildcalc.pro/tools/pex-pipe-plumbing): PEX coil footage, manifold ports, fittings, and IPC fixture-unit main sizing for residential plumbing.
+
+### Bidding, Markup & Financials
+
+- [Markup vs. Margin Calculator](https://buildcalc.pro/tools/contractor-markup-margin): Convert markup to margin and set bid prices that actually profit.
+- [True Burdened Labor Rate](https://buildcalc.pro/tools/labor-burden-hourly): Base wage vs. true employer cost per billable hour taxes, comp, PTO, benefits included.
+- [Subcontractor Piece-Work & Crew Production](https://buildcalc.pro/tools/sub-piece-rate): Total payout, effective hourly yield, and production pace for piece-rate crews.
+- [Daily Overhead & Breakeven Rate](https://buildcalc.pro/tools/jobsite-breakeven): Your minimum daily cost to keep the doors open before profit.
+- [Break-Even Calculator](https://buildcalc.pro/tools/break-even): The revenue and job count you need before the business profits.
+- [Change Order Pricer](https://buildcalc.pro/tools/change-order): Price extras and change orders with margin protection built in.
+
+### Field Converters & Master Proposal
+
+- [Feet-Inches-Fraction Keypad](https://buildcalc.pro/tools/feet-inch-fraction): Jobsite keypad for fractional dimension math add, subtract, multiply, divide to 1/16".
+- [Construction Unit Converter](https://buildcalc.pro/tools/unit-converter-pro): Two-way area, volume, and weight conversions sq ft, squares, cu yd, metric, tons.
+- [Right Triangle & 3-4-5](https://buildcalc.pro/tools/right-triangle): Solve any right triangle: hypotenuses, angles, and square checks.
+- [Master Proposal Builder](https://buildcalc.pro/tools/master-proposal-builder): Compile every bid line into a branded client proposal download the PDF locally.
+
+## Pages
+
+- [Home](https://buildcalc.pro/): tool directory, category hubs and search
+- [All calculators](https://buildcalc.pro/tools): full directory of every calculator
+- [Categories](https://buildcalc.pro/categories): browse calculators by trade
+- [Estimate builder](https://buildcalc.pro/estimate-builder): combine line items into a bid proposal
+- [Blog](https://buildcalc.pro/blog): estimating guides and how-to articles
+- [About](https://buildcalc.pro/about): about BuildCalc Pro
+- [Contact](https://buildcalc.pro/contact): contact the team
+- [Request a tool](https://buildcalc.pro/request-tool): request a new calculator
+- [Privacy](https://buildcalc.pro/privacy): data stays on your device
+- [Terms](https://buildcalc.pro/terms): terms of use
+- [Disclaimer](https://buildcalc.pro/disclaimer): estimating disclaimer
