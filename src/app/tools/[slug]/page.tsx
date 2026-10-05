@@ -40,6 +40,11 @@ import { ExcavationDirtHaulTool } from "@/components/calculator/tools/Excavation
 import { RetainingWallBlockTool } from "@/components/calculator/tools/RetainingWallBlockTool";
 import { AggregateStoneTonnageTool } from "@/components/calculator/tools/AggregateStoneTonnageTool";
 import { AsphaltPavingTool } from "@/components/calculator/tools/AsphaltPavingTool";
+import { DeckJoistPostTool } from "@/components/calculator/tools/DeckJoistPostTool";
+import { FenceGateEstimatorTool } from "@/components/calculator/tools/FenceGateEstimatorTool";
+import { PaverPatioSandTool } from "@/components/calculator/tools/PaverPatioSandTool";
+import { SidingHousewrapTool } from "@/components/calculator/tools/SidingHousewrapTool";
+import { RafterTrussCutsTool } from "@/components/calculator/tools/RafterTrussCutsTool";
 import { TrackRecentTool } from "@/components/tools/TrackRecentTool";
 import {
   Card,
@@ -101,6 +106,11 @@ const TOOL_COMPONENTS: Record<string, React.ComponentType> = {
   "retaining-wall-block": RetainingWallBlockTool,
   "aggregate-stone-tonnage": AggregateStoneTonnageTool,
   "asphalt-paving": AsphaltPavingTool,
+  "deck-joist-post": DeckJoistPostTool,
+  "fence-gate-estimator": FenceGateEstimatorTool,
+  "paver-patio-sand": PaverPatioSandTool,
+  "siding-housewrap": SidingHousewrapTool,
+  "rafter-truss-cuts": RafterTrussCutsTool,
 };
 
 function ToolHeader({ slug }: { slug: string }) {

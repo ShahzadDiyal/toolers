@@ -54,7 +54,7 @@ export function appSchema(): Json {
     operatingSystem: "Web",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     description:
-      "15 free construction calculators with bill-of-materials takeoffs and a master bid cart. 100% client-side — data never leaves the device.",
+      "20 free construction calculators with bill-of-materials takeoffs and a master bid cart. 100% client-side — data never leaves the device.",
   };
 }
 
