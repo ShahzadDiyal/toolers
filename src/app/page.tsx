@@ -112,7 +112,7 @@ function Hero() {
           </Badge>
           <h1 className="max-w-3xl font-display text-[32px] font-extrabold leading-[1.08] tracking-tight text-[#0B1B33] sm:text-5xl lg:text-6xl">
             Free Construction Calculators{" "}
-            <span className="text-[#ED7D22]">&amp; Tools</span>
+            <span className="text-[#ED7D22]">&amp; Estimating Tools</span>
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#5A6C85] sm:mt-5 sm:text-lg">
             {TOTAL_TOOLS} professional calculators for contractors, builders,

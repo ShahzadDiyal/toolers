@@ -11,4 +11,4 @@ export const SITE_URL = (
 
 export const SITE_NAME = "BuildCalc Pro";
 export const SITE_TAGLINE =
-  "Free contractor estimating calculators concrete, framing, roofing, finishes, MEP & bid math.";
+  "Free contractor estimating calculators: concrete, roofing, stairs, tile, paint, MEP & bid math.";

@@ -30,9 +30,9 @@ const AUTHOR = "BuildCalc Pro Team";
 export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "estimate-concrete-slab",
-    title: "How to Estimate Concrete for a Slab: Yards, Waste, and Bags",
+    title: "How Much Concrete Do I Need for a Slab? Yards, Bags & Waste",
     excerpt:
-      "Length × width × thickness ÷ 27 gives cubic yards then add waste, and decide between ready-mix and bags.",
+      "How many yards of concrete do you need for a slab? Length × width × thickness ÷ 27 gives cubic yards — then add waste and choose ready-mix or bags.",
     category: "Concrete",
     date: "2026-10-02",
     readMinutes: 6,
@@ -84,9 +84,9 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "cmu-block-mortar-grout-estimating",
-    title: "CMU Block, Mortar & Grout: A Masonry Estimator's Checklist",
+    title: "How Many Concrete Blocks Do I Need? CMU, Mortar & Grout Guide",
     excerpt:
-      "Blocks per square foot, mortar bags, core-fill grout, and bond-beam rebar the four quantities every block wall estimate needs.",
+      "How many concrete blocks per square foot? Block counts, mortar bags, core-fill grout, and bond-beam rebar — the four quantities every block wall estimate needs.",
     category: "Masonry",
     date: "2026-09-24",
     readMinutes: 7,
@@ -138,9 +138,9 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "roof-pitch-multipliers-shingle-waste",
-    title: "Roof Pitch Multipliers & Shingle Waste: Ordering the Right Squares",
+    title: "How Many Bundles of Shingles Do I Need? Squares, Pitch & Waste",
     excerpt:
-      "A 6/12 roof has 11.8% more surface than its footprint and waste depends on how cut-up the roof is.",
+      "How many bundles of shingles per square? A 6/12 roof has 11.8% more surface than its footprint — pitch multipliers, squares, and waste explained.",
     category: "Roofing",
     date: "2026-09-17",
     readMinutes: 6,
@@ -182,9 +182,9 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "stair-layout-irc-riser-tread",
-    title: "Stair Layout Basics: Risers, Treads & the IRC Rules",
+    title: "Stair Calculator Guide: Risers, Treads & Stringer Layout (IRC)",
     excerpt:
-      "Riser count = total rise ÷ 7.5, treads = risers − 1, and the three IRC numbers every stair must satisfy.",
+      "How do you calculate stairs? Riser count = total rise ÷ 7.5, treads = risers − 1, and the three IRC numbers every stair must satisfy.",
     category: "Framing",
     date: "2026-09-10",
     readMinutes: 7,
@@ -226,9 +226,9 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "markup-vs-margin-contractors",
-    title: "Markup vs. Margin: The Pricing Mistake That Costs Contractors",
+    title: "Markup vs Margin Calculator: The Pricing Mistake Costing Contractors",
     excerpt:
-      "A 30% markup is only a 23% margin. Price from margin, not markup, or the job's 'profit' quietly disappears.",
+      "What is the difference between markup and margin? A 30% markup is only a 23% margin — price from margin, not markup, or the job's profit quietly disappears.",
     category: "Estimating",
     date: "2026-09-28",
     readMinutes: 5,
@@ -263,9 +263,9 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     slug: "reading-material-takeoff",
-    title: "How to Read a Material Takeoff: Net, Waste, and Order Quantity",
+    title: "What Is a Material Takeoff? Net, Waste & Order Quantities Explained",
     excerpt:
-      "Net is what the building needs, waste is what the jobsite eats, and order is what the supplier sells.",
+      "What is a material takeoff in construction? Net is what the building needs, waste is what the jobsite eats, and order quantity is what the supplier sells.",
     category: "Estimating",
     date: "2026-10-05",
     readMinutes: 5,

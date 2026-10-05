@@ -42,17 +42,18 @@ export async function generateMetadata({
   if (!VALID.has(category)) return {};
   const meta = getCategory(category as Category);
   const url = `${SITE_URL}${categoryHref(meta.id)}`;
-  const title = `${meta.label} Calculators`;
+  const title = meta.seoTitle ?? `${meta.label} Calculators`;
+  const description = meta.seoDescription ?? meta.blurb;
   return {
     title,
-    description: meta.blurb,
+    description,
     keywords: [meta.label, ...meta.subtrades, "construction calculator"],
     alternates: { canonical: url },
-    openGraph: { type: "website", title: `${title} · BuildCalc Pro`, description: meta.blurb, url },
+    openGraph: { type: "website", title: `${title} · BuildCalc Pro`, description, url },
     twitter: {
       card: "summary",
       title: `${title} · BuildCalc Pro`,
-      description: meta.blurb,
+      description,
     },
   };
 }

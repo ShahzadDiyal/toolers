@@ -29,6 +29,10 @@ export interface CategoryMetadata {
   tagline: string;
   /** 1–2 sentence blurb for cards and hubs. */
   blurb: string;
+  /** Keyword-optimized page title for SEO (falls back to label). */
+  seoTitle?: string;
+  /** Keyword-led meta description for the category hub (falls back to blurb). */
+  seoDescription?: string;
   /** Lucide icon component name (resolved via the icon map). */
   iconName: string;
   /** Sub-trade filter tabs shown on the category hub. First entry is "All". */
@@ -102,6 +106,8 @@ export interface ToolMetadata {
   slug: string;
   /** Display title, e.g. "Concrete Slab Calculator". */
   title: string;
+  /** Keyword-optimized page title for SEO (falls back to title). Max ~60 chars. */
+  seoTitle?: string;
   /** One-liner for cards and command palette. */
   shortDescription: string;
   category: Category;

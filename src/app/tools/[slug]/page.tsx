@@ -82,7 +82,8 @@ export async function generateMetadata({
   const tool = getToolBySlug(slug);
   if (!tool) return {};
   const url = `${SITE_URL}${toolHref(tool)}`;
-  const title = `${tool.title} Free Calculator`;
+  const seoTitle = tool.seoTitle ?? tool.title;
+  const title = `${seoTitle} (Free)`;
   return {
     title,
     description: tool.shortDescription,
@@ -177,7 +178,7 @@ function ToolHeader({ slug }: { slug: string }) {
             </span>
           </div>
           <h1 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-[#0B1B33] sm:text-4xl">
-            {tool.title}
+            {tool.seoTitle ?? tool.title}
           </h1>
           <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[#5A6C85] sm:text-base">
             {tool.howTo ?? tool.shortDescription}
@@ -283,7 +284,7 @@ export default async function ToolPage({
   const schemas = [
     toolSchema({
       slug: tool.slug,
-      title: tool.title,
+      title: tool.seoTitle ?? tool.title,
       description: tool.shortDescription,
       categoryLabel: category.label,
     }),
