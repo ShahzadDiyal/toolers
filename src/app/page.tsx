@@ -1,36 +1,31 @@
 /**
- * BuildCalc Pro — Homepage dashboard (Phase 2).
+ * BuildCalc Pro — Homepage.
  *
- * Hero with instant search, quick metrics bar, category grid with tool
- * shortcuts, and a recently-used quick-access rail (localStorage).
+ * Platform landing: hero with search, category directory, how-it-works,
+ * trust strip, FAQ, and final CTA. Calculation logic lives in the tool
+ * pages; this file is presentation only.
  */
 import Link from "next/link";
 import {
   ArrowRight,
-  Calculator,
-  MousePointerClick,
-  ListChecks,
+  BadgeCheck,
   BadgeDollarSign,
+  KeyRound,
+  ListChecks,
+  MousePointerClick,
   ShieldCheck,
   WifiOff,
-  Clock3,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { SectionHeading } from "@/components/ui/PageHero";
+import { Reveal } from "@/components/ui/Reveal";
+import { Logo } from "@/components/brand/Logo";
 import {
   CATEGORIES,
   toolsByCategory,
-  toolHref,
   categoryHref,
   TOTAL_TOOLS,
-  LIVE_TOOLS,
 } from "@/data/toolsRegistry";
 import { toolIcon } from "@/lib/tool-icons";
 import { HeroSearch } from "@/components/home/HeroSearch";
@@ -38,185 +33,298 @@ import { RecentlyUsed } from "@/components/home/RecentlyUsed";
 import { JsonLd, faqSchema } from "@/components/seo/JsonLd";
 
 /* ------------------------------------------------------------------ */
+/* Hero                                                                */
+/* ------------------------------------------------------------------ */
+
+/** Measurement-themed SVG: slab outline with ruler ticks and dimension arrows. */
+function MeasureGraphic() {
+  return (
+    <svg
+      viewBox="0 0 320 240"
+      role="img"
+      aria-label="Slab measurement illustration"
+      className="h-auto w-full max-w-sm"
+    >
+      {/* slab outline */}
+      <rect
+        x="60"
+        y="60"
+        width="200"
+        height="120"
+        rx="4"
+        fill="#FFFFFF"
+        stroke="#14284A"
+        strokeWidth="3"
+      />
+      {/* grid lines on slab */}
+      <line x1="110" y1="60" x2="110" y2="180" stroke="#14284A" strokeOpacity="0.15" strokeWidth="2" />
+      <line x1="160" y1="60" x2="160" y2="180" stroke="#14284A" strokeOpacity="0.15" strokeWidth="2" />
+      <line x1="210" y1="60" x2="210" y2="180" stroke="#14284A" strokeOpacity="0.15" strokeWidth="2" />
+      {/* ruler baseline with ticks */}
+      <rect x="40" y="196" width="240" height="10" rx="2" fill="#14284A" />
+      {Array.from({ length: 25 }).map((_, i) => (
+        <rect
+          key={i}
+          x={46 + i * 9.6}
+          y={i % 5 === 0 ? 186 : 190}
+          width="2"
+          height={i % 5 === 0 ? 10 : 6}
+          fill="#14284A"
+        />
+      ))}
+      {/* width dimension arrow */}
+      <line x1="60" y1="36" x2="260" y2="36" stroke="#ED7D22" strokeWidth="2" />
+      <polygon points="60,36 70,31 70,41" fill="#ED7D22" />
+      <polygon points="260,36 250,31 250,41" fill="#ED7D22" />
+      <text x="160" y="26" textAnchor="middle" fontSize="13" fontWeight="700" fill="#14284A">
+        20′-0″
+      </text>
+      {/* height dimension arrow */}
+      <line x1="284" y1="60" x2="284" y2="180" stroke="#ED7D22" strokeWidth="2" />
+      <polygon points="284,60 279,70 289,70" fill="#ED7D22" />
+      <polygon points="284,180 279,170 289,170" fill="#ED7D22" />
+      <text x="300" y="124" textAnchor="middle" fontSize="13" fontWeight="700" fill="#14284A" transform="rotate(90 300 124)">
+        12′-0″
+      </text>
+      {/* thickness callout */}
+      <rect x="30" y="96" width="72" height="26" rx="6" fill="#ED7D22" />
+      <text x="66" y="113" textAnchor="middle" fontSize="12" fontWeight="800" fill="#FFFFFF">
+        4″ slab
+      </text>
+    </svg>
+  );
+}
 
 function Hero() {
   return (
     <section className="bg-blueprint relative overflow-hidden border-b border-border">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
-      <div className="relative mx-auto max-w-7xl px-4 pb-14 pt-14 sm:px-6 sm:pt-20">
-        <Badge variant="outline" className="mb-5 border-primary/40 text-primary">
-          <ShieldCheck className="h-3 w-3" />
-          100% Client-Side · No Login · No Database · Zero Fees
-        </Badge>
-        <h1 className="max-w-3xl font-display text-5xl font-extrabold uppercase leading-[0.95] tracking-wide sm:text-7xl">
-          Estimate like a pro.
-          <br />
-          <span className="text-primary">Pay $0/month.</span>
-        </h1>
-        <p className="mt-5 max-w-2xl text-lg text-zinc-400">
-          Instant construction calculators and bid proposals that run entirely
-          on your device. Search {TOTAL_TOOLS} trade tools below — concrete to
-          closing docs.
-        </p>
-
-        <div className="mt-7 max-w-2xl">
-          <HeroSearch />
-          <p className="mt-2.5 flex items-center gap-1.5 text-xs text-zinc-500">
-            <Clock3 className="h-3.5 w-3.5" />
-            Average takeoff time: under a minute · Works offline on the job site
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 pb-14 pt-14 sm:px-6 sm:pt-20 lg:grid-cols-[1.4fr_1fr]">
+        <div>
+          <Badge variant="outline" className="mb-5 border-[#ED7D22]/50 text-[#14284A]">
+            <ShieldCheck className="h-3 w-3 text-[#ED7D22]" />
+            Free forever · No account · Works offline
+          </Badge>
+          <h1 className="max-w-3xl font-display text-4xl font-extrabold tracking-tight text-[#0B1B33] sm:text-6xl">
+            Free Construction Calculators{" "}
+            <span className="text-[#ED7D22]">&amp; Tools</span>
+          </h1>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[#5A6C85]">
+            {TOTAL_TOOLS} professional calculators for contractors, builders,
+            estimators, and homeowners — concrete, framing, roofing, MEP, and
+            bid math that runs right in your browser. No sign-up, no fees.
           </p>
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <Button asChild className="min-h-[48px] text-base">
+              <Link href="/tools">
+                Explore Tools <ArrowRight className="h-5 w-5" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className="min-h-[48px] text-base">
+              <Link href="/request-tool">Request a Tool</Link>
+            </Button>
+          </div>
+          <div className="mt-7 max-w-2xl">
+            <HeroSearch />
+          </div>
         </div>
-
-        {/* Quick metrics bar */}
-        <dl className="mt-10 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
-          {[
-            [`${TOTAL_TOOLS}+`, "Free pro tools"],
-            [`${LIVE_TOOLS}`, "Live today"],
-            ["100%", "Client-side secure"],
-            ["$0", "Monthly fees"],
-          ].map(([v, l]) => (
-            <div
-              key={l}
-              className="rounded-xl border border-border bg-card/80 p-4"
-            >
-              <dd className="font-mono text-2xl font-extrabold tabular-nums text-primary sm:text-3xl">
-                {v}
-              </dd>
-              <dt className="mt-1 text-[11px] font-semibold uppercase tracking-widest text-zinc-500">
-                {l}
-              </dt>
-            </div>
-          ))}
-        </dl>
+        <div className="hidden justify-center lg:flex" aria-hidden="true">
+          <MeasureGraphic />
+        </div>
       </div>
     </section>
   );
 }
 
-function CategoryGrid() {
-  return (
-    <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6" aria-label="Calculator categories">
-      <div className="flex items-end justify-between gap-4">
-        <div>
-          <h2 className="font-display text-3xl font-extrabold uppercase tracking-wide sm:text-4xl">
-            Built for every trade
-          </h2>
-          <p className="mt-2 max-w-xl text-zinc-400">
-            Jump straight into a calculator — the top shortcuts are one tap away.
-          </p>
-        </div>
-        <Button variant="outline" asChild className="hidden min-h-[44px] sm:inline-flex">
-          <Link href="/tools">
-            All tools <ArrowRight className="h-4 w-4" />
-          </Link>
-        </Button>
-      </div>
+/* ------------------------------------------------------------------ */
+/* Category directory                                                  */
+/* ------------------------------------------------------------------ */
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {CATEGORIES.map((c) => {
-          const Icon = toolIcon(c.iconName);
-          const tools = toolsByCategory(c.id);
-          const live = tools.filter((t) => t.available).length;
-          const shortcuts = [...tools]
-            .sort((a, b) => Number(b.available) - Number(a.available))
-            .slice(0, 3);
-          return (
-            <Card key={c.id} className="flex h-full min-w-0 flex-col">
-              <CardHeader className="pb-3">
-                <div className="flex items-center justify-between">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-primary/30 bg-primary/15">
-                    <Icon className="h-5 w-5 text-primary" />
-                  </span>
-                  <Badge variant="outline" className="font-mono">
-                    {live}/{tools.length} live
-                  </Badge>
-                </div>
-                <CardTitle className="mt-3 text-lg leading-snug">
-                  <Link
-                    href={categoryHref(c.id)}
-                    className="transition-colors hover:text-primary"
-                  >
-                    {c.label}
-                  </Link>
-                </CardTitle>
-                <CardDescription className="line-clamp-2">{c.tagline}</CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-1 flex-col">
-                <ul className="flex-1 space-y-1">
-                  {shortcuts.map((t) => (
-                    <li key={t.id}>
-                      <Link
-                        href={toolHref(t)}
-                        className="flex min-h-[44px] items-center gap-2 rounded-lg px-2 py-1.5 text-sm text-zinc-300 transition-colors hover:bg-zinc-900 hover:text-primary"
-                      >
-                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary/70" />
-                        <span className="truncate">{t.title}</span>
-                        {!t.available && (
-                          <span className="ml-auto shrink-0 text-[10px] uppercase tracking-wide text-zinc-600">
-                            Soon
-                          </span>
-                        )}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+function CategoryDirectory() {
+  return (
+    <section
+      aria-label="Calculator categories"
+      className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20"
+    >
+      <Reveal>
+        <div className="reveal flex flex-wrap items-end justify-between gap-4">
+          <SectionHeading
+            eyebrow="Tool directory"
+            title="Explore construction tools"
+            lede="Seven trade categories, every calculator free. Pick a category to see exactly what each tool calculates."
+          />
+          <Link
+            href="/tools"
+            className="inline-flex min-h-[44px] items-center gap-1.5 text-sm font-bold text-[#2563EB] hover:underline"
+          >
+            View all {TOTAL_TOOLS} tools <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {CATEGORIES.map((c, i) => {
+            const Icon = toolIcon(c.iconName);
+            const live = toolsByCategory(c.id).filter((t) => t.available).length;
+            return (
+              <li
+                key={c.id}
+                className="reveal"
+                style={{ "--reveal-delay": `${(i % 6) * 60}ms` } as React.CSSProperties}
+              >
                 <Link
                   href={categoryHref(c.id)}
-                  className="mt-2 inline-flex min-h-[44px] items-center gap-1 text-sm font-bold text-primary hover:underline"
+                  className="lift group flex h-full min-h-[44px] flex-col rounded-xl border border-border bg-white p-5"
+                  aria-label={`${c.label} — ${live} tools`}
                 >
-                  Open {c.label.split(",")[0]} hub
-                  <ArrowRight className="h-4 w-4" />
+                  <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#14284A]">
+                    <Icon className="h-5 w-5 text-white" aria-hidden />
+                  </span>
+                  <span className="mt-4 font-display text-lg font-extrabold tracking-tight text-[#0B1B33]">
+                    {c.label}
+                  </span>
+                  <span className="mt-1.5 flex-1 text-sm leading-relaxed text-[#5A6C85]">
+                    {c.blurb}
+                  </span>
+                  <span className="mt-4 flex items-center justify-between border-t border-border pt-3">
+                    <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#5A6C85]">
+                      {live} tools
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-sm font-bold text-[#ED7D22] group-hover:underline">
+                      View Tools <ArrowRight className="h-4 w-4" aria-hidden />
+                    </span>
+                  </span>
                 </Link>
-              </CardContent>
-            </Card>
-          );
-        })}
+              </li>
+            );
+          })}
+        </ul>
+      </Reveal>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* How it works                                                        */
+/* ------------------------------------------------------------------ */
+
+const STEPS = [
+  {
+    icon: MousePointerClick,
+    title: "Find your tool",
+    text: "Browse the seven trade categories or hit ⌘K to search all 31 calculators by name, tag, or trade.",
+  },
+  {
+    icon: ListChecks,
+    title: "Run the math",
+    text: "Enter dimensions with fraction-friendly inputs. Every result shows net quantity, waste, and a bill of materials.",
+  },
+  {
+    icon: BadgeDollarSign,
+    title: "Price the bid",
+    text: "Add any result to the Master Bid Cart, apply markup and tax, and export a client-ready proposal PDF.",
+  },
+];
+
+function HowItWorks() {
+  return (
+    <section className="border-y border-border bg-white">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20">
+        <Reveal>
+          <SectionHeading
+            eyebrow="How it works"
+            title="Tape measure to bid in minutes"
+            lede="A simple workflow that takes you from a jobsite measurement to a priced proposal."
+            align="center"
+            className="reveal"
+          />
+          <ol className="mt-10 grid gap-4 md:grid-cols-3">
+            {STEPS.map((s, i) => (
+              <li
+                key={s.title}
+                className="reveal rounded-xl border border-border bg-background p-6"
+                style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
+              >
+                <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#ED7D22]/15">
+                  <s.icon className="h-5 w-5 text-[#ED7D22]" aria-hidden />
+                </span>
+                <h3 className="mt-4 font-display text-lg font-extrabold tracking-tight text-[#0B1B33]">
+                  <span className="mr-2 font-mono text-sm font-bold text-[#ED7D22]">
+                    {i + 1}
+                  </span>
+                  {s.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#5A6C85]">{s.text}</p>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
       </div>
     </section>
   );
 }
 
-function HowItWorks() {
-  const steps = [
-    {
-      icon: MousePointerClick,
-      title: "1 · Find it fast",
-      text: "Hit ⌘K or the search bar — fuzzy search across every tool, tag, and trade. Glove-friendly tap targets throughout.",
-    },
-    {
-      icon: ListChecks,
-      title: "2 · Run the math",
-      text: "Fraction-friendly inputs, preset chips, and steppers. Every result shows net quantity, waste, and a bill of materials.",
-    },
-    {
-      icon: BadgeDollarSign,
-      title: "3 · Price the bid",
-      text: "One tap adds any result to the Master Bid Cart. Markup, contingency, and tax price themselves in real time.",
-    },
-  ];
+/* ------------------------------------------------------------------ */
+/* Trust strip                                                         */
+/* ------------------------------------------------------------------ */
+
+const TRUST = [
+  {
+    icon: BadgeCheck,
+    title: "Free forever",
+    text: "Every calculator is free — no trials, no paywalls, no feature gates.",
+  },
+  {
+    icon: KeyRound,
+    title: "No account",
+    text: "No sign-up or login. Open a tool and start calculating immediately.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Private by design",
+    text: "All math runs on your device. Your numbers are never uploaded anywhere.",
+  },
+  {
+    icon: WifiOff,
+    title: "Works offline",
+    text: "After your first visit the app keeps working on the jobsite, no signal needed.",
+  },
+];
+
+function TrustStrip() {
   return (
-    <section className="border-y border-border bg-zinc-950">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
-        <h2 className="font-display text-3xl font-extrabold uppercase tracking-wide sm:text-4xl">
-          Tape measure to bid in 60 seconds
-        </h2>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {steps.map((s) => (
-            <Card key={s.title}>
-              <CardHeader>
-                <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-accent/30 bg-accent/15">
-                  <s.icon className="h-5 w-5 text-accent" />
-                </span>
-                <CardTitle className="mt-3 text-lg">{s.title}</CardTitle>
-                <CardDescription>{s.text}</CardDescription>
-              </CardHeader>
-            </Card>
+    <section
+      aria-label="Why BuildCalc Pro is free and private"
+      className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-20"
+    >
+      <Reveal>
+        <SectionHeading
+          eyebrow="Built on trust"
+          title="Free tools, honest math"
+          lede="No subscriptions, no data collection, no fine print — just calculators that respect your time and your privacy."
+          className="reveal"
+        />
+        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {TRUST.map((t, i) => (
+            <li
+              key={t.title}
+              className="reveal rounded-xl border border-border bg-white p-5"
+              style={{ "--reveal-delay": `${i * 60}ms` } as React.CSSProperties}
+            >
+              <t.icon className="h-6 w-6 text-[#14284A]" aria-hidden />
+              <h3 className="mt-3 font-display text-base font-extrabold tracking-tight text-[#0B1B33]">
+                {t.title}
+              </h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-[#5A6C85]">{t.text}</p>
+            </li>
           ))}
-        </div>
-      </div>
+        </ul>
+      </Reveal>
     </section>
   );
 }
+
+/* ------------------------------------------------------------------ */
+/* FAQ (verbatim)                                                       */
+/* ------------------------------------------------------------------ */
 
 const HOME_FAQS = [
   {
@@ -249,65 +357,90 @@ function HomeFaq() {
   return (
     <section
       aria-label="Frequently asked questions"
-      className="mx-auto max-w-4xl px-4 py-14 sm:px-6"
+      className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20"
     >
-      <h2 className="font-display text-3xl font-extrabold uppercase tracking-wide sm:text-4xl">
-        Questions contractors ask
-      </h2>
-      <div className="mt-6 space-y-2">
-        {HOME_FAQS.map((f) => (
-          <details
-            key={f.q}
-            className="group rounded-xl border border-border bg-card px-4 py-3"
-          >
-            <summary className="cursor-pointer list-none text-sm font-bold text-zinc-100 marker:hidden [&::-webkit-details-marker]:hidden">
-              <span className="mr-2 inline-block text-primary transition-transform group-open:rotate-90">
-                ▸
-              </span>
-              {f.q}
-            </summary>
-            <p className="mt-2 pl-6 text-sm leading-relaxed text-zinc-400">
-              {f.a}
-            </p>
-          </details>
-        ))}
-      </div>
+      <Reveal>
+        <SectionHeading
+          eyebrow="FAQ"
+          title="Questions contractors ask"
+          align="center"
+          className="reveal"
+        />
+        <div className="mt-8 space-y-2">
+          {HOME_FAQS.map((f) => (
+            <details
+              key={f.q}
+              className="reveal group rounded-xl border border-border bg-white px-4 py-3"
+            >
+              <summary className="flex min-h-[44px] cursor-pointer list-none items-center text-sm font-bold text-[#0B1B33] marker:hidden [&::-webkit-details-marker]:hidden">
+                <span
+                  className="mr-2 inline-block shrink-0 text-[#ED7D22] transition-transform group-open:rotate-90"
+                  aria-hidden
+                >
+                  ▸
+                </span>
+                {f.q}
+              </summary>
+              <p className="pb-1 pl-6 text-sm leading-relaxed text-[#5A6C85]">
+                {f.a}
+              </p>
+            </details>
+          ))}
+        </div>
+      </Reveal>
     </section>
   );
 }
 
+/* ------------------------------------------------------------------ */
+/* Final CTA                                                           */
+/* ------------------------------------------------------------------ */
+
 function FinalCta() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
-      <div className="bg-blueprint relative overflow-hidden rounded-2xl border border-primary/30 bg-zinc-950 p-8 sm:p-12">
-        <div className="relative">
-          <h2 className="font-display text-3xl font-extrabold uppercase tracking-wide sm:text-5xl">
-            Your next bid starts <span className="text-primary">here.</span>
-          </h2>
-          <p className="mt-3 max-w-xl text-zinc-400">
-            No signup. No credit card. No trial that expires on Friday. Just
-            math you can trust, priced and ready to send.
-          </p>
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <Button size="lg" asChild className="min-h-[52px]">
-              <Link href="/tools">
-                <Calculator className="h-5 w-5" />
-                Start calculating
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild className="min-h-[52px]">
-              <Link href="/tools/concrete-slab">Try the concrete demo</Link>
-            </Button>
+    <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24">
+      <Reveal>
+        <div className="reveal relative overflow-hidden rounded-2xl bg-[#14284A] p-8 sm:p-12">
+          <div className="relative flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <Logo
+                size={40}
+                wordmarkClassName="text-white"
+                className="[&_span]:text-white"
+              />
+              <h2 className="mt-4 max-w-xl font-display text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                Your next bid starts here.
+              </h2>
+              <p className="mt-3 max-w-xl leading-relaxed text-white/70">
+                Free construction calculators for every trade — no account, no
+                fees, works offline on the jobsite.
+              </p>
+            </div>
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+              <Button
+                asChild
+                className="min-h-[48px] bg-[#ED7D22] text-base font-bold text-white hover:bg-[#d56f1c]"
+              >
+                <Link href="/tools">
+                  Explore Tools <ArrowRight className="h-5 w-5" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="min-h-[48px] border-white/30 bg-transparent text-base font-bold text-white hover:bg-white/10 hover:text-white"
+              >
+                <Link href="/request-tool">Request a Tool</Link>
+              </Button>
+            </div>
           </div>
-          <p className="mt-4 inline-flex items-center gap-2 text-xs text-zinc-500">
-            <WifiOff className="h-3.5 w-3.5" />
-            Works offline · Your data stays on your device
-          </p>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }
+
+/* ------------------------------------------------------------------ */
 
 export default function HomePage() {
   return (
@@ -315,8 +448,9 @@ export default function HomePage() {
       <JsonLd data={faqSchema(HOME_FAQS)} />
       <Hero />
       <RecentlyUsed />
-      <CategoryGrid />
+      <CategoryDirectory />
       <HowItWorks />
+      <TrustStrip />
       <HomeFaq />
       <FinalCta />
     </>

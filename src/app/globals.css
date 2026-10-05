@@ -139,6 +139,97 @@
       linear-gradient(90deg, rgb(20 40 74 / 0.05) 1px, transparent 1px);
     background-size: 28px 28px;
   }
+
+  /* --- Motion system: fast, subtle, professional (150–300ms) --- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.28s ease-out,
+      transform 0.28s ease-out;
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Card hover lift — restrained */
+  .lift {
+    transition:
+      transform 0.2s ease-out,
+      box-shadow 0.2s ease-out,
+      border-color 0.2s ease-out;
+  }
+  .lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Result appearance */
+  @keyframes result-pop {
+    from {
+      opacity: 0;
+      transform: translateY(6px) scale(0.99);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .result-pop {
+    animation: result-pop 0.22s ease-out;
+  }
+
+  /* Mega-menu / dropdown entrance */
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .menu-in {
+    animation: menu-in 0.18s ease-out;
+    transform-origin: top center;
+  }
+
+  /* Gentle attention pulse for primary CTAs (used sparingly) */
+  @keyframes cta-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgb(237 125 34 / 0.35);
+    }
+    50% {
+      box-shadow: 0 0 0 6px rgb(237 125 34 / 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .lift,
+    .lift:hover {
+      transform: none;
+    }
+    .result-pop,
+    .menu-in {
+      animation: none;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 /* cmdk / command palette polish */

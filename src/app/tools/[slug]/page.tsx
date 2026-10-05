@@ -1,19 +1,20 @@
 /**
- * BuildCalc Pro — Tool page: /tools/[slug] (Phase 4A universal shell).
+ * BuildCalc Pro — Tool page: /tools/[slug].
  *
- * Validates the slug against the registry (notFound on miss), renders the
- * tool header (title, trade badge, 1-sentence guide), then the registered
- * calculator component — each built on useToolAutoSave + ToolShell +
- * ResultsCard. Planned tools render a "coming soon" card.
+ * Professional tool page: breadcrumb, branded tool header, the registered
+ * calculator component (unchanged), then SEO content sections derived ONLY
+ * from registry data (About / How to use / How the math works / Formula /
+ * FAQs / Related tools). Planned tools render a restyled "coming soon" card.
  */
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Hammer, ArrowRight } from "lucide-react";
+import { Hammer, ArrowRight, ArrowLeft, Clock3, CheckCircle2 } from "lucide-react";
 import {
   TOOLS,
   getToolBySlug,
   getCategory,
+  relatedTools,
   categoryHref,
   toolHref,
 } from "@/data/toolsRegistry";
@@ -57,15 +58,8 @@ import { FeetInchFractionTool } from "@/components/calculator/tools/FeetInchFrac
 import { UnitConverterProTool } from "@/components/calculator/tools/UnitConverterProTool";
 import { MasterProposalBuilderTool } from "@/components/calculator/tools/MasterProposalBuilderTool";
 import { TrackRecentTool } from "@/components/tools/TrackRecentTool";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { CrumbNav, SectionHeading } from "@/components/ui/PageHero";
+import { Reveal } from "@/components/ui/Reveal";
 
 export async function generateStaticParams() {
   return TOOLS.map((t) => ({ slug: t.slug }));
@@ -140,28 +134,41 @@ function ToolHeader({ slug }: { slug: string }) {
   if (!tool) notFound();
   const Icon = toolIcon(tool.iconName);
   return (
-    <div className="mb-6 flex items-start gap-4">
-      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-primary/15">
-        <Icon className="h-7 w-7 text-primary" />
-      </span>
-      <div className="min-w-0">
-        <div className="flex flex-wrap items-center gap-2">
-          {tool.badge && <Badge variant="accent">{tool.badge}</Badge>}
-          <Badge variant="secondary">{tool.subtrade}</Badge>
-          {tool.estimatedTime && (
-            <Badge variant="outline" className="font-mono">
-              {tool.estimatedTime}
-            </Badge>
-          )}
+    <header className="reveal">
+      <div className="flex items-start gap-4 sm:gap-5">
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#14284A] shadow-sm sm:h-16 sm:w-16">
+          <Icon className="h-7 w-7 text-[#ED7D22] sm:h-8 sm:w-8" aria-hidden />
+        </span>
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
+            {tool.badge && (
+              <span className="inline-flex min-h-[28px] items-center rounded-full bg-[#ED7D22] px-3 text-xs font-bold uppercase tracking-wide text-white">
+                {tool.badge}
+              </span>
+            )}
+            <span className="inline-flex min-h-[28px] items-center rounded-full border border-[#14284A]/20 bg-[#14284A]/5 px-3 text-xs font-bold text-[#14284A]">
+              {tool.subtrade}
+            </span>
+            {tool.estimatedTime && (
+              <span className="inline-flex min-h-[28px] items-center gap-1 rounded-full border border-zinc-200 px-3 font-mono text-xs text-[#5A6C85]">
+                <Clock3 className="h-3 w-3" aria-hidden />
+                {tool.estimatedTime}
+              </span>
+            )}
+            <span className="inline-flex min-h-[28px] items-center gap-1 rounded-full bg-emerald-50 px-3 text-xs font-bold text-emerald-700">
+              <CheckCircle2 className="h-3 w-3" aria-hidden />
+              Free to use
+            </span>
+          </div>
+          <h1 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-[#0B1B33] sm:text-4xl">
+            {tool.title}
+          </h1>
+          <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[#5A6C85] sm:text-base">
+            {tool.howTo ?? tool.shortDescription}
+          </p>
         </div>
-        <h1 className="mt-1.5 font-display text-3xl font-extrabold uppercase tracking-wide sm:text-4xl">
-          {tool.title}
-        </h1>
-        <p className="mt-1.5 max-w-2xl text-[15px] leading-relaxed text-zinc-400">
-          {tool.howTo ?? tool.shortDescription}
-        </p>
       </div>
-    </div>
+    </header>
   );
 }
 
@@ -171,70 +178,74 @@ function ComingSoon({ slug }: { slug: string }) {
   const Icon = toolIcon(tool.iconName);
   const category = getCategory(tool.category);
   return (
-    <Card className="overflow-hidden">
-      <CardHeader className="border-b border-border bg-zinc-950/60 p-6 sm:p-8">
+    <div className="reveal overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
+      <div className="border-b border-zinc-100 bg-[#14284A] p-6 sm:p-8">
         <div className="flex items-start gap-4">
-          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-primary/15">
-            <Icon className="h-7 w-7 text-primary" />
+          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/10">
+            <Icon className="h-7 w-7 text-[#ED7D22]" aria-hidden />
           </span>
           <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge variant="outline">Coming soon</Badge>
-              {tool.badge && <Badge variant="secondary">{tool.badge}</Badge>}
-              {tool.estimatedTime && (
-                <Badge variant="outline" className="font-mono">
-                  {tool.estimatedTime}
-                </Badge>
-              )}
-            </div>
-            <CardTitle className="mt-2 text-2xl">{tool.title}</CardTitle>
-            <CardDescription className="mt-1.5 text-base">
+            <span className="inline-flex min-h-[28px] items-center rounded-full border border-white/30 px-3 text-xs font-bold uppercase tracking-wide text-white">
+              Coming soon
+            </span>
+            <h1 className="mt-2 font-display text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+              {tool.title}
+            </h1>
+            <p className="mt-1.5 max-w-xl text-[15px] leading-relaxed text-white/70">
               {tool.shortDescription}
-            </CardDescription>
+            </p>
           </div>
         </div>
-      </CardHeader>
-      <CardContent className="p-6 sm:p-8">
-        <div className="flex flex-col items-center gap-4 py-6 text-center">
-          <span className="flex h-16 w-16 items-center justify-center rounded-2xl border border-border bg-zinc-900">
-            <Hammer className="h-8 w-8 text-zinc-600" />
+      </div>
+      <div className="p-6 sm:p-8">
+        <div className="flex flex-col items-center gap-4 py-4 text-center">
+          <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#14284A]/5">
+            <Hammer className="h-8 w-8 text-[#14284A]/40" aria-hidden />
           </span>
           <div className="max-w-md">
-            <p className="font-display text-lg font-bold uppercase tracking-wide">
+            <p className="font-display text-lg font-extrabold uppercase tracking-wide text-[#0B1B33]">
               On the build bench
             </p>
-            <p className="mt-1 text-sm text-zinc-400">
+            <p className="mt-1 text-sm leading-relaxed text-[#5A6C85]">
               This calculator is being built on the universal shell — auto-saved
               inputs, real-time math, bill of materials, and one-tap bid lines.
             </p>
           </div>
-          <div className="w-full max-w-md rounded-xl border border-border bg-zinc-950 p-4 text-left">
-            <p className="text-[11px] font-bold uppercase tracking-widest text-zinc-500">
+          <div className="w-full max-w-md rounded-xl border border-zinc-200 bg-zinc-50 p-4 text-left">
+            <p className="text-[11px] font-bold uppercase tracking-widest text-[#5A6C85]">
               What you&apos;ll get
             </p>
             <ul className="mt-2 space-y-1.5">
               {tool.outputs.map((o) => (
-                <li key={o} className="flex items-center gap-2 text-sm text-zinc-300">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                <li key={o} className="flex items-center gap-2 text-sm text-[#0B1B33]">
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#ED7D22]" />
                   {o}
                 </li>
               ))}
             </ul>
-            <p className="mt-3 font-mono text-xs text-zinc-500">
+            <p className="mt-3 font-mono text-xs text-[#5A6C85]">
               Formula: {tool.formulaSummary}
             </p>
           </div>
-          <Button asChild size="lg" className="min-h-[48px]">
-            <Link href={categoryHref(tool.category)}>
-              Browse {category.label.split(",")[0]} tools
-              <ArrowRight className="h-5 w-5" />
-            </Link>
-          </Button>
+          <Link
+            href={categoryHref(tool.category)}
+            className="inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[#ED7D22] px-6 text-sm font-bold text-white transition-colors hover:bg-[#d96f1a]"
+          >
+            Browse {category.label.split(",")[0]} tools
+            <ArrowRight className="h-5 w-5" aria-hidden />
+          </Link>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
+
+const GENERIC_STEPS = [
+  "Enter your measurements in the input fields above.",
+  "Choose the units that match your tape and supplier.",
+  "Review the results as they update live — no calculate button needed.",
+  "Add the bill of materials to your estimate with one tap.",
+];
 
 export default async function ToolPage({
   params,
@@ -249,6 +260,7 @@ export default async function ToolPage({
   const category = getCategory(tool.category);
   const crumbs = [
     { label: "Home", href: "/" },
+    { label: "Tools", href: "/tools" },
     { label: category.label, href: categoryHref(tool.category) },
     { label: tool.title },
   ];
@@ -263,55 +275,175 @@ export default async function ToolPage({
     ...(tool.faqs && tool.faqs.length > 0 ? [faqSchema(tool.faqs)] : []),
   ];
 
+  const about = tool.details?.[0] ?? tool.shortDescription;
+  const mathNotes = tool.details && tool.details.length > 1 ? tool.details.slice(1) : [];
+  const related = relatedTools(tool, 4).filter((t) => t.available);
+
   return (
     <>
       <JsonLd data={schemas} />
       <TrackRecentTool slug={slug} />
-      {ToolComponent ? (
-        <>
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+        <CrumbNav items={crumbs} />
+        <div className="mt-6">
           <ToolHeader slug={slug} />
-          <ToolComponent />
-          {tool.details && tool.details.length > 0 && (
-            <Card className="no-print mt-8">
-              <CardHeader>
-                <CardTitle className="text-lg">How the math works</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm leading-relaxed text-zinc-400">
-                {tool.details.map((d, i) => (
-                  <p key={i}>{d}</p>
-                ))}
-              </CardContent>
-            </Card>
-          )}
-          {tool.faqs && tool.faqs.length > 0 && (
-            <section aria-label="Frequently asked questions" className="mt-8">
-              <h2 className="font-display text-xl font-extrabold uppercase tracking-wide">
-                Common questions
-              </h2>
-              <div className="mt-3 space-y-2">
-                {tool.faqs.map((f) => (
-                  <details
-                    key={f.q}
-                    className="group rounded-xl border border-border bg-card px-4 py-3"
-                  >
-                    <summary className="cursor-pointer list-none text-sm font-bold text-zinc-100 marker:hidden [&::-webkit-details-marker]:hidden">
-                      <span className="mr-2 inline-block text-primary transition-transform group-open:rotate-90">
-                        ▸
-                      </span>
-                      {f.q}
-                    </summary>
-                    <p className="mt-2 pl-6 text-sm leading-relaxed text-zinc-400">
-                      {f.a}
+        </div>
+
+        {ToolComponent ? (
+          <>
+            {/* The calculator — untouched */}
+            <div className="reveal mt-8">
+              <ToolComponent />
+            </div>
+
+            {/* Registry-derived content, comfortable reading width */}
+            <div className="mx-auto mt-12 max-w-3xl">
+              <Reveal>
+                <section aria-label="About this tool" className="reveal">
+                  <SectionHeading title="About this tool" />
+                  <p className="mt-3 text-[15px] leading-relaxed text-[#5A6C85]">
+                    {about}
+                  </p>
+                </section>
+
+                <section aria-label="How to use" className="reveal mt-10">
+                  <SectionHeading title="How to use" />
+                  {tool.howTo ? (
+                    <p className="mt-3 text-[15px] leading-relaxed text-[#5A6C85]">
+                      {tool.howTo}
                     </p>
-                  </details>
-                ))}
-              </div>
-            </section>
-          )}
-        </>
-      ) : (
-        <ComingSoon slug={slug} />
-      )}
+                  ) : (
+                    <ol className="mt-3 list-decimal space-y-2 pl-5 text-[15px] leading-relaxed text-[#5A6C85]">
+                      {GENERIC_STEPS.map((s) => (
+                        <li key={s}>{s}</li>
+                      ))}
+                    </ol>
+                  )}
+                </section>
+
+                {mathNotes.length > 0 && (
+                  <section aria-label="How the math works" className="reveal mt-10">
+                    <SectionHeading title="How the math works" />
+                    <div className="mt-3 space-y-3 text-[15px] leading-relaxed text-[#5A6C85]">
+                      {mathNotes.map((d, i) => (
+                        <p key={i}>{d}</p>
+                      ))}
+                    </div>
+                  </section>
+                )}
+
+                {tool.formulaSummary && (
+                  <section aria-label="Formula" className="reveal mt-10">
+                    <SectionHeading title="Formula" />
+                    <div className="mt-3 rounded-xl border border-zinc-200 bg-zinc-50 p-4">
+                      <p className="font-mono text-sm leading-relaxed text-[#0B1B33]">
+                        {tool.formulaSummary}
+                      </p>
+                    </div>
+                  </section>
+                )}
+
+                {tool.faqs && tool.faqs.length > 0 && (
+                  <section
+                    aria-label="Frequently asked questions"
+                    className="reveal mt-10"
+                  >
+                    <SectionHeading title="Common questions" />
+                    <div className="mt-4 space-y-2">
+                      {tool.faqs.map((f) => (
+                        <details
+                          key={f.q}
+                          className="group rounded-xl border border-zinc-200 bg-white px-4 py-3"
+                        >
+                          <summary className="min-h-[44px] cursor-pointer list-none text-sm font-bold text-[#0B1B33] marker:hidden [&::-webkit-details-marker]:hidden">
+                            <span
+                              className="mr-2 inline-block text-[#ED7D22] transition-transform group-open:rotate-90"
+                              aria-hidden
+                            >
+                              ▸
+                            </span>
+                            {f.q}
+                          </summary>
+                          <p className="mt-2 pl-6 text-sm leading-relaxed text-[#5A6C85]">
+                            {f.a}
+                          </p>
+                        </details>
+                      ))}
+                    </div>
+                  </section>
+                )}
+              </Reveal>
+            </div>
+
+            {/* Related tools — full width grid */}
+            {related.length > 0 && (
+              <section aria-label="Related tools" className="mt-14">
+                <Reveal>
+                  <div className="reveal">
+                    <SectionHeading
+                      eyebrow="Keep estimating"
+                      title="Related tools"
+                      lede={`More ${category.label.split(",")[0].toLowerCase()} calculators for this job.`}
+                    />
+                  </div>
+                  <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                    {related.map((r, i) => {
+                      const RIcon = toolIcon(r.iconName);
+                      return (
+                        <Link
+                          key={r.id}
+                          href={toolHref(r)}
+                          className="reveal lift group flex min-h-[44px] flex-col rounded-2xl border border-zinc-200 bg-white p-5"
+                          style={{ "--reveal-delay": `${i * 60}ms` } as React.CSSProperties}
+                        >
+                          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#14284A]">
+                            <RIcon className="h-5 w-5 text-[#ED7D22]" aria-hidden />
+                          </span>
+                          <span className="mt-3 font-bold text-[#0B1B33] group-hover:text-[#2563EB]">
+                            {r.title}
+                          </span>
+                          <span className="mt-1 line-clamp-2 text-sm text-[#5A6C85]">
+                            {r.shortDescription}
+                          </span>
+                          <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-[#2563EB]">
+                            Use tool
+                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </Reveal>
+              </section>
+            )}
+
+            {/* Journey links */}
+            <nav
+              aria-label="More tools"
+              className="reveal mt-12 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <Link
+                href={categoryHref(tool.category)}
+                className="inline-flex min-h-[44px] items-center gap-2 text-sm font-bold text-[#2563EB] hover:underline"
+              >
+                <ArrowLeft className="h-4 w-4" aria-hidden />
+                Back to {category.label}
+              </Link>
+              <Link
+                href="/tools"
+                className="inline-flex min-h-[44px] items-center gap-2 text-sm font-bold text-[#2563EB] hover:underline"
+              >
+                Explore all tools
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+            </nav>
+          </>
+        ) : (
+          <div className="mt-6">
+            <ComingSoon slug={slug} />
+          </div>
+        )}
+      </div>
     </>
   );
 }

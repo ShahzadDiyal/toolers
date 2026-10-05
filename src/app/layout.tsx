@@ -44,6 +44,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: SITE_NAME }],
   robots: { index: true, follow: true },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: "/favicon.svg",
+  },
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
@@ -63,7 +71,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#09090b",
+  themeColor: "#14284A",
   width: "device-width",
   initialScale: 1,
 };
