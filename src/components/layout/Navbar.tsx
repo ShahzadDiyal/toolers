@@ -59,12 +59,12 @@ function OfflineIndicator() {
       {online ? (
         <>
           <ShieldCheck className="h-3 w-3" />
-          Private · No cloud
+          Online
         </>
       ) : (
         <>
           <WifiOff className="h-3 w-3" />
-          Offline · Still works
+          Offline
         </>
       )}
     </Badge>
