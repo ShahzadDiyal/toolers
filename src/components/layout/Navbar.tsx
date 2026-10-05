@@ -97,44 +97,84 @@ function ToolsMegaMenu() {
   const { locale, t } = useTranslation();
   const [open, setOpen] = React.useState(false);
   const closeTimer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  const enter = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    setOpen(true);
-  };
-  const leave = () => {
-    closeTimer.current = setTimeout(() => setOpen(false), 120);
+  const clearTimer = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
   };
 
+  const handleMouseEnter = () => {
+    clearTimer();
+    setOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    clearTimer();
+    closeTimer.current = setTimeout(() => {
+      setOpen(false);
+    }, 220);
+  };
+
+  // Close on route change
   React.useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
-  React.useEffect(
-    () => () => {
-      if (closeTimer.current) clearTimeout(closeTimer.current);
-    },
-    [],
-  );
+  // Close on click outside or Escape
+  React.useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (e: PointerEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  React.useEffect(() => {
+    return () => clearTimer();
+  }, []);
 
   return (
-    <div className="relative" onMouseEnter={enter} onMouseLeave={leave}>
+    <div
+      ref={containerRef}
+      className="relative"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <button
         type="button"
         aria-expanded={open}
         aria-haspopup="true"
-        onClick={() => setOpen((o) => !o)}
-        onFocus={enter}
+        onClick={(e) => {
+          e.preventDefault();
+          clearTimer();
+          setOpen((prev) => !prev);
+        }}
         className={cn(
           "flex min-h-[44px] items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-bold text-[#14284A] transition-colors hover:bg-[#14284A]/5",
-          open && "bg-[#14284A]/5",
+          open && "bg-[#14284A]/5 text-[#ED7D22]",
         )}
       >
         <Wrench className="h-4 w-4 text-[#ED7D22]" aria-hidden />
         {t.nav.tools}
         <ChevronDown
-          className={cn("h-3.5 w-3.5 text-zinc-500 transition-transform", open && "rotate-180")}
+          className={cn(
+            "h-3.5 w-3.5 text-zinc-500 transition-transform duration-200",
+            open && "rotate-180 text-[#ED7D22]",
+          )}
           aria-hidden
         />
       </button>
@@ -215,8 +255,6 @@ function ToolsMegaMenu() {
 function MobileMenu({ onClose }: { onClose: () => void }) {
   const { locale, t } = useTranslation();
   const [toolsOpen, setToolsOpen] = React.useState(true);
-  const pathname = usePathname();
-  const prevPathname = React.useRef(pathname);
 
   const NAV_LINKS = [
     { label: t.nav.services, href: localePath("/services", locale) },
@@ -225,31 +263,22 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
     { label: t.nav.contact, href: localePath("/contact", locale) },
   ];
 
-  // Close the menu when the route actually changes but NOT on mount,
-  // otherwise the menu shuts itself the instant it opens.
-  React.useEffect(() => {
-    if (prevPathname.current !== pathname) {
-      prevPathname.current = pathname;
-      onClose();
-    }
-  }, [pathname, onClose]);
-
   return (
-    <div className="menu-in border-t border-border bg-white lg:hidden">
-      <nav aria-label="Mobile" className="mx-auto max-h-[75vh] max-w-7xl overflow-y-auto px-4 py-3 sm:px-6">
+    <div className="menu-in border-t border-border bg-white shadow-xl lg:hidden">
+      <nav aria-label="Mobile" className="mx-auto max-h-[calc(100vh-4.5rem)] max-w-7xl overflow-y-auto px-4 py-3 sm:px-6">
         {/* Tools accordion */}
         <button
           type="button"
           aria-expanded={toolsOpen}
           onClick={() => setToolsOpen((o) => !o)}
-          className="flex min-h-[48px] w-full items-center justify-between rounded-lg px-2 py-2 text-start text-[15px] font-extrabold text-[#14284A]"
+          className="flex min-h-[48px] w-full items-center justify-between rounded-lg px-2 py-2 text-start text-[15px] font-extrabold text-[#14284A] transition-colors hover:bg-[#F1F5F9]"
         >
           <span className="flex items-center gap-2">
             <Wrench className="h-4 w-4 text-[#ED7D22]" aria-hidden />
             {t.nav.tools}
           </span>
           <ChevronDown
-            className={cn("h-4 w-4 text-zinc-500 transition-transform", toolsOpen && "rotate-180")}
+            className={cn("h-4 w-4 text-zinc-500 transition-transform duration-200", toolsOpen && "rotate-180")}
             aria-hidden
           />
         </button>
@@ -262,6 +291,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
                 <Link
                   key={c.id}
                   href={categoryHref(c.id, locale)}
+                  onClick={onClose}
                   className="flex min-h-[48px] items-center gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-[#F1F5F9]"
                 >
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#14284A]/8 text-[#14284A]">
@@ -281,7 +311,8 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
             })}
             <Link
               href={localePath("/tools", locale)}
-              className="flex min-h-[48px] items-center justify-center gap-1.5 rounded-lg bg-[#14284A]/5 px-2 py-2 text-sm font-bold text-[#14284A]"
+              onClick={onClose}
+              className="flex min-h-[48px] items-center justify-center gap-1.5 rounded-lg bg-[#14284A]/5 px-2 py-2 text-sm font-bold text-[#14284A] hover:bg-[#14284A]/10"
             >
               {t.nav.viewAllTools.replace("{count}", String(AVAILABLE_COUNT))} <ArrowRight className="h-4 w-4 rtl:rotate-180" aria-hidden />
             </Link>
@@ -293,6 +324,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
             <Link
               key={l.href}
               href={l.href}
+              onClick={onClose}
               className="flex min-h-[48px] items-center rounded-lg px-2 py-2 text-[15px] font-bold text-[#14284A] transition-colors hover:bg-[#F1F5F9]"
             >
               {l.label}
@@ -301,8 +333,10 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
         </div>
 
         <div className="border-t border-border py-3">
-          <Button asChild className="min-h-[52px] w-full bg-[#ED7D22] text-base hover:bg-[#d56f1c]">
-            <Link href={localePath("/request-tool", locale)}>{t.nav.requestCustomTool}</Link>
+          <Button asChild className="min-h-[52px] w-full bg-[#ED7D22] text-base font-bold shadow-sm hover:bg-[#d56f1c]">
+            <Link href={localePath("/request-tool", locale)} onClick={onClose}>
+              {t.nav.requestCustomTool}
+            </Link>
           </Button>
           <p className="mt-2 text-center text-xs text-[#5A6C85]">
             {t.nav.requestToolNote}
@@ -321,6 +355,10 @@ export function Navbar() {
   const setCommandOpen = useUiStore((s) => s.setCommandOpen);
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
+  const handleCloseMobile = React.useCallback(() => {
+    setMobileOpen(false);
+  }, []);
+
   const NAV_LINKS = [
     { label: t.nav.services, href: localePath("/services", locale) },
     { label: t.nav.blog, href: localePath("/blog", locale) },
@@ -334,7 +372,11 @@ export function Navbar() {
 
   // Lock body scroll when the mobile menu is open
   React.useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
     return () => {
       document.body.style.overflow = "";
     };
@@ -395,7 +437,7 @@ export function Navbar() {
         <Button
           variant="outline"
           size="iconSm"
-          className="min-h-[40px] min-w-[40px] lg:hidden"
+          className="min-h-[40px] min-w-[40px] border-border text-[#14284A] hover:bg-[#F1F5F9] lg:hidden"
           onClick={() => setMobileOpen((o) => !o)}
           aria-expanded={mobileOpen}
           aria-label={mobileOpen ? t.nav.closeMenu : t.nav.openMenu}
@@ -404,7 +446,7 @@ export function Navbar() {
         </Button>
       </div>
 
-      {mobileOpen && <MobileMenu onClose={() => setMobileOpen(false)} />}
+      {mobileOpen && <MobileMenu onClose={handleCloseMobile} />}
     </header>
   );
 }

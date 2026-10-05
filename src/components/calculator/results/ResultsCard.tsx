@@ -108,7 +108,7 @@ export function ResultsCard({
         <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#5A6C85]">
           {primaryMetric.label}
         </p>
-        <p className="mt-1 font-mono text-5xl font-extrabold tabular-nums text-[#ED7D22]">
+        <p className="result-pop mt-1 font-mono text-4xl sm:text-5xl font-extrabold tabular-nums text-[#ED7D22]">
           {primaryMetric.value}
         </p>
         <p className="mt-1 font-display text-sm font-bold uppercase tracking-[0.2em] text-[#ED7D22]/80">

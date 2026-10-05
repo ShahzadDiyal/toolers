@@ -96,42 +96,44 @@ function MeasureGraphic() {
   );
 }
 
-function Hero() {
+function Hero({ locale }: { locale: string }) {
   return (
     <section className="bg-blueprint relative overflow-hidden border-b border-border">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 pb-10 pt-10 sm:gap-10 sm:px-6 sm:pb-14 sm:pt-16 lg:grid-cols-[1.4fr_1fr] lg:pt-20">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 pb-10 pt-8 sm:gap-10 sm:px-6 sm:pb-14 sm:pt-14 md:pt-16 lg:grid-cols-[1.3fr_1fr] lg:gap-12 lg:pt-20">
         <div className="min-w-0">
           <Badge
             variant="outline"
-            className="mb-4 max-w-full border-[#ED7D22]/50 text-[#14284A] sm:mb-5"
+            className="mb-4 inline-flex max-w-full items-center gap-1.5 border-[#ED7D22]/50 bg-white/80 px-3 py-1 text-xs font-semibold text-[#14284A] shadow-xs backdrop-blur-xs sm:mb-5"
           >
-            <ShieldCheck className="h-3 w-3 shrink-0 text-[#ED7D22]" />
+            <ShieldCheck className="h-3.5 w-3.5 shrink-0 text-[#ED7D22]" />
             <span className="truncate">
               Free forever · No account · Works offline
             </span>
           </Badge>
-          <h1 className="max-w-3xl font-display text-[32px] font-extrabold leading-[1.08] tracking-tight text-[#0B1B33] sm:text-5xl lg:text-6xl">
+          <h1 className="max-w-3xl font-display text-3xl font-extrabold leading-[1.12] tracking-tight text-[#0B1B33] sm:text-4xl md:text-5xl lg:text-6xl">
             Free Construction Calculators{" "}
             <span className="text-[#ED7D22]">&amp; Estimating Tools</span>
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#5A6C85] sm:mt-5 sm:text-lg">
+          <p className="mt-3.5 max-w-2xl text-base leading-relaxed text-[#5A6C85] sm:mt-5 sm:text-lg">
             {TOTAL_TOOLS} professional calculators for contractors, builders,
-            estimators, and homeowners concrete, framing, roofing, MEP, and
+            estimators, and homeowners — concrete, framing, roofing, MEP, and
             bid math that runs right in your browser. No sign-up, no fees.
           </p>
-          <div className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row">
-            <Button asChild className="min-h-[48px] w-full text-base sm:w-auto">
-              <Link href={localePath("/tools", locale)}>
-                Explore Tools <ArrowRight className="h-5 w-5" />
+          <div className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row sm:items-center">
+            <Button asChild className="min-h-[48px] w-full text-base font-bold shadow-sm sm:w-auto">
+              <Link href={localePath("/tools", locale)} className="inline-flex items-center justify-center gap-2">
+                Explore Tools <ArrowRight className="h-5 w-5 rtl:rotate-180" />
               </Link>
             </Button>
             <Button
               asChild
               variant="outline"
-              className="min-h-[48px] w-full text-base sm:w-auto"
+              className="min-h-[48px] w-full border-border bg-white text-base font-bold text-[#14284A] hover:bg-[#F1F5F9] sm:w-auto"
             >
-              <Link href={localePath("/request-tool", locale)}>Request a Tool</Link>
+              <Link href={localePath("/request-tool", locale)} className="inline-flex items-center justify-center">
+                Request a Tool
+              </Link>
             </Button>
           </div>
           <div className="mt-6 max-w-2xl sm:mt-7">
@@ -139,10 +141,12 @@ function Hero() {
           </div>
         </div>
         <div
-          className="hidden min-w-0 justify-center lg:flex"
+          className="hidden min-w-0 items-center justify-center lg:flex"
           aria-hidden="true"
         >
-          <MeasureGraphic />
+          <div className="w-full max-w-md drop-shadow-md transition-transform hover:scale-[1.02]">
+            <MeasureGraphic />
+          </div>
         </div>
       </div>
     </section>
@@ -153,7 +157,7 @@ function Hero() {
 /* Category directory                                                  */
 /* ------------------------------------------------------------------ */
 
-function CategoryDirectory() {
+function CategoryDirectory({ locale }: { locale: string }) {
   return (
     <section
       aria-label="Calculator categories"
@@ -170,7 +174,7 @@ function CategoryDirectory() {
             href={localePath("/tools", locale)}
             className="inline-flex min-h-[44px] items-center gap-1.5 text-sm font-bold text-[#2563EB] hover:underline"
           >
-            View all {TOTAL_TOOLS} tools <ArrowRight className="h-4 w-4" />
+            View all {TOTAL_TOOLS} tools <ArrowRight className="h-4 w-4 rtl:rotate-180" />
           </Link>
         </div>
         <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -184,7 +188,7 @@ function CategoryDirectory() {
                 style={{ "--reveal-delay": `${(i % 6) * 60}ms` } as React.CSSProperties}
               >
                 <Link
-                  href={categoryHref(c.id)}
+                  href={categoryHref(c.id, locale)}
                   className="lift group flex h-full min-h-[44px] flex-col rounded-xl border border-border bg-white p-5"
                   aria-label={`${c.label} ${live} tools`}
                 >
@@ -202,7 +206,7 @@ function CategoryDirectory() {
                       {live} tools
                     </span>
                     <span className="inline-flex items-center gap-1 text-sm font-bold text-[#ED7D22] group-hover:underline">
-                      View Tools <ArrowRight className="h-4 w-4" aria-hidden />
+                      View Tools <ArrowRight className="h-4 w-4 rtl:rotate-180" aria-hidden />
                     </span>
                   </span>
                 </Link>
@@ -409,7 +413,7 @@ function HomeFaq() {
 /* Final CTA                                                           */
 /* ------------------------------------------------------------------ */
 
-function FinalCta() {
+function FinalCta({ locale }: { locale: string }) {
   return (
     <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24">
       <Reveal>
@@ -425,7 +429,7 @@ function FinalCta() {
                 Your next bid starts here.
               </h2>
               <p className="mt-3 max-w-xl leading-relaxed text-white/70">
-                Free construction calculators for every trade no account, no
+                Free construction calculators for every trade — no account, no
                 fees, works offline on the jobsite.
               </p>
             </div>
@@ -434,8 +438,8 @@ function FinalCta() {
                 asChild
                 className="min-h-[48px] bg-[#ED7D22] text-base font-bold text-white hover:bg-[#d56f1c]"
               >
-                <Link href={localePath("/tools", locale)}>
-                  Explore Tools <ArrowRight className="h-5 w-5" />
+                <Link href={localePath("/tools", locale)} className="inline-flex items-center justify-center gap-2">
+                  Explore Tools <ArrowRight className="h-5 w-5 rtl:rotate-180" />
                 </Link>
               </Button>
               <Button
@@ -443,7 +447,9 @@ function FinalCta() {
                 variant="outline"
                 className="min-h-[48px] border-white/30 bg-transparent text-base font-bold text-white hover:bg-white/10 hover:text-white"
               >
-                <Link href={localePath("/request-tool", locale)}>Request a Tool</Link>
+                <Link href={localePath("/request-tool", locale)} className="inline-flex items-center justify-center">
+                  Request a Tool
+                </Link>
               </Button>
             </div>
           </div>
@@ -464,13 +470,13 @@ export default async function HomePage({
   return (
     <>
       <JsonLd data={faqSchema(HOME_FAQS)} />
-      <Hero />
+      <Hero locale={locale} />
       <RecentlyUsed />
-      <CategoryDirectory />
+      <CategoryDirectory locale={locale} />
       <HowItWorks />
       <TrustStrip />
       <HomeFaq />
-      <FinalCta />
+      <FinalCta locale={locale} />
     </>
   );
 }

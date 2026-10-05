@@ -154,11 +154,11 @@ function ToolHeader({ slug }: { slug: string }) {
   const Icon = toolIcon(tool.iconName);
   return (
     <header className="reveal">
-      <div className="flex items-start gap-4 sm:gap-5">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-5">
         <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#14284A] shadow-sm sm:h-16 sm:w-16">
           <Icon className="h-7 w-7 text-[#ED7D22] sm:h-8 sm:w-8" aria-hidden />
         </span>
-        <div className="min-w-0">
+        <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
             {tool.badge && (
               <span className="inline-flex min-h-[28px] items-center rounded-full bg-[#ED7D22] px-3 text-xs font-bold uppercase tracking-wide text-white">
@@ -179,10 +179,10 @@ function ToolHeader({ slug }: { slug: string }) {
               Free to use
             </span>
           </div>
-          <h1 className="mt-3 font-display text-3xl font-extrabold tracking-tight text-[#0B1B33] sm:text-4xl">
+          <h1 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-[#0B1B33] sm:text-3xl md:text-4xl">
             {tool.seoTitle ?? tool.title}
           </h1>
-          <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[#5A6C85] sm:text-base">
+          <p className="mt-2 max-w-2xl text-[14px] leading-relaxed text-[#5A6C85] sm:text-base">
             {tool.howTo ?? tool.shortDescription}
           </p>
         </div>
@@ -191,15 +191,22 @@ function ToolHeader({ slug }: { slug: string }) {
   );
 }
 
-function ComingSoon({ slug }: { slug: string }) {
+function ComingSoon({
+  slug,
+  locale,
+  catTitle,
+}: {
+  slug: string;
+  locale: string;
+  catTitle: string;
+}) {
   const tool = getToolBySlug(slug);
   if (!tool) notFound();
   const Icon = toolIcon(tool.iconName);
-  const category = getCategory(tool.category);
   return (
     <div className="reveal overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm">
       <div className="border-b border-zinc-100 bg-[#14284A] p-6 sm:p-8">
-        <div className="flex items-start gap-4">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
           <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/10">
             <Icon className="h-7 w-7 text-[#ED7D22]" aria-hidden />
           </span>
@@ -250,7 +257,7 @@ function ComingSoon({ slug }: { slug: string }) {
             href={categoryHref(tool.category, locale)}
             className="inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-[#ED7D22] px-6 text-sm font-bold text-white transition-colors hover:bg-[#d96f1a]"
           >
-            {t.nav.allCategoryTools.replace("{category}", catTitle)}
+            All {catTitle} tools
             <ArrowRight className="h-5 w-5 rtl:rotate-180" aria-hidden />
           </Link>
         </div>
@@ -461,7 +468,7 @@ export default async function ToolPage({
           </>
         ) : (
           <div className="mt-6">
-            <ComingSoon slug={slug} />
+            <ComingSoon slug={slug} locale={locale} catTitle={catTitle} />
           </div>
         )}
       </div>

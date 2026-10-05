@@ -118,7 +118,7 @@ export function DimensionInput({
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <Label htmlFor={id}>{label}</Label>
         <div
           className="flex rounded-xl border border-zinc-200 bg-[#F1F5F9] p-0.5"
