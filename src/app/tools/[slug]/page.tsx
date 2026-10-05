@@ -35,6 +35,11 @@ import { PaintPrimerCoverageTool } from "@/components/calculator/tools/PaintPrim
 import { FlooringTrimEstimatorTool } from "@/components/calculator/tools/FlooringTrimEstimatorTool";
 import { ContractorMarkupMarginTool } from "@/components/calculator/tools/ContractorMarkupMarginTool";
 import { ConduitFillVoltageDropTool } from "@/components/calculator/tools/ConduitFillVoltageDropTool";
+import { CmuBlockMortarTool } from "@/components/calculator/tools/CmuBlockMortarTool";
+import { ExcavationDirtHaulTool } from "@/components/calculator/tools/ExcavationDirtHaulTool";
+import { RetainingWallBlockTool } from "@/components/calculator/tools/RetainingWallBlockTool";
+import { AggregateStoneTonnageTool } from "@/components/calculator/tools/AggregateStoneTonnageTool";
+import { AsphaltPavingTool } from "@/components/calculator/tools/AsphaltPavingTool";
 import { TrackRecentTool } from "@/components/tools/TrackRecentTool";
 import {
   Card,
@@ -91,6 +96,11 @@ const TOOL_COMPONENTS: Record<string, React.ComponentType> = {
   "flooring-trim-estimator": FlooringTrimEstimatorTool,
   "contractor-markup-margin": ContractorMarkupMarginTool,
   "conduit-fill-voltage-drop": ConduitFillVoltageDropTool,
+  "cmu-block-mortar": CmuBlockMortarTool,
+  "excavation-dirt-haul": ExcavationDirtHaulTool,
+  "retaining-wall-block": RetainingWallBlockTool,
+  "aggregate-stone-tonnage": AggregateStoneTonnageTool,
+  "asphalt-paving": AsphaltPavingTool,
 };
 
 function ToolHeader({ slug }: { slug: string }) {

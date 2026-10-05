@@ -241,7 +241,7 @@ const HOME_FAQS = [
   },
   {
     q: "Which calculators are available?",
-    a: "Concrete (slabs, footings, rebar), framing and drywall, roof pitch and shingles, stairs with IRC code checks, tile and grout, paint, flooring, electrical conduit and voltage drop, plus markup-vs-margin bid math — with more on the way.",
+    a: "Concrete (slabs, footings, rebar), CMU block and mortar, framing and drywall, roof pitch and shingles, stairs with IRC code checks, tile and grout, paint, flooring, excavation and dirt haul, retaining walls, aggregate tonnage, asphalt paving, electrical conduit and voltage drop, plus markup-vs-margin bid math — with more on the way.",
   },
 ];
 
