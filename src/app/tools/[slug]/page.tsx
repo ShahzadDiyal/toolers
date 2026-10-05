@@ -23,6 +23,10 @@ import { FramingDrywallPackTool } from "@/components/calculator/tools/FramingDry
 import { StairStringerLayoutTool } from "@/components/calculator/tools/StairStringerLayoutTool";
 import { RebarMeshEstimatorTool } from "@/components/calculator/tools/RebarMeshEstimatorTool";
 import { TileGroutCalculatorTool } from "@/components/calculator/tools/TileGroutCalculatorTool";
+import { PaintPrimerCoverageTool } from "@/components/calculator/tools/PaintPrimerCoverageTool";
+import { FlooringTrimEstimatorTool } from "@/components/calculator/tools/FlooringTrimEstimatorTool";
+import { ContractorMarkupMarginTool } from "@/components/calculator/tools/ContractorMarkupMarginTool";
+import { ConduitFillVoltageDropTool } from "@/components/calculator/tools/ConduitFillVoltageDropTool";
 import { TrackRecentTool } from "@/components/tools/TrackRecentTool";
 import {
   Card,
@@ -60,6 +64,10 @@ const TOOL_COMPONENTS: Record<string, React.ComponentType> = {
   "stair-stringer-layout": StairStringerLayoutTool,
   "rebar-mesh-estimator": RebarMeshEstimatorTool,
   "tile-grout-calculator": TileGroutCalculatorTool,
+  "paint-primer-coverage": PaintPrimerCoverageTool,
+  "flooring-trim-estimator": FlooringTrimEstimatorTool,
+  "contractor-markup-margin": ContractorMarkupMarginTool,
+  "conduit-fill-voltage-drop": ConduitFillVoltageDropTool,
 };
 
 function ToolHeader({ slug }: { slug: string }) {
