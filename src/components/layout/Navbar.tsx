@@ -215,11 +215,16 @@ function ToolsMegaMenu() {
 function MobileMenu({ onClose }: { onClose: () => void }) {
   const [toolsOpen, setToolsOpen] = React.useState(true);
   const pathname = usePathname();
+  const prevPathname = React.useRef(pathname);
 
+  // Close the menu when the route actually changes — but NOT on mount,
+  // otherwise the menu shuts itself the instant it opens.
   React.useEffect(() => {
-    onClose();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+    if (prevPathname.current !== pathname) {
+      prevPathname.current = pathname;
+      onClose();
+    }
+  }, [pathname, onClose]);
 
   return (
     <div className="menu-in border-t border-border bg-white lg:hidden">

@@ -99,36 +99,48 @@ function Hero() {
   return (
     <section className="bg-blueprint relative overflow-hidden border-b border-border">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 pb-14 pt-14 sm:px-6 sm:pt-20 lg:grid-cols-[1.4fr_1fr]">
-        <div>
-          <Badge variant="outline" className="mb-5 border-[#ED7D22]/50 text-[#14284A]">
-            <ShieldCheck className="h-3 w-3 text-[#ED7D22]" />
-            Free forever · No account · Works offline
+      <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 pb-10 pt-10 sm:gap-10 sm:px-6 sm:pb-14 sm:pt-16 lg:grid-cols-[1.4fr_1fr] lg:pt-20">
+        <div className="min-w-0">
+          <Badge
+            variant="outline"
+            className="mb-4 max-w-full border-[#ED7D22]/50 text-[#14284A] sm:mb-5"
+          >
+            <ShieldCheck className="h-3 w-3 shrink-0 text-[#ED7D22]" />
+            <span className="truncate">
+              Free forever · No account · Works offline
+            </span>
           </Badge>
-          <h1 className="max-w-3xl font-display text-4xl font-extrabold tracking-tight text-[#0B1B33] sm:text-6xl">
+          <h1 className="max-w-3xl font-display text-[32px] font-extrabold leading-[1.08] tracking-tight text-[#0B1B33] sm:text-5xl lg:text-6xl">
             Free Construction Calculators{" "}
             <span className="text-[#ED7D22]">&amp; Tools</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-[#5A6C85]">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#5A6C85] sm:mt-5 sm:text-lg">
             {TOTAL_TOOLS} professional calculators for contractors, builders,
             estimators, and homeowners — concrete, framing, roofing, MEP, and
             bid math that runs right in your browser. No sign-up, no fees.
           </p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Button asChild className="min-h-[48px] text-base">
+          <div className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row">
+            <Button asChild className="min-h-[48px] w-full text-base sm:w-auto">
               <Link href="/tools">
                 Explore Tools <ArrowRight className="h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild variant="outline" className="min-h-[48px] text-base">
+            <Button
+              asChild
+              variant="outline"
+              className="min-h-[48px] w-full text-base sm:w-auto"
+            >
               <Link href="/request-tool">Request a Tool</Link>
             </Button>
           </div>
-          <div className="mt-7 max-w-2xl">
+          <div className="mt-6 max-w-2xl sm:mt-7">
             <HeroSearch />
           </div>
         </div>
-        <div className="hidden justify-center lg:flex" aria-hidden="true">
+        <div
+          className="hidden min-w-0 justify-center lg:flex"
+          aria-hidden="true"
+        >
           <MeasureGraphic />
         </div>
       </div>
