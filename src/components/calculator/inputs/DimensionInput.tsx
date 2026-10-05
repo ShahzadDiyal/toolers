@@ -37,6 +37,8 @@ interface DimensionInputProps {
   maxFeet?: number;
   hint?: string;
   disabled?: boolean;
+  /** Which entry mode shows first. Default "decimal". */
+  defaultMode?: DimMode;
 }
 
 export function DimensionInput({
@@ -49,8 +51,9 @@ export function DimensionInput({
   maxFeet,
   hint,
   disabled = false,
+  defaultMode = "decimal",
 }: DimensionInputProps) {
-  const [mode, setMode] = React.useState<DimMode>("decimal");
+  const [mode, setMode] = React.useState<DimMode>(defaultMode);
   const [text, setText] = React.useState("");
   const [ftText, setFtText] = React.useState("");
   const [inText, setInText] = React.useState("");

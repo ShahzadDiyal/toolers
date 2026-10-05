@@ -19,6 +19,10 @@ import {
 import { toolIcon } from "@/lib/tool-icons";
 import { ConcreteSlabTool } from "@/components/calculator/tools/ConcreteSlabTool";
 import { RoofPitchShinglesTool } from "@/components/calculator/tools/RoofPitchShinglesTool";
+import { FramingDrywallPackTool } from "@/components/calculator/tools/FramingDrywallPackTool";
+import { StairStringerLayoutTool } from "@/components/calculator/tools/StairStringerLayoutTool";
+import { RebarMeshEstimatorTool } from "@/components/calculator/tools/RebarMeshEstimatorTool";
+import { TileGroutCalculatorTool } from "@/components/calculator/tools/TileGroutCalculatorTool";
 import { TrackRecentTool } from "@/components/tools/TrackRecentTool";
 import {
   Card,
@@ -52,6 +56,10 @@ export async function generateMetadata({
 const TOOL_COMPONENTS: Record<string, React.ComponentType> = {
   "concrete-slab": ConcreteSlabTool,
   "roof-pitch-shingles": RoofPitchShinglesTool,
+  "framing-drywall-pack": FramingDrywallPackTool,
+  "stair-stringer-layout": StairStringerLayoutTool,
+  "rebar-mesh-estimator": RebarMeshEstimatorTool,
+  "tile-grout-calculator": TileGroutCalculatorTool,
 };
 
 function ToolHeader({ slug }: { slug: string }) {
