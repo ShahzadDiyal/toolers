@@ -45,6 +45,11 @@ import { FenceGateEstimatorTool } from "@/components/calculator/tools/FenceGateE
 import { PaverPatioSandTool } from "@/components/calculator/tools/PaverPatioSandTool";
 import { SidingHousewrapTool } from "@/components/calculator/tools/SidingHousewrapTool";
 import { RafterTrussCutsTool } from "@/components/calculator/tools/RafterTrussCutsTool";
+import { HvacBtuTonnageTool } from "@/components/calculator/tools/HvacBtuTonnageTool";
+import { InsulationBattRollTool } from "@/components/calculator/tools/InsulationBattRollTool";
+import { PexPipePlumbingTool } from "@/components/calculator/tools/PexPipePlumbingTool";
+import { BaseboardCrownMoldingTool } from "@/components/calculator/tools/BaseboardCrownMoldingTool";
+import { CeilingTextureDrywallTool } from "@/components/calculator/tools/CeilingTextureDrywallTool";
 import { TrackRecentTool } from "@/components/tools/TrackRecentTool";
 import {
   Card,
@@ -111,6 +116,11 @@ const TOOL_COMPONENTS: Record<string, React.ComponentType> = {
   "paver-patio-sand": PaverPatioSandTool,
   "siding-housewrap": SidingHousewrapTool,
   "rafter-truss-cuts": RafterTrussCutsTool,
+  "hvac-btu-tonnage": HvacBtuTonnageTool,
+  "insulation-batt-roll": InsulationBattRollTool,
+  "pex-pipe-plumbing": PexPipePlumbingTool,
+  "baseboard-crown-molding": BaseboardCrownMoldingTool,
+  "ceiling-texture-drywall": CeilingTextureDrywallTool,
 };
 
 function ToolHeader({ slug }: { slug: string }) {

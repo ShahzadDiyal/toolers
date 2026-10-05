@@ -241,7 +241,7 @@ const HOME_FAQS = [
   },
   {
     q: "Which calculators are available?",
-    a: "Concrete (slabs, footings, rebar), CMU block and mortar, framing and drywall, roof pitch and shingles, rafter cut lengths, stairs with IRC code checks, tile and grout, paint, flooring, siding and housewrap, decks, fences, pavers, excavation and dirt haul, retaining walls, aggregate tonnage, asphalt paving, electrical conduit and voltage drop, plus markup-vs-margin bid math — with more on the way.",
+    a: "Concrete (slabs, footings, rebar), CMU block and mortar, framing and drywall, roof pitch and shingles, rafter cut lengths, stairs with IRC code checks, tile and grout, paint, flooring, drywall texture and mud, insulation, trim and molding, siding and housewrap, decks, fences, pavers, excavation and dirt haul, retaining walls, aggregate tonnage, asphalt paving, HVAC sizing, PEX plumbing, electrical conduit and voltage drop, plus markup-vs-margin bid math — with more on the way.",
   },
 ];
 
