@@ -897,20 +897,127 @@ export const TOOLS: ToolMetadata[] = [
     ],
   },
   {
-    id: "overhead-recovery",
-    slug: "overhead-recovery",
-    title: "Overhead Recovery Rate",
+    id: "labor-burden-hourly",
+    slug: "labor-burden-hourly",
+    title: "True Burdened Labor Rate",
     shortDescription:
-      "Your true hourly overhead and the billable rate that covers it.",
+      "Base wage vs. true employer cost per billable hour — taxes, comp, PTO, benefits included.",
+    category: "financial-business",
+    subtrade: "Labor",
+    tags: ["labor burden", "hourly rate", "payroll", "workers comp", "true cost", "wage"],
+    iconName: "Users",
+    formulaSummary: "Burdened $/hr = total annual cost ÷ billable hrs",
+    inputsSummary: "Wage + taxes + comp + PTO + benefits + efficiency",
+    outputs: ["True cost per billable hour", "Burden % multiplier", "Annual cost breakdown"],
+    badge: "New",
+    estimatedTime: "< 3 min",
+    available: true,
+    details: [
+      "Payroll taxes, workers' comp, liability, PTO, and benefits stack on top of every base wage — a $28/hr wage typically costs $38–$42/hr to employ.",
+      "Billable efficiency (default 80%) shrinks the 2,080-hour year by travel, shop time, weather, and holidays before the rate is computed.",
+      "The burden % multiplier shows exactly how much to mark up raw wages so labor pays for itself on every bid.",
+    ],
+    howTo:
+      "Enter the base wage, statutory tax rates, workers' comp per $100 of payroll, and how you carry general liability. Add paid holidays, vacation/sick days, and annual benefits. Set billable efficiency (80% is typical), then size the crew and hours for the bid line. Press Add to Master Estimate to dispatch the burdened labor allocation.",
+    faqs: [
+      {
+        q: "Why is the burdened rate so much higher than the wage?",
+        a:
+          "FICA (7.65%) and unemployment taxes (~3.5%) add ~11% immediately. Workers' comp for carpentry/roofing runs $8–$15 per $100 of payroll. PTO is paid time with zero production. And only ~80% of the 2,080-hour year is billable after travel, shop time, and weather. Combined, a +35–50% burden is normal.",
+      },
+      {
+        q: "What billable efficiency should I use?",
+        a:
+          "80% is the industry rule of thumb for field crews — it accounts for travel between jobs, tool maintenance, material runs, safety meetings, and weather delays. Office-heavy or far-flung service areas may run 70–75%. Track a few months of timesheets to calibrate yours.",
+      },
+      {
+        q: "Does this replace my accountant's payroll numbers?",
+        a:
+          "No — this is a bidding tool, not a tax filing. State unemployment rates, comp class codes, and benefit costs vary. Use your actual year-end payroll figures to tune the inputs, and confirm tax treatment with your bookkeeper.",
+      },
+    ],
+  },
+  {
+    id: "sub-piece-rate",
+    slug: "sub-piece-rate",
+    title: "Subcontractor Piece-Work & Crew Production",
+    shortDescription:
+      "Total payout, effective hourly yield, and production pace for piece-rate crews.",
+    category: "financial-business",
+    subtrade: "Labor",
+    tags: ["piece work", "subcontractor", "production rate", "crew", "payout", "roofing square"],
+    iconName: "Hammer",
+    formulaSummary: "$/hr effective = (qty × rate) ÷ man-hours",
+    inputsSummary: "Trade unit + quantity + piece rate + crew + time",
+    outputs: ["Total subcontract payout", "Effective $/hr per worker", "Units per man-hour"],
+    badge: "New",
+    estimatedTime: "< 2 min",
+    available: true,
+    details: [
+      "Total payout = quantity × piece rate: the exact check you'll write the subcontractor.",
+      "Effective hourly yield = payout ÷ man-hours: what each installer really earns — compare against local wages.",
+      "Production velocity (units per man-hour) becomes your benchmark for bidding the next job of the same type.",
+    ],
+    howTo:
+      "Pick the trade's piece unit, enter total quantity and the agreed rate per unit. Add crew size and estimated completion time (in days or hours). Compare the effective hourly yield against local wages — if it lands far below market, expect quality or retention problems.",
+    faqs: [
+      {
+        q: "What's a fair effective hourly rate for piece work?",
+        a:
+          "It should meet or beat what the same installer earns hourly locally — piece work usually pays a 10–20% premium because the crew absorbs downtime risk. If your numbers show $18/hr effective in a $28/hr market, the rate is too low or the time estimate too generous.",
+      },
+      {
+        q: "How do I use the production velocity number?",
+        a:
+          "Velocity (units per man-hour) is your benchmark. Record it per crew and trade — next time you bid similar work, divide the quantity by velocity to estimate man-hours, then sanity-check any sub's proposed schedule against it.",
+      },
+      {
+        q: "Should I include materials in the piece rate?",
+        a:
+          "This calculator assumes labor-only piece rates. If your sub supplies materials (common in roofing and flooring), add a separate material line from the relevant calculator and keep the piece rate labor-only for clean comparisons.",
+      },
+    ],
+  },
+  {
+    id: "jobsite-breakeven",
+    slug: "jobsite-breakeven",
+    title: "Daily Overhead & Breakeven Rate",
+    shortDescription:
+      "Your minimum daily cost to keep the doors open — before profit.",
     category: "financial-business",
     subtrade: "Overhead",
-    tags: ["overhead", "hourly rate", "burden", "labor rate", "billable"],
+    tags: ["overhead", "breakeven", "daily rate", "fixed costs", "survival rate", "billable"],
     iconName: "Gauge",
-    formulaSummary: "Rate = overhead ÷ billable hrs",
-    inputsSummary: "Annual overhead + hours",
-    outputs: ["Hourly overhead", "Billable rate"],
-    estimatedTime: "< 2 min",
-    available: false,
+    formulaSummary: "Daily overhead = annual fixed costs ÷ billable days",
+    inputsSummary: "5 annual cost buckets + billable days + profit target",
+    outputs: ["Daily overhead cost", "Hourly shop overhead", "Minimum daily bid threshold"],
+    badge: "New",
+    estimatedTime: "< 3 min",
+    available: true,
+    details: [
+      "Daily overhead = annual fixed costs ÷ billable days: the zero-profit floor. Never bid below it.",
+      "Survival rate = daily overhead ÷ (1 − profit target): the minimum daily bid that actually leaves profit.",
+      "220 billable days (not 260) accounts for rain, holidays, breakdowns, and gaps between jobs.",
+    ],
+    howTo:
+      "Enter the five annual fixed-cost buckets honestly — pull them from last year's books. Set billable days (220 is typical) and your profit buffer target (15% default). Use the daily overhead as the absolute floor and the survival rate as your minimum daily bid. Dispatch the allocation line with the project's day count.",
+    faqs: [
+      {
+        q: "What's the difference between daily overhead and the survival rate?",
+        a:
+          "Daily overhead is the zero-profit breakeven — bid below it and you lose money even with perfect execution. The survival rate divides overhead by (1 − profit target), so a 15% target on $400/day overhead gives a $471/day minimum bid that actually leaves profit.",
+      },
+      {
+        q: "Why 220 billable days instead of 260 weekdays?",
+        a:
+          "Rain days, holidays, sick days, equipment breakdowns, and gaps between jobs eat roughly 40 days a year. Bidding against 260 days understates your true daily cost by ~15% — the classic way busy contractors go broke.",
+      },
+      {
+        q: "Should labor burden be included here too?",
+        a:
+          "No — keep them separate. This tool covers fixed business overhead (trucks, insurance, office, admin). Field labor burden belongs in the True Burdened Labor Rate calculator. Add both lines to a bid and nothing gets double-counted.",
+      },
+    ],
   },
   {
     id: "break-even",
@@ -947,37 +1054,85 @@ export const TOOLS: ToolMetadata[] = [
 
   /* ---------------- Field Converters & Master Proposal ---------------- */
   {
-    id: "fraction-converter",
-    slug: "fraction-converter",
-    title: "Feet-Inches-Fraction Converter",
+    id: "feet-inch-fraction",
+    slug: "feet-inch-fraction",
+    title: "Feet-Inches-Fraction Keypad",
     shortDescription:
-      "Decimals ↔ architectural fractions in both directions, to 1/16\".",
+      "Jobsite keypad for fractional dimension math — add, subtract, multiply, divide to 1/16\".",
     category: "utilities",
     subtrade: "Converters",
-    tags: ["fraction", "converter", "tape measure", "decimal", "inches", "feet"],
+    tags: ["fraction", "keypad", "tape measure", "feet inches", "dimension math", "1/16"],
     iconName: "Sigma",
-    formulaSummary: "0.28125 ft ↔ 3-3/8\"",
-    inputsSummary: "Decimal or fraction",
-    outputs: ["Fraction string", "Decimal feet"],
+    formulaSummary: "14' 7-3/8\" + 9' 11-1/2\" = 24' 6-7/8\"",
+    inputsSummary: "Tap-key dimension entry",
+    outputs: ["Architectural result", "Decimal + metric equivalents"],
     badge: "Most Popular",
     estimatedTime: "< 1 min",
-    available: false,
+    available: true,
+    details: [
+      "Add, subtract, multiply, and divide dimensions like 14 ft 7-3/8 in with big touch-friendly keys.",
+      "All arithmetic runs in integer 16ths of an inch — no floating-point drift, fractions stay exact.",
+      "Every result shows the reduced fraction plus decimal inches, decimal feet, and metric equivalents.",
+    ],
+    howTo:
+      "Tap digits, the foot/inch keys, and fraction presets to build a dimension (e.g. 14′ 7 3/8″), then tap an operator and build the next one. Press = for the result, copy it, copy decimal feet, or push the measurement straight into your estimate as a reference line.",
+    faqs: [
+      {
+        q: "Why do my phone calculator results differ by a 16th?",
+        a:
+          "Phone calculators use floating-point decimals, so 0.1 + 0.2 ≠ 0.3 exactly — errors accumulate across chained cuts. This keypad does all arithmetic in integer 16ths of an inch, the same way you'd work it on paper, so fractions stay exact.",
+      },
+      {
+        q: "Can I chain calculations, like adding three wall lengths?",
+        a:
+          "Yes. After pressing =, tap an operator to continue from the last result, or just keep building expressions. Your recent calculations are saved on the device for the day.",
+      },
+      {
+        q: "How do I enter something like 9' 11-1/2\"?",
+        a:
+          "Tap 9, the ft key, 1, 1, the 1/2 preset, and the in key. The display reads your entry back as a live dimension preview so you can verify before pressing =.",
+      },
+    ],
   },
   {
-    id: "unit-converter",
-    slug: "unit-converter",
+    id: "unit-converter-pro",
+    slug: "unit-converter-pro",
     title: "Construction Unit Converter",
     shortDescription:
-      "Length, area, and volume conversions: sq ft, squares, cu yd, metric.",
+      "Two-way area, volume, and weight conversions — sq ft, squares, cu yd, metric, tons.",
     category: "utilities",
     subtrade: "Converters",
-    tags: ["convert", "units", "sqft", "cuyd", "metric", "area", "volume", "squares"],
+    tags: ["convert", "units", "sqft", "cuyd", "metric", "area", "volume", "squares", "tons"],
     iconName: "ArrowLeftRight",
     formulaSummary: "1 cu yd = 27 cu ft",
-    inputsSummary: "Value + units",
-    outputs: ["Converted values"],
+    inputsSummary: "Value + from/to units",
+    outputs: ["Converted value", "All-unit comparison table"],
     estimatedTime: "< 1 min",
-    available: false,
+    available: true,
+    details: [
+      "Area: sq ft ↔ sq yd ↔ roofing squares ↔ acres ↔ sq m. Volume: cu ft ↔ cu yd ↔ gallons ↔ cu m ↔ liters. Weight: lb ↔ tons ↔ tonnes ↔ kg.",
+      "Two-way and instant — tap swap to reverse direction, tap any reference card to copy it.",
+      "Defined relationships are exact (1 cu yd = 27 cu ft); metric factors use standard values.",
+    ],
+    howTo:
+      "Pick Area, Volume, or Weight, choose the from/to units, and type a value — conversion is instant. Tap the swap button to reverse direction, tap any reference card to copy it, or save the conversion as a note line in your estimate.",
+    faqs: [
+      {
+        q: "How many square feet are in a roofing square?",
+        a:
+          "Exactly 100 sq ft per square — and a square of 3-tab shingles is 3 bundles. Switch to the Area tab, enter squares, and convert to bundles mentally: squares × 3.",
+      },
+      {
+        q: "How heavy is a cubic yard of concrete?",
+        a:
+          "About 4,000 lbs — 2 tons — for standard mix. Use the Weight tab to convert supplier quotes between tons, pounds, and metric tonnes before comparing prices.",
+      },
+      {
+        q: "Are the conversions exact?",
+        a:
+          "Yes for defined relationships (1 cu yd = 27 cu ft exactly, 1 in = 25.4 mm exactly). Metric conversions use standard factors (1 sq m = 10.7639 sq ft). Results round to 6 significant figures.",
+      },
+    ],
   },
   {
     id: "right-triangle",
@@ -996,21 +1151,45 @@ export const TOOLS: ToolMetadata[] = [
     available: false,
   },
   {
-    id: "proposal-builder",
-    slug: "proposal-builder",
+    id: "master-proposal-builder",
+    slug: "master-proposal-builder",
     title: "Master Proposal Builder",
     shortDescription:
-      "Assemble your bid cart into a client-ready proposal summary.",
+      "Compile every bid line into a branded client proposal — download the PDF locally.",
     category: "utilities",
     subtrade: "Proposal",
-    tags: ["proposal", "bid", "quote", "client", "master estimate", "summary"],
+    tags: ["proposal", "bid", "quote", "client", "pdf", "contract", "master estimate"],
     iconName: "FileSpreadsheet",
-    formulaSummary: "Proposal = Σ lines + markup/tax",
-    inputsSummary: "Bid cart lines",
-    outputs: ["Proposal summary", "Line items"],
+    formulaSummary: "Proposal = Σ lines + markup + contingency + tax",
+    inputsSummary: "Bid cart lines + branding",
+    outputs: ["Client-ready PDF proposal", "Payment schedule", "JSON backup"],
     badge: "New",
-    estimatedTime: "< 2 min",
-    available: false,
+    estimatedTime: "< 5 min",
+    available: true,
+    details: [
+      "Every line dispatched by the 30 calculators lands in one editable bill of materials, grouped by trade.",
+      "Company branding, logo, client and project details print on a client-ready PDF — payment schedule, terms, and signature lines included.",
+      "Markup or gross-margin mode, contingency, and tax compute the total contract value. The PDF is generated entirely in your browser — nothing uploads anywhere.",
+    ],
+    howTo:
+      "Open the builder after dispatching lines from any calculators. Edit quantities and prices inline, add custom lines, fill in company and client info, set your markup/margin, contingency, and tax, then press Download proposal PDF. Use the JSON backup to save or restore bids.",
+    faqs: [
+      {
+        q: "Where does my company info and logo go?",
+        a:
+          "It's saved in your browser's local storage on your device only — never uploaded. The logo, company name, license number, and contact details print on every proposal PDF header automatically.",
+      },
+      {
+        q: "What's the difference between markup % and margin % mode?",
+        a:
+          "Markup is profit as a percentage of cost (a 20% markup on $1,000 cost = $1,200 price). Gross margin is profit as a percentage of price (a 20% margin needs a 25% markup = $1,250 price). Toggle between them — the builder converts so the final price is identical either way.",
+      },
+      {
+        q: "Can I reload a saved bid later?",
+        a:
+          "Yes. Download JSON Project Backup saves the complete bid — lines, branding, client, and pricing settings. Restore from backup reloads everything exactly as it was, on any device.",
+      },
+    ],
   },
 ];
 

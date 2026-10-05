@@ -50,6 +50,12 @@ import { InsulationBattRollTool } from "@/components/calculator/tools/Insulation
 import { PexPipePlumbingTool } from "@/components/calculator/tools/PexPipePlumbingTool";
 import { BaseboardCrownMoldingTool } from "@/components/calculator/tools/BaseboardCrownMoldingTool";
 import { CeilingTextureDrywallTool } from "@/components/calculator/tools/CeilingTextureDrywallTool";
+import { LaborBurdenHourlyTool } from "@/components/calculator/tools/LaborBurdenHourlyTool";
+import { SubPieceRateTool } from "@/components/calculator/tools/SubPieceRateTool";
+import { JobsiteBreakevenTool } from "@/components/calculator/tools/JobsiteBreakevenTool";
+import { FeetInchFractionTool } from "@/components/calculator/tools/FeetInchFractionTool";
+import { UnitConverterProTool } from "@/components/calculator/tools/UnitConverterProTool";
+import { MasterProposalBuilderTool } from "@/components/calculator/tools/MasterProposalBuilderTool";
 import { TrackRecentTool } from "@/components/tools/TrackRecentTool";
 import {
   Card,
@@ -121,6 +127,12 @@ const TOOL_COMPONENTS: Record<string, React.ComponentType> = {
   "pex-pipe-plumbing": PexPipePlumbingTool,
   "baseboard-crown-molding": BaseboardCrownMoldingTool,
   "ceiling-texture-drywall": CeilingTextureDrywallTool,
+  "labor-burden-hourly": LaborBurdenHourlyTool,
+  "sub-piece-rate": SubPieceRateTool,
+  "jobsite-breakeven": JobsiteBreakevenTool,
+  "feet-inch-fraction": FeetInchFractionTool,
+  "unit-converter-pro": UnitConverterProTool,
+  "master-proposal-builder": MasterProposalBuilderTool,
 };
 
 function ToolHeader({ slug }: { slug: string }) {
