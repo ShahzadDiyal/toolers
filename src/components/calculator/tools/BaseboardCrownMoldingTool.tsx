@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Crown Molding, Baseboard & Miter Cut Estimator (Batch 4F).
+ * BuildCalc Pro Crown Molding, Baseboard & Miter Cut Estimator (Batch 4F).
  *
  * Trim boards, miter/scarf cut counts, and caulk tubes from room
  * perimeter and corners. Dispatches 2 estimate lines.
@@ -101,7 +101,7 @@ export function BaseboardCrownMoldingTool() {
   /* ---------------- Results ---------------- */
   const materials: MaterialRow[] = [
     {
-      label: `${profileLabel} — ${v.stockLengthFt}-ft stock`,
+      label: `${profileLabel} ${v.stockLengthFt}-ft stock`,
       net: `${formatNumber(t.netLF)} lin ft`,
       waste: `+${v.wastePct}%`,
       order: `${formatNumber(t.boards)} boards`,
@@ -116,7 +116,7 @@ export function BaseboardCrownMoldingTool() {
       note: `${t.scarfJoints} scarf joints on long runs`,
     },
     {
-      label: "Painter's caulk — 10 oz tubes",
+      label: "Painter's caulk 10 oz tubes",
       net: `${formatNumber(t.grossLF)} lin ft`,
       waste: "—",
       order: `${formatNumber(t.caulkTubes)} tubes`,
@@ -134,7 +134,7 @@ export function BaseboardCrownMoldingTool() {
     const ctx = `${profileLabel} · ${formatNumber(t.netLF)} lin ft · ${v.stockLengthFt}-ft stock`;
     addItem({
       toolSlug: SLUG,
-      title: `Architectural Moulding — ${profileLabel}`,
+      title: `Architectural Moulding ${profileLabel}`,
       category: "finishes",
       quantity: Math.round(t.grossLF * 10) / 10,
       unit: "lf",
@@ -225,7 +225,7 @@ export function BaseboardCrownMoldingTool() {
         </div>
         <p className="mt-1.5 text-xs text-zinc-500">
           {v.profile === "crown"
-            ? "Crown: 38°/52° spring angle · compound miters — 15% waste suggested."
+            ? "Crown: 38°/52° spring angle · compound miters 15% waste suggested."
             : v.profile === "baseboard"
               ? "Tall baseboard 4¼″–5¼″ · coped inside corners."
               : "Chair rail / picture frame · single-level miters."}
@@ -319,8 +319,8 @@ export function BaseboardCrownMoldingTool() {
       wastePercent={v.wastePct}
       materials={materials}
       materialCosts={[
-        { label: `${profileLabel} — ${formatNumber(t.grossLF)} × ${formatMoney(v.costPerLF)}/ft`, amount: Math.round(trimCost * 100) / 100 },
-        { label: `Caulk — ${formatNumber(t.caulkTubes)} × ${formatMoney(v.costPerCaulkTube)}`, amount: Math.round(caulkCost * 100) / 100 },
+        { label: `${profileLabel} ${formatNumber(t.grossLF)} × ${formatMoney(v.costPerLF)}/ft`, amount: Math.round(trimCost * 100) / 100 },
+        { label: `Caulk ${formatNumber(t.caulkTubes)} × ${formatMoney(v.costPerCaulkTube)}`, amount: Math.round(caulkCost * 100) / 100 },
       ]}
       total={Math.round(total * 100) / 100}
       onAddToEstimate={handleAdd}

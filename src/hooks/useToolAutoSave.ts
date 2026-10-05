@@ -1,10 +1,10 @@
 /**
- * BuildCalc Pro — Universal tool state hook (Phase 4A).
+ * BuildCalc Pro Universal tool state hook (Phase 4A).
  *
  * `useToolAutoSave<T>(toolSlug, initialValues)`:
  * - Restores the contractor's last inputs from localStorage on mount
  *   (key `tool_state_<slug>`; migrates legacy `buildcalc_draft_<slug>` once).
- * - Debounces writes by 300ms — typing never thrashes storage.
+ * - Debounces writes by 300ms typing never thrashes storage.
  * - Exposes `values`, `setValues` (partial merge), `resetToDefaults()`,
  *   `isDirty`, and `flush()` for an immediate write.
  *
@@ -58,7 +58,7 @@ function persistNow(slug: string, values: Record<string, unknown>): void {
       }),
     );
   } catch {
-    /* private mode / quota — the tool still works in-memory */
+    /* private mode / quota the tool still works in-memory */
   }
 }
 
@@ -152,7 +152,7 @@ export function useToolAutoSave<T extends Record<string, unknown>>(
         }),
       );
     } catch {
-      /* private mode / quota — the tool still works in-memory */
+      /* private mode / quota the tool still works in-memory */
     }
   }, []);
 

@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Conduit Fill & Voltage Drop Sizer (Phase 4C).
+ * BuildCalc Pro Conduit Fill & Voltage Drop Sizer (Phase 4C).
  *
  * Sub-modes: NEC Chapter 9 raceway fill (40%/31%/53%) and voltage-drop
  * sizing (3% branch-circuit guideline). Dispatches one package line:
@@ -194,7 +194,7 @@ export function ConduitFillVoltageDropTool() {
           waste: "—",
           order: `${fill.fillPct.toFixed(1)}% fill`,
           note: fill.violation
-            ? `OVERFILL — exceeds ${fill.limitPct}% NEC limit`
+            ? `OVERFILL exceeds ${fill.limitPct}% NEC limit`
             : `Within ${fill.limitPct}% NEC limit (Ch.9 Table 1)`,
           highlight: !fill.violation,
         },
@@ -267,7 +267,7 @@ export function ConduitFillVoltageDropTool() {
       notes: `${summary} · ${formatNumber(v.runLengthFt)} ft raceway + ${formatNumber(conductorFt)} ft conductor. Verify against adopted NEC and AHJ.`,
     });
     toast.success("Added to Master Bid Cart", {
-      description: `${summary} — ${formatMoney(materialCost)}`,
+      description: `${summary} ${formatMoney(materialCost)}`,
       action: { label: "View cart", onClick: () => setDrawerOpen(true) },
     });
   };
@@ -286,9 +286,9 @@ export function ConduitFillVoltageDropTool() {
     <>
       <div className="sm:col-span-2">
         <TradeFilterTabs
-          subtrades={["Conduit fill — NEC 40% max", "Voltage drop — 3% max"]}
+          subtrades={["Conduit fill NEC 40% max", "Voltage drop 3% max"]}
           active={
-            isFill ? "Conduit fill — NEC 40% max" : "Voltage drop — 3% max"
+            isFill ? "Conduit fill NEC 40% max" : "Voltage drop 3% max"
           }
           onChange={(l) =>
             set("subMode", l.startsWith("Conduit fill") ? "fill" : "vd")
@@ -337,7 +337,7 @@ export function ConduitFillVoltageDropTool() {
           </div>
           <div className="sm:col-span-2">
             <p className="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-zinc-400">
-              Conductors — THHN/THWN-2 copper
+              Conductors THHN/THWN-2 copper
             </p>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               {qtyFields.map(({ key, gauge }) => (
@@ -431,7 +431,7 @@ export function ConduitFillVoltageDropTool() {
 
       <div className="sm:col-span-2 rounded-xl border border-border bg-zinc-950/60 p-4">
         <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
-          Raceway package — for the estimate
+          Raceway package for the estimate
         </p>
         <div className="grid gap-4 sm:grid-cols-3">
           <PresetStepper
@@ -483,11 +483,11 @@ export function ConduitFillVoltageDropTool() {
         materials={materials}
         materialCosts={[
           {
-            label: `Raceway — ${formatNumber(v.runLengthFt)} ft × ${formatMoney(v.costPerConduitFt)}`,
+            label: `Raceway ${formatNumber(v.runLengthFt)} ft × ${formatMoney(v.costPerConduitFt)}`,
             amount: Math.round(conduitCost * 100) / 100,
           },
           {
-            label: `Conductors — ${formatNumber(conductorFt)} ft × ${formatMoney(v.costPerWireFt)}`,
+            label: `Conductors ${formatNumber(conductorFt)} ft × ${formatMoney(v.costPerWireFt)}`,
             amount: Math.round(wireCost * 100) / 100,
           },
         ]}
@@ -497,7 +497,7 @@ export function ConduitFillVoltageDropTool() {
       shareValues={v}
       />
       <p className="-mt-1 px-1 text-[11px] text-zinc-600">
-        Sizing aid only — verify against the adopted NEC edition and your AHJ.
+        Sizing aid only verify against the adopted NEC edition and your AHJ.
       </p>
     </div>
   );

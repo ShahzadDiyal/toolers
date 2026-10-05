@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Roof Pitch, Shingle & Underlayment Estimator (Phase 4A).
+ * BuildCalc Pro Roof Pitch, Shingle & Underlayment Estimator (Phase 4A).
  *
  * Footprint → pitch-adjusted true area → squares → bundles + underlayment.
  * Dispatches TWO estimate lines (shingles + underlayment) per the contract.
@@ -135,7 +135,7 @@ export function RoofPitchShinglesTool() {
     }
     addItem({
       toolSlug: SLUG,
-      title: `${shingleLabel} shingles — ${formatNumber(squares)} sq`,
+      title: `${shingleLabel} shingles ${formatNumber(squares)} sq`,
       category: "framing-roofing",
       quantity: bundles,
       unit: "ea",
@@ -145,7 +145,7 @@ export function RoofPitchShinglesTool() {
     });
     addItem({
       toolSlug: SLUG,
-      title: `Synthetic underlayment — ${formatNumber(rolls)} rolls`,
+      title: `Synthetic underlayment ${formatNumber(rolls)} rolls`,
       category: "framing-roofing",
       quantity: rolls,
       unit: "ea",
@@ -312,11 +312,11 @@ export function RoofPitchShinglesTool() {
       materials={materials}
       materialCosts={[
         {
-          label: `${shingleLabel} — ${formatNumber(bundles)} bundles × ${formatMoney(v.costPerBundle)}`,
+          label: `${shingleLabel} ${formatNumber(bundles)} bundles × ${formatMoney(v.costPerBundle)}`,
           amount: shingleCost,
         },
         {
-          label: `Underlayment — ${formatNumber(rolls)} rolls × ${formatMoney(v.costPerRoll)}`,
+          label: `Underlayment ${formatNumber(rolls)} rolls × ${formatMoney(v.costPerRoll)}`,
           amount: rollCost,
         },
       ]}

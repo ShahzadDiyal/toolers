@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Universal tool shell (Phase 4A).
+ * BuildCalc Pro Universal tool shell (Phase 4A).
  *
  * Desktop: two-column grid, inputs left, sticky results right.
  * Mobile: inputs stacked, full results inline below, plus a sticky bottom
@@ -46,7 +46,7 @@ export function ToolShell({
           <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">{inputs}</div>
         </div>
 
-        {/* Results — sticky rail on desktop, inline section on mobile */}
+        {/* Results sticky rail on desktop, inline section on mobile */}
         <div ref={resultsRef} className="min-w-0 scroll-mt-24">
           <div className="lg:sticky lg:top-32">{results}</div>
         </div>

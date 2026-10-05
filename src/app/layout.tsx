@@ -27,10 +27,10 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Free Contractor Estimating Calculators`,
+    default: `${SITE_NAME} Free Contractor Estimating Calculators`,
     template: `%s · ${SITE_NAME}`,
   },
-  description: SITE_TAGLINE + " No logins, no monthly fees, no cloud — your numbers never leave your device.",
+  description: SITE_TAGLINE + " No logins, no monthly fees, no cloud your numbers never leave your device.",
   keywords: [
     "construction calculator",
     "contractor estimate",
@@ -56,14 +56,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — Free Contractor Estimating Calculators`,
+    title: `${SITE_NAME} Free Contractor Estimating Calculators`,
     description: SITE_TAGLINE,
     url: SITE_URL,
     images: [{ url: "/icon.svg", alt: SITE_NAME }],
   },
   twitter: {
     card: "summary",
-    title: `${SITE_NAME} — Free Contractor Estimating Calculators`,
+    title: `${SITE_NAME} Free Contractor Estimating Calculators`,
     description: SITE_TAGLINE,
     images: ["/icon.svg"],
   },

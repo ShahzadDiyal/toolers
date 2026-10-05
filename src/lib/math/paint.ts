@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Paint, primer & ceiling math (Phase 4C).
+ * BuildCalc Pro Paint, primer & ceiling math (Phase 4C).
  * Pure functions, unit-testable. Inputs sanitized (non-finite → 0).
  */
 

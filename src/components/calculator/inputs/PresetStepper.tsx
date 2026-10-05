@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — PresetStepper (Phase 4A).
+ * BuildCalc Pro PresetStepper (Phase 4A).
  *
  * Ergonomic numeric input for dusty/gloved hands: 44px+ stepper buttons,
  * quick-preset chips, unit badge, keyboard arrows. The standard numeric

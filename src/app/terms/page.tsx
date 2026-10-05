@@ -57,7 +57,7 @@ export default function TermsPage() {
           <Section h2="2. Calculations are planning aids">
             <p>
               Results are estimates produced by standard industry formulas.
-              They are planning aids — not engineering advice, not a bid
+              They are planning aids not engineering advice, not a bid
               guarantee, and not a substitute for licensed professionals or
               your local building code. See the{" "}
               <a
@@ -82,7 +82,7 @@ export default function TermsPage() {
             <p>
               The platform has no database and no accounts. Estimates you
               create are stored only in your browser's local storage, on your
-              device. We cannot see, recover, or delete them for you — clear
+              device. We cannot see, recover, or delete them for you clear
               your browser data and they are gone. Exported files (JSON
               estimates, proposal PDFs) are generated on your device and
               belong to you.
@@ -99,8 +99,8 @@ export default function TermsPage() {
           <Section h2="6. No warranty">
             <p>
               The platform is provided “as is,” without warranties of any
-              kind. We work hard to keep the math correct — and we fix
-              verified errors — but we cannot guarantee every result suits
+              kind. We work hard to keep the math correct and we fix
+              verified errors but we cannot guarantee every result suits
               your project. You are responsible for verifying quantities,
               prices, and code compliance before you build or bid.
             </p>

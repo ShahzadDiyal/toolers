@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Flooring & trim math (Phase 4C).
+ * BuildCalc Pro Flooring & trim math (Phase 4C).
  * Pure functions, unit-testable. Inputs sanitized (non-finite → 0).
  */
 

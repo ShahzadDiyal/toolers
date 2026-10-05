@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Category hub: /categories/[category].
+ * BuildCalc Pro Category hub: /categories/[category].
  *
  * Category hero (PageHero) + responsive grid of tool cards. Each card shows
  * the tool icon, title, description, subtrade badge, its primary output,
@@ -114,7 +114,7 @@ export default async function CategoryPage({
             </span>
             <SectionHeading
               title={`${live.length} calculators`}
-              lede="Every tool below is free — results update live as you type."
+              lede="Every tool below is free results update live as you type."
             />
           </div>
         </Reveal>

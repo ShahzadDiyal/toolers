@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Scroll-reveal primitive.
+ * BuildCalc Pro Scroll-reveal primitive.
  *
  * Adds `.is-visible` to `.reveal` elements when they enter the viewport.
  * Respects prefers-reduced-motion (CSS handles the no-op).
@@ -68,8 +68,8 @@ export function Reveal({
  * The scoped <Reveal> wrapper only observes `.reveal` elements inside
  * its own subtree, so any plain `className="reveal"` element rendered
  * outside one stays at opacity:0 forever (invisible calculator bug).
- * This component observes every `.reveal` in its subtree — including
- * nodes added later by client-side navigation — and reveals them on
+ * This component observes every `.reveal` in its subtree including
+ * nodes added later by client-side navigation and reveals them on
  * scroll into view. Double-observing with scoped <Reveal> wrappers is
  * harmless (idempotent class add).
  */
@@ -116,7 +116,7 @@ export function GlobalReveal({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  // display:contents — the wrapper takes no space in layout.
+  // display:contents the wrapper takes no space in layout.
   return (
     <div ref={ref} className="contents">
       {children}

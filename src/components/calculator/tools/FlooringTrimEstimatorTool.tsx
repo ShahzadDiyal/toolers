@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Flooring & Baseboard Trim Estimator (Phase 4C).
+ * BuildCalc Pro Flooring & Baseboard Trim Estimator (Phase 4C).
  *
  * Plank boxes, underlayment rolls, and 16-ft baseboard sticks.
  * Dispatches up to 3 lines: cartons, underlayment, trim moulding.
@@ -120,7 +120,7 @@ export function FlooringTrimEstimatorTool() {
       note: "100 sq ft rolls",
     },
     {
-      label: `Baseboard — ${v.baseboardStyle}`,
+      label: `Baseboard ${v.baseboardStyle}`,
       net: t.perimeterFt > 0 ? `${formatNumber(t.perimeterFt)} lin ft` : "—",
       waste: t.perimeterFt > 0 ? "+10%" : "—",
       order: t.perimeterFt > 0 ? `${t.trimSticks} sticks` : "—",
@@ -141,7 +141,7 @@ export function FlooringTrimEstimatorTool() {
     const lines: string[] = [];
     addItem({
       toolSlug: SLUG,
-      title: `Flooring Cartons — ${v.flooringType}`,
+      title: `Flooring Cartons ${v.flooringType}`,
       category: "finishes",
       quantity: t.boxes,
       unit: "ea",
@@ -164,7 +164,7 @@ export function FlooringTrimEstimatorTool() {
     if (t.trimSticks > 0) {
       addItem({
         toolSlug: SLUG,
-        title: `Baseboard Trim Moulding — ${v.baseboardStyle}`,
+        title: `Baseboard Trim Moulding ${v.baseboardStyle}`,
         category: "finishes",
         quantity: t.trimSticks,
         unit: "ea",
@@ -226,7 +226,7 @@ export function FlooringTrimEstimatorTool() {
           unit="sq ft"
           step={10}
           min={0}
-          hint="Trim needs L × W — switch modes for baseboard."
+          hint="Trim needs L × W switch modes for baseboard."
         />
       )}
 
@@ -324,17 +324,17 @@ export function FlooringTrimEstimatorTool() {
       materials={materials}
       materialCosts={[
         {
-          label: `Flooring — ${t.boxes} × ${formatMoney(v.costPerBox)}`,
+          label: `Flooring ${t.boxes} × ${formatMoney(v.costPerBox)}`,
           amount: Math.round(boxesCost * 100) / 100,
         },
         {
-          label: `Underlayment — ${t.underlaymentRolls} × ${formatMoney(underlaymentCostPerRoll)}`,
+          label: `Underlayment ${t.underlaymentRolls} × ${formatMoney(underlaymentCostPerRoll)}`,
           amount: Math.round(underlaymentCost * 100) / 100,
         },
         ...(t.trimSticks > 0
           ? [
               {
-                label: `Trim — ${t.trimSticks} × ${formatMoney(v.costPerBaseboardStick)}`,
+                label: `Trim ${t.trimSticks} × ${formatMoney(v.costPerBaseboardStick)}`,
                 amount: Math.round(trimCost * 100) / 100,
               },
             ]

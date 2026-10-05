@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Recently used / quick-access rail.
+ * BuildCalc Pro Recently used / quick-access rail.
  * Reads the MRU slug list from localStorage; hidden when empty.
  */
 "use client";
@@ -24,7 +24,7 @@ export function RecentlyUsed() {
         <div className="flex items-center gap-2">
           <History className="h-4 w-4 text-primary" />
           <h2 className="font-display text-lg font-bold uppercase tracking-wide">
-            Quick access — pick up where you left off
+            Quick access pick up where you left off
           </h2>
         </div>
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

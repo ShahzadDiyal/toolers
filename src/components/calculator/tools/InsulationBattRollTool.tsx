@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Fiberglass Batt, Blown-In Cellulose & R-Value Sizer (Batch 4F).
+ * BuildCalc Pro Fiberglass Batt, Blown-In Cellulose & R-Value Sizer (Batch 4F).
  *
  * Bag counts from DOE/IECC target R-values with framing deductions.
  * Dispatches 1 estimate line.
@@ -95,7 +95,7 @@ export function InsulationBattRollTool() {
   /* ---------------- Results ---------------- */
   const materials: MaterialRow[] = [
     {
-      label: `${v.insType === "batts" ? "Fiberglass batts" : "Blown cellulose"} — R-${t.achievedR}`,
+      label: `${v.insType === "batts" ? "Fiberglass batts" : "Blown cellulose"} R-${t.achievedR}`,
       net: `${formatNumber(t.netAreaSqft)} sq ft cavity`,
       waste: "+5%",
       order: `${formatNumber(t.bags)} ${t.unitLabel}`,
@@ -123,7 +123,7 @@ export function InsulationBattRollTool() {
     const appLabel = INSULATION_APPS[v.app].label;
     addItem({
       toolSlug: SLUG,
-      title: `Thermal Insulation — R-${t.achievedR} ${v.insType === "batts" ? "Batts" : "Blown Cellulose"}`,
+      title: `Thermal Insulation R-${t.achievedR} ${v.insType === "batts" ? "Batts" : "Blown Cellulose"}`,
       category: "finishes",
       quantity: t.bags,
       unit: "bags",
@@ -267,7 +267,7 @@ export function InsulationBattRollTool() {
       wastePercent={5}
       materials={materials}
       materialCosts={[
-        { label: `${v.insType === "batts" ? "Batts" : "Cellulose"} R-${t.achievedR} — ${formatNumber(t.bags)} × ${formatMoney(v.costPerBag)}`, amount: Math.round(materialCost * 100) / 100 },
+        { label: `${v.insType === "batts" ? "Batts" : "Cellulose"} R-${t.achievedR} ${formatNumber(t.bags)} × ${formatMoney(v.costPerBag)}`, amount: Math.round(materialCost * 100) / 100 },
       ]}
       total={Math.round(materialCost * 100) / 100}
       onAddToEstimate={handleAdd}

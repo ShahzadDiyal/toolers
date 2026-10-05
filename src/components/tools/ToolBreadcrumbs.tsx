@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Trade-aware breadcrumbs for tool pages (client).
+ * BuildCalc Pro Trade-aware breadcrumbs for tool pages (client).
  *
  * Reads ?trade= from the URL (set by category hubs) to render the full
  * trail: Home > Category > Sub-Trade > Tool. Falls back to

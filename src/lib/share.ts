@@ -1,9 +1,9 @@
 /**
- * BuildCalc Pro — Shareable calculation links.
+ * BuildCalc Pro Shareable calculation links.
  *
  * Encodes a tool's input state into a URL hash (#s=<base64url>) so a
  * contractor can text/email an exact calculation to a client or crew member.
- * No server involved — the link carries the numbers.
+ * No server involved the link carries the numbers.
  */
 
 function toBase64Url(json: string): string {

@@ -1,8 +1,8 @@
 /**
- * BuildCalc Pro — Sub-trade filter pills.
+ * BuildCalc Pro Sub-trade filter pills.
  *
  * Horizontal scrollable segmented control with high-visibility amber active
- * state. Pure presentational — the parent owns state + URL synchronization.
+ * state. Pure presentational the parent owns state + URL synchronization.
  */
 "use client";
 

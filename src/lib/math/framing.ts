@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Wall framing & drywall math (Phase 4B).
+ * BuildCalc Pro Wall framing & drywall math (Phase 4B).
  *
  * Pure functions, unit-testable. All lengths in feet, areas in sq ft.
  * Inputs are sanitized: non-finite/negative values are treated as 0.
@@ -63,7 +63,7 @@ export function framingTakeoff(raw: FramingInputs): FramingTakeoff {
   // Every opening (door or window) gets 2 king/jack studs, a double 2×
   // header, and windows get a sill. Nominal opening width 3 ft (matches
   // the 21/15 ft² drywall deductions); header/sill lumber in 8-ft boards.
-  // Cripple studs above/below are cut from waste — not counted.
+  // Cripple studs above/below are cut from waste not counted.
   const baseStuds =
     lengthFt > 0 ? Math.ceil((lengthFt * 12) / spacingIn) + 1 : 0;
   const openings = doors + windows;

@@ -1,10 +1,10 @@
 /**
- * BuildCalc Pro — HVAC Heating/Cooling BTU Load & AC Tonnage Sizer (Batch 4F).
+ * BuildCalc Pro HVAC Heating/Cooling BTU Load & AC Tonnage Sizer (Batch 4F).
  *
  * Rule-of-thumb Manual-J-style sizing: climate zone base factors, ceiling
  * height, insulation, sun exposure, and occupants. Dispatches 2 lines.
  *
- * NOTE: budgeting/bid-scoping figures — not a substitute for an ACCA
+ * NOTE: budgeting/bid-scoping figures not a substitute for an ACCA
  * Manual J load calculation.
  */
 "use client";
@@ -156,7 +156,7 @@ export function HvacBtuTonnageTool() {
     const ctx = `${formatNumber(areaSqft)} sq ft · ${zone.label} · ${formatNumber(t.adjustedCoolingBtu)} BTU/hr cooling`;
     addItem({
       toolSlug: SLUG,
-      title: `HVAC Cooling Equipment — ${formatNumber(t.acTons)} Ton`,
+      title: `HVAC Cooling Equipment ${formatNumber(t.acTons)} Ton`,
       category: "mep",
       quantity: t.acTons,
       unit: "tons",
@@ -172,7 +172,7 @@ export function HvacBtuTonnageTool() {
       unit: "10k BTU",
       unitCost: v.costPer10kBtuHeat,
       wastePercent: 0,
-      notes: `${ctx} · ${formatNumber(t.heatingBtu)} BTU/hr heating · ${formatNumber(t.cfm)} CFM. Rule-of-thumb sizing — confirm with Manual J.`,
+      notes: `${ctx} · ${formatNumber(t.heatingBtu)} BTU/hr heating · ${formatNumber(t.cfm)} CFM. Rule-of-thumb sizing confirm with Manual J.`,
     });
     toast.success("2 lines added to Master Bid Cart", {
       description: `Cooling ${formatMoney(coolingCost)} · Heating ${formatMoney(heatingCost)}`,
@@ -333,8 +333,8 @@ export function HvacBtuTonnageTool() {
       wastePercent={0}
       materials={materials}
       materialCosts={[
-        { label: `Cooling — ${formatNumber(t.acTons)} × ${formatMoney(v.costPerTon)}/ton`, amount: Math.round(coolingCost * 100) / 100 },
-        { label: `Heating — ${formatNumber(Math.round(t.heatingBtu / 100) / 10)} × ${formatMoney(v.costPer10kBtuHeat)}/10k`, amount: Math.round(heatingCost * 100) / 100 },
+        { label: `Cooling ${formatNumber(t.acTons)} × ${formatMoney(v.costPerTon)}/ton`, amount: Math.round(coolingCost * 100) / 100 },
+        { label: `Heating ${formatNumber(Math.round(t.heatingBtu / 100) / 10)} × ${formatMoney(v.costPer10kBtuHeat)}/10k`, amount: Math.round(heatingCost * 100) / 100 },
       ]}
       total={Math.round(total * 100) / 100}
       onAddToEstimate={handleAdd}

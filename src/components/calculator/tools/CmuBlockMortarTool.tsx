@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — CMU Block, Mortar & Core-Fill Grout (Batch 4D).
+ * BuildCalc Pro CMU Block, Mortar & Core-Fill Grout (Batch 4D).
  *
  * Block count from wall area, Type S mortar bags, core-fill grout yards,
  * and bond-beam rebar sticks. Dispatches up to 4 estimate lines.
@@ -109,7 +109,7 @@ export function CmuBlockMortarTool() {
   /* ---------------- Results ---------------- */
   const materials: MaterialRow[] = [
     {
-      label: `CMU block — ${v.blockSize.replace("x", "×").replace("x", "×")}″`,
+      label: `CMU block ${v.blockSize.replace("x", "×").replace("x", "×")}″`,
       net: `${formatNumber(t.netBlocks)} ea`,
       waste: `+${v.blockWastePct}%`,
       order: `${formatNumber(t.orderBlocks)} blocks`,
@@ -117,7 +117,7 @@ export function CmuBlockMortarTool() {
       highlight: true,
     },
     {
-      label: "Type S mortar — 80-lb bags",
+      label: "Type S mortar 80-lb bags",
       net: `${formatNumber(Math.ceil(t.orderBlocks / 30))} bags`,
       waste: `+${v.mortarWastePct}%`,
       order: `${formatNumber(t.mortarBags)} bags`,
@@ -138,7 +138,7 @@ export function CmuBlockMortarTool() {
     ...(t.bondBeamSticks > 0
       ? [
           {
-            label: "Bond beam rebar — #4 × 20 ft",
+            label: "Bond beam rebar #4 × 20 ft",
             net: `${v.bondBeamCourses} course${v.bondBeamCourses > 1 ? "s" : ""}`,
             waste: "—",
             order: `${formatNumber(t.bondBeamSticks)} sticks`,
@@ -159,7 +159,7 @@ export function CmuBlockMortarTool() {
     let lines = 0;
     addItem({
       toolSlug: SLUG,
-      title: `CMU Concrete Blocks — ${v.blockSize}`,
+      title: `CMU Concrete Blocks ${v.blockSize}`,
       category: "concrete",
       quantity: t.orderBlocks,
       unit: "ea",
@@ -170,7 +170,7 @@ export function CmuBlockMortarTool() {
     lines++;
     addItem({
       toolSlug: SLUG,
-      title: "Type S Mortar — 80-lb bags",
+      title: "Type S Mortar 80-lb bags",
       category: "concrete",
       quantity: t.mortarBags,
       unit: "bags",
@@ -195,7 +195,7 @@ export function CmuBlockMortarTool() {
     if (t.bondBeamSticks > 0) {
       addItem({
         toolSlug: SLUG,
-        title: "Bond Beam Rebar — #4 × 20 ft sticks",
+        title: "Bond Beam Rebar #4 × 20 ft sticks",
         category: "concrete",
         quantity: t.bondBeamSticks,
         unit: "ea",
@@ -238,7 +238,7 @@ export function CmuBlockMortarTool() {
           }
         />
         <p className="mt-1.5 text-xs text-zinc-500">
-          Nominal 8″ × 16″ face with ⅜″ joints — ≈0.89 sq ft per block for every
+          Nominal 8″ × 16″ face with ⅜″ joints ≈0.89 sq ft per block for every
           width.
         </p>
       </div>
@@ -352,13 +352,13 @@ export function CmuBlockMortarTool() {
       wastePercent={v.blockWastePct}
       materials={materials}
       materialCosts={[
-        { label: `Blocks — ${formatNumber(t.orderBlocks)} × ${formatMoney(v.costPerBlock)}`, amount: Math.round(blockCost * 100) / 100 },
-        { label: `Mortar — ${formatNumber(t.mortarBags)} × ${formatMoney(v.costPerMortarBag)}`, amount: Math.round(mortarCost * 100) / 100 },
+        { label: `Blocks ${formatNumber(t.orderBlocks)} × ${formatMoney(v.costPerBlock)}`, amount: Math.round(blockCost * 100) / 100 },
+        { label: `Mortar ${formatNumber(t.mortarBags)} × ${formatMoney(v.costPerMortarBag)}`, amount: Math.round(mortarCost * 100) / 100 },
         ...(t.groutCuYd > 0
-          ? [{ label: `Grout — ${formatNumber(t.groutCuYd)} × ${formatMoney(v.costPerGroutYd)}/yd`, amount: Math.round(groutCost * 100) / 100 }]
+          ? [{ label: `Grout ${formatNumber(t.groutCuYd)} × ${formatMoney(v.costPerGroutYd)}/yd`, amount: Math.round(groutCost * 100) / 100 }]
           : []),
         ...(t.bondBeamSticks > 0
-          ? [{ label: `Rebar — ${formatNumber(t.bondBeamSticks)} × ${formatMoney(v.costPerRebarStick)}`, amount: Math.round(rebarCost * 100) / 100 }]
+          ? [{ label: `Rebar ${formatNumber(t.bondBeamSticks)} × ${formatMoney(v.costPerRebarStick)}`, amount: Math.round(rebarCost * 100) / 100 }]
           : []),
       ]}
       total={Math.round(materialCost * 100) / 100}

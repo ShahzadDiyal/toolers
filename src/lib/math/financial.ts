@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Contractor bid math: margin vs markup (Phase 4C).
+ * BuildCalc Pro Contractor bid math: margin vs markup (Phase 4C).
  *
  * The #1 pricing mistake in contracting is treating markup as margin.
  * Pure functions, unit-testable. Inputs sanitized (non-finite → 0).

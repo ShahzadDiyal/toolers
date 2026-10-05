@@ -51,7 +51,7 @@ export function ContactForm() {
           Message received
         </h2>
         <p className="mx-auto mt-2 max-w-md leading-relaxed text-[#5A6C85]">
-          Thanks, {name.trim().split(" ")[0]} — your message is on its way.
+          Thanks, {name.trim().split(" ")[0]} your message is on its way.
           We read every note and usually reply within a couple of business
           days.
         </p>
@@ -139,7 +139,7 @@ export function ContactForm() {
         )}
       </div>
       <p className="text-sm text-[#5A6C85]">
-        This form doesn't send data anywhere yet — it's ready for our inbox
+        This form doesn't send data anywhere yet it's ready for our inbox
         integration. Nothing is stored in your browser either.
       </p>
       <button

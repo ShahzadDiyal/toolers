@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Contractor Markup vs. Margin (Phase 4C).
+ * BuildCalc Pro Contractor Markup vs. Margin (Phase 4C).
  *
  * The pricing sanity check: margin ≠ markup. Live bid price, equivalent
  * conversions, overhead recovery, and net true profit. One click applies
@@ -118,7 +118,7 @@ function MarkupMarginMeter({
   return (
     <div className="rounded-xl border border-border bg-zinc-950 p-5">
       <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-zinc-500">
-        Markup vs. margin — the gap
+        Markup vs. margin the gap
       </p>
       <div className="mt-3 space-y-3">
         {[
@@ -302,7 +302,7 @@ export function ContractorMarkupMarginTool() {
         addLabel="Apply markup to Master Bid"
       />
       <p className="-mt-1 px-1 text-[11px] text-zinc-600">
-        “Total” above is your net true profit after overhead — the number that
+        “Total” above is your net true profit after overhead the number that
         actually hits the bottom line.
       </p>
     </div>

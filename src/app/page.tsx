@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Homepage.
+ * BuildCalc Pro Homepage.
  *
  * Platform landing: hero with search, category directory, how-it-works,
  * trust strip, FAQ, and final CTA. Calculation logic lives in the tool
@@ -116,7 +116,7 @@ function Hero() {
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#5A6C85] sm:mt-5 sm:text-lg">
             {TOTAL_TOOLS} professional calculators for contractors, builders,
-            estimators, and homeowners — concrete, framing, roofing, MEP, and
+            estimators, and homeowners concrete, framing, roofing, MEP, and
             bid math that runs right in your browser. No sign-up, no fees.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row">
@@ -185,7 +185,7 @@ function CategoryDirectory() {
                 <Link
                   href={categoryHref(c.id)}
                   className="lift group flex h-full min-h-[44px] flex-col rounded-xl border border-border bg-white p-5"
-                  aria-label={`${c.label} — ${live} tools`}
+                  aria-label={`${c.label} ${live} tools`}
                 >
                   <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[#14284A]">
                     <Icon className="h-5 w-5 text-white" aria-hidden />
@@ -282,7 +282,7 @@ const TRUST = [
   {
     icon: BadgeCheck,
     title: "Free forever",
-    text: "Every calculator is free — no trials, no paywalls, no feature gates.",
+    text: "Every calculator is free no trials, no paywalls, no feature gates.",
   },
   {
     icon: KeyRound,
@@ -311,7 +311,7 @@ function TrustStrip() {
         <SectionHeading
           eyebrow="Built on trust"
           title="Free tools, honest math"
-          lede="No subscriptions, no data collection, no fine print — just calculators that respect your time and your privacy."
+          lede="No subscriptions, no data collection, no fine print just calculators that respect your time and your privacy."
           className="reveal"
         />
         <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -341,11 +341,11 @@ function TrustStrip() {
 const HOME_FAQS = [
   {
     q: "Is BuildCalc Pro really free?",
-    a: "Yes — every calculator is free with no account, no trial, and no feature gates. Your estimates are stored in your own browser, not on our servers.",
+    a: "Yes every calculator is free with no account, no trial, and no feature gates. Your estimates are stored in your own browser, not on our servers.",
   },
   {
     q: "Do I need an internet connection on the job site?",
-    a: "Only for the first visit. After that the app is installable and works offline — all math runs 100% in your browser.",
+    a: "Only for the first visit. After that the app is installable and works offline all math runs 100% in your browser.",
   },
   {
     q: "How is this different from a phone calculator app?",
@@ -357,11 +357,11 @@ const HOME_FAQS = [
   },
   {
     q: "Can I print a material list for the supplier?",
-    a: "Yes — every calculator has a Print / Export slip button that produces a clean, ink-friendly material list with net quantities, waste, and order totals.",
+    a: "Yes every calculator has a Print / Export slip button that produces a clean, ink-friendly material list with net quantities, waste, and order totals.",
   },
   {
     q: "Which calculators are available?",
-    a: "All 31 are live: concrete (slabs, rebar), CMU block and mortar, framing and drywall, roof pitch and shingles, rafter cut lengths, stairs with IRC code checks, tile and grout, paint, flooring, drywall texture and mud, insulation, trim and molding, siding and housewrap, decks, fences, pavers, excavation and dirt haul, retaining walls, aggregate tonnage, asphalt paving, HVAC sizing, PEX plumbing, electrical conduit and voltage drop, true labor burden rates, subcontractor piece-work, daily overhead breakeven, markup-vs-margin bid math, a feet-inches-fraction keypad, a unit converter — plus the Master Proposal Builder that compiles everything into a client-ready PDF.",
+    a: "All 31 are live: concrete (slabs, rebar), CMU block and mortar, framing and drywall, roof pitch and shingles, rafter cut lengths, stairs with IRC code checks, tile and grout, paint, flooring, drywall texture and mud, insulation, trim and molding, siding and housewrap, decks, fences, pavers, excavation and dirt haul, retaining walls, aggregate tonnage, asphalt paving, HVAC sizing, PEX plumbing, electrical conduit and voltage drop, true labor burden rates, subcontractor piece-work, daily overhead breakeven, markup-vs-margin bid math, a feet-inches-fraction keypad, a unit converter plus the Master Proposal Builder that compiles everything into a client-ready PDF.",
   },
 ];
 
@@ -424,7 +424,7 @@ function FinalCta() {
                 Your next bid starts here.
               </h2>
               <p className="mt-3 max-w-xl leading-relaxed text-white/70">
-                Free construction calculators for every trade — no account, no
+                Free construction calculators for every trade no account, no
                 fees, works offline on the jobsite.
               </p>
             </div>

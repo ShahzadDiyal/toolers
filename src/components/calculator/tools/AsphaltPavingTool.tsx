@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Asphalt Paving & Driveway Estimator (Batch 4D).
+ * BuildCalc Pro Asphalt Paving & Driveway Estimator (Batch 4D).
  *
  * Hot-mix asphalt tonnage (110 lbs/sq yd/in) plus crushed aggregate
  * sub-base. Dispatches 2 lines: HMA surface + stone base course.
@@ -95,7 +95,7 @@ export function AsphaltPavingTool() {
   /* ---------------- Results ---------------- */
   const materials: MaterialRow[] = [
     {
-      label: `Hot-mix asphalt — ${formatNumber(v.asphaltThicknessIn)}″ compacted`,
+      label: `Hot-mix asphalt ${formatNumber(v.asphaltThicknessIn)}″ compacted`,
       net: `${formatNumber(t.sqYd)} sq yd`,
       waste: `+${v.wastePct}%`,
       order: `${formatNumber(t.asphaltTons)} tons`,
@@ -103,7 +103,7 @@ export function AsphaltPavingTool() {
       highlight: true,
     },
     {
-      label: `Aggregate sub-base — ${formatNumber(v.baseThicknessIn)}″ crusher run`,
+      label: `Aggregate sub-base ${formatNumber(v.baseThicknessIn)}″ crusher run`,
       net: `${formatNumber(t.areaSqft)} sq ft`,
       waste: "+10%",
       order: `${formatNumber(t.baseTons)} tons`,
@@ -124,7 +124,7 @@ export function AsphaltPavingTool() {
     if (t.asphaltTons > 0) {
       addItem({
         toolSlug: SLUG,
-        title: `Hot-Mix Asphalt — ${formatNumber(v.asphaltThicknessIn)}″`,
+        title: `Hot-Mix Asphalt ${formatNumber(v.asphaltThicknessIn)}″`,
         category: "site-exterior",
         quantity: t.asphaltTons,
         unit: "tons",
@@ -137,7 +137,7 @@ export function AsphaltPavingTool() {
     if (t.baseTons > 0) {
       addItem({
         toolSlug: SLUG,
-        title: `Crushed Stone Base — ${formatNumber(v.baseThicknessIn)}″`,
+        title: `Crushed Stone Base ${formatNumber(v.baseThicknessIn)}″`,
         category: "site-exterior",
         quantity: t.baseTons,
         unit: "tons",
@@ -290,8 +290,8 @@ export function AsphaltPavingTool() {
       wastePercent={v.wastePct}
       materials={materials}
       materialCosts={[
-        { label: `HMA — ${formatNumber(t.asphaltTons)} × ${formatMoney(v.costPerTonAsphalt)}/ton`, amount: Math.round(asphaltCost * 100) / 100 },
-        { label: `Base — ${formatNumber(t.baseTons)} × ${formatMoney(v.costPerTonBase)}/ton`, amount: Math.round(baseCost * 100) / 100 },
+        { label: `HMA ${formatNumber(t.asphaltTons)} × ${formatMoney(v.costPerTonAsphalt)}/ton`, amount: Math.round(asphaltCost * 100) / 100 },
+        { label: `Base ${formatNumber(t.baseTons)} × ${formatMoney(v.costPerTonBase)}/ton`, amount: Math.round(baseCost * 100) / 100 },
       ]}
       total={Math.round(total * 100) / 100}
       onAddToEstimate={handleAdd}

@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Site footer.
+ * BuildCalc Pro Site footer.
  *
  * Full platform navigation: brand block, Platform / Resources / Company /
  * Legal columns, tool-category strip, and an honest disclaimer line.
@@ -58,7 +58,7 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.3fr_2fr]">
           {/* Brand block */}
           <div>
-            <Link href="/" aria-label="BuildCalc Pro — home" className="inline-block rounded-lg">
+            <Link href="/" aria-label="BuildCalc Pro home" className="inline-block rounded-lg">
               <span className="inline-flex items-center gap-2.5">
                 <svg width="38" height="38" viewBox="0 0 64 64" role="img" aria-label="BuildCalc Pro">
                   <rect x="2" y="2" width="60" height="60" rx="15" fill="#FFFFFF" opacity="0.12" />
@@ -92,7 +92,7 @@ export function Footer() {
           {/* Link columns */}
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {COLUMNS.map((col) => (
-              <nav key={col.heading} aria-label={`Footer — ${col.heading}`}>
+              <nav key={col.heading} aria-label={`Footer ${col.heading}`}>
                 <h2 className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-white/50">
                   {col.heading}
                 </h2>
@@ -114,7 +114,7 @@ export function Footer() {
         </div>
 
         {/* Tool categories strip */}
-        <nav aria-label="Footer — tool categories" className="mt-10 border-t border-white/10 pt-6">
+        <nav aria-label="Footer tool categories" className="mt-10 border-t border-white/10 pt-6">
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             {CATEGORIES.map((c) => (
               <li key={c.id}>
@@ -133,7 +133,7 @@ export function Footer() {
         <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-[13px] text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} BuildCalc Pro. Free construction tools for everyone.</p>
           <p className="max-w-md sm:text-right">
-            Estimates are planning aids — verify quantities against your local
+            Estimates are planning aids verify quantities against your local
             codes and supplier quotes.
           </p>
         </div>

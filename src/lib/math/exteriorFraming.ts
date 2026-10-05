@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Exterior, decking & framing math (Batch 4E).
+ * BuildCalc Pro Exterior, decking & framing math (Batch 4E).
  *
  * Pure functions only: no React, no storage, no I/O. Order quantities
  * round UP; net values stay fractional for the materials table.
@@ -33,7 +33,7 @@ export interface DeckTakeoff {
   posts: number;
   /** 80-lb post concrete bags, from hole volume (rounded up per post). */
   concreteBags: number;
-  /** 80-lb bags per post — used to price the footing dispatch line. */
+  /** 80-lb bags per post used to price the footing dispatch line. */
   concreteBagsPerPost: number;
   /** Fastener packs (1 per 100 sq ft). */
   fastenerPacks: number;
@@ -54,7 +54,7 @@ export function deckTakeoff(i: DeckTakeoffInput): DeckTakeoff {
   const fieldJoists = Math.ceil((widthFt * 12) / spacingIn) + 1;
   const rimLedgerBoards = Math.ceil((2 * widthFt + 2 * projFt) / 16);
   const pitchIn = DECK_BOARD_PITCH_IN[i.boardType] ?? 5.75;
-  // Courses first, then waste, then round up — never under-order boards.
+  // Courses first, then waste, then round up never under-order boards.
   const deckingPlanks = Math.ceil(Math.ceil((projFt * 12) / pitchIn) * 1.1);
   const deckingLF = Math.round(deckingPlanks * widthFt * 10) / 10;
 
@@ -63,7 +63,7 @@ export function deckTakeoff(i: DeckTakeoffInput): DeckTakeoff {
     (Math.ceil(widthFt / postSpacingFt) + 1) *
     Math.max(1, Math.ceil(projFt / postSpacingFt));
   // Concrete from the actual hole volume: 12"-dia auger hole (standard),
-  // 80-lb bag yields 0.6 ft³. Bags per post are rounded up — suppliers
+  // 80-lb bag yields 0.6 ft³. Bags per post are rounded up suppliers
   // don't split bags.
   const holeDepthFt = Math.max(0, i.postHoleDepthIn) / 12;
   const holeVolFt3 = Math.PI * 0.25 * holeDepthFt; // π × (6"/12)² × depth
@@ -310,7 +310,7 @@ export interface RafterTakeoffInput {
   /** Horizontal eave overhang past the plate, inches. */
   overhangIn: number;
   rafterStock: "2x6" | "2x8";
-  /** Ridge (building) length, feet — for rafter count. */
+  /** Ridge (building) length, feet for rafter count. */
   ridgeLengthFt: number;
   rafterSpacingIn: 16 | 24;
 }

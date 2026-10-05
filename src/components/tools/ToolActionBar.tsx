@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Tool quick-action bar.
+ * BuildCalc Pro Tool quick-action bar.
  *
  * Rendered by the /tools/[slug] layout above every calculator:
  * Reset Inputs · Save JSON Draft · Open Master Cart.

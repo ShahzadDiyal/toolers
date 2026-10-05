@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — JSON-LD structured data helpers (SEO / AEO / GEO).
+ * BuildCalc Pro JSON-LD structured data helpers (SEO / AEO / GEO).
  *
  * Emits schema.org graphs: WebSite, SoftwareApplication, FAQPage,
  * BreadcrumbList, CollectionPage. Factual, concise markup helps search
@@ -31,7 +31,7 @@ export function websiteSchema(): Json {
     url: SITE_URL,
     name: SITE_NAME,
     description:
-      "Free contractor estimating calculators — concrete, framing, roofing, stairs, finishes, MEP and bid math. No account, no cloud.",
+      "Free contractor estimating calculators concrete, framing, roofing, stairs, finishes, MEP and bid math. No account, no cloud.",
     inLanguage: "en-US",
     potentialAction: {
       "@type": "SearchAction",
@@ -54,7 +54,7 @@ export function appSchema(): Json {
     operatingSystem: "Web",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     description:
-      "31 free construction calculators with bill-of-materials takeoffs and a master bid cart. 100% client-side — data never leaves the device.",
+      "31 free construction calculators with bill-of-materials takeoffs and a master bid cart. 100% client-side data never leaves the device.",
   };
 }
 
@@ -66,7 +66,7 @@ export function toolSchema(opts: {
 }): Json {
   return {
     "@type": "SoftwareApplication",
-    name: `${opts.title} — ${SITE_NAME}`,
+    name: `${opts.title} ${SITE_NAME}`,
     url: `${SITE_URL}/tools/${opts.slug}`,
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",

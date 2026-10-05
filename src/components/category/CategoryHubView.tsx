@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Category hub view (client).
+ * BuildCalc Pro Category hub view (client).
  *
  * Instant client-side filtering with URL query synchronization:
  *   ?trade=<sub-trade>&search=<term>

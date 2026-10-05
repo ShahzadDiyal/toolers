@@ -1,8 +1,8 @@
 /**
- * BuildCalc Pro — Brand mark.
+ * BuildCalc Pro Brand mark.
  *
  * The mark: a navy rounded square holding three ascending measuring bars
- * over a ruler baseline — measurement + calculation in one glyph.
+ * over a ruler baseline measurement + calculation in one glyph.
  * Geometric, no fine detail: legible from 16px favicon to hero sizes.
  *
  * Colors are locked to the brand board:
@@ -53,7 +53,7 @@ export function Logo({
   size?: number;
   className?: string;
   wordmarkClassName?: string;
-  /** Hide the wordmark (mark only) — for tight mobile headers. */
+  /** Hide the wordmark (mark only) for tight mobile headers. */
   compact?: boolean;
 }) {
   return (

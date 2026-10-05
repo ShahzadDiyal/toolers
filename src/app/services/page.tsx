@@ -11,7 +11,7 @@ import { PageHero, SectionHeading, CrumbNav } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Services — Free Construction Tools & Custom Calculators",
+  title: "Services Free Construction Tools & Custom Calculators",
   description:
     "What BuildCalc Pro offers: free construction calculators, custom calculator development, bid workflows, and estimating guides.",
 };
@@ -20,7 +20,7 @@ const SERVICES = [
   {
     icon: Calculator,
     title: "Free construction calculators",
-    body: "31 trade calculators — concrete, masonry, framing, roofing, finishes, excavation, MEP, and bid math — free to use, no account required. Every tool runs entirely in your browser.",
+    body: "31 trade calculators concrete, masonry, framing, roofing, finishes, excavation, MEP, and bid math free to use, no account required. Every tool runs entirely in your browser.",
     cta: { label: "Browse all tools", href: "/tools" },
   },
   {
@@ -32,13 +32,13 @@ const SERVICES = [
   {
     icon: FileText,
     title: "Proposal & bid workflow",
-    body: "Push any calculator's quantities straight into the Master Bid, apply markup or margin, set a payment schedule, and export a branded proposal PDF — still free, still in your browser.",
+    body: "Push any calculator's quantities straight into the Master Bid, apply markup or margin, set a payment schedule, and export a branded proposal PDF still free, still in your browser.",
     cta: { label: "Open the Proposal Builder", href: "/tools/master-proposal-builder" },
   },
   {
     icon: BookOpen,
     title: "Contractor estimating guides",
-    body: "Short, practical explainers on the math behind the tools — slab takeoffs, block and mortar quantities, roof pitch, stair layout, and markup vs. margin.",
+    body: "Short, practical explainers on the math behind the tools slab takeoffs, block and mortar quantities, roof pitch, stair layout, and markup vs. margin.",
     cta: { label: "Read the guides", href: "/blog" },
   },
 ];
@@ -97,7 +97,7 @@ export default function ServicesPage() {
             </h2>
             <p className="mt-3 max-w-2xl leading-relaxed text-white/75">
               BuildCalc Pro exists to make professional-grade construction
-              math accessible to everyone — contractors, estimators,
+              math accessible to everyone contractors, estimators,
               tradespeople, and homeowners alike.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">

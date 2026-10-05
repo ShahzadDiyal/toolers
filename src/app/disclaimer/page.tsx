@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { formatBlogDate } from "@/data/blog";
 
 export const metadata: Metadata = {
-  title: "Disclaimer — Estimates Are Planning Aids",
+  title: "Disclaimer Estimates Are Planning Aids",
   description:
     "BuildCalc Pro calculators are planning aids, not engineering advice. Always verify with licensed professionals and local codes.",
 };
@@ -38,7 +38,7 @@ export default function DisclaimerPage() {
       <PageHero
         eyebrow="Legal"
         title="Disclaimer"
-        lede={`Our calculators are planning aids — powerful ones — but they don't replace professional judgment. Last updated ${formatBlogDate(UPDATED)}.`}
+        lede={`Our calculators are planning aids powerful ones but they don't replace professional judgment. Last updated ${formatBlogDate(UPDATED)}.`}
       >
         <div className="mt-6">
           <CrumbNav
@@ -71,7 +71,7 @@ export default function DisclaimerPage() {
               BuildCalc Pro is not an engineering firm, and nothing on this
               site constitutes engineering, architectural, legal, or
               financial advice. Our calculators implement standard industry
-              formulas with clearly stated assumptions — but every project
+              formulas with clearly stated assumptions but every project
               has site conditions, loads, soils, and code requirements that
               no general-purpose calculator can know about.
             </p>
@@ -79,7 +79,7 @@ export default function DisclaimerPage() {
           <Section h2="Verify with licensed professionals">
             <p>
               Before you build, buy, or bid based on our numbers, have them
-              reviewed by the appropriate licensed professional — a
+              reviewed by the appropriate licensed professional a
               structural engineer for structural work, a licensed electrician
               for electrical sizing, and so on. Material quantities should be
               confirmed with your supplier; prices and availability change.
@@ -90,14 +90,14 @@ export default function DisclaimerPage() {
               Building codes vary by jurisdiction and change over time. Where
               our guides or calculators reference code provisions (for
               example, stair dimensions under the IRC), treat them as
-              educational summaries — always confirm the current, locally
+              educational summaries always confirm the current, locally
               adopted code with your building department or inspector before
               construction.
             </p>
           </Section>
           <Section h2="Assumptions and limitations">
             <p>
-              Every calculator documents its key assumptions — default waste
+              Every calculator documents its key assumptions default waste
               percentages, coverage rates, stock sizes, and unit conversions.
               Results are only as good as the inputs: measure twice, double
               check unusual dimensions, and sanity-check any result before

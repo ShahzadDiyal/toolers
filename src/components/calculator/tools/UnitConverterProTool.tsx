@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Construction Area & Volume Unit Converter (Batch 4G).
+ * BuildCalc Pro Construction Area & Volume Unit Converter (Batch 4G).
  */
 "use client";
 
@@ -85,7 +85,7 @@ export function UnitConverterProTool() {
       await navigator.clipboard.writeText(text);
       toast.success("Copied", { description: text });
     } catch {
-      toast.error("Copy failed — your browser blocked clipboard access");
+      toast.error("Copy failed your browser blocked clipboard access");
     }
   };
 

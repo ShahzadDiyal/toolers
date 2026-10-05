@@ -11,7 +11,7 @@ import { PageHero, SectionHeading, CrumbNav } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "About — Free Construction Calculators",
+  title: "About Free Construction Calculators",
   description:
     "BuildCalc Pro is a free, browser-based construction calculator platform: 31 tools across 7 trades, no account, no database.",
 };
@@ -20,7 +20,7 @@ const FACTS = [
   {
     icon: Calculator,
     title: "31 free calculators",
-    body: "Concrete, masonry, framing, roofing, finishes, excavation, MEP, and bid math — every tool free to use, with no feature locked behind a paywall.",
+    body: "Concrete, masonry, framing, roofing, finishes, excavation, MEP, and bid math every tool free to use, with no feature locked behind a paywall.",
   },
   {
     icon: ShieldCheck,
@@ -30,12 +30,12 @@ const FACTS = [
   {
     icon: Zap,
     title: "Instant results",
-    body: "Every calculation runs 100% in your browser. Type your dimensions and the results update live — no waiting on a server, no page reloads.",
+    body: "Every calculation runs 100% in your browser. Type your dimensions and the results update live no waiting on a server, no page reloads.",
   },
   {
     icon: Users,
     title: "Built for the field",
-    body: "For contractors, builders, estimators, tradespeople, and homeowners — anyone who needs practical construction math without the subscription.",
+    body: "For contractors, builders, estimators, tradespeople, and homeowners anyone who needs practical construction math without the subscription.",
   },
 ];
 
@@ -45,7 +45,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About"
         title="Professional construction tools. Free for everyone."
-        lede="BuildCalc Pro is a free construction calculator platform — 31 tools across 7 trades, running entirely in your browser."
+        lede="BuildCalc Pro is a free construction calculator platform 31 tools across 7 trades, running entirely in your browser."
       >
         <div className="mt-6">
           <CrumbNav
@@ -58,7 +58,7 @@ export default function AboutPage() {
           <SectionHeading
             eyebrow="What it is"
             title="A calculator platform, not a sales funnel"
-            lede="BuildCalc Pro started from a simple observation: contractors do the same construction math every day — concrete yards, block counts, rafter lengths, bid margins — and most of the tools for it are either expensive, ad-choked, or wrong. We built the tool we'd want on the jobsite."
+            lede="BuildCalc Pro started from a simple observation: contractors do the same construction math every day concrete yards, block counts, rafter lengths, bid margins and most of the tools for it are either expensive, ad-choked, or wrong. We built the tool we'd want on the jobsite."
           />
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
             {FACTS.map((f, i) => (
@@ -90,7 +90,7 @@ export default function AboutPage() {
               <p className="mt-3 leading-relaxed text-white/75">
                 BuildCalc Pro is a planning aid, not an engineering firm. Our
                 calculators use standard industry formulas and clearly stated
-                assumptions — but they don't replace a licensed engineer,
+                assumptions but they don't replace a licensed engineer,
                 your local building code, or your own judgment. See the{" "}
                 <Link
                   href="/disclaimer"

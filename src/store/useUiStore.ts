@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Ephemeral UI state (not persisted).
+ * BuildCalc Pro Ephemeral UI state (not persisted).
  * Drawer / command-menu open state lives here so any component
  * (navbar badge, calculator card toast actions, hero search) can open them.
  */

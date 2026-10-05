@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Segmental Retaining Wall & Geogrid Estimator (Batch 4D).
+ * BuildCalc Pro Segmental Retaining Wall & Geogrid Estimator (Batch 4D).
  *
  * SRW block courses, caps, drainage stone, base leveling rock, and
  * geogrid (auto-required over 4 ft). Dispatches up to 5 estimate lines.
@@ -96,7 +96,7 @@ export function RetainingWallBlockTool() {
   /* ---------------- Results ---------------- */
   const materials: MaterialRow[] = [
     {
-      label: `SRW wall block — ${v.blockSize === "6x16" ? '6″×16″' : '8″×18″'} face`,
+      label: `SRW wall block ${v.blockSize === "6x16" ? '6″×16″' : '8″×18″'} face`,
       net: `${t.courses} courses × ${formatNumber(t.blocksPerCourse)}/course`,
       waste: `+${v.blockWastePct}%`,
       order: `${formatNumber(t.totalBlocks)} blocks`,
@@ -111,14 +111,14 @@ export function RetainingWallBlockTool() {
       note: "One per block on the top course",
     },
     {
-      label: 'Drainage stone — ¾″ crushed',
+      label: 'Drainage stone ¾″ crushed',
       net: `${formatNumber(v.drainageWidthIn)}″ column × ${formatNumber(v.exposedHeightFt)} ft`,
       waste: "—",
       order: `${formatNumber(t.drainageTons)} tons`,
       note: "1.4 tons per cu yd",
     },
     {
-      label: "Base leveling pad — crusher run",
+      label: "Base leveling pad crusher run",
       net: '6″ deep × 24″ wide',
       waste: "—",
       order: `${formatNumber(t.baseTons)} tons`,
@@ -130,7 +130,7 @@ export function RetainingWallBlockTool() {
       waste: "—",
       order: t.geogridRequired ? `${formatNumber(t.geogridSqft)} sq ft` : "—",
       note: t.geogridRequired
-        ? "Every 2 courses · embed 0.7 × height — engineer-stamped design still required over 4 ft"
+        ? "Every 2 courses · embed 0.7 × height engineer-stamped design still required over 4 ft"
         : "Walls over 4 ft exposed need grid + engineered design",
       highlight: t.geogridRequired,
     },
@@ -147,7 +147,7 @@ export function RetainingWallBlockTool() {
     let lines = 0;
     addItem({
       toolSlug: SLUG,
-      title: `Retaining Wall Blocks — ${v.blockSize === "6x16" ? '6″×16″' : '8″×18″'}`,
+      title: `Retaining Wall Blocks ${v.blockSize === "6x16" ? '6″×16″' : '8″×18″'}`,
       category: "site-exterior",
       quantity: t.totalBlocks,
       unit: "ea",
@@ -169,7 +169,7 @@ export function RetainingWallBlockTool() {
     lines++;
     addItem({
       toolSlug: SLUG,
-      title: 'Drainage Gravel Backfill — ¾″ stone',
+      title: 'Drainage Gravel Backfill ¾″ stone',
       category: "site-exterior",
       quantity: t.drainageTons,
       unit: "tons",
@@ -305,11 +305,11 @@ export function RetainingWallBlockTool() {
       wastePercent={v.blockWastePct}
       materials={materials}
       materialCosts={[
-        { label: `Blocks — ${formatNumber(t.totalBlocks)} × ${formatMoney(v.costPerBlock)}`, amount: Math.round(blockCost * 100) / 100 },
-        { label: `Caps — ${formatNumber(t.capUnits)} × ${formatMoney(v.costPerCap)}`, amount: Math.round(capCost * 100) / 100 },
-        { label: `Stone — ${formatNumber(Math.round((t.drainageTons + t.baseTons) * 10) / 10)} tons × ${formatMoney(v.costPerTonStone)}`, amount: Math.round(stoneCost * 100) / 100 },
+        { label: `Blocks ${formatNumber(t.totalBlocks)} × ${formatMoney(v.costPerBlock)}`, amount: Math.round(blockCost * 100) / 100 },
+        { label: `Caps ${formatNumber(t.capUnits)} × ${formatMoney(v.costPerCap)}`, amount: Math.round(capCost * 100) / 100 },
+        { label: `Stone ${formatNumber(Math.round((t.drainageTons + t.baseTons) * 10) / 10)} tons × ${formatMoney(v.costPerTonStone)}`, amount: Math.round(stoneCost * 100) / 100 },
         ...(t.geogridRequired
-          ? [{ label: `Geogrid — ${formatNumber(t.geogridSqft)} × ${formatMoney(v.costPerSqftGrid)}/sq ft`, amount: Math.round(gridCost * 100) / 100 }]
+          ? [{ label: `Geogrid ${formatNumber(t.geogridSqft)} × ${formatMoney(v.costPerSqftGrid)}/sq ft`, amount: Math.round(gridCost * 100) / 100 }]
           : []),
       ]}
       total={Math.round(materialCost * 100) / 100}

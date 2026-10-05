@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Precision math & architectural unit conversions.
+ * BuildCalc Pro Precision math & architectural unit conversions.
  *
  * Construction math is unforgiving: 0.1 + 0.2 ≠ 0.3, and 12' 3-3/8" must parse
  * back to exactly 12.28125 ft. Everything here uses integer-backed rounding
@@ -137,7 +137,7 @@ export function parseArchitecturalLength(raw: string): ParsedLength | null {
   }
 
   // Split off the feet component if a ' or ft/feet marker exists.
-  // NOTE: no \b after the apostrophe — there is no word boundary between
+  // NOTE: no \b after the apostrophe there is no word boundary between
   // `'` and a following space, so `\b` would reject the common `12' 6"` form.
   const feetMatch = input.match(/^(-?\d+(?:\.\d+)?)\s*(?:'|ft\b|feet\b)/);
   let feet = 0;
@@ -151,8 +151,8 @@ export function parseArchitecturalLength(raw: string): ParsedLength | null {
   const cleaned = rest.replace(/["”]|in\b|inch(es)?\b/g, "").trim();
   let inches = 0;
   // Inches-only input with a leading sign (e.g. `-3/8"`, `-3.5"`): strip the
-  // sign first — the fraction regex treats `-` as a whole/fraction separator
-  // and would drop it — then reapply at the end.
+  // sign first the fraction regex treats `-` as a whole/fraction separator
+  // and would drop it then reapply at the end.
   let inchesSign = 1;
   let inchesSrc = cleaned;
   if (!feetMatch && inchesSrc.startsWith("-")) {
@@ -232,7 +232,7 @@ export function cuydToCuft(cuyd: number): number {
  * Standard contractor waste buffer.
  * @param quantity Net quantity.
  * @param wastePercent 0–100 (typical 10–15).
- * @returns `{ net, wasteAmount, gross }` — all rounded to 4 decimals.
+ * @returns `{ net, wasteAmount, gross }` all rounded to 4 decimals.
  */
 export function calculateWithWaste(
   quantity: number,

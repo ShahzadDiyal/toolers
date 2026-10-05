@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Trench, Excavation & Dirt Haul (Batch 4D).
+ * BuildCalc Pro Trench, Excavation & Dirt Haul (Batch 4D).
  *
  * Bank vs. loose (swell) cubic yards and heaped dump-truck loads.
  * Dispatches 2 lines: machine dig + hauling/disposal.
@@ -93,7 +93,7 @@ export function ExcavationDirtHaulTool() {
       net: `${formatNumber(t.bankCuYd)} cu yd`,
       waste: "—",
       order: `${formatNumber(t.bankCuYd)} cu yd`,
-      note: "L × W × D ÷ 27 — what you pay to dig",
+      note: "L × W × D ÷ 27 what you pay to dig",
       highlight: true,
     },
     {
@@ -101,11 +101,11 @@ export function ExcavationDirtHaulTool() {
       net: `${formatNumber(t.looseCuYd)} cu yd`,
       waste: `+${t.swellPct}%`,
       order: `${formatNumber(t.looseCuYd)} cu yd`,
-      note: `${SOIL_SWELL[v.soilType].label} — what you pay to haul`,
+      note: `${SOIL_SWELL[v.soilType].label} what you pay to haul`,
       highlight: true,
     },
     {
-      label: `Truckloads — ${v.truckCapacityYd}-yd trucks`,
+      label: `Truckloads ${v.truckCapacityYd}-yd trucks`,
       net: `${formatNumber(t.looseCuYd)} cu yd loose`,
       waste: "—",
       order: `${formatNumber(t.truckLoads)} loads`,
@@ -263,8 +263,8 @@ export function ExcavationDirtHaulTool() {
       wastePercent={0}
       materials={materials}
       materialCosts={[
-        { label: `Dig — ${formatNumber(t.bankCuYd)} × ${formatMoney(v.digRatePerYd)}/yd`, amount: Math.round(digCost * 100) / 100 },
-        { label: `Haul — ${formatNumber(t.truckLoads)} × ${formatMoney(v.haulFeePerLoad)}/load`, amount: Math.round(haulCost * 100) / 100 },
+        { label: `Dig ${formatNumber(t.bankCuYd)} × ${formatMoney(v.digRatePerYd)}/yd`, amount: Math.round(digCost * 100) / 100 },
+        { label: `Haul ${formatNumber(t.truckLoads)} × ${formatMoney(v.haulFeePerLoad)}/load`, amount: Math.round(haulCost * 100) / 100 },
       ]}
       total={Math.round(total * 100) / 100}
       onAddToEstimate={handleAdd}

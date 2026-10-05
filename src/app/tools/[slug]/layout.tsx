@@ -1,10 +1,10 @@
 /**
- * BuildCalc Pro — Tool page wrapper layout.
+ * BuildCalc Pro Tool page wrapper layout.
  *
  * Provides the quick-action bar (Reset inputs · Save JSON draft ·
  * Open Master Cart) above every /tools/[slug] calculator. The page
  * itself renders its own breadcrumbs, header, calculator, and
- * content sections — no sidebar.
+ * content sections no sidebar.
  */
 import { ToolActionBar } from "@/components/tools/ToolActionBar";
 

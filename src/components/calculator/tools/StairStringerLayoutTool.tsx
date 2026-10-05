@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Stair Stringer & Code Layout Calculator (Phase 4B).
+ * BuildCalc Pro Stair Stringer & Code Layout Calculator (Phase 4B).
  *
  * Solves stair geometry with key IRC R311.7 riser/tread checks.
  * Dispatches one line: "Stair Stringers & Structural Treads".
@@ -120,7 +120,7 @@ export function StairStringerLayoutTool() {
       waste: "—",
       order: `${s.stringerQty} boards`,
       note: s.overStockLength
-        ? "Over 16-ft stock — verify LVL/splice"
+        ? "Over 16-ft stock verify LVL/splice"
         : `${s.stringerQty} stringers @ ${formatNumber(v.widthIn, 1)}″ wide`,
       highlight: true,
     },
@@ -207,12 +207,12 @@ export function StairStringerLayoutTool() {
       {/* Live IRC code validator */}
       <div className="sm:col-span-2 rounded-xl border border-border bg-zinc-950/60 p-4">
         <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
-          Key IRC R311.7 checks — riser &amp; tread
+          Key IRC R311.7 checks riser &amp; tread
         </p>
         <p className="mb-3 text-xs text-zinc-500">
           Covers riser height and tread depth only. Full R311.7 compliance also
           requires riser/tread uniformity (⅜″), 6′-8″ headroom, 36″ stairway
-          width, landings, and handrails — verify on site.
+          width, landings, and handrails verify on site.
         </p>
         {valid ? (
           <div className="grid gap-2 sm:grid-cols-3">
@@ -291,11 +291,11 @@ export function StairStringerLayoutTool() {
       materials={materials}
       materialCosts={[
         {
-          label: `Stringers — ${s.stringerQty} × ${s.stringerBoardFt} ft × ${formatMoney(v.costPerBoardFt)}`,
+          label: `Stringers ${s.stringerQty} × ${s.stringerBoardFt} ft × ${formatMoney(v.costPerBoardFt)}`,
           amount: Math.round(stringerCost * 100) / 100,
         },
         {
-          label: `Treads — ${s.treadCount} × ${formatMoney(v.costPerTread)}`,
+          label: `Treads ${s.treadCount} × ${formatMoney(v.costPerTread)}`,
           amount: Math.round(treadsCost * 100) / 100,
         },
       ]}

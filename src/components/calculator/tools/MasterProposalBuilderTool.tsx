@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Master Bid Proposal & PDF Export Engine (Batch 4G).
+ * BuildCalc Pro Master Bid Proposal & PDF Export Engine (Batch 4G).
  *
  * Aggregates every line dispatched by the 30 calculators, adds branding,
  * client info, financial controls, and exports a client-ready PDF locally.
@@ -278,7 +278,7 @@ export function MasterProposalBuilderTool() {
   }, [items]);
 
   const editor = (
-    <Section icon={<ListChecks className="h-4 w-4" />} title={`Bill of materials — ${items.length} lines`}>
+    <Section icon={<ListChecks className="h-4 w-4" />} title={`Bill of materials ${items.length} lines`}>
       {items.length === 0 ? (
         <p className="rounded-xl border border-dashed border-border p-6 text-center text-sm text-zinc-500">
           No lines yet. Run any calculator and press “Add to Master Estimate” —
@@ -628,7 +628,7 @@ export function MasterProposalBuilderTool() {
 
       {/* Terms */}
       <Section icon={<FileDown className="h-4 w-4" />} title="Terms & conditions">
-        <Field label="One term per line — prints numbered on the PDF">
+        <Field label="One term per line prints numbered on the PDF">
           <textarea
             className={`${inputCls} min-h-[160px] py-3 font-mono text-xs leading-relaxed`}
             value={ps.termsText}
@@ -715,7 +715,7 @@ export function MasterProposalBuilderTool() {
                 onClick={() => {
                   useEstimateStore.getState().clearEstimate({ keepBranding: true });
                   setConfirmClear(false);
-                  toast.success("Estimate cleared — ready for the next bid");
+                  toast.success("Estimate cleared ready for the next bid");
                 }}
                 className="min-h-[48px] rounded-xl bg-red-600 text-sm font-black text-white"
               >

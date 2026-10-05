@@ -1,8 +1,8 @@
 /**
- * BuildCalc Pro — Online/offline awareness hook.
+ * BuildCalc Pro Online/offline awareness hook.
  *
  * The platform is 100% client-side: "offline" here is a feature badge, not an
- * error state. Components use this to show the "Private — no cloud" indicator
+ * error state. Components use this to show the "Private no cloud" indicator
  * in the navbar and to reassure job-site users with spotty reception.
  */
 "use client";

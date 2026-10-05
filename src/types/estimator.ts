@@ -1,9 +1,9 @@
 /**
- * BuildCalc Pro — Universal data contracts.
+ * BuildCalc Pro Universal data contracts.
  *
  * Everything in this file is the single source of truth for the shapes that
  * flow between calculators, the master estimate store, and exports. Phase 2
- * (calculator pages) consumes these directly — do not duplicate them.
+ * (calculator pages) consumes these directly do not duplicate them.
  */
 
 /** Top-level tool categories shown in the directory and navbar. */
@@ -44,7 +44,7 @@ export const CATEGORY_META: Record<
     label: "Concrete, Masonry & Earthwork",
     tagline: "Slabs, footings, rebar, block",
     blurb:
-      "Cubic-yard concrete quantities, sack math, rebar and block counts — priced with waste before you pour.",
+      "Cubic-yard concrete quantities, sack math, rebar and block counts priced with waste before you pour.",
     iconName: "Layers",
   },
   "framing-roofing": {
@@ -211,7 +211,7 @@ export interface CompanyInfo {
   address?: string;
 }
 
-/** Derived pricing summary — computed, never stored. */
+/** Derived pricing summary computed, never stored. */
 export interface BidSummary {
   /** Sum of line totals (net). */
   directCost: number;
@@ -264,7 +264,7 @@ export function createEmptyEstimate(): MasterEstimateState {
 }
 
 /**
- * Compute the bid pricing summary from state. Pure function — used by the
+ * Compute the bid pricing summary from state. Pure function used by the
  * store selector, the drawer, and Phase 2 export views alike.
  */
 export function computeBidSummary(state: {

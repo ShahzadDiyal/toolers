@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Concrete Rebar & Mesh Estimator (Phase 4B).
+ * BuildCalc Pro Concrete Rebar & Mesh Estimator (Phase 4B).
  *
  * Rebar grids with lap splices, or welded wire mesh rolls.
  * Dispatches rebar + ties lines (rebar mode) or a mesh line.
@@ -155,7 +155,7 @@ export function RebarMeshEstimatorTool() {
       }
       addItem({
         toolSlug: SLUG,
-        title: `Structural Rebar (20ft Sticks) — ${v.barSize}`,
+        title: `Structural Rebar (20ft Sticks) ${v.barSize}`,
         category: "concrete",
         quantity: r.sticks20,
         unit: "ea",
@@ -171,7 +171,7 @@ export function RebarMeshEstimatorTool() {
         unit: "bags",
         unitCost: v.costPerTieBag,
         wastePercent: 0,
-        notes: `${formatNumber(r.ties)} ties (1,000-ct bags). Chairs per local practice — verify count with supplier.`,
+        notes: `${formatNumber(r.ties)} ties (1,000-ct bags). Chairs per local practice verify count with supplier.`,
       });
       toast.success("2 lines added to Master Bid Cart", {
         description: `Rebar ${formatMoney(rebarCost)} + ties ${formatMoney(tiesCost)}`,
@@ -195,7 +195,7 @@ export function RebarMeshEstimatorTool() {
         notes: `5×150-ft rolls · ${formatNumber(m.grossSqft)} sq ft incl. overlap.`,
       });
       toast.success("Added to Master Bid Cart", {
-        description: `${m.rolls} mesh rolls — ${formatMoney(meshCost)}`,
+        description: `${m.rolls} mesh rolls ${formatMoney(meshCost)}`,
         action: { label: "View cart", onClick: () => setDrawerOpen(true) },
       });
     }
@@ -354,17 +354,17 @@ export function RebarMeshEstimatorTool() {
         isRebar
           ? [
               {
-                label: `Rebar — ${formatNumber(r.sticks20)} × ${formatMoney(v.costPerStick)}`,
+                label: `Rebar ${formatNumber(r.sticks20)} × ${formatMoney(v.costPerStick)}`,
                 amount: Math.round(rebarCost * 100) / 100,
               },
               {
-                label: `Ties — ${formatNumber(r.tieBags)} × ${formatMoney(v.costPerTieBag)}`,
+                label: `Ties ${formatNumber(r.tieBags)} × ${formatMoney(v.costPerTieBag)}`,
                 amount: Math.round(tiesCost * 100) / 100,
               },
             ]
           : [
               {
-                label: `Mesh — ${formatNumber(m.rolls)} × ${formatMoney(v.costPerMeshRoll)}`,
+                label: `Mesh ${formatNumber(m.rolls)} × ${formatMoney(v.costPerMeshRoll)}`,
                 amount: Math.round(meshCost * 100) / 100,
               },
             ]

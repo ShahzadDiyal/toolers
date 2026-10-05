@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Universal ResultsCard (Phase 4A).
+ * BuildCalc Pro Universal ResultsCard (Phase 4A).
  *
  * Every calculator's results render here:
  *   Primary Metric Callout → Itemized Materials Schedule (net / waste / order)
@@ -87,7 +87,7 @@ export function ResultsCard({
         description: "Anyone opening it sees this exact calculation.",
       });
     } catch {
-      // Clipboard API unavailable (permissions) — show the URL to copy manually.
+      // Clipboard API unavailable (permissions) show the URL to copy manually.
       toast.info("Copy this link manually", { description: url });
     }
   };
@@ -186,7 +186,7 @@ export function ResultsCard({
           {labor && labor.hours > 0 && (
             <div className="flex justify-between gap-3">
               <span className="text-zinc-400">
-                Labor — {labor.hours}h × {formatMoney(labor.rate)}/h
+                Labor {labor.hours}h × {formatMoney(labor.rate)}/h
               </span>
               <span className="font-mono tabular-nums text-zinc-100">
                 {formatMoney(laborTotal)}

@@ -5,7 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ContactForm } from "./ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact — Get in Touch",
+  title: "Contact Get in Touch",
   description:
     "Have a question, suggestion, or tool request? Get in touch with the BuildCalc Pro team.",
 };
@@ -16,7 +16,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Get in touch"
-        lede="Have a question, suggestion, or tool request? Get in touch — we read every message."
+        lede="Have a question, suggestion, or tool request? Get in touch we read every message."
       >
         <div className="mt-6">
           <CrumbNav
@@ -43,7 +43,7 @@ export default function ContactPage() {
                 <p className="mt-1 text-sm leading-relaxed text-[#5A6C85]">
                   For calculator issues, tell us which tool you were using
                   and the numbers you entered. For tool requests, describe
-                  what it should calculate — or use the{" "}
+                  what it should calculate or use the{" "}
                   <a
                     href="/request-tool"
                     className="font-bold text-[#2563EB] hover:underline"

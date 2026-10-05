@@ -3,7 +3,7 @@ import { PageHero, CrumbNav } from "@/components/ui/PageHero";
 import { BlogIndex } from "./BlogIndex";
 
 export const metadata: Metadata = {
-  title: "Blog — Construction Estimating Guides",
+  title: "Blog Construction Estimating Guides",
   description:
     "Practical guides to construction estimating: concrete takeoffs, masonry quantities, roof pitch math, stair layout, and contractor pricing.",
 };
@@ -14,7 +14,7 @@ export default function BlogPage() {
       <PageHero
         eyebrow="Learn"
         title="Construction Estimating Guides"
-        lede="Short, practical explainers grounded in the same math our calculators use — so you understand the numbers, not just the results."
+        lede="Short, practical explainers grounded in the same math our calculators use so you understand the numbers, not just the results."
       >
         <div className="mt-6">
           <CrumbNav

@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Decking, Joist & Post Estimator (Batch 4E).
+ * BuildCalc Pro Decking, Joist & Post Estimator (Batch 4E).
  *
  * Field joists, rim/ledger boards, decking planks, support posts,
  * post concrete, and fastener packs. Dispatches 3 estimate lines.
@@ -94,7 +94,7 @@ export function DeckJoistPostTool() {
   /* ---------------- Results ---------------- */
   const materials: MaterialRow[] = [
     {
-      label: `Field joists — ${v.joistSpacingIn}″ O.C.`,
+      label: `Field joists ${v.joistSpacingIn}″ O.C.`,
       net: `${formatNumber(v.widthFt)} ft span`,
       waste: "—",
       order: `${formatNumber(t.fieldJoists)} boards`,
@@ -109,7 +109,7 @@ export function DeckJoistPostTool() {
       note: "16-ft stock lengths",
     },
     {
-      label: `Decking — ${boardLabel}`,
+      label: `Decking ${boardLabel}`,
       net: `${formatNumber(t.deckAreaSqft)} sq ft`,
       waste: "+10%",
       order: `${formatNumber(t.deckingPlanks)} planks`,
@@ -117,14 +117,14 @@ export function DeckJoistPostTool() {
       highlight: true,
     },
     {
-      label: `Support posts — ${formatNumber(v.postHoleDepthIn)}″ holes`,
+      label: `Support posts ${formatNumber(v.postHoleDepthIn)}″ holes`,
       net: `${formatNumber(v.postSpacingFt)}′ O.C.`,
       waste: "—",
       order: `${formatNumber(t.posts)} posts`,
       note: "4×4 or 6×6, per local code",
     },
     {
-      label: "Post concrete — 80-lb bags",
+      label: "Post concrete 80-lb bags",
       net: `${formatNumber(t.posts)} footings`,
       waste: "—",
       order: `${formatNumber(t.concreteBags)} bags`,
@@ -149,7 +149,7 @@ export function DeckJoistPostTool() {
     const ctx = `${formatNumber(v.widthFt)}×${formatNumber(v.projectionFt)} ft deck · ${v.joistSpacingIn}″ O.C. joists · ${boardLabel}`;
     addItem({
       toolSlug: SLUG,
-      title: "Framing Lumber — Joists, Rim & Ledger",
+      title: "Framing Lumber Joists, Rim & Ledger",
       category: "site-exterior",
       quantity: framingQty,
       unit: "ea",
@@ -159,7 +159,7 @@ export function DeckJoistPostTool() {
     });
     addItem({
       toolSlug: SLUG,
-      title: `Decking Surface Boards — ${boardLabel}`,
+      title: `Decking Surface Boards ${boardLabel}`,
       category: "site-exterior",
       quantity: t.deckingLF,
       unit: "lf",
@@ -206,11 +206,11 @@ export function DeckJoistPostTool() {
 
       <div className="sm:col-span-2">
         <TradeFilterTabs
-          subtrades={['12" O.C. — composite/diagonal', '16" O.C. — standard wood']}
+          subtrades={['12" O.C. composite/diagonal', '16" O.C. standard wood']}
           active={
             v.joistSpacingIn === 12
-              ? '12" O.C. — composite/diagonal'
-              : '16" O.C. — standard wood'
+              ? '12" O.C. composite/diagonal'
+              : '16" O.C. standard wood'
           }
           onChange={(l) => set("joistSpacingIn", l.startsWith('12"') ? 12 : 16)}
         />
@@ -310,10 +310,10 @@ export function DeckJoistPostTool() {
       wastePercent={10}
       materials={materials}
       materialCosts={[
-        { label: `Framing — ${formatNumber(framingQty)} × ${formatMoney(v.costPerJoistBoard)}`, amount: Math.round(framingCost * 100) / 100 },
-        { label: `Decking — ${formatNumber(t.deckingLF)} lf × ${formatMoney(v.costPerDeckBoardLF)}`, amount: Math.round(deckingCost * 100) / 100 },
-        { label: `Footings — ${formatNumber(t.posts)} posts + ${formatNumber(t.concreteBags)} bags`, amount: Math.round(footingCost * 100) / 100 },
-        { label: `Fasteners — ${formatNumber(t.fastenerPacks)} × ${formatMoney(v.costPerFastenerPack)}`, amount: Math.round(fastenerCost * 100) / 100 },
+        { label: `Framing ${formatNumber(framingQty)} × ${formatMoney(v.costPerJoistBoard)}`, amount: Math.round(framingCost * 100) / 100 },
+        { label: `Decking ${formatNumber(t.deckingLF)} lf × ${formatMoney(v.costPerDeckBoardLF)}`, amount: Math.round(deckingCost * 100) / 100 },
+        { label: `Footings ${formatNumber(t.posts)} posts + ${formatNumber(t.concreteBags)} bags`, amount: Math.round(footingCost * 100) / 100 },
+        { label: `Fasteners ${formatNumber(t.fastenerPacks)} × ${formatMoney(v.costPerFastenerPack)}`, amount: Math.round(fastenerCost * 100) / 100 },
       ]}
       total={Math.round(total * 100) / 100}
       onAddToEstimate={handleAdd}

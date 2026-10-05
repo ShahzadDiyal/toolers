@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Recently used tools.
+ * BuildCalc Pro Recently used tools.
  *
  * Tiny localStorage-backed MRU list (max 8 slugs) powering the homepage
  * "Quick Access" section and the command menu's "Recent" group.
@@ -44,7 +44,7 @@ export function pushRecentTool(slug: string): void {
     const next = [slug, ...readSlugs().filter((s) => s !== slug)].slice(0, MAX);
     window.localStorage.setItem(KEY, JSON.stringify(next));
   } catch {
-    // Private mode etc. — recents are a nicety, not a requirement.
+    // Private mode etc. recents are a nicety, not a requirement.
   }
 }
 

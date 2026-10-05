@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — True Burdened Labor Rate & Payroll Cost (Batch 4G).
+ * BuildCalc Pro True Burdened Labor Rate & Payroll Cost (Batch 4G).
  *
  * Base wage vs. true employer cost per billable hour. Dispatches 1 line.
  */
@@ -144,7 +144,7 @@ export function LaborBurdenHourlyTool() {
     }
     addItem({
       toolSlug: SLUG,
-      title: `Labor Allocation — Burdened Crew (${v.crewSize} workers)`,
+      title: `Labor Allocation Burdened Crew (${v.crewSize} workers)`,
       category: "financial-business",
       quantity: v.crewSize * v.estHours,
       unit: "hrs",
@@ -316,7 +316,7 @@ export function LaborBurdenHourlyTool() {
       wastePercent={0}
       materials={materials}
       materialCosts={[
-        { label: `Labor — ${v.crewSize * v.estHours} crew-hrs × ${formatMoney(t.burdenedRate)}`, amount: Math.round(laborCost * 100) / 100 },
+        { label: `Labor ${v.crewSize * v.estHours} crew-hrs × ${formatMoney(t.burdenedRate)}`, amount: Math.round(laborCost * 100) / 100 },
       ]}
       total={Math.round(laborCost * 100) / 100}
       onAddToEstimate={handleAdd}

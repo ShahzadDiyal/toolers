@@ -1,11 +1,11 @@
 /**
- * BuildCalc Pro — MEP, insulation & interior trim math (Batch 4F).
+ * BuildCalc Pro MEP, insulation & interior trim math (Batch 4F).
  *
  * Pure functions only: no React, no storage, no I/O. Order quantities
  * round UP; net values stay fractional for the materials table.
  *
  * NOTE: HVAC figures are Manual-J-style rules of thumb for budgeting and
- * bid scoping — not a substitute for an ACCA Manual J load calculation.
+ * bid scoping not a substitute for an ACCA Manual J load calculation.
  */
 
 /* ------------------------------------------------------------------ */

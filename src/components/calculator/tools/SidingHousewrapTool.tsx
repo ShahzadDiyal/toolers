@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Exterior Siding & Housewrap Estimator (Batch 4E).
+ * BuildCalc Pro Exterior Siding & Housewrap Estimator (Batch 4E).
  *
  * Cladding squares, housewrap rolls, starter strips, and corner posts
  * from perimeter, height, gables, and opening deductions.
@@ -115,7 +115,7 @@ export function SidingHousewrapTool() {
   /* ---------------- Results ---------------- */
   const materials: MaterialRow[] = [
     {
-      label: `Siding — ${matLabel}`,
+      label: `Siding ${matLabel}`,
       net: `${formatNumber(t.netAreaSqft)} sq ft net`,
       waste: `+${v.wastePct}%`,
       order: `${formatNumber(t.squares)} squares`,
@@ -123,7 +123,7 @@ export function SidingHousewrapTool() {
       highlight: true,
     },
     {
-      label: "Housewrap — 9×100 ft rolls",
+      label: "Housewrap 9×100 ft rolls",
       net: `${formatNumber(t.netAreaSqft)} sq ft`,
       waste: "+15%",
       order: `${formatNumber(t.housewrapRolls)} rolls`,
@@ -131,14 +131,14 @@ export function SidingHousewrapTool() {
       highlight: true,
     },
     {
-      label: "Starter strips — 10 ft",
+      label: "Starter strips 10 ft",
       net: `${formatNumber(v.perimeterFt)} lin ft`,
       waste: "—",
       order: `${formatNumber(t.starterStrips)} strips`,
       note: "Full perimeter course",
     },
     {
-      label: "Corner posts — 10 ft pcs",
+      label: "Corner posts 10 ft pcs",
       net: `${v.outsideCornerCount} outside corners`,
       waste: "—",
       order: `${formatNumber(t.cornerPcs)} pcs`,
@@ -156,7 +156,7 @@ export function SidingHousewrapTool() {
     const ctx = `${matLabel} · ${formatNumber(v.perimeterFt)} ft perimeter × ${formatNumber(v.wallHeightFt)} ft · ${formatNumber(t.netAreaSqft)} sq ft net`;
     addItem({
       toolSlug: SLUG,
-      title: `Exterior Siding Cladding — ${matLabel}`,
+      title: `Exterior Siding Cladding ${matLabel}`,
       category: "site-exterior",
       quantity: t.squares,
       unit: "squares",
@@ -166,7 +166,7 @@ export function SidingHousewrapTool() {
     });
     addItem({
       toolSlug: SLUG,
-      title: "Weather-Resistive Barrier — Housewrap Rolls",
+      title: "Weather-Resistive Barrier Housewrap Rolls",
       category: "site-exterior",
       quantity: t.housewrapRolls,
       unit: "ea",
@@ -368,9 +368,9 @@ export function SidingHousewrapTool() {
       wastePercent={v.wastePct}
       materials={materials}
       materialCosts={[
-        { label: `Siding — ${formatNumber(t.squares)} × ${formatMoney(v.costPerSquare)}/sq`, amount: Math.round(sidingCost * 100) / 100 },
-        { label: `Housewrap — ${formatNumber(t.housewrapRolls)} × ${formatMoney(v.costPerHousewrapRoll)}`, amount: Math.round(wrapCost * 100) / 100 },
-        { label: `Trim — ${formatNumber(trimQty)} pcs`, amount: Math.round(trimCost * 100) / 100 },
+        { label: `Siding ${formatNumber(t.squares)} × ${formatMoney(v.costPerSquare)}/sq`, amount: Math.round(sidingCost * 100) / 100 },
+        { label: `Housewrap ${formatNumber(t.housewrapRolls)} × ${formatMoney(v.costPerHousewrapRoll)}`, amount: Math.round(wrapCost * 100) / 100 },
+        { label: `Trim ${formatNumber(trimQty)} pcs`, amount: Math.round(trimCost * 100) / 100 },
       ]}
       total={Math.round(total * 100) / 100}
       onAddToEstimate={handleAdd}

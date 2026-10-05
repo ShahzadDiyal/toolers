@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Acoustic Texture, Popcorn & Drywall Mud Sizing (Batch 4F).
+ * BuildCalc Pro Acoustic Texture, Popcorn & Drywall Mud Sizing (Batch 4F).
  *
  * Texture bags/buckets, PVA primer gallons, and mixing water from area,
  * style, and application depth. Dispatches 2 estimate lines.
@@ -96,7 +96,7 @@ export function CeilingTextureDrywallTool() {
   /* ---------------- Results ---------------- */
   const materials: MaterialRow[] = [
     {
-      label: `${styleMeta.label} — ${styleMeta.unitSize}`,
+      label: `${styleMeta.label} ${styleMeta.unitSize}`,
       net: `${formatNumber(t.areaSqft)} sq ft`,
       waste: "+10%",
       order: `${formatNumber(t.units)} ${styleMeta.unit}`,
@@ -133,7 +133,7 @@ export function CeilingTextureDrywallTool() {
     const ctx = `${styleMeta.label} · ${formatNumber(t.areaSqft)} sq ft · ${v.depth} application`;
     addItem({
       toolSlug: SLUG,
-      title: `Drywall Texture Compound — ${styleMeta.unitSize} ${styleMeta.unit}`,
+      title: `Drywall Texture Compound ${styleMeta.unitSize} ${styleMeta.unit}`,
       category: "finishes",
       quantity: t.units,
       unit: styleMeta.unit === "buckets" ? "ea" : "bags",
@@ -258,8 +258,8 @@ export function CeilingTextureDrywallTool() {
       wastePercent={10}
       materials={materials}
       materialCosts={[
-        { label: `Compound — ${formatNumber(t.units)} × ${formatMoney(v.costPerUnit)}`, amount: Math.round(compoundCost * 100) / 100 },
-        { label: `Primer — ${formatNumber(t.primerGal)} × ${formatMoney(v.costPerPrimerGal)}/gal`, amount: Math.round(primerCost * 100) / 100 },
+        { label: `Compound ${formatNumber(t.units)} × ${formatMoney(v.costPerUnit)}`, amount: Math.round(compoundCost * 100) / 100 },
+        { label: `Primer ${formatNumber(t.primerGal)} × ${formatMoney(v.costPerPrimerGal)}/gal`, amount: Math.round(primerCost * 100) / 100 },
       ]}
       total={Math.round(total * 100) / 100}
       onAddToEstimate={handleAdd}

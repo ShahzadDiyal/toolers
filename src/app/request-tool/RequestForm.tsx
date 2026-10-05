@@ -64,7 +64,7 @@ export function RequestForm() {
           Request received
         </h2>
         <p className="mx-auto mt-2 max-w-md leading-relaxed text-[#5A6C85]">
-          Thanks, {form.name.trim().split(" ")[0]} — your idea for{" "}
+          Thanks, {form.name.trim().split(" ")[0]} your idea for{" "}
           <strong className="text-[#0B1B33]">“{form.toolName.trim()}”</strong>{" "}
           is in the queue. We review every request and build the tools that
           help the most contractors.
@@ -207,13 +207,13 @@ export function RequestForm() {
           rows={3}
           value={form.notes}
           onChange={set("notes")}
-          placeholder="Anything else — formulas, references, examples…"
+          placeholder="Anything else formulas, references, examples…"
           className={fieldCls}
         />
       </div>
 
       <p className="text-sm text-[#5A6C85]">
-        This form doesn't send data anywhere yet — it's ready for our inbox
+        This form doesn't send data anywhere yet it's ready for our inbox
         integration. Nothing is stored in your browser either.
       </p>
       <button

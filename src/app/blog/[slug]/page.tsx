@@ -27,7 +27,7 @@ export async function generateMetadata({
   const post = getPost(slug);
   if (!post) return {};
   return {
-    title: `${post.title} — Blog`,
+    title: `${post.title} Blog`,
     description: post.excerpt,
     alternates: { canonical: `${SITE_URL}/blog/${post.slug}` },
   };
@@ -121,7 +121,7 @@ export default async function BlogPostPage({
                 </h2>
                 <p className="mt-1 text-sm leading-relaxed text-[#5A6C85]">
                   Run these numbers yourself with the free{" "}
-                  {post.toolCta ?? "calculator"} — no account needed.
+                  {post.toolCta ?? "calculator"} no account needed.
                 </p>
                 <Link
                   href={toolHref({ slug: post.toolSlug })}

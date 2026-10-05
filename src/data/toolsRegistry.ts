@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Central Tool Registry (Phase 2).
+ * BuildCalc Pro Central Tool Registry (Phase 2).
  *
  * THE single source of truth for categories and calculators. Everything
  * downstream renders from here: navbar menus, the ⌘K command menu, the
@@ -27,7 +27,7 @@ export const CATEGORIES: CategoryMetadata[] = [
     label: "Concrete, Masonry & Earthwork",
     tagline: "Slabs, footings, rebar, block",
     blurb:
-      "Cubic-yard quantities, sack math, rebar and block counts — priced with waste before you pour.",
+      "Cubic-yard quantities, sack math, rebar and block counts priced with waste before you pour.",
     iconName: "Layers",
     subtrades: ["Flatwork", "Footings & Walls", "Reinforcement", "Masonry"],
   },
@@ -119,16 +119,16 @@ export const TOOLS: ToolMetadata[] = [
     available: true,
     readTimeMinutes: 2,
     details: [
-      "Volume = length × width × (thickness ÷ 12) gives cubic feet; divide by 27 for cubic yards — the unit ready-mix is sold in.",
+      "Volume = length × width × (thickness ÷ 12) gives cubic feet; divide by 27 for cubic yards the unit ready-mix is sold in.",
       "Order quantity = net yards × (1 + waste%). The 10–15% default covers spillage, over-excavation, and uneven subgrade.",
-      "An 80-lb bag yields ≈ 0.6 cu ft, so one cubic yard needs about 45 bags (60 for 60-lb bags). Counts round up — suppliers don't split bags.",
+      "An 80-lb bag yields ≈ 0.6 cu ft, so one cubic yard needs about 45 bags (60 for 60-lb bags). Counts round up suppliers don't split bags.",
     ],
     faqs: [
       { q: "How many cubic yards of concrete do I need for a 20x12 slab at 4 inches?", a: "A 20x12 ft slab at 4 in thick needs 2.96 cubic yards net (20 x 12 x (4/12) / 27). Order about 3.26 yards with 10% waste. Loads under 4 yards usually trigger a short-load fee." },
       { q: "How many 80-lb bags of concrete are in a cubic yard?", a: "One cubic yard takes about 45 80-lb bags (or 60 60-lb bags). A 20x12x4-inch slab needs roughly 147 80-lb bags including 10% waste." },
       { q: "How many cubic yards fit in a concrete truck?", a: "A standard ready-mix truck carries about 10 cubic yards. Anything under 4 yards typically incurs a short-load fee, so small pours are often cheaper in bags." },
     ],
-    howTo: "Pick a shape, enter dimensions, set waste and your supplier rate — the order quantity, bags, truckloads, and cost update live.",
+    howTo: "Pick a shape, enter dimensions, set waste and your supplier rate the order quantity, bags, truckloads, and cost update live.",
   },
   {
     id: "concrete-footing",
@@ -163,11 +163,11 @@ export const TOOLS: ToolMetadata[] = [
     badge: "IRC Code Compliant",
     estimatedTime: "< 2 min",
     available: true,
-    howTo: "Enter slab dimensions, pick rebar or wire mesh, set spacing and lap — sticks, weight, and tie counts update live.",
+    howTo: "Enter slab dimensions, pick rebar or wire mesh, set spacing and lap sticks, weight, and tie counts update live.",
     details: [
       "Bar runs = floor((span − 2 × cover) ÷ spacing) + 1 per direction; total footage includes the lap-splice allowance for bar joints.",
       "Weight uses standard bar weights (#3 = 0.376, #4 = 0.668, #5 = 1.043 lb/ft) so you can price by the ton.",
-      "Tie count = one tie per grid intersection — budget a 1,000-count bag per ~1,000 intersections.",
+      "Tie count = one tie per grid intersection budget a 1,000-count bag per ~1,000 intersections.",
     ],
     faqs: [
       { q: "What spacing should rebar be in a concrete slab?", a: "12 inches on center each way is the common residential default; 18 to 24 inches suits light-duty work. Keep 3 inches of clear cover from form edges." },
@@ -208,17 +208,17 @@ export const TOOLS: ToolMetadata[] = [
     available: true,
     readTimeMinutes: 2,
     details: [
-      "A standard 8×16 in block face covers 0.8889 sq ft, so a wall needs about 112.5 blocks per 100 sq ft before waste — the same for 6, 8, and 12 in widths.",
+      "A standard 8×16 in block face covers 0.8889 sq ft, so a wall needs about 112.5 blocks per 100 sq ft before waste the same for 6, 8, and 12 in widths.",
       "Type S mortar runs about 1 eighty-pound bag per 30 blocks. The 10% default waste covers joints, cuts, and spills.",
       "Cores sit on 8 in centers, so grouting every 24 in O.C. fills every 3rd core, 32 in O.C. every 4th, and 48 in O.C. every 6th. A solid-grouted 8×8×16 block holds about 0.16 cu ft of grout.",
-      "Bond-beam courses are grouted solid along their full length with 2 continuous bars — counted in 20-ft sticks.",
+      "Bond-beam courses are grouted solid along their full length with 2 continuous bars counted in 20-ft sticks.",
     ],
     faqs: [
       { q: "How many CMU blocks do I need for a 40x8 ft wall?", a: "A 40x8 ft wall is 320 sq ft, needing about 360 blocks net (320 / 0.8889). Order 378 blocks with 5% waste for cuts and breakage." },
-      { q: "How many 80-lb bags of mortar per 100 blocks?", a: "About 1 bag of Type S mortar per 30 blocks — roughly 3.5 bags per 100 blocks, or 4 with 10% waste. A 378-block wall needs about 14 bags." },
+      { q: "How many 80-lb bags of mortar per 100 blocks?", a: "About 1 bag of Type S mortar per 30 blocks roughly 3.5 bags per 100 blocks, or 4 with 10% waste. A 378-block wall needs about 14 bags." },
       { q: "How much grout fills CMU cores?", a: "A solid-grouted 8x8x16 block holds about 0.16 cu ft. Grouting every 32 in O.C. fills every 4th core (cores are on 8 in centers), so divide the solid volume by 4." },
     ],
-    howTo: "Enter wall dimensions, pick block size and core-fill spacing, add bond-beam courses — blocks, mortar, grout, and rebar price themselves live.",
+    howTo: "Enter wall dimensions, pick block size and core-fill spacing, add bond-beam courses blocks, mortar, grout, and rebar price themselves live.",
   },
 
   /* ---------------- Framing, Carpentry & Roofing ---------------- */
@@ -238,9 +238,9 @@ export const TOOLS: ToolMetadata[] = [
     badge: "Most Popular",
     estimatedTime: "< 1 min",
     available: true,
-    howTo: "Enter the roof footprint, pick a pitch and roof complexity — squares, bundles, and underlayment price themselves instantly.",
+    howTo: "Enter the roof footprint, pick a pitch and roof complexity squares, bundles, and underlayment price themselves instantly.",
     details: [
-      "Pitch multiplier M = √(rise² + 12²) ÷ 12 converts plan area to true surface area — a 6/12 roof has ~11.8% more surface than its footprint.",
+      "Pitch multiplier M = √(rise² + 12²) ÷ 12 converts plan area to true surface area a 6/12 roof has ~11.8% more surface than its footprint.",
       "Waste follows complexity: 10% simple gable, 15% hip/valley, 20% cut-up. Valleys and hips eat shingles.",
       "Bundles = squares × 3 (rounded up); underlayment rolls = waste-adjusted area ÷ 1,000 (10-square synthetic rolls).",
     ],
@@ -266,7 +266,7 @@ export const TOOLS: ToolMetadata[] = [
     badge: "IRC Code Compliant",
     estimatedTime: "< 2 min",
     available: true,
-    howTo: "Enter total rise and target tread run — the layout solves risers, stringer length, and live IRC code checks instantly.",
+    howTo: "Enter total rise and target tread run the layout solves risers, stringer length, and live IRC code checks instantly.",
     details: [
       "Riser count = round(total rise ÷ 7.5); unit rise = total rise ÷ count. Treads = risers − 1 (the top tread is the landing).",
       "IRC R311.7: risers ≤ 7¾″, treads ≥ 10″. The comfort rule 2R + T should land between 24″ and 25″.",
@@ -314,15 +314,15 @@ export const TOOLS: ToolMetadata[] = [
     details: [
       "The rafter run is half the building span minus half the ridge board thickness; line length = √(run² + rise²), where rise = run × (pitch ÷ 12).",
       "The plumb cut angle equals the pitch angle (arctan(pitch ÷ 12)); the seat cut is 90° minus the pitch angle.",
-      "A 3.5 in level seat on the plate cuts a plumb depth of 3.5 × tan(pitch angle) — it must stay under one-third of the rafter depth or the rafter is overcut.",
+      "A 3.5 in level seat on the plate cuts a plumb depth of 3.5 × tan(pitch angle) it must stay under one-third of the rafter depth or the rafter is overcut.",
       "Eave overhang is measured horizontally past the plate; its rafter length is √(overhang² + (overhang × pitch ÷ 12)²).",
     ],
     faqs: [
       { q: "How long is a common rafter for a 28 ft span at 6/12 pitch?", a: "The run is 168 in minus half the ridge (167.25 in). Rise = 167.25 × 0.5 = 83.6 in. Line length = √(167.25² + 83.6²) = 187 in ≈ 15′ 7″. Add the overhang cut and buy 18-ft stock." },
-      { q: "What angle do I cut a bird's mouth for a 6/12 roof?", a: "The plumb cut is the pitch angle — 26.57° for 6/12 — and the seat cut is 90 − 26.57 = 63.43°. A 3.5 in seat cuts 1.75 in deep, safely under the 1.83 in limit for 2×6 stock." },
+      { q: "What angle do I cut a bird's mouth for a 6/12 roof?", a: "The plumb cut is the pitch angle 26.57° for 6/12 and the seat cut is 90 − 26.57 = 63.43°. A 3.5 in seat cuts 1.75 in deep, safely under the 1.83 in limit for 2×6 stock." },
       { q: "How many rafters do I need for a 40 ft ridge at 16 in O.C.?", a: "Ceil(480 ÷ 16) + 1 = 31 pairs, or 62 rafters for both slopes, plus a starter pair at each gable end in practice." },
     ],
-    howTo: "Enter span, ridge length, pitch, and overhang — rafter lengths in ft-in-fractions, cut angles, and stock size solve live.",
+    howTo: "Enter span, ridge length, pitch, and overhang rafter lengths in ft-in-fractions, cut angles, and stock size solve live.",
   },
   {
     id: "board-feet",
@@ -347,7 +347,7 @@ export const TOOLS: ToolMetadata[] = [
     slug: "framing-drywall-pack",
     title: "Wall Framing & Drywall Pack",
     shortDescription:
-      "Studs, plates, sheets, mud, and tape — the full wall package in one pass.",
+      "Studs, plates, sheets, mud, and tape the full wall package in one pass.",
     category: "finishes",
     subtrade: "Drywall",
     tags: ["drywall", "sheetrock", "sheets", "mud", "tape", "screws", "pack"],
@@ -358,7 +358,7 @@ export const TOOLS: ToolMetadata[] = [
     badge: "Quick Takeoff",
     estimatedTime: "< 1 min",
     available: true,
-    howTo: "Enter wall length and height, set spacing and openings — studs, plates, sheets, mud, and tape price themselves live.",
+    howTo: "Enter wall length and height, set spacing and openings studs, plates, sheets, mud, and tape price themselves live.",
     details: [
       "Studs = ceil(length ÷ spacing) + 1, plus 2 per corner and 2 per door for kings/jacks. Plates = 3 runs (double top) or 2, in 16-ft boards.",
       "Net drywall = wall area × sides − door/window deductions (21 / 15 sq ft), plus 10% cutting waste.",
@@ -385,10 +385,10 @@ export const TOOLS: ToolMetadata[] = [
     outputs: ["Wall gallons", "Ceiling gallons", "Primer gallons"],
     estimatedTime: "< 1 min",
     available: true,
-    howTo: "Enter room dimensions and openings, toggle ceiling and primer — gallons for every coat update live.",
+    howTo: "Enter room dimensions and openings, toggle ceiling and primer gallons for every coat update live.",
     details: [
       "Net wall area = 2 × (L + W) × H minus 21 sq ft per door and 15 per window. Ceiling = L × W.",
-      "Gallons always round up — paint is sold by the gallon, and a short gallon stops the job.",
+      "Gallons always round up paint is sold by the gallon, and a short gallon stops the job.",
       "Primer covers ~350 sq ft/gal on bare drywall; two finish coats is the standard for fresh work.",
     ],
     faqs: [
@@ -412,7 +412,7 @@ export const TOOLS: ToolMetadata[] = [
     outputs: ["Flooring boxes", "Underlayment rolls", "Baseboard sticks"],
     estimatedTime: "< 1 min",
     available: true,
-    howTo: "Enter room size, pick a flooring type and waste tier — boxes, underlayment, and trim price themselves live.",
+    howTo: "Enter room size, pick a flooring type and waste tier boxes, underlayment, and trim price themselves live.",
     details: [
       "Cut waste follows the layout: 5% straight plank, 10% angle/herringbone, 15% diagonal.",
       "Underlayment rolls are 100 sq ft; baseboard comes in 16-ft sticks with 10% for corners and cuts.",
@@ -439,10 +439,10 @@ export const TOOLS: ToolMetadata[] = [
     outputs: ["Tile boxes", "Thinset bags", "Grout bags", "Spacers"],
     estimatedTime: "< 2 min",
     available: true,
-    howTo: "Enter the area and tile size, pick grout joint and waste — boxes, thinset, and grout bags update live.",
+    howTo: "Enter the area and tile size, pick grout joint and waste boxes, thinset, and grout bags update live.",
     details: [
       "Tile boxes = ceil(waste-adjusted area ÷ sq ft per box). Thinset ≈ 1 bag (50 lb) per 50 sq ft with a ¼×⅜″ notch trowel.",
-      "Grout weight uses the Mapei joint-volume formula Area × (L+W)/(L×W) × joint × thickness, with the density constant corrected to 7.9 lb/(ft²·in) for imperial units (the published 1.4 is kg/L, metric-only) — then rounded up to 25-lb bags.",
+      "Grout weight uses the Mapei joint-volume formula Area × (L+W)/(L×W) × joint × thickness, with the density constant corrected to 7.9 lb/(ft²·in) for imperial units (the published 1.4 is kg/L, metric-only) then rounded up to 25-lb bags.",
       "Joints ≥ ⅛″ want sanded grout; under ⅛″ go unsanded to avoid scratching tile faces.",
     ],
     faqs: [
@@ -471,16 +471,16 @@ export const TOOLS: ToolMetadata[] = [
     available: true,
     readTimeMinutes: 2,
     details: [
-      "Bank cubic yards (L × W × D ÷ 27) is the in-situ volume you pay to dig; loose cubic yards add the swell factor — what you pay to haul.",
+      "Bank cubic yards (L × W × D ÷ 27) is the in-situ volume you pay to dig; loose cubic yards add the swell factor what you pay to haul.",
       "Common earth swells about 25%, sand/gravel 15%, and dense wet clay or rock 35%. Ignoring swell is the classic way to under-order trucks.",
       "Truckloads round up on heaped capacity: a 10-yd tandem legally hauls about 10 loose yards, so 47 loose yards needs 5 loads.",
     ],
     faqs: [
-      { q: "How many cubic yards is a 60x2x3 ft trench?", a: "A 60x2x3 ft trench is 13.3 bank cubic yards (60 x 2 x 3 / 27). In common earth with 25% swell that's 16.7 loose yards — two 10-yard tandem loads." },
+      { q: "How many cubic yards is a 60x2x3 ft trench?", a: "A 60x2x3 ft trench is 13.3 bank cubic yards (60 x 2 x 3 / 27). In common earth with 25% swell that's 16.7 loose yards two 10-yard tandem loads." },
       { q: "What is soil swell in excavation?", a: "Swell is how much soil expands once dug: about 25% for common earth/clay, 15% for sand/gravel, 35% for dense wet clay or rock. You dig bank yards but haul loose yards." },
-      { q: "How many yards of dirt fit in a dump truck?", a: "A tandem dump truck hauls about 10 cubic yards, a tri-axle about 14, and an end dump about 18 — measured in loose (swelled) yards, heaped." },
+      { q: "How many yards of dirt fit in a dump truck?", a: "A tandem dump truck hauls about 10 cubic yards, a tri-axle about 14, and an end dump about 18 measured in loose (swelled) yards, heaped." },
     ],
-    howTo: "Pick the dig type, enter dimensions, set soil swell and truck size — bank yards, loose yards, and loads update live.",
+    howTo: "Pick the dig type, enter dimensions, set soil swell and truck size bank yards, loose yards, and loads update live.",
   },
   {
     id: "retaining-wall-block",
@@ -505,10 +505,10 @@ export const TOOLS: ToolMetadata[] = [
     ],
     faqs: [
       { q: "How many blocks for a 40 ft long, 3 ft high retaining wall?", a: "A 40x3 ft wall in 6x16 in block needs 7 courses (3 ft exposed + 1 buried 6-in course = 3.5 ft / 0.5 ft) × 30 blocks per course = 210, plus 5% waste = 221 blocks. Add 32 cap units." },
-      { q: "When does a retaining wall need geogrid?", a: "Segmental walls over 4 ft of exposed height need geogrid reinforcement — typically one layer every 2 courses, embedded back 0.7 times the wall height. Most codes also require an engineered design above 4 ft." },
+      { q: "When does a retaining wall need geogrid?", a: "Segmental walls over 4 ft of exposed height need geogrid reinforcement typically one layer every 2 courses, embedded back 0.7 times the wall height. Most codes also require an engineered design above 4 ft." },
       { q: "How much drainage stone behind a retaining wall?", a: "Plan a 12-in-wide column of 3/4-in crushed stone behind the full exposed height: a 40x3 ft wall needs about 2.5 tons at 1.4 tons per cubic yard, plus base-pad rock." },
     ],
-    howTo: "Enter length and exposed height, pick block face size — blocks, caps, drainage tons, and geogrid update live.",
+    howTo: "Enter length and exposed height, pick block face size blocks, caps, drainage tons, and geogrid update live.",
   },
   {
     id: "asphalt-paving",
@@ -527,7 +527,7 @@ export const TOOLS: ToolMetadata[] = [
     available: true,
     readTimeMinutes: 2,
     details: [
-      "Compacted hot-mix weighs about 145 lbs per cubic foot — 110 lbs per square yard per inch of thickness. A 600 sq ft driveway at 3 in needs about 11 tons with 5% waste.",
+      "Compacted hot-mix weighs about 145 lbs per cubic foot 110 lbs per square yard per inch of thickness. A 600 sq ft driveway at 3 in needs about 11 tons with 5% waste.",
       "The aggregate sub-base uses crusher-run density (1.62 tons/cu yd) plus a 10% compaction allowance: 4 in for light duty, 6 in standard, 8 in heavy duty.",
       "Resurface work typically goes 2 in over existing pavement; new residential driveways want 3 in of asphalt over 6 in of base.",
     ],
@@ -536,7 +536,7 @@ export const TOOLS: ToolMetadata[] = [
       { q: "How thick should a residential asphalt driveway be?", a: "3 inches of compacted hot-mix over 6 inches of compacted crusher-run base is the standard for residential driveways. Resurfacing over sound pavement can go 2 inches." },
       { q: "How much does a ton of asphalt cover?", a: "One ton of hot-mix covers about 36 sq ft at 3 in thick (2000 / 110 / 3 × 9). At 2 in it covers about 54 sq ft per ton." },
     ],
-    howTo: "Enter the paved area, pick asphalt and base thickness — HMA tons, base tons, and square yards update live.",
+    howTo: "Enter the paved area, pick asphalt and base thickness HMA tons, base tons, and square yards update live.",
   },
   {
     id: "aggregate-stone-tonnage",
@@ -557,14 +557,14 @@ export const TOOLS: ToolMetadata[] = [
     details: [
       "Loose cubic yards = area × (thickness ÷ 12) ÷ 27. The compaction allowance (10% gravel, 15% crusher run, 20% fines) converts that to the compacted yards you actually place.",
       "Multiply compacted yards by the material density: #57 stone ≈ 1.42 tons/yd, crusher run ≈ 1.62, mason sand ≈ 1.35, decomposed granite ≈ 1.55.",
-      "Order tons round up to the half ton — quarries batch by the ton and short loads cost more per ton.",
+      "Order tons round up to the half ton quarries batch by the ton and short loads cost more per ton.",
     ],
     faqs: [
       { q: "How many tons of gravel for a 24x12 ft driveway at 4 inches?", a: "A 24x12 ft area at 4 in is 3.56 loose cubic yards. With 10% compaction that's 3.91 yards × 1.42 tons/yd = 5.5 tons of #57 stone, rounded up to 6 tons." },
       { q: "How many tons are in a cubic yard of crusher run?", a: "Dense graded crusher run weighs about 1.62 tons per cubic yard (≈120 lbs/cu ft). #57 gravel is lighter at 1.42, mason sand 1.35." },
-      { q: "Do I add extra for compaction when ordering gravel?", a: "Yes — order compacted yards, not loose. Add 10% for gravel, 15% for crusher run/base, and 20% for decomposed granite or fines, which compact the most." },
+      { q: "Do I add extra for compaction when ordering gravel?", a: "Yes order compacted yards, not loose. Add 10% for gravel, 15% for crusher run/base, and 20% for decomposed granite or fines, which compact the most." },
     ],
-    howTo: "Enter the area, set thickness, pick the material — tons, loose vs. compacted yards, and delivered cost update live.",
+    howTo: "Enter the area, set thickness, pick the material tons, loose vs. compacted yards, and delivered cost update live.",
   },
   {
     id: "deck-joist-post",
@@ -585,15 +585,15 @@ export const TOOLS: ToolMetadata[] = [
     details: [
       "Field joists = ceiling(width in inches ÷ spacing) + 1 starter joist. Use 12 in O.C. for composite or diagonal decking, 16 in O.C. for standard wood.",
       "Rim and ledger boards = 2 × width + 2 × projection, converted to 16-ft stock lengths.",
-      "Decking planks run across the projection: ceiling(projection in inches ÷ 5.75) × 1.10 — the 5.5 in face plus ¼ in gap, with 10% cut waste.",
+      "Decking planks run across the projection: ceiling(projection in inches ÷ 5.75) × 1.10 the 5.5 in face plus ¼ in gap, with 10% cut waste.",
       "Posts = (ceiling(width ÷ post spacing) + 1) × ceiling(projection ÷ post spacing), with 2 eighty-pound concrete bags per footing.",
     ],
     faqs: [
       { q: "How many joists for a 16x12 ft deck at 16 in O.C.?", a: "Ceil(192 ÷ 16) + 1 = 13 field joists, plus 4 rim/ledger boards in 16-ft stock (2×16 + 2×12 = 56 lin ft ÷ 16)." },
-      { q: "How many deck boards for a 16x12 ft deck?", a: "Boards run across the 12-ft projection: ceil(144 ÷ 5.75) = 26 courses × 1.10 waste = 29 planks, each 16 ft long — about 464 lin ft of decking." },
+      { q: "How many deck boards for a 16x12 ft deck?", a: "Boards run across the 12-ft projection: ceil(144 ÷ 5.75) = 26 courses × 1.10 waste = 29 planks, each 16 ft long about 464 lin ft of decking." },
       { q: "How many concrete bags per deck post footing?", a: "Two 80-lb bags per post is the standard for a 36-in-deep footing. A 6-post deck needs 12 bags." },
     ],
-    howTo: "Enter deck width and projection, pick joist spacing and board type — joists, planks, posts, and concrete update live.",
+    howTo: "Enter deck width and projection, pick joist spacing and board type joists, planks, posts, and concrete update live.",
   },
   {
     id: "fence-gate-estimator",
@@ -613,15 +613,15 @@ export const TOOLS: ToolMetadata[] = [
     readTimeMinutes: 2,
     details: [
       "Posts = ceiling(sections) + 1, plus 1 per single gate and 2 per double-drive gate. Every post hole takes 2 sixty-pound fast-set bags.",
-      "Wood rails = sections × rails per section × 1.05 in 8-ft stock — 2 rails for 4-ft fence, 3 for 6-ft and up.",
+      "Wood rails = sections × rails per section × 1.05 in 8-ft stock 2 rails for 4-ft fence, 3 for 6-ft and up.",
       "Pickets = (linear feet × 12) ÷ (picket width + ¼ in gap) × 1.10 cut waste. Chain-link swaps pickets and rails for 50-ft fabric rolls.",
     ],
     faqs: [
       { q: "How many pickets for 150 ft of 6 ft wood privacy fence?", a: "With 5.5 in pickets: (150 × 12) ÷ 5.75 = 313 pickets × 1.10 waste = 345 pickets. Posts: ceil(150 ÷ 8) + 1 = 20, plus gate posts." },
       { q: "How many concrete bags per fence post?", a: "Two 60-lb fast-setting bags per hole is standard for 4x4 wood posts. A 20-post run needs 40 bags." },
-      { q: "How many rolls of chain-link for 150 ft of fence?", a: "Chain-link fabric comes in 50-ft rolls — 150 ft needs 3 rolls, plus posts at 8–10 ft O.C. and a top rail." },
+      { q: "How many rolls of chain-link for 150 ft of fence?", a: "Chain-link fabric comes in 50-ft rolls 150 ft needs 3 rolls, plus posts at 8–10 ft O.C. and a top rail." },
     ],
-    howTo: "Pick wood or chain-link, enter the run and height, add gates — posts, rails, pickets, and concrete update live.",
+    howTo: "Pick wood or chain-link, enter the run and height, add gates posts, rails, pickets, and concrete update live.",
   },
   {
     id: "paver-patio-sand",
@@ -641,7 +641,7 @@ export const TOOLS: ToolMetadata[] = [
     readTimeMinutes: 2,
     details: [
       "Paver units = gross area (net × (1 + waste%)) ÷ paver face area. A 280 sq ft patio in 4×8 brick needs about 1,323 units at 5% waste.",
-      "Compacted base = net area × (base depth ÷ 12) ÷ 27 × 1.6 tons/yd × 1.10 compaction — 4 in for walkways, 6 in for driveways.",
+      "Compacted base = net area × (base depth ÷ 12) ÷ 27 × 1.6 tons/yd × 1.10 compaction 4 in for walkways, 6 in for driveways.",
       "Bedding is a fixed 1-in screed sand bed per ICPI at 1.35 tons/yd. Polymeric sand: 1 fifty-pound bag per 75 sq ft of ⅛-in joints, 35 sq ft for wide ⅜-in joints.",
     ],
     faqs: [
@@ -649,7 +649,7 @@ export const TOOLS: ToolMetadata[] = [
       { q: "How much base rock under pavers?", a: "For a 280 sq ft patio at 4 in: 280 × (4/12) ÷ 27 = 3.46 cu yd × 1.6 tons/yd × 1.10 = 6.1 tons of crushed base, plus about 1.2 tons of 1-in bedding sand." },
       { q: "How much polymeric sand do I need?", a: "One 50-lb bag covers about 75 sq ft of ⅛-in joints or 35 sq ft of wide ⅜-in joints. A 294 sq ft patio with narrow joints needs 4 bags." },
     ],
-    howTo: "Enter the patio area, pick paver size, base depth, and joint width — units, base tons, and sand bags update live.",
+    howTo: "Enter the patio area, pick paver size, base depth, and joint width units, base tons, and sand bags update live.",
   },
   {
     id: "siding-housewrap",
@@ -670,14 +670,14 @@ export const TOOLS: ToolMetadata[] = [
     details: [
       "Net cladding area = (perimeter × height) + gables (½ × base × peak) − openings: 15 sq ft per window, 120 per garage door, 21 per entry door.",
       "Siding squares = ceiling(net × (1 + waste%) ÷ 100). Use 10% waste, 15% for complex multi-gable layouts.",
-      "Housewrap = ceiling(net × 1.15 ÷ 900) — 9×100-ft rolls with 6-in overlaps. Starter strips = ceiling(perimeter ÷ 10) in 10-ft pieces.",
+      "Housewrap = ceiling(net × 1.15 ÷ 900) 9×100-ft rolls with 6-in overlaps. Starter strips = ceiling(perimeter ÷ 10) in 10-ft pieces.",
     ],
     faqs: [
       { q: "How many squares of siding for a 160 ft perimeter, 9 ft walls?", a: "Walls = 1,440 sq ft, plus 2 gables (½ × 24 × 6 = 144) = 1,584, minus ~312 sq ft of openings = 1,272 net. At 10% waste: 14 squares." },
       { q: "How many rolls of housewrap for a house?", a: "A 1,272 sq ft net wall needs ceil(1,272 × 1.15 ÷ 900) = 2 rolls of 9×100-ft housewrap, allowing for 6-in overlaps." },
       { q: "How do you calculate siding waste?", a: "10% covers cuts and starter waste on simple rectangles. Bump to 15% for multi-gable or highly cut-up elevations with lots of windows." },
     ],
-    howTo: "Enter perimeter, height, gables, and openings — siding squares, housewrap rolls, and trim update live.",
+    howTo: "Enter perimeter, height, gables, and openings siding squares, housewrap rolls, and trim update live.",
   },
 
   /* ---------------- MEP Quick-Check Estimators ---------------- */
@@ -697,7 +697,7 @@ export const TOOLS: ToolMetadata[] = [
     badge: "NEC Reference",
     estimatedTime: "< 2 min",
     available: true,
-    howTo: "Pick conduit fill or voltage drop mode, enter the circuit — the sizer flags NEC violations live.",
+    howTo: "Pick conduit fill or voltage drop mode, enter the circuit the sizer flags NEC violations live.",
     details: [
       "NEC Chapter 9 Table 1: 53% fill for 1 wire, 31% for 2 wires, 40% for 3+ wires. Overfill is a code violation.",
       "Voltage drop = 2 × K × I × L ÷ circular mils (√3 factor for 3-phase). NEC recommends ≤ 3% on branch circuits.",
@@ -729,14 +729,14 @@ export const TOOLS: ToolMetadata[] = [
     details: [
       "Base cooling = floor area × zone factor × (ceiling height ÷ 8): 32.5 BTU/sq ft for hot/humid zones 1–2, 27.5 for moderate zones 3–4, 22 for cold zones 5–7.",
       "Adjustments: poor insulation +20%, high-efficiency −15%; heavy sun +10%, shaded −10%; plus 400 BTU per occupant above 2.",
-      "Tonnage rounds UP to the nearest half ton (12,000 BTU = 1 ton) and airflow runs ≈400 CFM per ton. These are bid-scoping rules of thumb — confirm with an ACCA Manual J.",
+      "Tonnage rounds UP to the nearest half ton (12,000 BTU = 1 ton) and airflow runs ≈400 CFM per ton. These are bid-scoping rules of thumb confirm with an ACCA Manual J.",
     ],
     faqs: [
       { q: "How many tons of AC for an 1800 sq ft house?", a: "In a moderate climate (27.5 BTU/sq ft): 1,800 × 27.5 = 49,500 BTU/hr base. With average insulation and 4 occupants that's about 50,300 BTU/hr → 4.5 tons (rounded up to the half ton)." },
       { q: "How many BTU per square foot for air conditioning?", a: "Rule of thumb: 30–35 BTU/sq ft in hot/humid climates, 25–30 in moderate zones. Heating-dominant northern zones size furnaces at 45–50 BTU/sq ft." },
-      { q: "How much CFM per ton of AC?", a: "About 400 CFM per ton — a 3-ton system needs roughly 1,200 CFM of airflow. Undersized ductwork is the most common cause of poor cooling." },
+      { q: "How much CFM per ton of AC?", a: "About 400 CFM per ton a 3-ton system needs roughly 1,200 CFM of airflow. Undersized ductwork is the most common cause of poor cooling." },
     ],
-    howTo: "Enter floor area and ceiling height, pick climate zone, insulation, and sun exposure — BTU loads, tonnage, and CFM update live.",
+    howTo: "Enter floor area and ceiling height, pick climate zone, insulation, and sun exposure BTU loads, tonnage, and CFM update live.",
   },
   {
     id: "recessed-lights",
@@ -772,15 +772,15 @@ export const TOOLS: ToolMetadata[] = [
     readTimeMinutes: 2,
     details: [
       "IPC water supply fixture units: full bath 3.5, half bath 1.5, kitchen 2.0, laundry 2.0, hose bibb 2.5. At or under 14 WSFU a ¾-in main suffices; above that, step up to 1-in.",
-      "½-in PEX footage = connections × average run × 1.15 slack — toilets and hose bibbs pull cold only, dishwashers hot only.",
+      "½-in PEX footage = connections × average run × 1.15 slack toilets and hose bibbs pull cold only, dishwashers hot only.",
       "Home-run systems get dedicated manifold ports per connection; trunk-and-branch doubles the main trunk allowance.",
     ],
     faqs: [
-      { q: "What size PEX main do I need for a 2-bath house?", a: "2 full baths (7.0) + 1 half bath (1.5) + kitchen (2.0) + laundry (2.0) + 2 hose bibbs (5.0) = 17.5 WSFU — over 14, so run a 1-in main supply." },
+      { q: "What size PEX main do I need for a 2-bath house?", a: "2 full baths (7.0) + 1 half bath (1.5) + kitchen (2.0) + laundry (2.0) + 2 hose bibbs (5.0) = 17.5 WSFU over 14, so run a 1-in main supply." },
       { q: "How much PEX per fixture?", a: "Count hot and cold connections per fixture, multiply by the average run from the manifold, and add 15% for snaking and slack. A typical 2-bath home-run needs about 9 hundred-foot coils." },
       { q: "Home run vs trunk and branch PEX?", a: "Home run gives each fixture a dedicated ½-in line back to a central manifold (best pressure, more tubing). Trunk and branch runs a ¾-in main through the house with short ½-in branches (less tubing, more fittings)." },
     ],
-    howTo: "Pick home-run or trunk-and-branch, count fixtures, set run distance — WSFU, main size, coils, and fittings update live.",
+    howTo: "Pick home-run or trunk-and-branch, count fixtures, set run distance WSFU, main size, coils, and fittings update live.",
   },
   {
     id: "insulation-batt-roll",
@@ -800,7 +800,7 @@ export const TOOLS: ToolMetadata[] = [
     readTimeMinutes: 2,
     details: [
       "Wall cavity area deducts 10% for framing; attics and crawlspaces count full area. Batt bundle coverage runs ~125 sq ft/bag at R-13 down to ~32 sq ft/bag at R-49.",
-      "Blown cellulose: about 1.13 bags per 1,000 sq ft per R point — R-38 takes ~43 bags/1,000 sq ft at 10.6 in settled, R-49 ~55 bags at 13.6 in.",
+      "Blown cellulose: about 1.13 bags per 1,000 sq ft per R point R-38 takes ~43 bags/1,000 sq ft at 10.6 in settled, R-49 ~55 bags at 13.6 in.",
       "Framing spacing picks batt width: 15-in batts for 16 in O.C., 23-in for 24 in O.C.",
     ],
     faqs: [
@@ -808,7 +808,7 @@ export const TOOLS: ToolMetadata[] = [
       { q: "How many batts for R-19 walls?", a: "R-19 batt bundles cover about 88 sq ft each. A 1,000 sq ft wall (900 net after framing) needs ceil(900 × 1.05 ÷ 88) = 11 bundles." },
       { q: "What R-value for attic insulation?", a: "DOE recommends R-38 to R-49 for attics in most US climate zones (R-30 minimum in hot zones 1–2). Walls: R-13 to R-15 in 2×4, R-19 to R-21 in 2×6." },
     ],
-    howTo: "Pick the application and insulation type, enter area, set the target R-value — bags, thickness, and net area update live.",
+    howTo: "Pick the application and insulation type, enter area, set the target R-value bags, thickness, and net area update live.",
   },
   {
     id: "baseboard-crown-molding",
@@ -836,7 +836,7 @@ export const TOOLS: ToolMetadata[] = [
       { q: "How many miter cuts for crown molding in a square room?", a: "4 inside corners × 2 cuts = 8 miters, plus scarf joints wherever a wall run exceeds your stock length (2 cuts each)." },
       { q: "How much caulk for trim?", a: "One 10-oz tube of painter's caulk covers about 75 linear feet of moulding, sealing both the top and bottom edges." },
     ],
-    howTo: "Enter the room size, corners, and stock length — boards, cut counts, and caulk tubes update live.",
+    howTo: "Enter the room size, corners, and stock length boards, cut counts, and caulk tubes update live.",
   },
   {
     id: "ceiling-texture-drywall",
@@ -855,16 +855,16 @@ export const TOOLS: ToolMetadata[] = [
     available: true,
     readTimeMinutes: 2,
     details: [
-      "Medium-depth coverage: knockdown/orange peel ≈ 550 sq ft per 50-lb bag, popcorn ≈ 350 sq ft per 40-lb bag, Level 5 skim ≈ 375 sq ft per 4.5-gal bucket — all with 10% waste.",
+      "Medium-depth coverage: knockdown/orange peel ≈ 550 sq ft per 50-lb bag, popcorn ≈ 350 sq ft per 40-lb bag, Level 5 skim ≈ 375 sq ft per 4.5-gal bucket all with 10% waste.",
       "Light application stretches coverage ~25%; heavy cuts it ~20%.",
       "PVA primer seals at 350 sq ft per gallon. Dry-mix bags need about 5 gallons of mixing water each; premixed buckets need none.",
     ],
     faqs: [
       { q: "How much knockdown texture for a 900 sq ft ceiling?", a: "At medium depth: ceil(900 × 1.10 ÷ 550) = 2 fifty-pound bags, plus ceil(900 ÷ 350) = 3 gallons of PVA primer and 10 gallons of mixing water." },
       { q: "How much joint compound for a Level 5 skim coat?", a: "A 4.5-gallon bucket covers about 375 sq ft at medium depth. A 900 sq ft area needs ceil(990 ÷ 375) = 3 buckets with 10% waste." },
-      { q: "How much primer over new drywall texture?", a: "PVA drywall primer covers about 350 sq ft per gallon to seal raw drywall and texture before topcoat — always prime before painting." },
+      { q: "How much primer over new drywall texture?", a: "PVA drywall primer covers about 350 sq ft per gallon to seal raw drywall and texture before topcoat always prime before painting." },
     ],
-    howTo: "Enter the surface area, pick texture style and depth — bags or buckets, primer gallons, and mixing water update live.",
+    howTo: "Enter the surface area, pick texture style and depth bags or buckets, primer gallons, and mixing water update live.",
   },
 
   /* ---------------- Bidding, Markup & Financials ---------------- */
@@ -884,9 +884,9 @@ export const TOOLS: ToolMetadata[] = [
     badge: "Most Popular",
     estimatedTime: "< 1 min",
     available: true,
-    howTo: "Enter direct job costs and a target margin or markup — the bid price, equivalents, and true net profit solve live.",
+    howTo: "Enter direct job costs and a target margin or markup the bid price, equivalents, and true net profit solve live.",
     details: [
-      "Margin is profit ÷ price; markup is profit ÷ cost. A 30% markup is only a 23% margin — the #1 pricing mistake in contracting.",
+      "Margin is profit ÷ price; markup is profit ÷ cost. A 30% markup is only a 23% margin the #1 pricing mistake in contracting.",
       "Bid from margin: price = cost ÷ (1 − margin). Bid from markup: price = cost × (1 + markup).",
       "Net true profit = gross profit − overhead recovery. One click applies the markup to your Master Bid.",
     ],
@@ -901,7 +901,7 @@ export const TOOLS: ToolMetadata[] = [
     slug: "labor-burden-hourly",
     title: "True Burdened Labor Rate",
     shortDescription:
-      "Base wage vs. true employer cost per billable hour — taxes, comp, PTO, benefits included.",
+      "Base wage vs. true employer cost per billable hour taxes, comp, PTO, benefits included.",
     category: "financial-business",
     subtrade: "Labor",
     tags: ["labor burden", "hourly rate", "payroll", "workers comp", "true cost", "wage"],
@@ -913,7 +913,7 @@ export const TOOLS: ToolMetadata[] = [
     estimatedTime: "< 3 min",
     available: true,
     details: [
-      "Payroll taxes, workers' comp, liability, PTO, and benefits stack on top of every base wage — a $28/hr wage typically costs $38–$42/hr to employ.",
+      "Payroll taxes, workers' comp, liability, PTO, and benefits stack on top of every base wage a $28/hr wage typically costs $38–$42/hr to employ.",
       "Billable efficiency (default 80%) shrinks the 2,080-hour year by travel, shop time, weather, and holidays before the rate is computed.",
       "The burden % multiplier shows exactly how much to mark up raw wages so labor pays for itself on every bid.",
     ],
@@ -928,12 +928,12 @@ export const TOOLS: ToolMetadata[] = [
       {
         q: "What billable efficiency should I use?",
         a:
-          "80% is the industry rule of thumb for field crews — it accounts for travel between jobs, tool maintenance, material runs, safety meetings, and weather delays. Office-heavy or far-flung service areas may run 70–75%. Track a few months of timesheets to calibrate yours.",
+          "80% is the industry rule of thumb for field crews it accounts for travel between jobs, tool maintenance, material runs, safety meetings, and weather delays. Office-heavy or far-flung service areas may run 70–75%. Track a few months of timesheets to calibrate yours.",
       },
       {
         q: "Does this replace my accountant's payroll numbers?",
         a:
-          "No — this is a bidding tool, not a tax filing. State unemployment rates, comp class codes, and benefit costs vary. Use your actual year-end payroll figures to tune the inputs, and confirm tax treatment with your bookkeeper.",
+          "No this is a bidding tool, not a tax filing. State unemployment rates, comp class codes, and benefit costs vary. Use your actual year-end payroll figures to tune the inputs, and confirm tax treatment with your bookkeeper.",
       },
     ],
   },
@@ -955,21 +955,21 @@ export const TOOLS: ToolMetadata[] = [
     available: true,
     details: [
       "Total payout = quantity × piece rate: the exact check you'll write the subcontractor.",
-      "Effective hourly yield = payout ÷ man-hours: what each installer really earns — compare against local wages.",
+      "Effective hourly yield = payout ÷ man-hours: what each installer really earns compare against local wages.",
       "Production velocity (units per man-hour) becomes your benchmark for bidding the next job of the same type.",
     ],
     howTo:
-      "Pick the trade's piece unit, enter total quantity and the agreed rate per unit. Add crew size and estimated completion time (in days or hours). Compare the effective hourly yield against local wages — if it lands far below market, expect quality or retention problems.",
+      "Pick the trade's piece unit, enter total quantity and the agreed rate per unit. Add crew size and estimated completion time (in days or hours). Compare the effective hourly yield against local wages if it lands far below market, expect quality or retention problems.",
     faqs: [
       {
         q: "What's a fair effective hourly rate for piece work?",
         a:
-          "It should meet or beat what the same installer earns hourly locally — piece work usually pays a 10–20% premium because the crew absorbs downtime risk. If your numbers show $18/hr effective in a $28/hr market, the rate is too low or the time estimate too generous.",
+          "It should meet or beat what the same installer earns hourly locally piece work usually pays a 10–20% premium because the crew absorbs downtime risk. If your numbers show $18/hr effective in a $28/hr market, the rate is too low or the time estimate too generous.",
       },
       {
         q: "How do I use the production velocity number?",
         a:
-          "Velocity (units per man-hour) is your benchmark. Record it per crew and trade — next time you bid similar work, divide the quantity by velocity to estimate man-hours, then sanity-check any sub's proposed schedule against it.",
+          "Velocity (units per man-hour) is your benchmark. Record it per crew and trade next time you bid similar work, divide the quantity by velocity to estimate man-hours, then sanity-check any sub's proposed schedule against it.",
       },
       {
         q: "Should I include materials in the piece rate?",
@@ -983,7 +983,7 @@ export const TOOLS: ToolMetadata[] = [
     slug: "jobsite-breakeven",
     title: "Daily Overhead & Breakeven Rate",
     shortDescription:
-      "Your minimum daily cost to keep the doors open — before profit.",
+      "Your minimum daily cost to keep the doors open before profit.",
     category: "financial-business",
     subtrade: "Overhead",
     tags: ["overhead", "breakeven", "daily rate", "fixed costs", "survival rate", "billable"],
@@ -1000,22 +1000,22 @@ export const TOOLS: ToolMetadata[] = [
       "220 billable days (not 260) accounts for rain, holidays, breakdowns, and gaps between jobs.",
     ],
     howTo:
-      "Enter the five annual fixed-cost buckets honestly — pull them from last year's books. Set billable days (220 is typical) and your profit buffer target (15% default). Use the daily overhead as the absolute floor and the survival rate as your minimum daily bid. Dispatch the allocation line with the project's day count.",
+      "Enter the five annual fixed-cost buckets honestly pull them from last year's books. Set billable days (220 is typical) and your profit buffer target (15% default). Use the daily overhead as the absolute floor and the survival rate as your minimum daily bid. Dispatch the allocation line with the project's day count.",
     faqs: [
       {
         q: "What's the difference between daily overhead and the survival rate?",
         a:
-          "Daily overhead is the zero-profit breakeven — bid below it and you lose money even with perfect execution. The survival rate divides overhead by (1 − profit target), so a 15% target on $400/day overhead gives a $471/day minimum bid that actually leaves profit.",
+          "Daily overhead is the zero-profit breakeven bid below it and you lose money even with perfect execution. The survival rate divides overhead by (1 − profit target), so a 15% target on $400/day overhead gives a $471/day minimum bid that actually leaves profit.",
       },
       {
         q: "Why 220 billable days instead of 260 weekdays?",
         a:
-          "Rain days, holidays, sick days, equipment breakdowns, and gaps between jobs eat roughly 40 days a year. Bidding against 260 days understates your true daily cost by ~15% — the classic way busy contractors go broke.",
+          "Rain days, holidays, sick days, equipment breakdowns, and gaps between jobs eat roughly 40 days a year. Bidding against 260 days understates your true daily cost by ~15% the classic way busy contractors go broke.",
       },
       {
         q: "Should labor burden be included here too?",
         a:
-          "No — keep them separate. This tool covers fixed business overhead (trucks, insurance, office, admin). Field labor burden belongs in the True Burdened Labor Rate calculator. Add both lines to a bid and nothing gets double-counted.",
+          "No keep them separate. This tool covers fixed business overhead (trucks, insurance, office, admin). Field labor burden belongs in the True Burdened Labor Rate calculator. Add both lines to a bid and nothing gets double-counted.",
       },
     ],
   },
@@ -1058,7 +1058,7 @@ export const TOOLS: ToolMetadata[] = [
     slug: "feet-inch-fraction",
     title: "Feet-Inches-Fraction Keypad",
     shortDescription:
-      "Jobsite keypad for fractional dimension math — add, subtract, multiply, divide to 1/16\".",
+      "Jobsite keypad for fractional dimension math add, subtract, multiply, divide to 1/16\".",
     category: "utilities",
     subtrade: "Converters",
     tags: ["fraction", "keypad", "tape measure", "feet inches", "dimension math", "1/16"],
@@ -1071,9 +1071,9 @@ export const TOOLS: ToolMetadata[] = [
     available: true,
     details: [
       "Add, subtract, multiply, and divide dimensions like 14 ft 7-3/8 in with big touch-friendly keys.",
-      "All arithmetic runs in integer 16ths of an inch — no floating-point drift, fractions stay exact.",
+      "All arithmetic runs in integer 16ths of an inch no floating-point drift, fractions stay exact.",
       "Every result shows the reduced fraction plus decimal inches, decimal feet, and metric equivalents.",
-      "Operations evaluate left to right (× and ÷ have no precedence) — the same way chain calculators work.",
+      "Operations evaluate left to right (× and ÷ have no precedence) the same way chain calculators work.",
     ],
     howTo:
       "Tap digits, the foot/inch keys, and fraction presets to build a dimension (e.g. 14′ 7 3/8″), then tap an operator and build the next one. Press = for the result, copy it, copy decimal feet, or push the measurement straight into your estimate as a reference line.",
@@ -1081,7 +1081,7 @@ export const TOOLS: ToolMetadata[] = [
       {
         q: "Why do my phone calculator results differ by a 16th?",
         a:
-          "Phone calculators use floating-point decimals, so 0.1 + 0.2 ≠ 0.3 exactly — errors accumulate across chained cuts. This keypad does all arithmetic in integer 16ths of an inch, the same way you'd work it on paper, so fractions stay exact.",
+          "Phone calculators use floating-point decimals, so 0.1 + 0.2 ≠ 0.3 exactly errors accumulate across chained cuts. This keypad does all arithmetic in integer 16ths of an inch, the same way you'd work it on paper, so fractions stay exact.",
       },
       {
         q: "Can I chain calculations, like adding three wall lengths?",
@@ -1100,7 +1100,7 @@ export const TOOLS: ToolMetadata[] = [
     slug: "unit-converter-pro",
     title: "Construction Unit Converter",
     shortDescription:
-      "Two-way area, volume, and weight conversions — sq ft, squares, cu yd, metric, tons.",
+      "Two-way area, volume, and weight conversions sq ft, squares, cu yd, metric, tons.",
     category: "utilities",
     subtrade: "Converters",
     tags: ["convert", "units", "sqft", "cuyd", "metric", "area", "volume", "squares", "tons"],
@@ -1112,21 +1112,21 @@ export const TOOLS: ToolMetadata[] = [
     available: true,
     details: [
       "Area: sq ft ↔ sq yd ↔ roofing squares ↔ acres ↔ sq m. Volume: cu ft ↔ cu yd ↔ gallons ↔ cu m ↔ liters. Weight: lb ↔ tons ↔ tonnes ↔ kg.",
-      "Two-way and instant — tap swap to reverse direction, tap any reference card to copy it.",
+      "Two-way and instant tap swap to reverse direction, tap any reference card to copy it.",
       "Defined relationships are exact (1 cu yd = 27 cu ft); metric factors use standard values.",
     ],
     howTo:
-      "Pick Area, Volume, or Weight, choose the from/to units, and type a value — conversion is instant. Tap the swap button to reverse direction, tap any reference card to copy it, or save the conversion as a note line in your estimate.",
+      "Pick Area, Volume, or Weight, choose the from/to units, and type a value conversion is instant. Tap the swap button to reverse direction, tap any reference card to copy it, or save the conversion as a note line in your estimate.",
     faqs: [
       {
         q: "How many square feet are in a roofing square?",
         a:
-          "Exactly 100 sq ft per square — and a square of 3-tab shingles is 3 bundles. Switch to the Area tab, enter squares, and convert to bundles mentally: squares × 3.",
+          "Exactly 100 sq ft per square and a square of 3-tab shingles is 3 bundles. Switch to the Area tab, enter squares, and convert to bundles mentally: squares × 3.",
       },
       {
         q: "How heavy is a cubic yard of concrete?",
         a:
-          "About 4,000 lbs — 2 tons — for standard mix. Use the Weight tab to convert supplier quotes between tons, pounds, and metric tonnes before comparing prices.",
+          "About 4,000 lbs 2 tons for standard mix. Use the Weight tab to convert supplier quotes between tons, pounds, and metric tonnes before comparing prices.",
       },
       {
         q: "Are the conversions exact?",
@@ -1156,7 +1156,7 @@ export const TOOLS: ToolMetadata[] = [
     slug: "master-proposal-builder",
     title: "Master Proposal Builder",
     shortDescription:
-      "Compile every bid line into a branded client proposal — download the PDF locally.",
+      "Compile every bid line into a branded client proposal download the PDF locally.",
     category: "utilities",
     subtrade: "Proposal",
     tags: ["proposal", "bid", "quote", "client", "pdf", "contract", "master estimate"],
@@ -1169,8 +1169,8 @@ export const TOOLS: ToolMetadata[] = [
     available: true,
     details: [
       "Every line dispatched by the 30 calculators lands in one editable bill of materials, grouped by trade.",
-      "Company branding, logo, client and project details print on a client-ready PDF — payment schedule, terms, and signature lines included.",
-      "Markup or gross-margin mode, contingency, and tax compute the total contract value. The PDF is generated entirely in your browser — nothing uploads anywhere.",
+      "Company branding, logo, client and project details print on a client-ready PDF payment schedule, terms, and signature lines included.",
+      "Markup or gross-margin mode, contingency, and tax compute the total contract value. The PDF is generated entirely in your browser nothing uploads anywhere.",
     ],
     howTo:
       "Open the builder after dispatching lines from any calculators. Edit quantities and prices inline, add custom lines, fill in company and client info, set your markup/margin, contingency, and tax, then press Download proposal PDF. Use the JSON backup to save or restore bids.",
@@ -1178,17 +1178,17 @@ export const TOOLS: ToolMetadata[] = [
       {
         q: "Where does my company info and logo go?",
         a:
-          "It's saved in your browser's local storage on your device only — never uploaded. The logo, company name, license number, and contact details print on every proposal PDF header automatically.",
+          "It's saved in your browser's local storage on your device only never uploaded. The logo, company name, license number, and contact details print on every proposal PDF header automatically.",
       },
       {
         q: "What's the difference between markup % and margin % mode?",
         a:
-          "Markup is profit as a percentage of cost (a 20% markup on $1,000 cost = $1,200 price). Gross margin is profit as a percentage of price (a 20% margin needs a 25% markup = $1,250 price). Toggle between them — the builder converts so the final price is identical either way.",
+          "Markup is profit as a percentage of cost (a 20% markup on $1,000 cost = $1,200 price). Gross margin is profit as a percentage of price (a 20% margin needs a 25% markup = $1,250 price). Toggle between them the builder converts so the final price is identical either way.",
       },
       {
         q: "Can I reload a saved bid later?",
         a:
-          "Yes. Download JSON Project Backup saves the complete bid — lines, branding, client, and pricing settings. Restore from backup reloads everything exactly as it was, on any device.",
+          "Yes. Download JSON Project Backup saves the complete bid lines, branding, client, and pricing settings. Restore from backup reloads everything exactly as it was, on any device.",
       },
     ],
   },

@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Category index (/categories).
+ * BuildCalc Pro Category index (/categories).
  *
  * Seven rich category cards: icon, label, blurb, subtrade chips, tool count,
  * and a "View tools" CTA into each hub.
@@ -19,7 +19,7 @@ import { Reveal } from "@/components/ui/Reveal";
 export const metadata: Metadata = {
   title: "Browse Construction Tools by Trade",
   description:
-    "Seven trade hubs of free construction calculators — concrete, framing, finishes, site work, MEP, bidding, and field converters.",
+    "Seven trade hubs of free construction calculators concrete, framing, finishes, site work, MEP, bidding, and field converters.",
 };
 
 export default function CategoriesPage() {
@@ -32,7 +32,7 @@ export default function CategoriesPage() {
             Browse by <span className="text-[#ED7D22]">trade</span>
           </>
         }
-        lede="Seven hubs of precision estimators, organized the way contractors think. Every tool is free — pick a trade and start calculating."
+        lede="Seven hubs of precision estimators, organized the way contractors think. Every tool is free pick a trade and start calculating."
       >
         <div className="mt-6">
           <CrumbNav
@@ -54,7 +54,7 @@ export default function CategoriesPage() {
                   href={categoryHref(meta.id)}
                   className="reveal lift group flex min-h-[44px] flex-col rounded-2xl border border-zinc-200 bg-white p-6"
                   style={{ "--reveal-delay": `${(i % 4) * 60}ms` } as React.CSSProperties}
-                  aria-label={`${meta.label} — open hub`}
+                  aria-label={`${meta.label} open hub`}
                 >
                   <div className="flex items-center justify-between gap-3">
                     <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#14284A]">

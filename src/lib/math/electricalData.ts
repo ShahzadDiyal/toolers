@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — NEC reference data + raceway/voltage-drop math (Phase 4C).
+ * BuildCalc Pro NEC reference data + raceway/voltage-drop math (Phase 4C).
  *
  * Sources: NEC Chapter 9 Table 1 (fill %), Table 4 (conduit areas),
  * Table 5 (THHN conductor areas), Table 8 (conductor properties).

@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Resolves a ToolMetadata.iconName string to a Lucide icon.
+ * BuildCalc Pro Resolves a ToolMetadata.iconName string to a Lucide icon.
  * Unknown names fall back to Calculator so Phase 3/4 tools can't break the UI.
  */
 import {

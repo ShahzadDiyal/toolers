@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Tool page: /tools/[slug].
+ * BuildCalc Pro Tool page: /tools/[slug].
  *
  * Professional tool page: breadcrumb, branded tool header, the registered
  * calculator component (unchanged), then SEO content sections derived ONLY
@@ -74,7 +74,7 @@ export async function generateMetadata({
   const tool = getToolBySlug(slug);
   if (!tool) return {};
   const url = `${SITE_URL}${toolHref(tool)}`;
-  const title = `${tool.title} — Free Calculator`;
+  const title = `${tool.title} Free Calculator`;
   return {
     title,
     description: tool.shortDescription,
@@ -207,7 +207,7 @@ function ComingSoon({ slug }: { slug: string }) {
               On the build bench
             </p>
             <p className="mt-1 text-sm leading-relaxed text-[#5A6C85]">
-              This calculator is being built on the universal shell — auto-saved
+              This calculator is being built on the universal shell auto-saved
               inputs, real-time math, bill of materials, and one-tap bid lines.
             </p>
           </div>
@@ -243,7 +243,7 @@ function ComingSoon({ slug }: { slug: string }) {
 const GENERIC_STEPS = [
   "Enter your measurements in the input fields above.",
   "Choose the units that match your tape and supplier.",
-  "Review the results as they update live — no calculate button needed.",
+  "Review the results as they update live no calculate button needed.",
   "Add the bill of materials to your estimate with one tap.",
 ];
 
@@ -291,7 +291,7 @@ export default async function ToolPage({
 
         {ToolComponent ? (
           <>
-            {/* The calculator — untouched */}
+            {/* The calculator untouched */}
             <div className="reveal mt-8 overflow-x-clip">
               <ToolComponent />
             </div>
@@ -375,7 +375,7 @@ export default async function ToolPage({
               </Reveal>
             </div>
 
-            {/* Related tools — full width grid */}
+            {/* Related tools full width grid */}
             {related.length > 0 && (
               <section aria-label="Related tools" className="mt-14">
                 <Reveal>

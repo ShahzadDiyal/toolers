@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Master Estimate store.
+ * BuildCalc Pro Master Estimate store.
  *
  * Zustand + persist to `localStorage` (key `contractor_active_estimate`).
  * Zero backend: no database, no auth, no network calls. If localStorage is
@@ -71,7 +71,7 @@ function createSafeStorage(): StateStorage {
         window.localStorage.setItem(key, value);
         storageHealth.durable = true;
       } catch {
-        // Quota / privacy mode — keep the session working in memory.
+        // Quota / privacy mode keep the session working in memory.
         memory.setItem(key, value);
         storageHealth.durable = false;
       }
@@ -259,7 +259,7 @@ export const useEstimateStore = create<EstimateStore>()(
           const path = first.path.join(".") || "document";
           return {
             ok: false,
-            error: `Import rejected — ${path}: ${first.message}`,
+            error: `Import rejected ${path}: ${first.message}`,
           };
         }
         const doc = parsed.data;
@@ -314,7 +314,7 @@ export function useBidSummary(): BidSummary {
   const markupPercent = useEstimateStore((s) => s.markupPercent);
   const contingencyPercent = useEstimateStore((s) => s.contingencyPercent);
   const taxPercent = useEstimateStore((s) => s.taxPercent);
-  // NOTE: never compute inside the selector — a fresh object on every
+  // NOTE: never compute inside the selector a fresh object on every
   // snapshot trips React's useSyncExternalStore into an infinite loop.
   return React.useMemo(
     () =>

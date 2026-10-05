@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Architectural Feet-Inches-Fraction Keypad (Batch 4G).
+ * BuildCalc Pro Architectural Feet-Inches-Fraction Keypad (Batch 4G).
  *
  * Touch keypad for fractional dimension math. All arithmetic runs in
  * 16ths-of-an-inch integers to avoid IEEE-754 drift.
@@ -174,7 +174,7 @@ export function FeetInchFractionTool() {
       await navigator.clipboard.writeText(text);
       toast.success(`${what} copied`, { description: text });
     } catch {
-      toast.error("Copy failed — your browser blocked clipboard access");
+      toast.error("Copy failed your browser blocked clipboard access");
     }
   };
 
@@ -317,7 +317,7 @@ export function FeetInchFractionTool() {
         Recent calculations
       </p>
       {v.history.length === 0 ? (
-        <p className="text-sm text-zinc-500">No calculations yet — results appear here.</p>
+        <p className="text-sm text-zinc-500">No calculations yet results appear here.</p>
       ) : (
       <ul className="space-y-1.5">
         {v.history.map((h, i) => (

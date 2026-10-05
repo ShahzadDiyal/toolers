@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Global fuzzy search command menu (⌘K / Ctrl+K).
+ * BuildCalc Pro Global fuzzy search command menu (⌘K / Ctrl+K).
  *
  * Spotlight modal over the tool registry: keyboard-driven navigation,
  * category chips, recent tools, match highlighting, and clean empty states
@@ -184,7 +184,7 @@ export function CommandMenu() {
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
       <CommandInput
-        placeholder="Search 31 calculators — try “shingles”, “rebar”, “markup”…"
+        placeholder="Search 31 calculators try “shingles”, “rebar”, “markup”…"
         value={query}
         onValueChange={setQuery}
         autoFocus

@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Shared page furniture.
+ * BuildCalc Pro Shared page furniture.
  *
  * SectionHeading: consistent eyebrow + H2 + lede for every marketing section.
  * PageHero: consistent interior-page hero (breadcrumb slot, title, lede).

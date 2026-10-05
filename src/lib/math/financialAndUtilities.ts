@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Business financials & jobsite utilities math (Batch 4G).
+ * BuildCalc Pro Business financials & jobsite utilities math (Batch 4G).
  *
  * Pure functions only: no React, no storage, no I/O.
  */
@@ -192,7 +192,7 @@ export function breakevenTakeoff(i: BreakevenInput): BreakevenTakeoff {
 }
 
 /* ------------------------------------------------------------------ */
-/* 4. Architectural fraction keypad — 16ths integer arithmetic          */
+/* 4. Architectural fraction keypad 16ths integer arithmetic          */
 /* ------------------------------------------------------------------ */
 
 /**

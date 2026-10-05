@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Shared tool card.
+ * BuildCalc Pro Shared tool card.
  *
  * Used by the category hubs, the /tools directory, and the categories index
  * search results. Shows: icon + title, trade tag badge, inputs → outputs
@@ -33,7 +33,7 @@ function PinToggle({ slug, title }: { slug: string; title: string }) {
       onClick={() => togglePinTool(slug)}
       aria-pressed={pinned}
       aria-label={pinned ? `Unpin ${title}` : `Pin ${title} for quick access`}
-      title={pinned ? "Pinned — tap to unpin" : "Pin for quick access"}
+      title={pinned ? "Pinned tap to unpin" : "Pin for quick access"}
       className={cn(
         "flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border transition-colors",
         pinned
@@ -70,7 +70,7 @@ export function ToolCard({
           <Link
             href={href}
             className="flex min-h-[44px] min-w-0 flex-1 items-center gap-3 rounded-lg"
-            aria-label={`${tool.title} — open calculator`}
+            aria-label={`${tool.title} open calculator`}
           >
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-primary/30 bg-primary/15">
               <Icon className="h-5 w-5 text-primary" />

@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Wall Framing & Drywall Pack (Phase 4B).
+ * BuildCalc Pro Wall Framing & Drywall Pack (Phase 4B).
  *
  * Rough framing lumber takeoff + interior wallboard in one pass.
  * Dispatches 3 estimate lines: framing lumber, wallboards, finishing.
@@ -356,19 +356,19 @@ export function FramingDrywallPackTool() {
       materials={materials}
       materialCosts={[
         {
-          label: `Studs — ${formatNumber(t.totalStuds)} × ${formatMoney(v.costPerStud)}`,
+          label: `Studs ${formatNumber(t.totalStuds)} × ${formatMoney(v.costPerStud)}`,
           amount: Math.round(studsCost * 100) / 100,
         },
         {
-          label: `Plates — ${formatNumber(t.plateBoards)} × ${formatMoney(v.costPerPlate)}`,
+          label: `Plates ${formatNumber(t.plateBoards)} × ${formatMoney(v.costPerPlate)}`,
           amount: Math.round(platesCost * 100) / 100,
         },
         {
-          label: `Sheets — ${formatNumber(t.sheets)} × ${formatMoney(v.costPerSheet)}`,
+          label: `Sheets ${formatNumber(t.sheets)} × ${formatMoney(v.costPerSheet)}`,
           amount: Math.round(sheetsCost * 100) / 100,
         },
         {
-          label: `Mud & tape — ${formatNumber(t.mudBuckets)} + ${formatNumber(t.tapeRolls)}`,
+          label: `Mud & tape ${formatNumber(t.mudBuckets)} + ${formatNumber(t.tapeRolls)}`,
           amount: Math.round(finishCost * 100) / 100,
         },
       ]}

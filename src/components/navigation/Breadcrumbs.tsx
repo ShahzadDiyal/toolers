@@ -1,10 +1,10 @@
 /**
- * BuildCalc Pro — Reusable breadcrumb navigation.
+ * BuildCalc Pro Reusable breadcrumb navigation.
  *
  * - Accessible: <nav aria-label="Breadcrumb"> + ordered list.
  * - Schema.org BreadcrumbList microdata for SEO.
  * - Mobile (<640px): collapses to a single compact back link
- *   ("← Back to {parent}") — thumb-friendly on the job site.
+ *   ("← Back to {parent}") thumb-friendly on the job site.
  * - Slug normalization helper for dynamic routes.
  */
 "use client";

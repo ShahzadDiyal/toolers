@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — CostInput (Phase 4A).
+ * BuildCalc Pro CostInput (Phase 4A).
  *
  * Dollar input with currency formatting and an optional per-unit label
  * (e.g. $/cu yd, $/sq ft, $/bundle). Formats to 2 decimals on blur.

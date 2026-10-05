@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Concrete Slab, Footing & Column Calculator (Phase 4A).
+ * BuildCalc Pro Concrete Slab, Footing & Column Calculator (Phase 4A).
  *
  * Shapes: rectangular slab, circular column/pier, trench footing.
  * Cost modes: ready-mix ($/cu yd) or premix bags ($/bag). Real-time math,
@@ -141,19 +141,19 @@ export function ConcreteSlabTool() {
   let lineUnitCost = 0;
   if (v.costMode === "readymix") {
     materialCost = roundTo(grossYards * v.costPerYard, 2);
-    materialLabel = `Ready-mix — ${formatNumber(grossYards)} cu yd × ${formatMoney(v.costPerYard)}`;
+    materialLabel = `Ready-mix ${formatNumber(grossYards)} cu yd × ${formatMoney(v.costPerYard)}`;
     lineQty = grossYards;
     lineUnit = "cu yd";
     lineUnitCost = v.costPerYard;
   } else if (v.costMode === "bags80") {
     materialCost = roundTo(bags80 * v.costPerBag, 2);
-    materialLabel = `80-lb bags — ${bags80} × ${formatMoney(v.costPerBag)}`;
+    materialLabel = `80-lb bags ${bags80} × ${formatMoney(v.costPerBag)}`;
     lineQty = bags80;
     lineUnit = "bags";
     lineUnitCost = v.costPerBag;
   } else {
     materialCost = roundTo(bags60 * v.costPerBag, 2);
-    materialLabel = `60-lb bags — ${bags60} × ${formatMoney(v.costPerBag)}`;
+    materialLabel = `60-lb bags ${bags60} × ${formatMoney(v.costPerBag)}`;
     lineQty = bags60;
     lineUnit = "bags";
     lineUnitCost = v.costPerBag;
@@ -194,10 +194,10 @@ export function ConcreteSlabTool() {
         v.costMode === "readymix"
           ? truckloads > 0
             ? `${truckloads} truckload${truckloads === 1 ? "" : "s"}${
-                shortLoad ? " — short-load fee likely" : ""
+                shortLoad ? " short-load fee likely" : ""
               }`
             : undefined
-          : "Rounded up — no split bags",
+          : "Rounded up no split bags",
       highlight: true,
     },
     {
@@ -223,8 +223,8 @@ export function ConcreteSlabTool() {
     }
     const title =
       v.costMode === "readymix"
-        ? `Concrete Pour (Ready-Mix) — ${SHAPE_TITLES[v.shape]}`
-        : `Concrete (${v.costMode === "bags80" ? "80-lb" : "60-lb"} bags) — ${SHAPE_TITLES[v.shape]}`;
+        ? `Concrete Pour (Ready-Mix) ${SHAPE_TITLES[v.shape]}`
+        : `Concrete (${v.costMode === "bags80" ? "80-lb" : "60-lb"} bags) ${SHAPE_TITLES[v.shape]}`;
     addItem({
       toolSlug: SLUG,
       title,
@@ -240,7 +240,7 @@ export function ConcreteSlabTool() {
       }`,
     });
     toast.success("Added to Master Bid Cart", {
-      description: `${title} — ${formatMoney(roundTo(lineQty * lineUnitCost, 2))}`,
+      description: `${title} ${formatMoney(roundTo(lineQty * lineUnitCost, 2))}`,
       action: { label: "View cart", onClick: () => setDrawerOpen(true) },
     });
   };

@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Rebar & wire-mesh math (Phase 4B).
+ * BuildCalc Pro Rebar & wire-mesh math (Phase 4B).
  *
  * Pure functions, unit-testable. Inputs sanitized (non-finite → 0).
  */

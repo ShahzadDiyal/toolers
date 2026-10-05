@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Stair stringer diagram (SVG).
+ * BuildCalc Pro Stair stringer diagram (SVG).
  *
  * Sawtooth stringer profile with dimension callouts: total rise, total run,
  * unit riser/tread, and stringer cut length. Updates live with the inputs.

@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Skeleton loader for category hubs.
+ * BuildCalc Pro Skeleton loader for category hubs.
  */
 import { Skeleton } from "@/components/ui/skeleton";
 

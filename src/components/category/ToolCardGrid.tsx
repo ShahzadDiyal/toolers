@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Responsive sub-tools grid with instant empty state.
+ * BuildCalc Pro Responsive sub-tools grid with instant empty state.
  */
 import { SearchX } from "lucide-react";
 import type { ToolMetadata } from "@/types/estimator";

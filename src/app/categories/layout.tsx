@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Browse by Trade · BuildCalc Pro",
     description:
-      "Seven trade hubs of free construction calculators — jump straight to any tool.",
+      "Seven trade hubs of free construction calculators jump straight to any tool.",
     url: `${SITE_URL}/categories`,
   },
 };

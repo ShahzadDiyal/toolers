@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Subcontractor Piece-Work & Crew Production (Batch 4G).
+ * BuildCalc Pro Subcontractor Piece-Work & Crew Production (Batch 4G).
  */
 "use client";
 
@@ -109,7 +109,7 @@ export function SubPieceRateTool() {
     }
     addItem({
       toolSlug: SLUG,
-      title: `Subcontractor Turnkey Piecework — ${unitInfo.label}`,
+      title: `Subcontractor Turnkey Piecework ${unitInfo.label}`,
       category: "financial-business",
       quantity: v.quantity,
       unit: unitInfo.unit,
@@ -193,7 +193,7 @@ export function SubPieceRateTool() {
       wastePercent={0}
       materials={materials}
       materialCosts={[
-        { label: `Subcontractor — ${formatNumber(v.quantity)} ${unitInfo.unit}`, amount: t.totalPayout },
+        { label: `Subcontractor ${formatNumber(v.quantity)} ${unitInfo.unit}`, amount: t.totalPayout },
       ]}
       total={t.totalPayout}
       onAddToEstimate={handleAdd}

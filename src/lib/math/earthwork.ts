@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Earthwork, masonry & foundation math (Batch 4D).
+ * BuildCalc Pro Earthwork, masonry & foundation math (Batch 4D).
  *
  * Pure functions only: no React, no storage, no I/O. All quantities are
  * rounded UP at the order step (suppliers don't split units); net values
@@ -68,7 +68,7 @@ export function cmuTakeoff(i: CmuTakeoffInput): CmuTakeoff {
     netBlocks * (1 + Math.max(0, i.blockWastePct) / 100),
   );
   // Mortar: 80-lb bags. Manufacturer data sheets (Quikrete 13, Sakrete 15,
-  // Menards 12, TradeCraft 18, Best Materials 20 blocks per bag) — 15 is the
+  // Menards 12, TradeCraft 18, Best Materials 20 blocks per bag) 15 is the
   // defensible mid-range. Based on NET blocks (broken blocks use no mortar),
   // then the user's mortar waste is applied once.
   const mortarBags = Math.ceil(
@@ -216,7 +216,7 @@ export function retainingWallTakeoff(i: RetainingWallInput): RetainingWallTakeof
   const capUnits = Math.ceil(blocksPerCourse * wasteF);
 
   // Drainage column: full exposed height x specified width, 3/4" stone.
-  // Suppliers sell by the half-ton — round the order quantity up.
+  // Suppliers sell by the half-ton round the order quantity up.
   const drainageTons =
     Math.ceil(
       (((lengthFt * (Math.max(0, i.drainageWidthIn) / 12) * exposedFt) / 27) *

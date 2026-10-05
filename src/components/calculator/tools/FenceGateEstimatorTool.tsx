@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Wood & Chain-Link Fence Material Estimator (Batch 4E).
+ * BuildCalc Pro Wood & Chain-Link Fence Material Estimator (Batch 4E).
  *
  * Posts, rails, pickets / fabric rolls, gate kits, and fast-set concrete.
  * Dispatches up to 4 estimate lines.
@@ -100,7 +100,7 @@ export function FenceGateEstimatorTool() {
   /* ---------------- Results ---------------- */
   const materials: MaterialRow[] = [
     {
-      label: `Posts — ${v.heightFt} ft ${isWood ? "wood" : "galvanized steel"}`,
+      label: `Posts ${v.heightFt} ft ${isWood ? "wood" : "galvanized steel"}`,
       net: `${formatNumber(t.sections)} sections`,
       waste: "—",
       order: `${formatNumber(t.posts)} posts`,
@@ -110,14 +110,14 @@ export function FenceGateEstimatorTool() {
     ...(isWood
       ? [
           {
-            label: "Horizontal rails — 2×4",
+            label: "Horizontal rails 2×4",
             net: `${v.railCount} per section`,
             waste: "+5%",
             order: `${formatNumber(t.rails)} rails`,
             note: "8-ft stock",
           } as MaterialRow,
           {
-            label: `Pickets — ${v.picketWidthIn}″ dog-ear`,
+            label: `Pickets ${v.picketWidthIn}″ dog-ear`,
             net: `${formatNumber(v.totalLF)} lin ft`,
             waste: "+10%",
             order: `${formatNumber(t.pickets)} pickets`,
@@ -127,7 +127,7 @@ export function FenceGateEstimatorTool() {
         ]
       : [
           {
-            label: "Chain-link fabric — 50-ft rolls",
+            label: "Chain-link fabric 50-ft rolls",
             net: `${formatNumber(v.totalLF)} lin ft`,
             waste: "—",
             order: `${formatNumber(t.fabricRolls)} rolls`,
@@ -136,7 +136,7 @@ export function FenceGateEstimatorTool() {
           } as MaterialRow,
         ]),
     {
-      label: "Post concrete — 60-lb fast-set",
+      label: "Post concrete 60-lb fast-set",
       net: `${formatNumber(t.posts)} holes`,
       waste: "—",
       order: `${formatNumber(t.concreteBags)} bags`,
@@ -166,7 +166,7 @@ export function FenceGateEstimatorTool() {
     let lines = 0;
     addItem({
       toolSlug: SLUG,
-      title: `Fence Posts — ${v.heightFt} ft`,
+      title: `Fence Posts ${v.heightFt} ft`,
       category: "site-exterior",
       quantity: t.posts,
       unit: "ea",
@@ -178,7 +178,7 @@ export function FenceGateEstimatorTool() {
     if (isWood) {
       addItem({
         toolSlug: SLUG,
-        title: "Fence Rails — 2×4 × 8 ft",
+        title: "Fence Rails 2×4 × 8 ft",
         category: "site-exterior",
         quantity: t.rails,
         unit: "ea",
@@ -189,7 +189,7 @@ export function FenceGateEstimatorTool() {
       lines++;
       addItem({
         toolSlug: SLUG,
-        title: `Fence Pickets — ${v.picketWidthIn}″`,
+        title: `Fence Pickets ${v.picketWidthIn}″`,
         category: "site-exterior",
         quantity: t.pickets,
         unit: "ea",
@@ -201,7 +201,7 @@ export function FenceGateEstimatorTool() {
     } else {
       addItem({
         toolSlug: SLUG,
-        title: `Chain-Link Fabric — ${v.heightFt} ft × 50 ft rolls`,
+        title: `Chain-Link Fabric ${v.heightFt} ft × 50 ft rolls`,
         category: "site-exterior",
         quantity: t.fabricRolls,
         unit: "ea",
@@ -213,7 +213,7 @@ export function FenceGateEstimatorTool() {
     }
     addItem({
       toolSlug: SLUG,
-      title: "Post Concrete — 60-lb fast-set bags",
+      title: "Post Concrete 60-lb fast-set bags",
       category: "site-exterior",
       quantity: t.concreteBags,
       unit: "bags",
@@ -401,16 +401,16 @@ export function FenceGateEstimatorTool() {
       wastePercent={isWood ? 10 : 0}
       materials={materials}
       materialCosts={[
-        { label: `Posts — ${formatNumber(t.posts)} × ${formatMoney(v.costPerPost)}`, amount: Math.round(postCost * 100) / 100 },
+        { label: `Posts ${formatNumber(t.posts)} × ${formatMoney(v.costPerPost)}`, amount: Math.round(postCost * 100) / 100 },
         ...(isWood
           ? [
-              { label: `Rails — ${formatNumber(t.rails)} × ${formatMoney(v.costPerRail)}`, amount: Math.round(railCost * 100) / 100 },
-              { label: `Pickets — ${formatNumber(t.pickets)} × ${formatMoney(v.costPerPicket)}`, amount: Math.round(picketCost * 100) / 100 },
+              { label: `Rails ${formatNumber(t.rails)} × ${formatMoney(v.costPerRail)}`, amount: Math.round(railCost * 100) / 100 },
+              { label: `Pickets ${formatNumber(t.pickets)} × ${formatMoney(v.costPerPicket)}`, amount: Math.round(picketCost * 100) / 100 },
             ]
-          : [{ label: `Fabric — ${formatNumber(t.fabricRolls)} × ${formatMoney(v.costPerFabricRoll)}`, amount: Math.round(fabricCost * 100) / 100 }]),
-        { label: `Concrete — ${formatNumber(t.concreteBags)} × ${formatMoney(v.costPerConcreteBag)}`, amount: Math.round(concreteCost * 100) / 100 },
+          : [{ label: `Fabric ${formatNumber(t.fabricRolls)} × ${formatMoney(v.costPerFabricRoll)}`, amount: Math.round(fabricCost * 100) / 100 }]),
+        { label: `Concrete ${formatNumber(t.concreteBags)} × ${formatMoney(v.costPerConcreteBag)}`, amount: Math.round(concreteCost * 100) / 100 },
         ...(t.gateKits > 0
-          ? [{ label: `Gates — ${formatNumber(t.gateKits)} × ${formatMoney(v.costPerGateKit)}`, amount: Math.round(gateCost * 100) / 100 }]
+          ? [{ label: `Gates ${formatNumber(t.gateKits)} × ${formatMoney(v.costPerGateKit)}`, amount: Math.round(gateCost * 100) / 100 }]
           : []),
       ]}
       total={Math.round(total * 100) / 100}

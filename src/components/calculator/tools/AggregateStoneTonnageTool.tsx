@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Aggregate & Stone Tonnage Calculator (Batch 4D).
+ * BuildCalc Pro Aggregate & Stone Tonnage Calculator (Batch 4D).
  *
  * Area x thickness -> compacted cubic yards -> delivered tons for
  * gravel, crusher run, sand, and decomposed granite. Dispatches 1 line.
@@ -99,7 +99,7 @@ export function AggregateStoneTonnageTool() {
       net: `${formatNumber(t.areaSqft)} sq ft × ${formatNumber(v.thicknessIn)}″`,
       waste: "—",
       order: `${formatNumber(t.compactedCuYd)} cu yd`,
-      note: "Compacted volume — what the tonnage above covers",
+      note: "Compacted volume what the tonnage above covers",
     },
   ];
 
@@ -112,7 +112,7 @@ export function AggregateStoneTonnageTool() {
     }
     addItem({
       toolSlug: SLUG,
-      title: `Aggregate Delivery — ${mat.label}`,
+      title: `Aggregate Delivery ${mat.label}`,
       category: "site-exterior",
       quantity: t.tons,
       unit: "tons",
@@ -247,7 +247,7 @@ export function AggregateStoneTonnageTool() {
       wastePercent={0}
       materials={materials}
       materialCosts={[
-        { label: `${mat.label} — ${formatNumber(t.tons)} × ${formatMoney(v.costPerTon)}/ton`, amount: Math.round(materialCost * 100) / 100 },
+        { label: `${mat.label} ${formatNumber(t.tons)} × ${formatMoney(v.costPerTon)}/ton`, amount: Math.round(materialCost * 100) / 100 },
       ]}
       total={Math.round(materialCost * 100) / 100}
       onAddToEstimate={handleAdd}

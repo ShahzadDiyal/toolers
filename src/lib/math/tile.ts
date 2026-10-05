@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Tile, thinset & grout math (Phase 4B).
+ * BuildCalc Pro Tile, thinset & grout math (Phase 4B).
  *
  * Pure functions, unit-testable. Inputs sanitized (non-finite → 0).
  * Grout weight uses the standard dry-grout density formula:
@@ -20,7 +20,7 @@ export const SPACER_COVERAGE_SQFT = 200; // heuristic: 1 bag per 200 sq ft
  * Dry sanded-grout bulk density for (sq ft × inches) units.
  *
  * The joint-volume structure Area × (L+W)/(L×W) × joint × thickness is the
- * industry-standard (Mapei) formula — but its published K = 1.4–1.6 is
+ * industry-standard (Mapei) formula but its published K = 1.4–1.6 is
  * **kg per litre, metric units only**. For area in sq ft and dimensions in
  * inches, K must be the bulk density in lb per (ft²·in) of joint volume:
  * ≈ 95 lb/ft³ ÷ 12 in/ft ≈ 7.9. Using 1.4 here underestimates grout ~5.6×.

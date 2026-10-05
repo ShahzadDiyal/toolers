@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Client-side proposal PDF generator (Batch 4G).
+ * BuildCalc Pro Client-side proposal PDF generator (Batch 4G).
  *
  * Everything runs in the browser via jspdf + jspdf-autotable. This module
  * is dynamically imported from a click handler so it never touches SSR.
@@ -75,7 +75,7 @@ export async function generateProposalPdf(doc: ProposalDoc): Promise<void> {
         "FAST",
       );
     } catch {
-      /* logo format unsupported — text header only */
+      /* logo format unsupported text header only */
     }
   }
   const textX = c.logoBase64 ? M + 102 : M;
@@ -232,7 +232,7 @@ export async function generateProposalPdf(doc: ProposalDoc): Promise<void> {
   pdf.setFont("helvetica", "normal");
   pdf.setFontSize(9.5);
   const sched: [string, string][] = [
-    [`Deposit (${f.depositPct}%) — due on acceptance`, money(f.depositAmount)],
+    [`Deposit (${f.depositPct}%) due on acceptance`, money(f.depositAmount)],
     [`Rough-in (${f.roughInPct}%)`, money(f.roughInAmount)],
     [`Completion (${f.completionPct}%)`, money(f.completionAmount)],
   ];

@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Tile, Thinset & Grout Calculator (Phase 4B).
+ * BuildCalc Pro Tile, Thinset & Grout Calculator (Phase 4B).
  *
  * Coverage, box counts, thinset bags, and grout from the dry-density formula.
  * Dispatches 3 lines: tile cartons, thinset mortar, grout compound.
@@ -119,7 +119,7 @@ export function TileGroutCalculatorTool() {
   /* ---------------- Results ---------------- */
   const materials: MaterialRow[] = [
     {
-      label: `Tile — ${v.tileLengthIn}×${v.tileWidthIn}″`,
+      label: `Tile ${v.tileLengthIn}×${v.tileWidthIn}″`,
       net: `${formatNumber(t.netSqft)} sq ft`,
       waste: `+${v.wastePct}%`,
       order: `${formatNumber(t.boxes)} boxes`,
@@ -160,7 +160,7 @@ export function TileGroutCalculatorTool() {
     const ctx = `${v.surfaceType === "floor" ? "Floor" : "Shower/wall"} · ${v.tileLengthIn}×${v.tileWidthIn}″ tile`;
     addItem({
       toolSlug: SLUG,
-      title: `Tile Cartons — ${v.tileLengthIn}×${v.tileWidthIn}″`,
+      title: `Tile Cartons ${v.tileLengthIn}×${v.tileWidthIn}″`,
       category: "finishes",
       quantity: t.boxes,
       unit: "ea",
@@ -180,7 +180,7 @@ export function TileGroutCalculatorTool() {
     });
     addItem({
       toolSlug: SLUG,
-      title: `Grout Compound — ${v.groutType} (25-lb bags)`,
+      title: `Grout Compound ${v.groutType} (25-lb bags)`,
       category: "finishes",
       quantity: t.groutBags,
       unit: "ea",
@@ -428,15 +428,15 @@ export function TileGroutCalculatorTool() {
       materials={materials}
       materialCosts={[
         {
-          label: `Tile — ${formatNumber(t.boxes)} × ${formatMoney(v.costPerBox)}`,
+          label: `Tile ${formatNumber(t.boxes)} × ${formatMoney(v.costPerBox)}`,
           amount: Math.round(boxesCost * 100) / 100,
         },
         {
-          label: `Thinset — ${formatNumber(t.thinsetBags)} × ${formatMoney(v.costPerThinsetBag)}`,
+          label: `Thinset ${formatNumber(t.thinsetBags)} × ${formatMoney(v.costPerThinsetBag)}`,
           amount: Math.round(thinsetCost * 100) / 100,
         },
         {
-          label: `Grout — ${formatNumber(t.groutBags)} × ${formatMoney(v.costPerGroutBag)}`,
+          label: `Grout ${formatNumber(t.groutBags)} × ${formatMoney(v.costPerGroutBag)}`,
           amount: Math.round(groutCost * 100) / 100,
         },
       ]}

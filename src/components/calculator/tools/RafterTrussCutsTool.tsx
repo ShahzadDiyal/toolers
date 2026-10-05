@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Rafter & Truss Cut Length Calculator (Batch 4E).
+ * BuildCalc Pro Rafter & Truss Cut Length Calculator (Batch 4E).
  *
  * Common rafter line length, overhang, plumb/seat cut angles, bird's-mouth
  * depth check, and stock-length recommendation. Dispatches 1 estimate line.
@@ -86,7 +86,7 @@ export function RafterTrussCutsTool() {
   /* ---------------- Results ---------------- */
   const materials: MaterialRow[] = [
     {
-      label: "Common rafter — ridge to bird's-mouth",
+      label: "Common rafter ridge to bird's-mouth",
       net: `${formatNumber(t.runIn)}″ run · ${v.pitch}/12`,
       waste: "—",
       order: formatRafterLength(t.lineLengthIn),
@@ -106,7 +106,7 @@ export function RafterTrussCutsTool() {
       waste: "—",
       order: formatRafterLength(t.totalLengthIn),
       note: t.overStockLength
-        ? "⚠ Exceeds 24-ft stock — special-order length or splice"
+        ? "⚠ Exceeds 24-ft stock special-order length or splice"
         : `Buy ${t.stockLengthFt}-ft stock`,
       highlight: t.overStockLength,
     },
@@ -116,12 +116,12 @@ export function RafterTrussCutsTool() {
       waste: "—",
       order: `${formatNumber(t.birdsMouthDepthIn)}″ deep`,
       note: t.birdsMouthWarning
-        ? `⚠ Exceeds ⅓ of ${v.rafterStock} depth (${formatNumber(t.rafterDepthIn / 3)}″ max) — deepen the seat or upsize stock`
+        ? `⚠ Exceeds ⅓ of ${v.rafterStock} depth (${formatNumber(t.rafterDepthIn / 3)}″ max) deepen the seat or upsize stock`
         : `3.5″ level seat · under ⅓ of ${v.rafterStock} depth`,
       highlight: t.birdsMouthWarning,
     },
     {
-      label: `Rafter count — ${v.rafterSpacingIn}″ O.C.`,
+      label: `Rafter count ${v.rafterSpacingIn}″ O.C.`,
       net: `${formatNumber(v.ridgeLengthFt)} ft ridge`,
       waste: "—",
       order: `${formatNumber(t.rafterCount)} rafters`,
@@ -138,7 +138,7 @@ export function RafterTrussCutsTool() {
     }
     addItem({
       toolSlug: SLUG,
-      title: `Roof Rafters — ${v.rafterStock} × ${t.stockLengthFt} ft`,
+      title: `Roof Rafters ${v.rafterStock} × ${t.stockLengthFt} ft`,
       category: "framing-roofing",
       quantity: t.rafterCount,
       unit: "ea",
@@ -254,7 +254,7 @@ export function RafterTrussCutsTool() {
       wastePercent={0}
       materials={materials}
       materialCosts={[
-        { label: `${v.rafterStock} × ${t.stockLengthFt} ft — ${formatNumber(t.rafterCount)} × ${formatMoney(v.costPerRafterBoard)}`, amount: Math.round(lumberCost * 100) / 100 },
+        { label: `${v.rafterStock} × ${t.stockLengthFt} ft ${formatNumber(t.rafterCount)} × ${formatMoney(v.costPerRafterBoard)}`, amount: Math.round(lumberCost * 100) / 100 },
       ]}
       total={Math.round(lumberCost * 100) / 100}
       onAddToEstimate={handleAdd}

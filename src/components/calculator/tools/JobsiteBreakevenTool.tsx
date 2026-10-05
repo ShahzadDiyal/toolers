@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Daily Jobsite Overhead & Breakeven Rate (Batch 4G).
+ * BuildCalc Pro Daily Jobsite Overhead & Breakeven Rate (Batch 4G).
  */
 "use client";
 
@@ -79,7 +79,7 @@ export function JobsiteBreakevenTool() {
       net: `${formatMoney(t.annualOverhead)} / ${formatNumber(v.billableDays)} days`,
       waste: "—",
       order: `${formatMoney(t.dailyOverhead)}/day`,
-      note: "The floor — never bid below this",
+      note: "The floor never bid below this",
       highlight: true,
     },
     {
@@ -220,7 +220,7 @@ export function JobsiteBreakevenTool() {
       wastePercent={0}
       materials={materials}
       materialCosts={[
-        { label: `Overhead allocation — ${v.projectDays} days`, amount: Math.round(allocation * 100) / 100 },
+        { label: `Overhead allocation ${v.projectDays} days`, amount: Math.round(allocation * 100) / 100 },
       ]}
       total={Math.round(allocation * 100) / 100}
       onAddToEstimate={handleAdd}

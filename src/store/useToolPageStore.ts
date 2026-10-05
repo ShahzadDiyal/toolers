@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Tool page action bridge (ephemeral, not persisted).
+ * BuildCalc Pro Tool page action bridge (ephemeral, not persisted).
  *
  * The /tools/[slug] layout renders the quick-action bar (Reset Inputs,
  * Save JSON Draft, Open Master Cart), but the actual input state lives

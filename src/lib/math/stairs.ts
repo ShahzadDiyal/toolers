@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Stair stringer geometry + IRC R311.7 checks (Phase 4B).
+ * BuildCalc Pro Stair stringer geometry + IRC R311.7 checks (Phase 4B).
  *
  * Pure functions, unit-testable. All dimensions in inches unless noted.
  * Inputs are sanitized: non-finite/negative values are treated as 0.

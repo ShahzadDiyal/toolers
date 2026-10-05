@@ -1,9 +1,9 @@
 /**
- * BuildCalc Pro — Category navigation store.
+ * BuildCalc Pro Category navigation store.
  *
  * Persists contractor-pinned favorite tools to localStorage
  * (key `contractor_pinned_tools`) for one-tap access on the job site.
- * Zero backend — same pattern as the master estimate store.
+ * Zero backend same pattern as the master estimate store.
  */
 "use client";
 
@@ -45,7 +45,7 @@ function safeStorage() {
       try {
         window.localStorage.setItem(k, v);
       } catch {
-        /* private mode — pins just won't persist */
+        /* private mode pins just won't persist */
       }
     },
     removeItem: (k: string) => {

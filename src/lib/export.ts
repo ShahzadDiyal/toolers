@@ -1,6 +1,6 @@
 /**
- * BuildCalc Pro — JSON export / import file utilities.
- * Pure browser file I/O. No network, no cloud — the user's estimate never
+ * BuildCalc Pro JSON export / import file utilities.
+ * Pure browser file I/O. No network, no cloud the user's estimate never
  * leaves their device except as a file they explicitly save.
  */
 

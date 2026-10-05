@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Zod validation contracts.
+ * BuildCalc Pro Zod validation contracts.
  *
  * Every calculator input AND every persisted estimate document is validated
  * through these schemas. Imports are rejected loudly instead of silently

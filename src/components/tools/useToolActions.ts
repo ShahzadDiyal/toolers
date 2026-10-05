@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Hook for calculator components to register with the
+ * BuildCalc Pro Hook for calculator components to register with the
  * tool-page quick-action bar (Reset Inputs / Save JSON Draft).
  *
  * Usage inside a tool component (built on useToolAutoSave):

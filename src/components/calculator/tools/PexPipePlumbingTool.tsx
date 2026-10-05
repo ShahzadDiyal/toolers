@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — PEX Plumbing Pipe Runs & WSFU Sizer (Batch 4F).
+ * BuildCalc Pro PEX Plumbing Pipe Runs & WSFU Sizer (Batch 4F).
  *
  * IPC fixture-unit main sizing, home-run vs trunk-and-branch footage,
  * coil counts, manifold ports, and fitting packs. Dispatches 3 lines.
@@ -87,7 +87,7 @@ export function PexPipePlumbingTool() {
   /* ---------------- Results ---------------- */
   const materials: MaterialRow[] = [
     {
-      label: '½″ PEX — blue (cold)',
+      label: '½″ PEX blue (cold)',
       net: `${t.coldConnections} connections`,
       waste: "+15%",
       order: `${formatNumber(t.coldCoils)} coils`,
@@ -95,7 +95,7 @@ export function PexPipePlumbingTool() {
       highlight: true,
     },
     {
-      label: '½″ PEX — red (hot)',
+      label: '½″ PEX red (hot)',
       net: `${t.hotConnections} connections`,
       waste: "+15%",
       order: `${formatNumber(t.hotCoils)} coils`,
@@ -103,14 +103,14 @@ export function PexPipePlumbingTool() {
       highlight: true,
     },
     {
-      label: `Main supply — ${t.mainSizeIn} PEX`,
+      label: `Main supply ${t.mainSizeIn} PEX`,
       net: `${formatNumber(t.totalWsfu)} WSFU`,
       waste: "—",
       order: `${formatNumber(t.mainTrunkFt)} ft`,
       note:
         t.totalWsfu <= 14
-          ? "≤ 14 WSFU → ¾″ main (simplified IPC-based rule — confirm with developed length + pressure per IPC E103.3)"
-          : "> 14 WSFU → 1″ main (simplified IPC-based rule — confirm with developed length + pressure per IPC E103.3)",
+          ? "≤ 14 WSFU → ¾″ main (simplified IPC-based rule confirm with developed length + pressure per IPC E103.3)"
+          : "> 14 WSFU → 1″ main (simplified IPC-based rule confirm with developed length + pressure per IPC E103.3)",
     },
     {
       label: "Brass fittings & crimp rings",
@@ -142,7 +142,7 @@ export function PexPipePlumbingTool() {
     const ctx = `${v.system === "homerun" ? "Home-run manifold" : "Trunk & branch"} · ${formatNumber(t.totalWsfu)} WSFU · ${t.mainSizeIn} main`;
     addItem({
       toolSlug: SLUG,
-      title: "PEX Tubing Coils — ½″ Hot & Cold",
+      title: "PEX Tubing Coils ½″ Hot & Cold",
       category: "mep",
       quantity: t.coldCoils + t.hotCoils,
       unit: "ea",
@@ -152,7 +152,7 @@ export function PexPipePlumbingTool() {
     });
     addItem({
       toolSlug: SLUG,
-      title: `Main Supply Line — ${t.mainSizeIn} PEX`,
+      title: `Main Supply Line ${t.mainSizeIn} PEX`,
       category: "mep",
       quantity: t.mainTrunkFt,
       unit: "lf",
@@ -296,9 +296,9 @@ export function PexPipePlumbingTool() {
       wastePercent={0}
       materials={materials}
       materialCosts={[
-        { label: `Coils — ${t.coldCoils + t.hotCoils} × ${formatMoney(v.costPerHalfCoil)}`, amount: Math.round(coilCost * 100) / 100 },
-        { label: `Main — ${formatNumber(t.mainTrunkFt)} × ${formatMoney(v.costPerMainFt)}/ft`, amount: Math.round(mainCost * 100) / 100 },
-        { label: `Fittings — ${formatNumber(t.fittingPacks)} × ${formatMoney(v.costPerFittingPack)}`, amount: Math.round(fittingCost * 100) / 100 },
+        { label: `Coils ${t.coldCoils + t.hotCoils} × ${formatMoney(v.costPerHalfCoil)}`, amount: Math.round(coilCost * 100) / 100 },
+        { label: `Main ${formatNumber(t.mainTrunkFt)} × ${formatMoney(v.costPerMainFt)}/ft`, amount: Math.round(mainCost * 100) / 100 },
+        { label: `Fittings ${formatNumber(t.fittingPacks)} × ${formatMoney(v.costPerFittingPack)}`, amount: Math.round(fittingCost * 100) / 100 },
       ]}
       total={Math.round(total * 100) / 100}
       onAddToEstimate={handleAdd}

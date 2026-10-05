@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Skeleton loader for tool pages (instant transitions).
+ * BuildCalc Pro Skeleton loader for tool pages (instant transitions).
  */
 import { Skeleton } from "@/components/ui/skeleton";
 

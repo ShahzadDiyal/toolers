@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Records a tool visit in the "recently used" MRU list.
+ * BuildCalc Pro Records a tool visit in the "recently used" MRU list.
  * Mounted by tool pages; no UI.
  */
 "use client";

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "All Calculators · BuildCalc Pro",
     description:
-      "Every construction calculator in one directory — free, offline-capable, no account.",
+      "Every construction calculator in one directory free, offline-capable, no account.",
     url: `${SITE_URL}/tools`,
   },
 };

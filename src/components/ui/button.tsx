@@ -8,10 +8,10 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // Safety amber — primary actions
+        // Safety amber primary actions
         default:
           "bg-primary text-primary-foreground shadow hover:bg-[#1e3a68]",
-        // Hi-vis orange — results / bid actions
+        // Hi-vis orange results / bid actions
         accent: "bg-accent text-accent-foreground shadow hover:bg-[#d96f1a]",
         destructive:
           "bg-destructive text-destructive-foreground shadow-sm hover:bg-red-600",

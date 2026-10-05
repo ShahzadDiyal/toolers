@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — DimensionInput (Phase 4A).
+ * BuildCalc Pro DimensionInput (Phase 4A).
  *
  * The contractor's dimension field: toggle between "Decimal Feet",
  * "Inches", and "Feet + Inches + Fraction" entry. Always normalizes to

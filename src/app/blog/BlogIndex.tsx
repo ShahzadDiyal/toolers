@@ -12,7 +12,7 @@ import {
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
-/** Blueprint-style geometric thumbnail per category — pure SVG, no photos. */
+/** Blueprint-style geometric thumbnail per category pure SVG, no photos. */
 export function PostThumb({ category, className }: { category: string; className?: string }) {
   const art: Record<string, React.ReactNode> = {
     Concrete: (

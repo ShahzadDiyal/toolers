@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Primary navigation.
+ * BuildCalc Pro Primary navigation.
  *
  * Desktop: brand logo, Tools mega-menu (categories × real tools), Services,
  * Blog, About, Contact, Custom Tool CTA. Mobile: slide-down panel with a
@@ -53,7 +53,7 @@ function OfflineIndicator() {
       title={
         online
           ? "Runs entirely in your browser. No account, no cloud, no database."
-          : "You're offline — every calculator still works. Data stays on this device."
+          : "You're offline every calculator still works. Data stays on this device."
       }
     >
       {online ? (
@@ -192,7 +192,7 @@ function ToolsMegaMenu() {
             </div>
             <div className="flex items-center justify-between gap-3 border-t border-border bg-[#F8FAFD] px-5 py-3">
               <p className="text-[13px] font-medium text-[#5A6C85]">
-                31 free calculators — no account, no fees.
+                31 free calculators no account, no fees.
               </p>
               <Link
                 href="/tools"
@@ -217,7 +217,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
   const pathname = usePathname();
   const prevPathname = React.useRef(pathname);
 
-  // Close the menu when the route actually changes — but NOT on mount,
+  // Close the menu when the route actually changes but NOT on mount,
   // otherwise the menu shuts itself the instant it opens.
   React.useEffect(() => {
     if (prevPathname.current !== pathname) {
@@ -327,7 +327,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-white/95 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-2 px-4 sm:gap-3 sm:px-6">
-        <Link href="/" aria-label="BuildCalc Pro — home" className="shrink-0 rounded-lg">
+        <Link href="/" aria-label="BuildCalc Pro home" className="shrink-0 rounded-lg">
           <Logo size={34} wordmarkClassName="hidden min-[400px]:inline" />
         </Link>
 

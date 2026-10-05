@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
- * BuildCalc Pro — Design System (Batch 4G re-theme)
+ * BuildCalc Pro Design System (Batch 4G re-theme)
  * Light jobsite-readable theme per brand board:
  * Primary navy #14284A, secondary orange #ED7D22, tertiary blue #2563EB,
  * neutral ink #0B1B33. Inter for headline/body/label. Precision-mono numerals.
@@ -40,15 +40,15 @@
   --color-popover: #ffffff;
   --color-popover-foreground: #0b1b33;
 
-  /* Primary Navy — main actions, brand */
+  /* Primary Navy main actions, brand */
   --color-primary: #14284a;
   --color-primary-foreground: #ffffff;
 
-  /* Secondary Orange — results, totals, highlights */
+  /* Secondary Orange results, totals, highlights */
   --color-accent: #ed7d22;
   --color-accent-foreground: #ffffff;
 
-  /* Tertiary Blue — info, links, secondary actions */
+  /* Tertiary Blue info, links, secondary actions */
   --color-tertiary: #2563eb;
   --color-tertiary-foreground: #ffffff;
 
@@ -104,7 +104,7 @@
     outline-offset: 2px;
   }
 
-  /* Remove native number spinners — we ship custom steppers */
+  /* Remove native number spinners we ship custom steppers */
   input[type="number"]::-webkit-outer-spin-button,
   input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -155,7 +155,7 @@
     transform: none;
   }
 
-  /* Card hover lift — restrained */
+  /* Card hover lift restrained */
   .lift {
     transition:
       transform 0.2s ease-out,

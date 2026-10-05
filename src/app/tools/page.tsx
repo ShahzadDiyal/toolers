@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Full calculator directory (/tools).
+ * BuildCalc Pro Full calculator directory (/tools).
  *
  * Search + category-chip filtering over the registry, rendering the shared
  * ToolCard (pin toggle, in/out summary, launch action).
@@ -58,7 +58,7 @@ export default function ToolsPage() {
             aria-hidden
           />
           <Input
-            placeholder="Search calculators — “roof”, “paint”, “fraction”…"
+            placeholder="Search calculators “roof”, “paint”, “fraction”…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="h-12 bg-white pl-11 text-base"
@@ -134,7 +134,7 @@ export default function ToolsPage() {
                   .
                 </p>
                 <p className="mt-2 text-sm text-[#5A6C85]">
-                  Try “concrete”, “roof”, “paint” — or press{" "}
+                  Try “concrete”, “roof”, “paint” or press{" "}
                   <kbd className="rounded border border-zinc-300 bg-white px-1.5 py-0.5 font-mono text-xs">
                     ⌘K
                   </kbd>{" "}

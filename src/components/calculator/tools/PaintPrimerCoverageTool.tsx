@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Paint, Primer & Ceiling Coverage (Phase 4C).
+ * BuildCalc Pro Paint, Primer & Ceiling Coverage (Phase 4C).
  *
  * Net wall area minus openings, ceiling toggle, primer toggle, coats.
  * Dispatches up to 3 lines: wall paint, ceiling paint, primer/sealer.
@@ -299,8 +299,8 @@ export function PaintPrimerCoverageTool() {
 
       <div className="sm:col-span-2">
         <TradeFilterTabs
-          subtrades={["1 coat — repaint", "2 coats — standard"]}
-          active={v.coats === 1 ? "1 coat — repaint" : "2 coats — standard"}
+          subtrades={["1 coat repaint", "2 coats standard"]}
+          active={v.coats === 1 ? "1 coat repaint" : "2 coats standard"}
           onChange={(l) => set("coats", l.startsWith("1 coat") ? 1 : 2)}
         />
       </div>
@@ -380,13 +380,13 @@ export function PaintPrimerCoverageTool() {
       materials={materials}
       materialCosts={[
         {
-          label: `Wall paint — ${t.wallGallons} × ${formatMoney(v.costPerWallGal)}`,
+          label: `Wall paint ${t.wallGallons} × ${formatMoney(v.costPerWallGal)}`,
           amount: Math.round(wallCost * 100) / 100,
         },
         ...(t.ceilingGallons > 0
           ? [
               {
-                label: `Ceiling — ${t.ceilingGallons} × ${formatMoney(v.costPerCeilingGal)}`,
+                label: `Ceiling ${t.ceilingGallons} × ${formatMoney(v.costPerCeilingGal)}`,
                 amount: Math.round(ceilingCost * 100) / 100,
               },
             ]
@@ -394,7 +394,7 @@ export function PaintPrimerCoverageTool() {
         ...(t.primerGallons > 0
           ? [
               {
-                label: `Primer — ${t.primerGallons} × ${formatMoney(v.costPerPrimerGal)}`,
+                label: `Primer ${t.primerGallons} × ${formatMoney(v.costPerPrimerGal)}`,
                 amount: Math.round(primerCost * 100) / 100,
               },
             ]

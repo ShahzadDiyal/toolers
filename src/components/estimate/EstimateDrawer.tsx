@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Master Bid Cart (slide-over drawer).
+ * BuildCalc Pro Master Bid Cart (slide-over drawer).
  *
  * Aggregates estimate lines from every calculator on the site with live
  * pricing: Direct Cost → Markup → Contingency → Tax → Total Bid.
@@ -330,7 +330,7 @@ export function EstimateDrawer() {
                           <Input
                             id="drawer-project"
                             className="mt-1.5 h-10"
-                            placeholder="Kitchen remodel — 123 Main St"
+                            placeholder="Kitchen remodel 123 Main St"
                             value={client.projectName ?? ""}
                             onChange={(e) => updateClientInfo({ projectName: e.target.value })}
                           />

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Privacy — Nothing to Track",
+  title: "Privacy Nothing to Track",
   description:
     "BuildCalc Pro has no database, no accounts, and no analytics servers. Your estimates live only in your browser.",
 };
@@ -36,7 +36,7 @@ export default function PrivacyPage() {
           </li>
           <li>
             <strong className="text-zinc-200">Export is a file you own.</strong> The JSON export
-            downloads to your device. Share it, back it up, or delete it — your call.
+            downloads to your device. Share it, back it up, or delete it your call.
           </li>
           <li>
             <strong className="text-zinc-200">No advertising trackers</strong> are embedded in

@@ -1,5 +1,5 @@
 /**
- * BuildCalc Pro — Interlocking Paver, Bedding & Polymeric Sand (Batch 4E).
+ * BuildCalc Pro Interlocking Paver, Bedding & Polymeric Sand (Batch 4E).
  *
  * Paver units, crushed base tons, 1" screed sand, and polymeric joint sand.
  * Dispatches 3 estimate lines.
@@ -101,7 +101,7 @@ export function PaverPatioSandTool() {
   /* ---------------- Results ---------------- */
   const materials: MaterialRow[] = [
     {
-      label: `Pavers — ${size.label}`,
+      label: `Pavers ${size.label}`,
       net: `${formatNumber(t.netAreaSqft)} sq ft`,
       waste: `+${v.wastePct}%`,
       order: `${formatNumber(t.paverCount)} units`,
@@ -109,21 +109,21 @@ export function PaverPatioSandTool() {
       highlight: true,
     },
     {
-      label: `Crushed base — ${formatNumber(v.baseDepthIn)}″ #57 / road base`,
+      label: `Crushed base ${formatNumber(v.baseDepthIn)}″ #57 / road base`,
       net: `${formatNumber(t.netAreaSqft)} sq ft`,
       waste: "+10%",
       order: `${formatNumber(t.baseTons)} tons`,
       note: "1.6 tons/cu yd compacted",
     },
     {
-      label: 'Bedding sand — 1″ screed',
+      label: 'Bedding sand 1″ screed',
       net: `${formatNumber(t.netAreaSqft)} sq ft`,
       waste: "—",
       order: `${formatNumber(t.beddingTons)} tons`,
       note: "ICPI 1-in screed bed · 1.35 tons/cu yd",
     },
     {
-      label: `Polymeric sand — 50-lb bags (${v.joint === "narrow" ? '1/8″' : '3/8″'} joints)`,
+      label: `Polymeric sand 50-lb bags (${v.joint === "narrow" ? '1/8″' : '3/8″'} joints)`,
       net: `${formatNumber(t.grossAreaSqft)} sq ft`,
       waste: "—",
       order: `${formatNumber(t.polySandBags)} bags`,
@@ -142,7 +142,7 @@ export function PaverPatioSandTool() {
     const ctx = `${formatNumber(t.netAreaSqft)} sq ft patio · ${size.label} · ${formatNumber(v.baseDepthIn)}″ base`;
     addItem({
       toolSlug: SLUG,
-      title: `Interlocking Concrete Pavers — ${size.label}`,
+      title: `Interlocking Concrete Pavers ${size.label}`,
       category: "site-exterior",
       quantity: Math.round(t.grossAreaSqft * 10) / 10,
       unit: "sq ft",
@@ -162,7 +162,7 @@ export function PaverPatioSandTool() {
     });
     addItem({
       toolSlug: SLUG,
-      title: "Polymeric Joint Sand — 50-lb bags",
+      title: "Polymeric Joint Sand 50-lb bags",
       category: "site-exterior",
       quantity: t.polySandBags,
       unit: "bags",
@@ -242,8 +242,8 @@ export function PaverPatioSandTool() {
 
       <div className="sm:col-span-2">
         <TradeFilterTabs
-          subtrades={['4" base — walkway / patio', '6" base — driveway / heavy']}
-          active={v.baseDepthIn === 4 ? '4" base — walkway / patio' : '6" base — driveway / heavy'}
+          subtrades={['4" base walkway / patio', '6" base driveway / heavy']}
+          active={v.baseDepthIn === 4 ? '4" base walkway / patio' : '6" base driveway / heavy'}
           onChange={(l) => set("baseDepthIn", l.startsWith('4"') ? 4 : 6)}
         />
       </div>
@@ -307,9 +307,9 @@ export function PaverPatioSandTool() {
       wastePercent={v.wastePct}
       materials={materials}
       materialCosts={[
-        { label: `Pavers — ${formatNumber(t.grossAreaSqft)} × ${formatMoney(v.costPerPaverSqft)}/sq ft`, amount: Math.round(paverCost * 100) / 100 },
-        { label: `Base stone — ${formatNumber(t.baseTons)} × ${formatMoney(v.costPerTonBase)}/ton`, amount: Math.round((baseCost + beddingCost) * 100) / 100 },
-        { label: `Poly sand — ${formatNumber(t.polySandBags)} × ${formatMoney(v.costPerPolyBag)}`, amount: Math.round(polyCost * 100) / 100 },
+        { label: `Pavers ${formatNumber(t.grossAreaSqft)} × ${formatMoney(v.costPerPaverSqft)}/sq ft`, amount: Math.round(paverCost * 100) / 100 },
+        { label: `Base stone ${formatNumber(t.baseTons)} × ${formatMoney(v.costPerTonBase)}/ton`, amount: Math.round((baseCost + beddingCost) * 100) / 100 },
+        { label: `Poly sand ${formatNumber(t.polySandBags)} × ${formatMoney(v.costPerPolyBag)}`, amount: Math.round(polyCost * 100) / 100 },
       ]}
       total={Math.round(total * 100) / 100}
       onAddToEstimate={handleAdd}
