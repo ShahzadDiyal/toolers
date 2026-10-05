@@ -113,37 +113,47 @@ export function AsphaltPavingTool() {
   ];
 
   const handleAdd = () => {
-    if (!valid || t.asphaltTons <= 0) {
+    if (!valid || (t.asphaltTons <= 0 && t.baseTons <= 0)) {
       toast.error("Check your inputs", {
-        description: "Paved area must be greater than zero.",
+        description: "Paved area and at least one thickness must be greater than zero.",
       });
       return;
     }
     const ctx = `${formatNumber(t.areaSqft)} sq ft (${formatNumber(t.sqYd)} sq yd) · ${formatNumber(v.asphaltThicknessIn)}″ HMA over ${formatNumber(v.baseThicknessIn)}″ base`;
-    addItem({
-      toolSlug: SLUG,
-      title: `Hot-Mix Asphalt — ${formatNumber(v.asphaltThicknessIn)}″`,
-      category: "site-exterior",
-      quantity: t.asphaltTons,
-      unit: "tons",
-      unitCost: v.costPerTonAsphalt,
-      wastePercent: v.wastePct,
-      notes: `${ctx}.`,
-    });
-    addItem({
-      toolSlug: SLUG,
-      title: `Crushed Stone Base — ${formatNumber(v.baseThicknessIn)}″`,
-      category: "site-exterior",
-      quantity: t.baseTons,
-      unit: "tons",
-      unitCost: v.costPerTonBase,
-      wastePercent: 0,
-      notes: `${ctx} · incl. 10% compaction allowance.`,
-    });
-    toast.success("2 lines added to Master Bid Cart", {
-      description: `Asphalt ${formatMoney(asphaltCost)} · Base ${formatMoney(baseCost)}`,
-      action: { label: "View cart", onClick: () => setDrawerOpen(true) },
-    });
+    const lines: string[] = [];
+    if (t.asphaltTons > 0) {
+      addItem({
+        toolSlug: SLUG,
+        title: `Hot-Mix Asphalt — ${formatNumber(v.asphaltThicknessIn)}″`,
+        category: "site-exterior",
+        quantity: t.asphaltTons,
+        unit: "tons",
+        unitCost: v.costPerTonAsphalt,
+        wastePercent: v.wastePct,
+        notes: `${ctx}.`,
+      });
+      lines.push(`Asphalt ${formatMoney(asphaltCost)}`);
+    }
+    if (t.baseTons > 0) {
+      addItem({
+        toolSlug: SLUG,
+        title: `Crushed Stone Base — ${formatNumber(v.baseThicknessIn)}″`,
+        category: "site-exterior",
+        quantity: t.baseTons,
+        unit: "tons",
+        unitCost: v.costPerTonBase,
+        wastePercent: 0,
+        notes: `${ctx} · incl. 10% compaction allowance.`,
+      });
+      lines.push(`Base ${formatMoney(baseCost)}`);
+    }
+    toast.success(
+      `${lines.length} line${lines.length === 1 ? "" : "s"} added to Master Bid Cart`,
+      {
+        description: lines.join(" · "),
+        action: { label: "View cart", onClick: () => setDrawerOpen(true) },
+      },
+    );
   };
 
   /* ---------------- Inputs ---------------- */

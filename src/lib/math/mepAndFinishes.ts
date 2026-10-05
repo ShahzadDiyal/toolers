@@ -158,10 +158,12 @@ export function insulationTakeoff(i: InsulationTakeoffInput): InsulationTakeoff 
     thicknessIn = BATT_THICKNESS_IN[i.targetR] ?? 6.25;
     unitLabel = "batt bundles";
   } else {
-    // Blown cellulose: ~0.82 bags per 1k sq ft per R point, ~R/2.9 in settled.
-    const bagsPer1k = i.targetR * 0.82;
+    // Blown cellulose: ~1.13 bags per 1k sq ft per R point (≈43 bags/1k @ R-38,
+    // inside the 38–45 manufacturer band: Insulmax 1.14 lb/ft² @ R-38,
+    // GreenFiber coverage charts). Settled depth ≈ R-3.6 per inch.
+    const bagsPer1k = i.targetR * 1.13;
     bags = Math.ceil((netAreaSqft / 1000) * bagsPer1k * 1.05);
-    thicknessIn = Math.round((i.targetR / 2.9) * 10) / 10;
+    thicknessIn = Math.round((i.targetR / 3.6) * 10) / 10;
     unitLabel = "30-lb cellulose bags";
   }
 
@@ -209,10 +211,10 @@ export interface PexTakeoff {
   fittingPacks: number;
 }
 
-/** IPC WSFU per fixture group (private use). */
+/** IPC WSFU per fixture group (private use). Half-bath = WC 2.5 + lav 0.7. */
 const WSFU = {
   fullBath: 3.5,
-  halfBath: 1.5,
+  halfBath: 3.2,
   kitchen: 2.0,
   laundry: 2.0,
   hoseBibb: 2.5,

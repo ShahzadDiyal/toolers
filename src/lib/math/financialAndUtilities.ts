@@ -130,8 +130,9 @@ export function pieceRateTakeoff(i: PieceRateInput): PieceRateTakeoff {
   const quantity = Math.max(0, i.quantity);
   const totalPayout = quantity * Math.max(0, i.pieceRate);
   const manHours = Math.max(0.01, i.crewSize) * Math.max(0, i.totalHours);
-  const effectiveHourly = totalPayout / manHours;
-  const velocity = quantity / manHours;
+  // No hours logged → no hourly rate or velocity to report (avoid Infinity).
+  const effectiveHourly = manHours > 0 ? totalPayout / manHours : 0;
+  const velocity = manHours > 0 ? quantity / manHours : 0;
   const r2 = (n: number) => Math.round(n * 100) / 100;
   return {
     totalPayout: r2(totalPayout),

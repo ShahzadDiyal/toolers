@@ -15,7 +15,6 @@ import {
   excavationTakeoff,
   SOIL_SWELL,
   type SoilType,
-  type DigType,
 } from "@/lib/math/earthwork";
 import { formatNumber, formatMoney } from "@/lib/utils";
 import { downloadJsonFile } from "@/lib/export";
@@ -30,7 +29,6 @@ import { useToolActions } from "@/components/tools/useToolActions";
 const SLUG = "excavation-dirt-haul";
 
 interface ExcavationInputs extends Record<string, unknown> {
-  digType: DigType;
   lengthFt: number;
   widthFt: number;
   depthFt: number;
@@ -41,7 +39,6 @@ interface ExcavationInputs extends Record<string, unknown> {
 }
 
 const DEFAULTS: ExcavationInputs = {
-  digType: "trench",
   lengthFt: 60,
   widthFt: 2,
   depthFt: 3,
@@ -50,12 +47,6 @@ const DEFAULTS: ExcavationInputs = {
   digRatePerYd: 14,
   haulFeePerLoad: 350,
 };
-
-const DIG_TYPES: { label: string; value: DigType }[] = [
-  { label: "Trench / footing", value: "trench" },
-  { label: "Basement / bulk dig", value: "basement" },
-  { label: "Pond / basin", value: "pond" },
-];
 
 const TRUCKS = [
   { label: "10-yd tandem", value: 10 },
@@ -83,7 +74,6 @@ export function ExcavationDirtHaulTool() {
 
   /* ---------------- Math ---------------- */
   const t = excavationTakeoff({
-    digType: v.digType,
     lengthFt: v.lengthFt,
     widthFt: v.widthFt,
     depthFt: v.depthFt,
@@ -95,7 +85,6 @@ export function ExcavationDirtHaulTool() {
   const digCost = t.bankCuYd * v.digRatePerYd;
   const haulCost = t.truckLoads * v.haulFeePerLoad;
   const total = digCost + haulCost;
-  const digLabel = DIG_TYPES.find((d) => d.value === v.digType)?.label ?? "";
 
   /* ---------------- Results ---------------- */
   const materials: MaterialRow[] = [
@@ -131,10 +120,10 @@ export function ExcavationDirtHaulTool() {
       });
       return;
     }
-    const ctx = `${digLabel} · ${formatNumber(v.lengthFt)}×${formatNumber(v.widthFt)}×${formatNumber(v.depthFt)} ft · ${SOIL_SWELL[v.soilType].label}`;
+    const ctx = `${formatNumber(v.lengthFt)}×${formatNumber(v.widthFt)}×${formatNumber(v.depthFt)} ft · ${SOIL_SWELL[v.soilType].label}`;
     addItem({
       toolSlug: SLUG,
-      title: `Site Excavation — ${digLabel}`,
+      title: "Site Excavation",
       category: "site-exterior",
       quantity: t.bankCuYd,
       unit: "cu yd",
@@ -162,13 +151,10 @@ export function ExcavationDirtHaulTool() {
   const inputs = (
     <>
       <div className="sm:col-span-2">
-        <TradeFilterTabs
-          subtrades={DIG_TYPES.map((d) => d.label)}
-          active={digLabel}
-          onChange={(l) =>
-            set("digType", DIG_TYPES.find((d) => d.label === l)?.value ?? "trench")
-          }
-        />
+        <p className="text-xs text-zinc-500">
+          Rectangular-prism volume (L × W × D). For sloped-side digs such as
+          ponds, enter average length and width.
+        </p>
       </div>
 
       <DimensionInput

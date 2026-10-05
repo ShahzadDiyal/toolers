@@ -109,8 +109,8 @@ export function PexPipePlumbingTool() {
       order: `${formatNumber(t.mainTrunkFt)} ft`,
       note:
         t.totalWsfu <= 14
-          ? "≤ 14 WSFU → ¾″ main per IPC"
-          : "> 14 WSFU → 1″ main per IPC",
+          ? "≤ 14 WSFU → ¾″ main (simplified IPC-based rule — confirm with developed length + pressure per IPC E103.3)"
+          : "> 14 WSFU → 1″ main (simplified IPC-based rule — confirm with developed length + pressure per IPC E103.3)",
     },
     {
       label: "Brass fittings & crimp rings",

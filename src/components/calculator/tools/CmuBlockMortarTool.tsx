@@ -121,7 +121,7 @@ export function CmuBlockMortarTool() {
       net: `${formatNumber(Math.ceil(t.orderBlocks / 30))} bags`,
       waste: `+${v.mortarWastePct}%`,
       order: `${formatNumber(t.mortarBags)} bags`,
-      note: "1 bag per 30 blocks",
+      note: "1 bag per 15 blocks",
     },
     {
       label: "Core-fill grout",
@@ -176,7 +176,7 @@ export function CmuBlockMortarTool() {
       unit: "bags",
       unitCost: v.costPerMortarBag,
       wastePercent: v.mortarWastePct,
-      notes: `${ctx} · 1 bag per 30 blocks.`,
+      notes: `${ctx} · 1 bag per 15 blocks.`,
     });
     lines++;
     if (t.groutCuYd > 0) {
@@ -268,7 +268,7 @@ export function CmuBlockMortarTool() {
         </div>
         <p className="mt-1.5 text-xs text-zinc-500">
           {CORE_FILLS.find((c) => c.value === v.coreFill)?.hint} · solid core ≈
-          0.16 cu ft per block.
+          0.32 cu ft per 8″ block (CMHA).
         </p>
       </div>
 

@@ -31,8 +31,10 @@ export interface DeckTakeoff {
   deckingLF: number;
   /** Support posts. */
   posts: number;
-  /** 80-lb post concrete bags (2 per post). */
+  /** 80-lb post concrete bags, from hole volume (rounded up per post). */
   concreteBags: number;
+  /** 80-lb bags per post — used to price the footing dispatch line. */
+  concreteBagsPerPost: number;
   /** Fastener packs (1 per 100 sq ft). */
   fastenerPacks: number;
   deckAreaSqft: number;
@@ -60,7 +62,13 @@ export function deckTakeoff(i: DeckTakeoffInput): DeckTakeoff {
   const posts =
     (Math.ceil(widthFt / postSpacingFt) + 1) *
     Math.max(1, Math.ceil(projFt / postSpacingFt));
-  const concreteBags = posts * 2;
+  // Concrete from the actual hole volume: 12"-dia auger hole (standard),
+  // 80-lb bag yields 0.6 ft³. Bags per post are rounded up — suppliers
+  // don't split bags.
+  const holeDepthFt = Math.max(0, i.postHoleDepthIn) / 12;
+  const holeVolFt3 = Math.PI * 0.25 * holeDepthFt; // π × (6"/12)² × depth
+  const concreteBagsPerPost = Math.ceil(holeVolFt3 / 0.6);
+  const concreteBags = posts * concreteBagsPerPost;
   const deckAreaSqft = widthFt * projFt;
   const fastenerPacks = Math.ceil(deckAreaSqft / 100);
 
@@ -71,6 +79,7 @@ export function deckTakeoff(i: DeckTakeoffInput): DeckTakeoff {
     deckingLF,
     posts,
     concreteBags,
+    concreteBagsPerPost,
     fastenerPacks,
     deckAreaSqft: Math.round(deckAreaSqft * 10) / 10,
   };
@@ -196,8 +205,9 @@ export function paverTakeoff(i: PaverTakeoffInput): PaverTakeoff {
     Math.round(
       ((netAreaSqft * (Math.max(0, i.baseDepthIn) / 12)) / 27) * 1.6 * 1.1 * 10,
     ) / 10;
+  // Bedding sand: 1" screed layer at 1.35 tons/cu yd, +10% screeding overage.
   const beddingTons =
-    Math.round((((netAreaSqft * (1 / 12)) / 27) * 1.35 * 10)) / 10;
+    Math.round((((netAreaSqft * (1 / 12)) / 27) * 1.35 * 1.1 * 10)) / 10;
   const polySandBags = Math.ceil(
     grossAreaSqft / (POLY_SAND_COVERAGE[i.joint] ?? 75),
   );
@@ -326,6 +336,8 @@ export interface RafterTakeoff {
   birdsMouthWarning: boolean;
   /** Recommended stock length, feet. */
   stockLengthFt: number;
+  /** True when the blank exceeds 24-ft stock (falls back to 24 silently). */
+  overStockLength: boolean;
   /** Total rafters (both slopes). */
   rafterCount: number;
   rafterDepthIn: number;
@@ -389,8 +401,8 @@ export function rafterTakeoff(i: RafterTakeoffInput): RafterTakeoff {
   const birdsMouthWarning = birdsMouthDepthIn > rafterDepthIn / 3;
 
   const totalFt = totalLengthIn / 12;
-  const stockLengthFt =
-    STOCK_LENGTHS_FT.find((s) => s >= totalFt) ?? 24;
+  const stockLengthFt = STOCK_LENGTHS_FT.find((s) => s >= totalFt) ?? 24;
+  const overStockLength = totalFt > 24;
 
   const spacingIn = i.rafterSpacingIn === 24 ? 24 : 16;
   const pairs =
@@ -409,6 +421,7 @@ export function rafterTakeoff(i: RafterTakeoffInput): RafterTakeoff {
     birdsMouthDepthIn: r2(birdsMouthDepthIn),
     birdsMouthWarning,
     stockLengthFt,
+    overStockLength,
     rafterCount,
     rafterDepthIn,
   };

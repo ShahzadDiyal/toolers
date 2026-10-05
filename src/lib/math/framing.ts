@@ -13,6 +13,10 @@ export interface FramingTakeoff {
   baseStuds: number;
   extraStuds: number;
   totalStuds: number;
+  /** Double 2× header boards over openings, in 8-ft stock (rounded up). */
+  headerBoards: number;
+  /** Window sill boards, in 8-ft stock (rounded up). */
+  sillBoards: number;
   /** 16-ft plate boards (rounded up). */
   plateBoards: number;
   /** Plate runs: 3 = double top + bottom, 2 = single top + bottom. */
@@ -56,10 +60,18 @@ export function framingTakeoff(raw: FramingInputs): FramingTakeoff {
   const wastePct = num(raw.drywallWastePct ?? 10);
 
   // Studs = ceil((length × 12) ÷ spacing) + 1, plus kings/jacks.
+  // Every opening (door or window) gets 2 king/jack studs, a double 2×
+  // header, and windows get a sill. Nominal opening width 3 ft (matches
+  // the 21/15 ft² drywall deductions); header/sill lumber in 8-ft boards.
+  // Cripple studs above/below are cut from waste — not counted.
   const baseStuds =
     lengthFt > 0 ? Math.ceil((lengthFt * 12) / spacingIn) + 1 : 0;
-  const extraStuds = 2 * corners + 2 * doors;
+  const openings = doors + windows;
+  const extraStuds = 2 * corners + 2 * openings;
   const totalStuds = baseStuds + extraStuds;
+  const headerBoards =
+    openings > 0 ? Math.ceil((openings * 2 * 3) / 8) : 0;
+  const sillBoards = windows > 0 ? Math.ceil((windows * 3) / 8) : 0;
 
   // Plates: 3 runs (double top + bottom) or 2 runs, in 16-ft boards.
   const plateRuns = raw.doubleTopPlate ? 3 : 2;
@@ -89,6 +101,8 @@ export function framingTakeoff(raw: FramingInputs): FramingTakeoff {
     baseStuds,
     extraStuds,
     totalStuds,
+    headerBoards,
+    sillBoards,
     plateBoards,
     plateRuns,
     netDrywallSqft: Math.round(netDrywallSqft * 100) / 100,

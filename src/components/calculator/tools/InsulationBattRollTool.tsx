@@ -171,7 +171,7 @@ export function InsulationBattRollTool() {
         />
         {v.insType === "cellulose" && !isWall && (
           <p className="mt-1.5 text-xs text-zinc-500">
-            Attic blown coverage: R-38 ≈ 31 bags/1,000 sq ft · R-49 ≈ 41 bags/1,000 sq ft.
+            Attic blown coverage: R-38 ≈ 43 bags/1,000 sq ft · R-49 ≈ 55 bags/1,000 sq ft.
           </p>
         )}
       </div>

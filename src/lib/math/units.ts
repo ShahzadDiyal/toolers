@@ -150,9 +150,18 @@ export function parseArchitecturalLength(raw: string): ParsedLength | null {
   // Remaining text is inches: possibly `3-3/8"`, `3 3/8"`, `3.375"`, `3"`
   const cleaned = rest.replace(/["”]|in\b|inch(es)?\b/g, "").trim();
   let inches = 0;
-  if (cleaned) {
+  // Inches-only input with a leading sign (e.g. `-3/8"`, `-3.5"`): strip the
+  // sign first — the fraction regex treats `-` as a whole/fraction separator
+  // and would drop it — then reapply at the end.
+  let inchesSign = 1;
+  let inchesSrc = cleaned;
+  if (!feetMatch && inchesSrc.startsWith("-")) {
+    inchesSign = -1;
+    inchesSrc = inchesSrc.slice(1).trim();
+  }
+  if (inchesSrc) {
     // fraction forms: `3-3/8`, `3 3/8`, `3/8`
-    const fracMatch = cleaned.match(/^(-?\d+)?[-\s]?(\d+)\s*\/\s*(\d+)$/);
+    const fracMatch = inchesSrc.match(/^(-?\d+)?[-\s]?(\d+)\s*\/\s*(\d+)$/);
     if (fracMatch) {
       const whole = fracMatch[1] ? Number(fracMatch[1]) : 0;
       const num = Number(fracMatch[2]);
@@ -160,10 +169,11 @@ export function parseArchitecturalLength(raw: string): ParsedLength | null {
       if (den === 0) return null;
       inches = whole + num / den;
     } else {
-      const n = Number(cleaned);
+      const n = Number(inchesSrc);
       if (!Number.isFinite(n)) return null;
       inches = n;
     }
+    inches *= inchesSign;
   }
 
   const totalFeet = feet + inches / 12;

@@ -105,8 +105,10 @@ export function RafterTrussCutsTool() {
       net: "Line + overhang",
       waste: "—",
       order: formatRafterLength(t.totalLengthIn),
-      note: `Buy ${t.stockLengthFt}-ft stock`,
-      highlight: true,
+      note: t.overStockLength
+        ? "⚠ Exceeds 24-ft stock — special-order length or splice"
+        : `Buy ${t.stockLengthFt}-ft stock`,
+      highlight: t.overStockLength,
     },
     {
       label: "Bird's-mouth cuts",

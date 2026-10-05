@@ -174,7 +174,18 @@ export function ConcreteSlabTool() {
         v.costMode === "readymix"
           ? `${formatNumber(netYards)} cu yd`
           : `${formatNumber(Math.round(netYards * (v.costMode === "bags80" ? BAGS_80LB_PER_CUYD : BAGS_60LB_PER_CUYD)))} bags`,
-      waste: `+${formatNumber(wasteYards)} cu yd`,
+      waste:
+        v.costMode === "readymix"
+          ? `+${formatNumber(wasteYards)} cu yd`
+          : `+${formatNumber(
+              (v.costMode === "bags80" ? bags80 : bags60) -
+                Math.round(
+                  netYards *
+                    (v.costMode === "bags80"
+                      ? BAGS_80LB_PER_CUYD
+                      : BAGS_60LB_PER_CUYD),
+                ),
+            )} bags`,
       order:
         v.costMode === "readymix"
           ? `${formatNumber(grossYards)} cu yd`

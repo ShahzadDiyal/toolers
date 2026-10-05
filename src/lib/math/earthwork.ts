@@ -15,10 +15,21 @@ export type CmuCoreFill = "none" | "solid" | "oc24" | "oc32" | "oc48";
 
 /** Nominal block face is always 8" x 16" regardless of width. */
 export const CMU_FACE_SQFT = (8 * 16) / 144; // 0.8889 sq ft
+/** 80-lb mortar bags: blocks laid per bag (mid-range of mfr data sheets). */
+const MORTAR_BLOCKS_PER_BAG = 15;
 /** Cores sit on 8" centers along the wall (2 cores per 16" block). */
 const CORE_SPACING_IN = 8;
-/** Grout volume of one fully-grouted 8x8x16 block, cu ft. */
-const GROUT_CUFT_PER_BLOCK_SOLID = 0.16;
+/** Grout volume of one fully-grouted 8x8x16 block, cu ft.
+ *  CMHA TEK 09-04A Table 2: 36.1 ft³ per 100 ft² of 8" wall ÷ 112.5 blocks
+ *  = 0.32 ft³/block (includes waste allowance). Physical void ≈ 0.25 ft³. */
+const GROUT_CUFT_PER_BLOCK_SOLID = 0.32;
+/** Width scaling of grout volume vs the 8" reference, per CMHA TEK 09-04A
+ *  (6" wall 25.6, 8" wall 36.1, 12" wall 58.9 ft³ per 100 ft² solid). */
+const GROUT_WIDTH_FACTOR: Record<CmuBlockSize, number> = {
+  "6x8x16": 25.6 / 36.1,
+  "8x8x16": 1,
+  "12x8x16": 58.9 / 36.1,
+};
 /** Grout volume of one bond-beam (knockout) block, cu ft. */
 const GROUT_CUFT_PER_BOND_BEAM_BLOCK = 0.12;
 /** Standard rebar stick length, ft. */
@@ -27,7 +38,7 @@ const REBAR_STICK_FT = 20;
 export interface CmuTakeoffInput {
   wallLengthFt: number;
   wallHeightFt: number;
-  /** Reserved for future width-based volume tweaks; face math is width-independent. */
+  /** Block width drives core-fill grout volume (see GROUT_WIDTH_FACTOR). */
   blockSize: CmuBlockSize;
   coreFill: CmuCoreFill;
   bondBeamCourses: number;
@@ -56,8 +67,13 @@ export function cmuTakeoff(i: CmuTakeoffInput): CmuTakeoff {
   const orderBlocks = Math.ceil(
     netBlocks * (1 + Math.max(0, i.blockWastePct) / 100),
   );
+  // Mortar: 80-lb bags. Manufacturer data sheets (Quikrete 13, Sakrete 15,
+  // Menards 12, TradeCraft 18, Best Materials 20 blocks per bag) — 15 is the
+  // defensible mid-range. Based on NET blocks (broken blocks use no mortar),
+  // then the user's mortar waste is applied once.
   const mortarBags = Math.ceil(
-    (orderBlocks / 30) * (1 + Math.max(0, i.mortarWastePct) / 100),
+    (netBlocks / MORTAR_BLOCKS_PER_BAG) *
+      (1 + Math.max(0, i.mortarWastePct) / 100),
   );
   const blocksPerCourse = Math.ceil(Math.max(0, i.wallLengthFt) / (16 / 12));
 
@@ -69,17 +85,24 @@ export function cmuTakeoff(i: CmuTakeoffInput): CmuTakeoff {
   else if (i.coreFill === "oc24") coreFraction = 1 / (24 / CORE_SPACING_IN);
   else if (i.coreFill === "oc32") coreFraction = 1 / (32 / CORE_SPACING_IN);
   else if (i.coreFill === "oc48") coreFraction = 1 / (48 / CORE_SPACING_IN);
-  const coreGroutCuFt = netBlocks * GROUT_CUFT_PER_BLOCK_SOLID * coreFraction;
+  const coreGroutCuFt =
+    netBlocks *
+    GROUT_CUFT_PER_BLOCK_SOLID *
+    (GROUT_WIDTH_FACTOR[i.blockSize] ?? 1) *
+    coreFraction;
   const courses = Math.max(0, Math.round(i.bondBeamCourses));
   const bondBeamGroutCuFt =
     courses * blocksPerCourse * GROUT_CUFT_PER_BOND_BEAM_BLOCK;
   const groutCuYd =
     Math.round(((coreGroutCuFt + bondBeamGroutCuFt) / 27) * 100) / 100;
 
-  // Two continuous bars per bond beam, 20-ft sticks, lapped — round up.
+  // Two continuous bars per bond beam, 20-ft sticks, +10% lap allowance,
+  // rounded up.
   const bondBeamSticks =
     courses > 0
-      ? Math.ceil((courses * Math.max(0, i.wallLengthFt) * 2) / REBAR_STICK_FT)
+      ? Math.ceil(
+          (courses * Math.max(0, i.wallLengthFt) * 2 * 1.1) / REBAR_STICK_FT,
+        )
       : 0;
 
   return {
@@ -98,7 +121,6 @@ export function cmuTakeoff(i: CmuTakeoffInput): CmuTakeoff {
 /* ------------------------------------------------------------------ */
 
 export type SoilType = "common" | "sand" | "clayRock";
-export type DigType = "basement" | "trench" | "pond";
 
 export const SOIL_SWELL: Record<SoilType, { label: string; pct: number }> = {
   common: { label: "Common earth / clay", pct: 25 },
@@ -107,7 +129,6 @@ export const SOIL_SWELL: Record<SoilType, { label: string; pct: number }> = {
 };
 
 export interface ExcavationTakeoffInput {
-  digType: DigType;
   lengthFt: number;
   widthFt: number;
   depthFt: number;
@@ -195,12 +216,13 @@ export function retainingWallTakeoff(i: RetainingWallInput): RetainingWallTakeof
   const capUnits = Math.ceil(blocksPerCourse * wasteF);
 
   // Drainage column: full exposed height x specified width, 3/4" stone.
+  // Suppliers sell by the half-ton — round the order quantity up.
   const drainageTons =
-    Math.round(
-      ((lengthFt * (Math.max(0, i.drainageWidthIn) / 12) * exposedFt) / 27) *
-        TONS_PER_CUYD_DRAINAGE *
-        10,
-    ) / 10;
+    Math.ceil(
+      (((lengthFt * (Math.max(0, i.drainageWidthIn) / 12) * exposedFt) / 27) *
+        TONS_PER_CUYD_DRAINAGE) /
+        0.5,
+    ) * 0.5;
 
   // Base leveling pad: 6" deep x 24" wide crusher run under the first course.
   const baseTons =
@@ -317,7 +339,7 @@ export interface AsphaltTakeoff {
   sqYd: number;
   /** Hot-mix asphalt, tons incl. waste (2 decimals). */
   asphaltTons: number;
-  /** Aggregate sub-base, tons incl. 10% compaction allowance (2 decimals). */
+  /** Aggregate sub-base, tons incl. 10% compaction allowance (½-ton orders). */
   baseTons: number;
 }
 
@@ -338,13 +360,14 @@ export function asphaltTakeoff(i: AsphaltTakeoffInput): AsphaltTakeoff {
         wasteF *
         100,
     ) / 100;
+  // Base stone is ordered by the half-ton.
   const baseTons =
-    Math.round(
-      ((areaSqft * (Math.max(0, i.baseThicknessIn) / 12)) / 27) *
+    Math.ceil(
+      (((areaSqft * (Math.max(0, i.baseThicknessIn) / 12)) / 27) *
         TONS_PER_CUYD_CRUSHER_RUN *
-        1.1 *
-        100,
-    ) / 100;
+        1.1) /
+        0.5,
+    ) * 0.5;
   return {
     areaSqft: Math.round(areaSqft * 10) / 10,
     sqYd: Math.round(sqYd * 100) / 100,

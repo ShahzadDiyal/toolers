@@ -60,7 +60,20 @@ export async function generateProposalPdf(doc: ProposalDoc): Promise<void> {
   let headerBottom = y;
   if (c.logoBase64) {
     try {
-      pdf.addImage(c.logoBase64, "PNG", M, y, 90, 45, undefined, "FAST");
+      // Detect JPEG from magic bytes; everything else goes through as PNG.
+      const isJpeg =
+        c.logoBase64.startsWith("/9j/") ||
+        c.logoBase64.startsWith("data:image/jpeg");
+      pdf.addImage(
+        c.logoBase64,
+        isJpeg ? "JPEG" : "PNG",
+        M,
+        y,
+        90,
+        45,
+        undefined,
+        "FAST",
+      );
     } catch {
       /* logo format unsupported — text header only */
     }

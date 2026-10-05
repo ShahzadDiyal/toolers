@@ -176,7 +176,8 @@ export function ConduitFillVoltageDropTool() {
 
   /* ---------------- Package pricing ---------------- */
   const conduitCost = v.runLengthFt * v.costPerConduitFt;
-  const conductorFt = (isFill ? fill.wireCount : 2) * v.runLengthFt;
+  const conductorFt =
+    (isFill ? fill.wireCount : volt.phase === "3P" ? 3 : 2) * v.runLengthFt;
   const wireCost = conductorFt * v.costPerWireFt;
   const materialCost = conduitCost + wireCost;
 

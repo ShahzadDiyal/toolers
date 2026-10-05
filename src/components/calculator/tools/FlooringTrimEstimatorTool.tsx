@@ -115,7 +115,7 @@ export function FlooringTrimEstimatorTool() {
     {
       label: "Acoustic underlayment",
       net: `${formatNumber(t.netSqft)} sq ft`,
-      waste: "—",
+      waste: `+${v.wastePct}%`,
       order: `${t.underlaymentRolls} rolls`,
       note: "100 sq ft rolls",
     },

@@ -169,7 +169,7 @@ export function HvacBtuTonnageTool() {
       title: "HVAC Heating Unit / Air Handler",
       category: "mep",
       quantity: Math.round((t.heatingBtu / 10000) * 10) / 10,
-      unit: "lots",
+      unit: "10k BTU",
       unitCost: v.costPer10kBtuHeat,
       wastePercent: 0,
       notes: `${ctx} · ${formatNumber(t.heatingBtu)} BTU/hr heating · ${formatNumber(t.cfm)} CFM. Rule-of-thumb sizing — confirm with Manual J.`,

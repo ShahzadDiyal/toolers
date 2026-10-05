@@ -99,7 +99,7 @@ export function AggregateStoneTonnageTool() {
       net: `${formatNumber(t.areaSqft)} sq ft × ${formatNumber(v.thicknessIn)}″`,
       waste: "—",
       order: `${formatNumber(t.compactedCuYd)} cu yd`,
-      note: "Loose yards before compaction allowance",
+      note: "Compacted volume — what the tonnage above covers",
     },
   ];
 

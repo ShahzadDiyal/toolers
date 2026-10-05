@@ -1,7 +1,7 @@
 /**
  * BuildCalc Pro — Stair Stringer & Code Layout Calculator (Phase 4B).
  *
- * Solves stair geometry with live IRC R311.7 compliance checks.
+ * Solves stair geometry with key IRC R311.7 riser/tread checks.
  * Dispatches one line: "Stair Stringers & Structural Treads".
  */
 "use client";
@@ -207,7 +207,12 @@ export function StairStringerLayoutTool() {
       {/* Live IRC code validator */}
       <div className="sm:col-span-2 rounded-xl border border-border bg-zinc-950/60 p-4">
         <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
-          IRC R311.7 live code check
+          Key IRC R311.7 checks — riser &amp; tread
+        </p>
+        <p className="mb-3 text-xs text-zinc-500">
+          Covers riser height and tread depth only. Full R311.7 compliance also
+          requires riser/tread uniformity (⅜″), 6′-8″ headroom, 36″ stairway
+          width, landings, and handrails — verify on site.
         </p>
         {valid ? (
           <div className="grid gap-2 sm:grid-cols-3">

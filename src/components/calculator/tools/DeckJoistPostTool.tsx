@@ -128,7 +128,7 @@ export function DeckJoistPostTool() {
       net: `${formatNumber(t.posts)} footings`,
       waste: "—",
       order: `${formatNumber(t.concreteBags)} bags`,
-      note: "2 bags per post",
+      note: `${formatNumber(t.concreteBagsPerPost)} bags per post (${formatNumber(v.postHoleDepthIn)}″ holes)`,
     },
     {
       label: "Hidden fastener packs",
@@ -173,7 +173,10 @@ export function DeckJoistPostTool() {
       category: "site-exterior",
       quantity: t.posts,
       unit: "ea",
-      unitCost: Math.round((v.costPerPost + 2 * v.costPerConcreteBag) * 100) / 100,
+      unitCost:
+        Math.round(
+          (v.costPerPost + t.concreteBagsPerPost * v.costPerConcreteBag) * 100,
+        ) / 100,
       wastePercent: 0,
       notes: `${ctx} · ${t.posts} posts + ${t.concreteBags} 80-lb concrete bags (${formatNumber(v.postHoleDepthIn)}″ holes).`,
     });

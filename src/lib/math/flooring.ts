@@ -38,8 +38,11 @@ export function flooringTakeoff(raw: FlooringInputs): FlooringTakeoff {
 
   const grossSqft = netSqft * (1 + wastePct / 100);
   const boxes = grossSqft > 0 ? Math.ceil(grossSqft / sqftPerBox) : 0;
+  // Underlayment follows the floor area plus the same waste allowance.
   const underlaymentRolls =
-    netSqft > 0 ? Math.ceil(netSqft / UNDERLAYMENT_ROLL_SQFT) : 0;
+    netSqft > 0
+      ? Math.ceil((netSqft * (1 + wastePct / 100)) / UNDERLAYMENT_ROLL_SQFT)
+      : 0;
   const perimeterFt = L > 0 && W > 0 ? 2 * (L + W) : 0;
   const trimSticks =
     perimeterFt > 0

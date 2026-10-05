@@ -96,7 +96,9 @@ export function FramingDrywallPackTool() {
 
   const studsCost = t.totalStuds * v.costPerStud;
   const platesCost = t.plateBoards * v.costPerPlate;
-  const lumberCost = studsCost + platesCost;
+  // Headers/sills priced as 8-ft boards at the stud unit price.
+  const headerSillCost = (t.headerBoards + t.sillBoards) * v.costPerStud;
+  const lumberCost = studsCost + platesCost + headerSillCost;
   const sheetsCost = t.sheets * v.costPerSheet;
   const mudCost = t.mudBuckets * v.costPerMudBucket;
   const tapeCost = t.tapeRolls * v.costPerTapeRoll;
@@ -109,10 +111,17 @@ export function FramingDrywallPackTool() {
     {
       label: "2×4 wall studs",
       net: `${formatNumber(t.baseStuds)} ea`,
-      waste: `+${formatNumber(t.extraStuds)} corners/doors`,
+      waste: `+${formatNumber(t.extraStuds)} corners/openings`,
       order: `${formatNumber(t.totalStuds)} ea`,
-      note: `${v.spacingIn}″ O.C.`,
+      note: `${v.spacingIn}″ O.C. · kings/jacks at every opening`,
       highlight: true,
+    },
+    {
+      label: "Header & sill boards (8-ft)",
+      net: `${formatNumber(t.headerBoards + t.sillBoards)} ea`,
+      waste: "—",
+      order: `${formatNumber(t.headerBoards + t.sillBoards)} ea`,
+      note: "Double header per opening + sill per window",
     },
     {
       label: "16-ft plate boards",
@@ -160,7 +169,7 @@ export function FramingDrywallPackTool() {
       unit: "lot",
       unitCost: Math.round(lumberCost * 100) / 100,
       wastePercent: 0,
-      notes: `${formatNumber(t.totalStuds)} studs @ ${v.spacingIn}″ O.C. + ${formatNumber(t.plateBoards)} 16-ft plates (${t.plateRuns} runs).`,
+      notes: `${formatNumber(t.totalStuds)} studs @ ${v.spacingIn}″ O.C. + ${formatNumber(t.headerBoards + t.sillBoards)} header/sill boards + ${formatNumber(t.plateBoards)} 16-ft plates (${t.plateRuns} runs).`,
     });
     addItem({
       toolSlug: SLUG,
@@ -229,7 +238,7 @@ export function FramingDrywallPackTool() {
         unit="ea"
         step={1}
         min={0}
-        hint="Deducts 3 ft each + king/jack studs."
+        hint="Deducts 21 sq ft drywall · adds king/jack studs + double header."
       />
       <PresetStepper
         id="f-windows"
@@ -239,7 +248,7 @@ export function FramingDrywallPackTool() {
         unit="ea"
         step={1}
         min={0}
-        hint="Deducts 4 ft each."
+        hint="Deducts 15 sq ft drywall · adds king/jack studs + header + sill."
       />
       <PresetStepper
         id="f-corners"

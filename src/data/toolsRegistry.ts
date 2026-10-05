@@ -800,7 +800,7 @@ export const TOOLS: ToolMetadata[] = [
     readTimeMinutes: 2,
     details: [
       "Wall cavity area deducts 10% for framing; attics and crawlspaces count full area. Batt bundle coverage runs ~125 sq ft/bag at R-13 down to ~32 sq ft/bag at R-49.",
-      "Blown cellulose: about 0.82 bags per 1,000 sq ft per R point — R-38 takes ~31 bags/1,000 sq ft at 13 in settled, R-49 ~41 bags at 17 in.",
+      "Blown cellulose: about 1.13 bags per 1,000 sq ft per R point — R-38 takes ~43 bags/1,000 sq ft at 10.6 in settled, R-49 ~55 bags at 13.6 in.",
       "Framing spacing picks batt width: 15-in batts for 16 in O.C., 23-in for 24 in O.C.",
     ],
     faqs: [
@@ -1073,6 +1073,7 @@ export const TOOLS: ToolMetadata[] = [
       "Add, subtract, multiply, and divide dimensions like 14 ft 7-3/8 in with big touch-friendly keys.",
       "All arithmetic runs in integer 16ths of an inch — no floating-point drift, fractions stay exact.",
       "Every result shows the reduced fraction plus decimal inches, decimal feet, and metric equivalents.",
+      "Operations evaluate left to right (× and ÷ have no precedence) — the same way chain calculators work.",
     ],
     howTo:
       "Tap digits, the foot/inch keys, and fraction presets to build a dimension (e.g. 14′ 7 3/8″), then tap an operator and build the next one. Press = for the result, copy it, copy decimal feet, or push the measurement straight into your estimate as a reference line.",

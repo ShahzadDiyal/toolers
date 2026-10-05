@@ -591,21 +591,25 @@ export function MasterProposalBuilderTool() {
               id="pb-dep"
               label="Deposit on acceptance"
               value={ps.depositPct}
-              onChange={(n) => setPs("depositPct", n)}
+              onChange={(n) =>
+                setPs("depositPct", Math.min(n, 100 - ps.roughInPct))
+              }
               unit="%"
               step={5}
               min={0}
-              max={100}
+              max={100 - ps.roughInPct}
             />
             <PresetStepper
               id="pb-rough"
               label="Rough-in milestone"
               value={ps.roughInPct}
-              onChange={(n) => setPs("roughInPct", n)}
+              onChange={(n) =>
+                setPs("roughInPct", Math.min(n, 100 - ps.depositPct))
+              }
               unit="%"
               step={5}
               min={0}
-              max={100}
+              max={100 - ps.depositPct}
             />
             <div className="rounded-xl border border-border bg-zinc-900 p-3">
               <p className="text-[11px] font-bold uppercase tracking-widest text-zinc-500">
