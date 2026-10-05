@@ -38,7 +38,7 @@ function OfflineIndicator() {
   return (
     <Badge
       variant={online ? "success" : "outline"}
-      className="hidden sm:inline-flex"
+      className="hidden shrink-0 whitespace-nowrap sm:inline-flex"
       title={
         online
           ? "Runs entirely in your browser. No account, no cloud, no database."
@@ -148,7 +148,7 @@ export function Navbar() {
         <button
           type="button"
           onClick={() => setCommandOpen(true)}
-          className="hidden h-9 items-center gap-2 rounded-lg border border-input bg-zinc-950 px-3 text-sm text-zinc-400 transition-colors hover:border-primary hover:text-zinc-200 md:flex"
+          className="hidden h-9 items-center gap-2 rounded-lg border border-input bg-zinc-950 px-3 text-sm text-zinc-400 transition-colors hover:border-primary hover:text-zinc-200 lg:flex"
           aria-label="Search calculators (Command K)"
         >
           <Search className="h-4 w-4" />
@@ -156,6 +156,14 @@ export function Navbar() {
           <kbd className="rounded border border-border bg-zinc-900 px-1.5 py-0.5 font-mono text-[10px] text-zinc-500">
             ⌘K
           </kbd>
+        </button>
+        <button
+          type="button"
+          onClick={() => setCommandOpen(true)}
+          className="hidden h-9 w-9 items-center justify-center rounded-lg border border-input bg-zinc-950 text-zinc-400 transition-colors hover:border-primary hover:text-zinc-200 md:flex lg:hidden"
+          aria-label="Search calculators"
+        >
+          <Search className="h-4 w-4" />
         </button>
         <Button
           variant="outline"

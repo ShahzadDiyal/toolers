@@ -223,7 +223,7 @@ export function InsulationBattRollTool() {
       <div className="sm:col-span-2">
         <p className="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-zinc-400">
           Target R-value
-          <span className="ml-2 font-mono normal-case tracking-normal text-amber-300">
+          <span className="ml-2 font-mono normal-case tracking-normal text-accent">
             {formatNumber(t.thicknessIn)}″ thick
           </span>
         </p>

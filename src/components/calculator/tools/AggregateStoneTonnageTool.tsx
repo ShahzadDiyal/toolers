@@ -201,7 +201,7 @@ export function AggregateStoneTonnageTool() {
       <div className="sm:col-span-2">
         <p className="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-zinc-400">
           Material
-          <span className="ml-2 font-mono normal-case tracking-normal text-amber-300">
+          <span className="ml-2 font-mono normal-case tracking-normal text-accent">
             {mat.tonsPerCuYd} tons/cu yd
           </span>
         </p>

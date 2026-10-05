@@ -132,7 +132,7 @@ export function ToolCard({
             <span className="font-bold uppercase tracking-wide text-zinc-500 text-[10px]">
               Outputs{" "}
             </span>
-            <span className="font-semibold text-amber-200/90">
+            <span className="font-semibold text-accent/90">
               {tool.outputs.join(" · ")}
             </span>
           </p>

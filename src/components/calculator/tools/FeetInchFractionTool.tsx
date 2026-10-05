@@ -206,15 +206,15 @@ export function FeetInchFractionTool() {
   const keypad = (
     <div className="rounded-2xl border border-border bg-zinc-950/60 p-4 sm:col-span-2">
       {/* display */}
-      <div className="mb-4 rounded-xl bg-black p-4">
-        <p className="min-h-[1.5rem] break-words font-mono text-sm text-zinc-500">
+      <div className="mb-4 rounded-xl bg-[#0b1b33] p-4 shadow-[var(--shadow-readout)]">
+        <p className="min-h-[1.5rem] break-words font-mono text-sm text-white/60">
           {exprText || " "}
         </p>
-        <p className="mt-1 break-words font-mono text-3xl font-black text-primary">
+        <p className="mt-1 break-words font-mono text-3xl font-black text-white">
           {resultText ?? (entry ? parsePreview(entry) : "0\"")}
         </p>
         {result16 !== null && (
-          <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-zinc-400">
+          <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-white/70">
             <span>{formatNumber(decIn ?? 0)} in</span>
             <span>{formatNumber(decFt ?? 0)} ft</span>
             <span>
@@ -277,7 +277,7 @@ export function FeetInchFractionTool() {
             {op}
           </KeyBtn>
         ))}
-        <KeyBtn onClick={pressEquals} accent label="equals" className="bg-primary text-black">
+        <KeyBtn onClick={pressEquals} accent label="equals" className="bg-primary text-primary-foreground">
           <Equal className="h-5 w-5" />
         </KeyBtn>
       </div>
@@ -302,7 +302,7 @@ export function FeetInchFractionTool() {
           <button
             type="button"
             onClick={pushToEstimate}
-            className="flex min-h-[44px] items-center justify-center rounded-xl bg-primary text-xs font-black text-black"
+            className="flex min-h-[44px] items-center justify-center rounded-xl bg-primary text-xs font-black text-primary-foreground"
           >
             → Estimate
           </button>

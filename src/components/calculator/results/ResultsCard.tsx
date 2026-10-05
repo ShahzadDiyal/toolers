@@ -104,14 +104,14 @@ export function ResultsCard({
   return (
     <div className="print-slip overflow-hidden rounded-xl border border-border bg-zinc-950">
       {/* Primary metric callout */}
-      <div className="border-b border-border bg-gradient-to-b from-amber-500/10 to-transparent px-5 pb-4 pt-5 text-center">
+      <div className="border-b border-border bg-gradient-to-b from-accent/10 to-transparent px-5 pb-4 pt-5 text-center">
         <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-zinc-400">
           {primaryMetric.label}
         </p>
-        <p className="mt-1 font-mono text-5xl font-extrabold tabular-nums text-amber-300">
+        <p className="mt-1 font-mono text-5xl font-extrabold tabular-nums text-accent">
           {primaryMetric.value}
         </p>
-        <p className="mt-1 font-display text-sm font-bold uppercase tracking-[0.2em] text-amber-200/80">
+        <p className="mt-1 font-display text-sm font-bold uppercase tracking-[0.2em] text-accent/80">
           {primaryMetric.unit}
         </p>
       </div>
@@ -120,7 +120,7 @@ export function ResultsCard({
       <div className="px-5 py-4">
         <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-zinc-500">
           Bill of materials
-          <span className="ml-2 rounded bg-amber-500/15 px-1.5 py-0.5 font-mono text-[10px] text-amber-300">
+          <span className="ml-2 rounded bg-accent/15 px-1.5 py-0.5 font-mono text-[10px] text-accent">
             +{wastePercent}% waste
           </span>
         </p>
@@ -142,7 +142,7 @@ export function ResultsCard({
               <div className="min-w-0">
                 <p className="truncate text-sm font-semibold text-zinc-200">{m.label}</p>
                 {m.note && (
-                  <p className="text-[11px] font-semibold text-orange-400/90">{m.note}</p>
+                  <p className="text-[11px] font-semibold text-accent/90">{m.note}</p>
                 )}
                 <p className="mt-0.5 text-[11px] text-zinc-500 sm:hidden">
                   Net {m.net} · Waste {m.waste}
@@ -157,7 +157,7 @@ export function ResultsCard({
               <span
                 className={cn(
                   "text-right font-mono text-sm font-bold tabular-nums",
-                  m.highlight ? "text-amber-300" : "text-zinc-100",
+                  m.highlight ? "text-accent" : "text-zinc-100",
                 )}
               >
                 {m.order}
@@ -195,10 +195,10 @@ export function ResultsCard({
           )}
         </div>
         <div className="mt-3 flex items-baseline justify-between rounded-lg border border-accent/30 bg-accent/10 px-4 py-3">
-          <span className="font-display text-sm font-bold uppercase tracking-widest text-orange-200">
+          <span className="font-display text-sm font-bold uppercase tracking-widest text-accent">
             Total
           </span>
-          <span className="font-mono text-3xl font-extrabold tabular-nums text-orange-400">
+          <span className="font-mono text-3xl font-extrabold tabular-nums text-accent">
             {formatMoney(total)}
           </span>
         </div>

@@ -138,7 +138,7 @@ export function CategoryHubView({ category }: { category: Category }) {
       {/* Pinned quick access */}
       {pinned.length > 0 && (
         <section aria-label="Pinned tools" className="mt-6">
-          <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-amber-300/90">
+          <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-widest text-accent/90">
             <Pin className="h-3.5 w-3.5" />
             Pinned for quick access
           </p>

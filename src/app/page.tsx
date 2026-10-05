@@ -121,7 +121,7 @@ function CategoryGrid() {
             .sort((a, b) => Number(b.available) - Number(a.available))
             .slice(0, 3);
           return (
-            <Card key={c.id} className="flex h-full flex-col">
+            <Card key={c.id} className="flex h-full min-w-0 flex-col">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
                   <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-primary/30 bg-primary/15">

@@ -62,7 +62,7 @@ function TargetPercent({
         <p className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-400">
           Target {mode === "margin" ? "profit margin" : "markup"}
         </p>
-        <p className="font-mono text-2xl font-extrabold text-amber-300">
+        <p className="font-mono text-2xl font-extrabold text-accent">
           {value}%
         </p>
       </div>
@@ -73,7 +73,7 @@ function TargetPercent({
         step={0.5}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="mt-3 h-2 w-full accent-amber-500"
+        className="mt-3 h-2 w-full accent-accent"
         aria-label={`Target ${mode} percent`}
       />
       <div className="mt-1 flex justify-between font-mono text-[10px] text-zinc-600">
@@ -122,7 +122,7 @@ function MarkupMarginMeter({
       </p>
       <div className="mt-3 space-y-3">
         {[
-          { label: "Your markup", pct: markup, bar: "bg-amber-500" },
+          { label: "Your markup", pct: markup, bar: "bg-accent" },
           { label: "Actual margin", pct: margin, bar: "bg-sky-500" },
         ].map((r) => (
           <div key={r.label}>
@@ -142,8 +142,8 @@ function MarkupMarginMeter({
         ))}
       </div>
       {gap >= 1 && (
-        <p className="mt-3 flex items-start gap-2 rounded-lg border border-amber-800/50 bg-amber-950/30 px-3 py-2 text-xs leading-relaxed text-amber-200/90">
-          <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" />
+        <p className="mt-3 flex items-start gap-2 rounded-lg border border-accent/40 bg-accent/10 px-3 py-2 text-xs leading-relaxed text-accent">
+          <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
           A {markup.toFixed(0)}% markup is only a {margin.toFixed(1)}% margin —
           {gap.toFixed(1)} points of profit you thought you had.
         </p>

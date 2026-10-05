@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Barlow_Condensed, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
@@ -13,13 +13,6 @@ import { JsonLd, websiteSchema, appSchema } from "@/components/seo/JsonLd";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
-});
-
-const barlowCondensed = Barlow_Condensed({
-  subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
-  variable: "--font-barlow-condensed",
   display: "swap",
 });
 
@@ -83,7 +76,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${barlowCondensed.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable}`}
     >
       <body className="flex min-h-screen flex-col">
         <JsonLd data={[websiteSchema(), appSchema()]} />
@@ -94,13 +87,13 @@ export default function RootLayout({
           <CommandMenu />
           <EstimateDrawer />
           <Toaster
-            theme="dark"
+            theme="light"
             position="bottom-center"
             toastOptions={{
               style: {
-                background: "#18181b",
-                border: "1px solid #3f3f46",
-                color: "#fafafa",
+                background: "#ffffff",
+                border: "1px solid #d8e1ef",
+                color: "#0b1b33",
               },
             }}
           />

@@ -40,7 +40,7 @@ export function TradeFilterTabs({
             className={cn(
               "flex min-h-[44px] shrink-0 items-center gap-2 rounded-full border px-4 text-sm font-bold transition-colors",
               isActive
-                ? "border-primary bg-primary text-primary-foreground shadow-[0_0_16px_rgb(245_158_11/0.35)]"
+                ? "border-primary bg-primary text-primary-foreground shadow-[0_0_16px_rgb(20_40_74/0.35)]"
                 : "border-zinc-700 bg-zinc-900 text-zinc-300 hover:border-primary hover:text-primary",
             )}
           >

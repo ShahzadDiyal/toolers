@@ -77,7 +77,7 @@ export function StairDiagram({
           y1={yBase}
           x2={xEnd + 14}
           y2={yBase}
-          stroke="#52525b"
+          stroke="#5a6c85"
           strokeWidth={2}
         />
         <line
@@ -85,7 +85,7 @@ export function StairDiagram({
           y1={yTop}
           x2={xEnd + 14}
           y2={yTop}
-          stroke="#52525b"
+          stroke="#5a6c85"
           strokeWidth={2}
         />
 
@@ -95,14 +95,14 @@ export function StairDiagram({
           y1={yBase + boardOffset * Math.cos(ang)}
           x2={xEnd + boardOffset * Math.sin(ang)}
           y2={yTop + boardOffset * Math.cos(ang)}
-          stroke="#f59e0b"
+          stroke="#14284a"
           strokeWidth={7}
           strokeLinecap="round"
           opacity={0.9}
         />
 
         {/* sawtooth cut */}
-        <path d={d} fill="none" stroke="#fafafa" strokeWidth={2.5} />
+        <path d={d} fill="none" stroke="#ed7d22" strokeWidth={2.5} />
 
         {/* total rise dimension (left) */}
         <line
@@ -110,13 +110,13 @@ export function StairDiagram({
           y1={yBase}
           x2={x0 - 18}
           y2={yTop}
-          stroke="#71717a"
+          stroke="#8fa1b8"
           strokeWidth={1}
         />
         <text
           x={x0 - 24}
           y={(yBase + yTop) / 2}
-          fill="#a1a1aa"
+          fill="#5a6c85"
           fontSize={11}
           textAnchor="middle"
           transform={`rotate(-90 ${x0 - 24} ${(yBase + yTop) / 2})`}
@@ -129,7 +129,7 @@ export function StairDiagram({
         <text
           x={(x0 + xEnd) / 2}
           y={H - 10}
-          fill="#a1a1aa"
+          fill="#5a6c85"
           fontSize={11}
           textAnchor="middle"
           fontFamily="monospace"

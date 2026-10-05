@@ -240,7 +240,7 @@ export function UnitConverterProTool() {
         <button
           type="button"
           onClick={pushToEstimate}
-          className="flex min-h-[44px] items-center justify-center rounded-xl bg-primary text-xs font-black text-black"
+          className="flex min-h-[44px] items-center justify-center rounded-xl bg-primary text-xs font-black text-primary-foreground"
         >
           → Estimate
         </button>

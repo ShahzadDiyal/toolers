@@ -126,7 +126,7 @@ function LineItemRow({ item }: { item: EstimateLineItem }) {
           <p className="text-xs text-zinc-500">
             {CATEGORY_META[item.category].label}
             {item.wastePercent > 0 && (
-              <span className="ml-1.5 rounded bg-amber-500/15 px-1.5 py-0.5 font-mono text-[10px] font-bold text-amber-300">
+              <span className="ml-1.5 rounded bg-accent/15 px-1.5 py-0.5 font-mono text-[10px] font-bold text-accent">
                 +{item.wastePercent}% waste
               </span>
             )}
@@ -378,7 +378,7 @@ export function EstimateDrawer() {
                   <ReceiptText className="h-4 w-4 text-accent" />
                   Total bid
                 </span>
-                <span className="font-mono text-3xl font-extrabold text-orange-400 tabular-nums">
+                <span className="font-mono text-3xl font-extrabold text-accent tabular-nums">
                   {formatMoney(summary.totalBid)}
                 </span>
               </div>

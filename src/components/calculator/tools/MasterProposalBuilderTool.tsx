@@ -559,7 +559,7 @@ export function MasterProposalBuilderTool() {
           />
         </div>
 
-        <dl className="mt-4 space-y-1.5 rounded-xl bg-black/40 p-4 font-mono text-sm">
+        <dl className="mt-4 space-y-1.5 rounded-xl bg-panel p-4 font-mono text-sm">
           <div className="flex justify-between text-zinc-400">
             <dt>Subtotal direct costs</dt>
             <dd>{formatMoney(summary.directCost)}</dd>
@@ -639,7 +639,7 @@ export function MasterProposalBuilderTool() {
           type="button"
           onClick={handlePdf}
           disabled={generating}
-          className="flex min-h-[56px] items-center justify-center gap-2 rounded-2xl bg-primary text-base font-black text-black transition active:scale-[0.98] disabled:opacity-50"
+          className="flex min-h-[56px] items-center justify-center gap-2 rounded-2xl bg-primary text-base font-black text-primary-foreground transition active:scale-[0.98] disabled:opacity-50"
         >
           <FileDown className="h-5 w-5" />
           {generating ? "Building PDF…" : "Download proposal PDF"}

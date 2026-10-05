@@ -205,7 +205,7 @@ export function RoofPitchShinglesTool() {
       <div className="sm:col-span-2">
         <p className="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-zinc-400">
           Roof pitch
-          <span className="ml-2 font-mono normal-case tracking-normal text-amber-300">
+          <span className="ml-2 font-mono normal-case tracking-normal text-accent">
             {v.pitch}/12 · ×{pitchMultiplier || "—"} area
           </span>
         </p>
@@ -243,7 +243,7 @@ export function RoofPitchShinglesTool() {
           }
         />
         <p className="mt-1.5 text-xs text-zinc-500">
-          Waste allowance: <span className="font-mono font-bold text-amber-300">{wastePercent}%</span> —{" "}
+          Waste allowance: <span className="font-mono font-bold text-accent">{wastePercent}%</span> —{" "}
           {v.complexity === "gable" && "simple gables cut clean."}
           {v.complexity === "hip" && "hips and valleys eat shingles."}
           {v.complexity === "complex" && "cut-up roofs: dormers, crickets, waste."}

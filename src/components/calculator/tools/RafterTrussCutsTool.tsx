@@ -171,7 +171,7 @@ export function RafterTrussCutsTool() {
       <div className="sm:col-span-2">
         <p className="mb-2 text-xs font-bold uppercase tracking-[0.12em] text-zinc-400">
           Roof pitch
-          <span className="ml-2 font-mono normal-case tracking-normal text-amber-300">
+          <span className="ml-2 font-mono normal-case tracking-normal text-accent">
             {formatNumber(t.pitchAngleDeg)}°
           </span>
         </p>

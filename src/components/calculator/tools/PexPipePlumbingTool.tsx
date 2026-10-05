@@ -254,10 +254,10 @@ export function PexPipePlumbingTool() {
           />
         </div>
         <p className="mt-3 text-xs text-zinc-500">
-          Total <span className="font-mono font-bold text-amber-300">{formatNumber(t.totalWsfu)} WSFU</span>
-          {" "}→ <span className="font-mono font-bold text-amber-300">{t.mainSizeIn}</span> main supply
+          Total <span className="font-mono font-bold text-accent">{formatNumber(t.totalWsfu)} WSFU</span>
+          {" "}→ <span className="font-mono font-bold text-accent">{t.mainSizeIn}</span> main supply
           {v.system === "homerun" && (
-            <> · <span className="font-mono font-bold text-amber-300">{t.manifoldPorts}</span> manifold ports</>
+            <> · <span className="font-mono font-bold text-accent">{t.manifoldPorts}</span> manifold ports</>
           )}
         </p>
       </div>

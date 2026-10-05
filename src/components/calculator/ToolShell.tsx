@@ -53,9 +53,9 @@ export function ToolShell({
             <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
               {summary.label}
             </p>
-            <p className="truncate font-mono text-xl font-extrabold tabular-nums text-amber-300">
+            <p className="truncate font-mono text-xl font-extrabold tabular-nums text-accent">
               {summary.value}{" "}
-              <span className="text-xs font-bold text-amber-200/80">{summary.unit}</span>
+              <span className="text-xs font-bold text-accent/80">{summary.unit}</span>
             </p>
           </div>
           <Button
