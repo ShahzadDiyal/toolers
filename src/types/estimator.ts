@@ -113,6 +113,8 @@ export interface ToolMetadata {
   iconName: string;
   /** Human-readable formula summary shown on the tool card. */
   formulaSummary: string;
+  /** Short input summary for cards, e.g. "L × W × thickness". */
+  inputsSummary?: string;
   /** What the calculator outputs, e.g. ["Cubic yards", "80-lb bags"]. */
   outputs: string[];
   /** Trade badge, e.g. "Most Popular", "IRC Code Compliant". */
@@ -125,6 +127,8 @@ export interface ToolMetadata {
   readTimeMinutes?: number;
   /** Explainer bullets rendered under the calculator ("How the math works"). */
   details?: string[];
+  /** One-sentence instruction guide shown above the calculator. */
+  howTo?: string;
 }
 
 /** Units selectable in the master estimate. Keep display + plural forms. */

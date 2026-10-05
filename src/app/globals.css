@@ -150,3 +150,41 @@
 [cmdk-root] {
   @apply bg-popover text-popover-foreground;
 }
+
+/* --- Print stylesheet: clean material slip --- */
+@media print {
+  /* Hide all app chrome; only the results slip prints */
+  header,
+  footer,
+  nav,
+  aside,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+
+  /* Ink-friendly slip: black on white, no shadows */
+  .print-slip {
+    border: 2px solid #111 !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+  }
+  .print-slip,
+  .print-slip * {
+    color: #111 !important;
+    border-color: #d4d4d4 !important;
+    background: transparent !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+  .print-slip .font-mono {
+    font-weight: 700;
+  }
+}

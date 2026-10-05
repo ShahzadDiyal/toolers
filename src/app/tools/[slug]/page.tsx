@@ -1,9 +1,10 @@
 /**
- * BuildCalc Pro — Tool page: /tools/[slug].
+ * BuildCalc Pro — Tool page: /tools/[slug] (Phase 4A universal shell).
  *
- * Resolves the slug against the registry. Live tools render their
- * calculator; planned tools render a "coming soon" card with the outputs
- * preview so every registry entry is a valid, linkable page (Phase 3/4).
+ * Validates the slug against the registry (notFound on miss), renders the
+ * tool header (title, trade badge, 1-sentence guide), then the registered
+ * calculator component — each built on useToolAutoSave + ToolShell +
+ * ResultsCard. Planned tools render a "coming soon" card.
  */
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -16,7 +17,8 @@ import {
   categoryHref,
 } from "@/data/toolsRegistry";
 import { toolIcon } from "@/lib/tool-icons";
-import { ConcreteSlab } from "@/components/calculators/ConcreteSlab";
+import { ConcreteSlabTool } from "@/components/calculator/tools/ConcreteSlabTool";
+import { RoofPitchShinglesTool } from "@/components/calculator/tools/RoofPitchShinglesTool";
 import { TrackRecentTool } from "@/components/tools/TrackRecentTool";
 import {
   Card,
@@ -46,10 +48,41 @@ export async function generateMetadata({
   };
 }
 
-/** Registry of implemented calculator components (Phase 3/4 add entries). */
+/** Registry of implemented calculator components (Phase 4+ adds entries). */
 const TOOL_COMPONENTS: Record<string, React.ComponentType> = {
-  "concrete-slab": ConcreteSlab,
+  "concrete-slab": ConcreteSlabTool,
+  "roof-pitch-shingles": RoofPitchShinglesTool,
 };
+
+function ToolHeader({ slug }: { slug: string }) {
+  const tool = getToolBySlug(slug);
+  if (!tool) notFound();
+  const Icon = toolIcon(tool.iconName);
+  return (
+    <div className="mb-6 flex items-start gap-4">
+      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-primary/30 bg-primary/15">
+        <Icon className="h-7 w-7 text-primary" />
+      </span>
+      <div className="min-w-0">
+        <div className="flex flex-wrap items-center gap-2">
+          {tool.badge && <Badge variant="accent">{tool.badge}</Badge>}
+          <Badge variant="secondary">{tool.subtrade}</Badge>
+          {tool.estimatedTime && (
+            <Badge variant="outline" className="font-mono">
+              {tool.estimatedTime}
+            </Badge>
+          )}
+        </div>
+        <h1 className="mt-1.5 font-display text-3xl font-extrabold uppercase tracking-wide sm:text-4xl">
+          {tool.title}
+        </h1>
+        <p className="mt-1.5 max-w-2xl text-[15px] leading-relaxed text-zinc-400">
+          {tool.howTo ?? tool.shortDescription}
+        </p>
+      </div>
+    </div>
+  );
+}
 
 function ComingSoon({ slug }: { slug: string }) {
   const tool = getToolBySlug(slug);
@@ -90,9 +123,8 @@ function ComingSoon({ slug }: { slug: string }) {
               On the build bench
             </p>
             <p className="mt-1 text-sm text-zinc-400">
-              This calculator is being built with the same precision shell as
-              every live tool — net quantities, waste math, bill of materials,
-              and one-tap bid lines.
+              This calculator is being built on the universal shell — auto-saved
+              inputs, real-time math, bill of materials, and one-tap bid lines.
             </p>
           </div>
           <div className="w-full max-w-md rounded-xl border border-border bg-zinc-950 p-4 text-left">
@@ -139,11 +171,10 @@ export default async function ToolPage({
       <TrackRecentTool slug={slug} />
       {ToolComponent ? (
         <>
-          <div className="max-w-5xl">
-            <ToolComponent />
-          </div>
+          <ToolHeader slug={slug} />
+          <ToolComponent />
           {tool.details && tool.details.length > 0 && (
-            <Card className="mt-8 max-w-5xl">
+            <Card className="no-print mt-8">
               <CardHeader>
                 <CardTitle className="text-lg">How the math works</CardTitle>
               </CardHeader>
@@ -156,9 +187,7 @@ export default async function ToolPage({
           )}
         </>
       ) : (
-        <div className="max-w-5xl">
-          <ComingSoon slug={slug} />
-        </div>
+        <ComingSoon slug={slug} />
       )}
     </>
   );

@@ -39,7 +39,7 @@ export function ToolActionBar() {
 
   return (
     <div
-      className="mb-5 flex flex-wrap items-center gap-2 rounded-xl border border-border bg-card p-2.5"
+      className="no-print mb-5 flex flex-wrap items-center gap-2 rounded-xl border border-border bg-card p-2.5"
       role="toolbar"
       aria-label="Calculator quick actions"
     >

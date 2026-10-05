@@ -7,8 +7,8 @@
  *   - Related tools sidebar for one-click switching between estimators
  */
 import Link from "next/link";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { ChevronRight } from "lucide-react";
 import {
   getToolBySlug,
   getCategory,
@@ -18,12 +18,14 @@ import {
 } from "@/data/toolsRegistry";
 import { toolIcon } from "@/lib/tool-icons";
 import { ToolActionBar } from "@/components/tools/ToolActionBar";
+import { ToolBreadcrumbs } from "@/components/tools/ToolBreadcrumbs";
 import {
   Card,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default async function ToolLayout({
   children,
@@ -40,25 +42,11 @@ export default async function ToolLayout({
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
-      <nav
-        aria-label="Breadcrumb"
-        className="mb-6 flex flex-wrap items-center gap-1.5 text-sm text-zinc-500"
-      >
-        <Link href="/" className="min-h-[44px] inline-flex items-center hover:text-primary">
-          Home
-        </Link>
-        <ChevronRight className="h-3.5 w-3.5 shrink-0" />
-        <Link
-          href={categoryHref(tool.category)}
-          className="min-h-[44px] inline-flex items-center hover:text-primary"
-        >
-          {category.label}
-        </Link>
-        <ChevronRight className="h-3.5 w-3.5 shrink-0" />
-        <span className="text-zinc-300" aria-current="page">
-          {tool.title}
-        </span>
-      </nav>
+      <div className="mb-6">
+        <Suspense fallback={<Skeleton className="h-5 w-72" />}>
+          <ToolBreadcrumbs tool={tool} />
+        </Suspense>
+      </div>
 
       <div className="grid gap-8 lg:grid-cols-[1fr_300px]">
         <div className="min-w-0">
